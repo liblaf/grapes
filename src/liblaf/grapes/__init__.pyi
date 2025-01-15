@@ -1,4 +1,4 @@
-from . import environ, logging
+from . import environ, logging, text
 from .environ import init_env
 from .logging import (
     InterceptHandler,
@@ -7,6 +7,7 @@ from .logging import (
     logging_theme,
     setup_loguru_logging_intercept,
 )
+from .text import strip_comments
 
 __all__ = [
     "InterceptHandler",
@@ -17,4 +18,6 @@ __all__ = [
     "logging_console",
     "logging_theme",
     "setup_loguru_logging_intercept",
+    "strip_comments",
+    "text",
 ]

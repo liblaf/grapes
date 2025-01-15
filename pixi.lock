@@ -225,10 +225,10 @@ packages:
 - pypi: .
   name: liblaf-grapes
   version: 0.0.0
-  sha256: 270475e97da94b826543ec68419f455bcdf92d69fe9758696123934998febd9d
+  sha256: 0cfdc99b3d4dd9a90d8a8bd9e4d6501ed416a0eb094c29fbb9bd1b598b70ab0d
   requires_dist:
-  - lazy-loader>=0.4,<0.5
   - environs>=14.1.0,<15
+  - lazy-loader>=0.4,<0.5
   - loguru>=0.7.3,<0.8 ; extra == 'logging'
   - rich>=13.9.4,<14 ; extra == 'logging'
   requires_python: ~=3.12

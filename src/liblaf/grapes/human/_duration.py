@@ -1,3 +1,12 @@
+from collections.abc import Sequence
+
+from liblaf import grapes
+
+with grapes.optional_imports(extra="human"):
+    import numpy as np
+    import numpy.typing as npt
+
+
 UNITS: dict[str, float] = {
     "ns": 1e-9,
     "us": 1e-6,
@@ -76,3 +85,8 @@ def human_duration(
 
 def human_duration_with_variance(mean: float, std: float) -> str:
     return human_duration(mean) + " ± " + human_duration(std)
+
+
+def human_duration_series(series: Sequence[float]) -> str:
+    series: npt.NDArray = np.asarray(series)
+    return human_duration_with_variance(series.mean(), series.std())

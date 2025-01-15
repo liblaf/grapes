@@ -1,5 +1,4 @@
 #:schema https://json.schemastore.org/pyproject.json
-# vim: syntax=toml
 # https://packaging.python.org/en/latest/specifications/pyproject-toml/
 
 [build-system]
@@ -20,6 +19,7 @@ dependencies = [
   "etils>=1.11.0,<2",
   "lazy-loader>=0.4,<0.5",
   "loguru>=0.7.3,<0.8",
+  "numpy>=2.2.1,<3",
   "pydantic>=2.10.5,<3",
   "rich>=13.9.4,<14",
   "ruamel-yaml>=0.18.10,<0.19",

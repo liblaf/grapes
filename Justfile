@@ -14,3 +14,7 @@ lint-python:
 
 lint-toml:
     sort-toml .ruff.toml pyproject.toml
+
+upgrade:
+    pixi upgrade
+    just

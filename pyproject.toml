@@ -1,4 +1,5 @@
 #:schema https://json.schemastore.org/pyproject.json
+# vim: syntax=toml
 # https://packaging.python.org/en/latest/specifications/pyproject-toml/
 
 [build-system]
@@ -6,32 +7,23 @@ build-backend = "hatchling.build"
 requires = ["hatchling"]
 
 [dependency-groups]
-dev = ["icecream~=2.1.4"]
-exp = [
-  "comet-ml~=3.47.6",
-  "liblaf-avocado~=0.1.0",
-  "liblaf-banana~=0.1.0",
-  "pytetwild~=0.1.dev1",
-]
+dev = ["icecream>=2.1.4,<3"]
 
 [project]
 authors = [
   { email = "30631553+liblaf@users.noreply.github.com", name = "liblaf" },
 ]
-dependencies = [
-  "felupe~=9.1.0",
-  "jaxtyping~=0.2.36",
-  "lazy-loader~=0.4",
-  "pyvista~=0.44.2",
-  "scipy~=1.15.1",
-]
+dependencies = ["lazy-loader>=0.4,<0.5", "environs>=14.1.0,<15"]
 description = "Add your description here"
 keywords = []
 license = "MIT"
-name = "liblaf-grapes"
+name = "liblaf.grapes"
 readme = "docs/README.md"
-requires-python = "~=3.12,<3.13"
+requires-python = "~=3.12"
 version = "0.0.0"
+
+[project.optional-dependencies]
+logging = ["loguru>=0.7.3,<0.8", "rich>=13.9.4,<14"]
 
 [project.urls]
 "Changelog" = "https://github.com/liblaf/grapes/blob/main/CHANGELOG.md"
@@ -44,22 +36,18 @@ version = "0.0.0"
 ignore = ["W002"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/grapes"]
-
-[tool.pixi.dependencies]
-jax = "~=0.4.35"
-jaxlib = { build = "*cuda*" }
+packages = ["src/liblaf"]
 
 [tool.pixi.environments]
-default = { features = ["dev", "exp"] }
+default = { features = ["dev", "logging"] }
 
 [tool.pixi.project]
 channel-priority = "disabled"
-channels = ["anaconda", "conda-forge"]
+channels = ["conda-forge"]
 platforms = ["linux-64"]
 
 [tool.pixi.pypi-dependencies]
-liblaf-grapes = { editable = true, path = "." }
+"liblaf.grapes" = { editable = true, path = "." }
 
 [tool.pixi.system-requirements]
 cuda = "12"

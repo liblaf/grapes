@@ -9,7 +9,7 @@ from rich.logging import RichHandler
 from liblaf import grapes
 
 
-def configure(
+def init_logging(
     level: int | str = logging.NOTSET,
     handlers: Sequence[loguru.HandlerConfig] | None = None,
     levels: Sequence[loguru.LevelConfig] | None = None,

@@ -13,7 +13,16 @@ dev = ["icecream>=2.1.4,<3"]
 authors = [
   { email = "30631553+liblaf@users.noreply.github.com", name = "liblaf" },
 ]
-dependencies = ["environs>=14.1.0,<15", "lazy-loader>=0.4,<0.5"]
+dependencies = [
+  "environs>=14.1.0,<15",
+  "etils>=1.11.0,<2",
+  "lazy-loader>=0.4,<0.5",
+  "loguru>=0.7.3,<0.8",
+  "pydantic>=2.10.5,<3",
+  "rich>=13.9.4,<14",
+  "ruamel-yaml>=0.18.10,<0.19",
+  "tomlkit>=0.13.2,<0.14",
+]
 description = "Add your description here"
 keywords = []
 license = "MIT"
@@ -23,7 +32,6 @@ requires-python = "~=3.12"
 version = "0.0.0"
 
 [project.optional-dependencies]
-logging = ["loguru>=0.7.3,<0.8", "rich>=13.9.4,<14"]
 
 [project.urls]
 "Changelog" = "https://github.com/liblaf/grapes/blob/main/CHANGELOG.md"
@@ -39,7 +47,7 @@ ignore = ["W002"]
 packages = ["src/liblaf"]
 
 [tool.pixi.environments]
-default = { features = ["dev", "logging"] }
+default = { features = ["dev"] }
 
 [tool.pixi.project]
 channel-priority = "disabled"

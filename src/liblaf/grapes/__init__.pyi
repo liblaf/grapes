@@ -1,6 +1,11 @@
-from . import environ, logging, serde, text
+from . import environ, human, logging, serde, text
 from ._optional import has_module, optional_imports
 from .environ import init_env
+from .human import (
+    human_duration,
+    human_duration_unit_precision,
+    human_duration_with_variance,
+)
 from .logging import (
     InterceptHandler,
     init_logging,
@@ -27,6 +32,10 @@ __all__ = [
     "deserialize",
     "environ",
     "has_module",
+    "human",
+    "human_duration",
+    "human_duration_unit_precision",
+    "human_duration_with_variance",
     "init_env",
     "init_logging",
     "load_json",

@@ -8,13 +8,14 @@ requires = ["hatchling"]
 
 [dependency-groups]
 build = ["build>=1.2.2.post1,<2", "check-wheel-contents>=0.6.1,<0.7"]
-dev = ["icecream>=2.1.4,<3"]
+dev = ["icecream>=2.1.4,<3", "marimo>=0.10.13,<0.11"]
 
 [project]
 authors = [
   { email = "30631553+liblaf@users.noreply.github.com", name = "liblaf" },
 ]
 dependencies = [
+  "about-time>=4.2.1,<5",
   "environs>=14.1.0,<15",
   "etils>=1.11.0,<2",
   "lazy-loader>=0.4,<0.5",

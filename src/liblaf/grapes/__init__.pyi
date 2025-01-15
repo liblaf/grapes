@@ -1,5 +1,6 @@
 from . import environ, human, logging, serde, text
 from ._optional import has_module, optional_imports
+from ._timer import TimerRecords
 from .environ import init_env
 from .human import (
     human_duration,
@@ -29,6 +30,7 @@ from .text import strip_comments
 
 __all__ = [
     "InterceptHandler",
+    "TimerRecords",
     "deserialize",
     "environ",
     "has_module",

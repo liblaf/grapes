@@ -69,6 +69,8 @@ def human_duration(
         human: str = f"{value:.{precision}f}".lstrip("0")
         if precision == 0:
             human += "."
+        if unit == "us":
+            unit = "µs"
         human += f" {unit}"
         return human
     if unit == "m":

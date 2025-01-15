@@ -1,5 +1,9 @@
 default: gen-init lint
 
+build:
+    pyproject-build
+    check-wheel-contents dist/*.whl
+
 gen-init:
     ./scripts/gen-init.sh
 

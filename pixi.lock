@@ -712,7 +712,7 @@ packages:
 - pypi: .
   name: liblaf-grapes
   version: 0.0.0
-  sha256: d427344b037a4fce38a66e9c5cace7de9210663243126e06d1a3d82d7b34c7b7
+  sha256: 86b5f4ef9c8b196b77f76d76aa524cc6f987c055f902263380acfe4f24f2e8ee
   requires_dist:
   - about-time>=4.2.1,<5
   - boltons>=24.1.0,<25

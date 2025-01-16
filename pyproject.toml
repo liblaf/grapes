@@ -61,7 +61,7 @@ channels = ["conda-forge"]
 platforms = ["linux-64"]
 
 [tool.pixi.pypi-dependencies]
-"liblaf.grapes" = { editable = true, path = "." }
+liblaf-grapes = { editable = true, path = "." }
 
 [tool.pixi.system-requirements]
 cuda = "12"

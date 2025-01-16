@@ -34,7 +34,7 @@ dependencies = [
 description = "Add your description here"
 keywords = []
 license = "MIT"
-name = "liblaf.grapes"
+name = "liblaf-grapes"
 readme = "docs/README.md"
 requires-python = ">=3.12"
 version = "0.0.0"

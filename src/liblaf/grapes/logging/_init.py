@@ -3,7 +3,7 @@ from collections.abc import Sequence
 
 import loguru
 
-from liblaf import grapes
+from . import init_icecream, init_loguru, init_rich
 
 
 def init_logging(
@@ -13,6 +13,6 @@ def init_logging(
     levels: Sequence["loguru.LevelConfig"] | None = None,
     traceback_show_locals: bool = True,
 ) -> None:
-    grapes.logging.init_rich(show_locals=traceback_show_locals)
-    grapes.logging.init_loguru(level=level, handlers=handlers, levels=levels)
-    grapes.logging.init_icecream()
+    init_rich(show_locals=traceback_show_locals)
+    init_loguru(level=level, handlers=handlers, levels=levels)
+    init_icecream()

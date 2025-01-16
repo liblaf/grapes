@@ -1,6 +1,6 @@
 from . import environ, human, logging, progress, serde, text
 from ._optional import has_module, optional_imports
-from ._timer import TimerRecords
+from ._timer import TimerRecords, get_time, timer
 from .environ import init_env
 from .human import (
     human_count,
@@ -28,8 +28,10 @@ from .text import strip_comments
 
 __all__ = [
     "TimerRecords",
+    "TimerRecords",
     "deserialize",
     "environ",
+    "get_time",
     "has_module",
     "human",
     "human_count",
@@ -56,5 +58,6 @@ __all__ = [
     "serialize",
     "strip_comments",
     "text",
+    "timer",
     "track",
 ]

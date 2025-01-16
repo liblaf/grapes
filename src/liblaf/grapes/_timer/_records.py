@@ -1,4 +1,5 @@
 import collections
+import textwrap
 from collections.abc import Iterator, Mapping
 
 from liblaf import grapes
@@ -29,27 +30,33 @@ class TimerRecords(Mapping[str, list[float]]):
         nanoseconds: float | Mapping[str, float] = {},
     ) -> None:
         if not isinstance(seconds, Mapping):
-            seconds = {"real": seconds}
+            seconds = {"perf": seconds}
         if not isinstance(nanoseconds, Mapping):
-            nanoseconds = {"real": nanoseconds}
+            nanoseconds = {"perf": nanoseconds}
         for k, v in seconds.items():
             self._records[k].append(v)
         for k, v in nanoseconds.items():
             self._records[k].append(v * 1e-9)
 
-    def report(self) -> str:
+    @property
+    def count(self) -> int:
+        return len(next(iter(self._records.values()), []))
+
+    def report(self, label: str | None = None) -> str:
         text: str = ""
         for k in self._records:
-            if len(self._records) > 1:
-                text += f"{k} > "
+            text += f"{k} > "
             arr: np.ndarray = self.to_numpy(k)
             best_human: str = grapes.human_duration(arr.min())
-            mean_human: str = grapes.human_duration_with_variance(arr.mean(), arr.std())
+            mean_human: str = grapes.human_duration_series(arr)
             text += f"best: {best_human}, mean: {mean_human}\n"
-        return text.strip()
+        text = text.strip()
+        label = label or "Timer"
+        text = f"{label} (total: {self.count})" + "\n" + textwrap.indent(text, "  ")
+        return text
 
     def to_polars(self) -> pl.DataFrame:
         return pl.DataFrame(self._records)
 
-    def to_numpy(self, key: str = "real") -> np.ndarray:
+    def to_numpy(self, key: str = "perf") -> np.ndarray:
         return np.asarray(self._records[key])

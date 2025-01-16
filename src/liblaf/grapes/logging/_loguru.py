@@ -60,7 +60,9 @@ def init_loguru(
     if handlers is None:
         handlers: list[loguru.HandlerConfig] = [
             {
-                "sink": RichHandler(console=grapes.logging.logging_console()),
+                "sink": RichHandler(
+                    console=grapes.logging.logging_console(), markup=True
+                ),
                 "format": "{message}",
             }
         ]
@@ -74,4 +76,4 @@ def init_loguru(
             {"name": "ICECREAM", "no": 15, "color": "<magenta><bold>", "icon": "🍦"}
         ]
     logger.configure(handlers=handlers, levels=levels)
-    grapes.logging.setup_loguru_logging_intercept(level=level)
+    setup_loguru_logging_intercept(level=level)

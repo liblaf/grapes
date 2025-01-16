@@ -1,6 +1,7 @@
 import functools
 
-import rich
+import rich.pretty
+import rich.traceback
 from rich.console import Console
 from rich.style import Style
 from rich.theme import Theme
@@ -31,3 +32,8 @@ def logging_theme() -> Theme:
 @functools.cache
 def logging_console() -> Console:
     return rich.console.Console(theme=logging_theme(), stderr=True)
+
+
+def init_rich(*, show_locals: bool = True) -> None:
+    rich.pretty.install(console=logging_console())
+    rich.traceback.install(console=logging_console(), show_locals=show_locals)

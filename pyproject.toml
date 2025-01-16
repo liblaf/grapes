@@ -6,7 +6,11 @@ build-backend = "hatchling.build"
 requires = ["hatchling"]
 
 [dependency-groups]
-build = ["build>=1.2.2.post1,<2", "check-wheel-contents>=0.6.1,<0.7"]
+build = [
+  "build>=1.2.2.post1,<2",
+  "check-wheel-contents>=0.6.1,<0.7",
+  "twine>=6.0.1,<7",
+]
 dev = ["icecream>=2.1.4,<3", "marimo>=0.10.13,<0.11"]
 
 [project]

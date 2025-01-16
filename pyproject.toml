@@ -15,6 +15,7 @@ authors = [
 ]
 dependencies = [
   "about-time>=4.2.1,<5",
+  "boltons>=24.1.0,<25",
   "environs>=14.1.0,<15",
   "etils>=1.11.0,<2",
   "lazy-loader>=0.4,<0.5",

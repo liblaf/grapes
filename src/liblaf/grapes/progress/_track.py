@@ -38,9 +38,17 @@ _T = TypeVar("_T")
 
 
 def track(
-    sequence: Iterable[_T], description: str | None = "Working..."
+    sequence: Iterable[_T],
+    *,
+    description: str | bool | None = True,
+    timer: bool = True,
+    record_log_level: int | str | None = "DEBUG",
+    report_log_level: int | str | None = "INFO",
 ) -> Generator[_T, Any, None]:
     columns: list[ProgressColumn] = [SpinnerColumn()]
+    if description is True:
+        description = grapes.caller_location(2)
+    description = description or ""
     if description:
         columns.append(TextColumn("[progress.description]{task.description}"))
     columns += [
@@ -55,5 +63,17 @@ def track(
         RateColumn(),
         "]",
     ]
-    with Progress(*columns, console=grapes.logging_console()) as progress:
-        yield from progress.track(sequence, description=description or "")
+    progress = Progress(*columns, console=grapes.logging_console())
+    if timer:
+        t = grapes.timer(
+            label=description,
+            log_at_exit=False,
+            record_log_level=record_log_level,
+            report_log_level=report_log_level,
+        )
+        with progress:
+            yield from t.track(progress.track(sequence, description=description))
+            t.log_report()
+    else:
+        with progress:
+            yield from progress.track(sequence, description=description)

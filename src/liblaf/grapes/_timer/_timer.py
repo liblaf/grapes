@@ -1,7 +1,7 @@
 import atexit
 import contextlib
 import functools
-from collections.abc import Callable, Iterator, Mapping, Sequence
+from collections.abc import Callable, Iterable, Iterator, Mapping, Sequence
 from types import TracebackType
 from typing import ParamSpec, Self, TypeVar
 
@@ -16,20 +16,21 @@ _T = TypeVar("_T")
 
 
 class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N801
-    label: str | None = None
     counters: Sequence[str]
+    depth: int = 0
+    label: str | None = None
+    records: TimerRecords
     record_log_level: int | str | None = "DEBUG"
     report_log_level: int | str | None = "INFO"
-    records: TimerRecords
     _start: dict[str, float]
     _end: dict[str, float]
-    _depth: int = 0
 
     def __init__(
         self,
         label: str | None = None,
         *,
         counters: Sequence[str] = ["perf", "process"],
+        log_at_exit: bool = True,
         record_log_level: int | str | None = "DEBUG",
         report_log_level: int | str | None = "INFO",
     ) -> None:
@@ -40,7 +41,8 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
         self.records = TimerRecords()
         self._start = {}
         self._end = {}
-        TIMERS.append(self)
+        if log_at_exit:
+            TIMERS.append(self)
 
     def __getitem__(self, key: str) -> float:
         return self._end[key] - self._start[key]
@@ -54,7 +56,7 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
     def __enter__(self) -> Self:
         if self.label is None:
             self.label = grapes.caller_location(2)
-        self._depth += 1
+        self.depth += 1
         self.start()
         return self
 
@@ -65,7 +67,7 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
         traceback: TracebackType | None,
     ) -> None:
         self.end()
-        self._depth -= 1
+        self.depth -= 1
 
     def __call__(self, fn: Callable[_P, _T]) -> Callable[_P, _T]:
         if self.label is None:
@@ -73,10 +75,10 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
 
         @functools.wraps(fn)
         def wrapped(*args: _P.args, **kwargs: _P.kwargs) -> _T:
-            self._depth += 1
+            self.depth += 1
             with self:
                 ret: _T = fn(*args, **kwargs)
-            self._depth -= 1
+            self.depth -= 1
             return ret
 
         return wrapped
@@ -89,16 +91,14 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
         for name in self.counters:
             self._end[name] = get_time(name)
         self.records.append(self)
-        self._depth += 1
+        self.depth += 1
         self.log_record()
-        self._depth -= 1
+        self.depth -= 1
 
     def log_record(self) -> None:
         if not self.record_log_level:
             return
-        logger.opt(depth=self._depth + 1).log(
-            self.record_log_level, self.human_record()
-        )
+        logger.opt(depth=self.depth + 1).log(self.record_log_level, self.human_record())
 
     def log_report(self) -> None:
         if not self.report_log_level:
@@ -119,6 +119,15 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
             text += f"{k}: {human}, "
         text = text.removesuffix(", ")
         return text
+
+    def track(self, iterable: Iterable[_T]) -> Iterable[_T]:
+        self.depth += 1
+        if self.label is None:
+            self.label = grapes.caller_location(2)
+        for item in iterable:
+            with self:
+                yield item
+        self.depth -= 1
 
 
 TIMERS: list[timer] = []

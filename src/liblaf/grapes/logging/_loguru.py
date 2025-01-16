@@ -61,7 +61,10 @@ def init_loguru(
         handlers: list[loguru.HandlerConfig] = [
             {
                 "sink": RichHandler(
-                    console=grapes.logging.logging_console(), markup=True
+                    console=grapes.logging.logging_console(),
+                    omit_repeated_times=False,
+                    markup=True,
+                    log_time_format="[%Y-%m-%d %H:%M:%S]",
                 ),
                 "format": "{message}",
             }

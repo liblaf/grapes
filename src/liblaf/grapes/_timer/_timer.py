@@ -2,12 +2,10 @@ import atexit
 import contextlib
 import functools
 from collections.abc import Callable, Iterator, Mapping, Sequence
-from pathlib import Path
-from types import FrameType, TracebackType
+from types import TracebackType
 from typing import ParamSpec, Self, TypeVar
 
 from loguru import logger
-from loguru._get_frame import get_frame
 
 from liblaf import grapes
 
@@ -55,16 +53,7 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
 
     def __enter__(self) -> Self:
         if self.label is None:
-            frame: FrameType | None = get_frame(1)
-            if frame is None:
-                self.label = "Code Block"
-            else:
-                filename: Path = Path(frame.f_code.co_filename)
-                self.label = (
-                    f"[link={filename.as_uri()}]{filename.name}[/link]"
-                    ":"
-                    f"[link={filename.as_uri()}#{frame.f_lineno}]{frame.f_lineno}[/link]"
-                )
+            self.label = grapes.caller_location(2)
         self._depth += 1
         self.start()
         return self
@@ -80,7 +69,7 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
 
     def __call__(self, fn: Callable[_P, _T]) -> Callable[_P, _T]:
         if self.label is None:
-            self.label = fn.__module__ + "." + fn.__name__ + "()"
+            self.label = grapes.full_qual_name(fn)
 
         @functools.wraps(fn)
         def wrapped(*args: _P.args, **kwargs: _P.kwargs) -> _T:
@@ -96,36 +85,35 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
         for time_name in self.counters:
             self._start[time_name] = get_time(time_name)
 
-    def end(self, label: str | None = None) -> None:
+    def end(self) -> None:
         for name in self.counters:
             self._end[name] = get_time(name)
         self.records.append(self)
         self._depth += 1
-        self.log_record(label)
+        self.log_record()
         self._depth -= 1
 
-    def log_record(self, label: str | None = None) -> None:
+    def log_record(self) -> None:
         if not self.record_log_level:
             return
         logger.opt(depth=self._depth + 1).log(
-            self.record_log_level, self.human_record(label)
+            self.record_log_level, self.human_record()
         )
 
-    def log_report(self, label: str | None = None) -> None:
+    def log_report(self) -> None:
         if not self.report_log_level:
             return
-        logger.opt(depth=1).log(self.report_log_level, self.human_report(label))
+        logger.opt(depth=1).log(self.report_log_level, self.human_report())
 
     @property
     def elapsed(self) -> float:
         return next(iter(self.values()))
 
-    def human_report(self, label: str | None = None) -> str:
-        return self.records.report(self.label or label)
+    def human_report(self) -> str:
+        return self.records.report(self.label)
 
-    def human_record(self, label: str | None = None) -> str:
-        label = label or self.label
-        text: str = f"{label} > " if label else ""
+    def human_record(self) -> str:
+        text: str = f"{self.label} > " if self.label else ""
         for k in self.counters:
             human: str = grapes.human_duration(self[k])
             text += f"{k}: {human}, "
@@ -138,6 +126,8 @@ TIMERS: list[timer] = []
 
 def exit_hook() -> None:
     for timer in TIMERS:
+        if timer.records.count <= 1:
+            continue
         timer.log_report()
 
 

@@ -10,7 +10,7 @@ from .human import (
     human_duration_with_variance,
     human_throughout,
 )
-from .logging import init_logging, logging_console
+from .logging import caller_location, full_qual_name, init_logging, logging_console
 from .progress import track
 from .serde import (
     deserialize,
@@ -29,8 +29,10 @@ from .text import strip_comments
 __all__ = [
     "TimerRecords",
     "TimerRecords",
+    "caller_location",
     "deserialize",
     "environ",
+    "full_qual_name",
     "get_time",
     "has_module",
     "human",

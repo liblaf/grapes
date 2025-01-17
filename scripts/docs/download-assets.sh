@@ -17,4 +17,4 @@ function download() {
 }
 
 download "https://raw.githubusercontent.com/microsoft/fluentui-emoji/refs/heads/main/assets/Grapes/3D/grapes_3d.png" "$git_root/docs/assets/favicon.png"
-download "https://raw.githubusercontent.com/microsoft/fluentui-emoji/refs/heads/main/assets/Grapes/3D/grapes_3d.svg" "$git_root/docs/assets/logo.png"
+download "https://raw.githubusercontent.com/microsoft/fluentui-emoji/refs/heads/main/assets/Grapes/3D/grapes_3d.png" "$git_root/docs/assets/logo.png"

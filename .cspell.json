@@ -9,6 +9,7 @@
     "cython",
     "dmypy",
     "etils",
+    "fluentui",
     "getattr",
     "hynek",
     "ipynb",

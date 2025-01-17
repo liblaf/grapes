@@ -92,7 +92,6 @@ plugins:
             - https://tomlkit.readthedocs.io/en/latest/objects.inv
           options:
             # General
-            show_source: false
             # Headings
             show_symbol_type_heading: true
             show_symbol_type_toc: true

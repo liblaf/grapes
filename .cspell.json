@@ -4,6 +4,7 @@
   "language": "en",
   "words": [
     "asyncio",
+    "bdabdac",
     "cuda",
     "cython",
     "dmypy",
@@ -16,6 +17,7 @@
     "libc",
     "liblaf",
     "mkdocs",
+    "mkdocstrings",
     "mypy",
     "ndarray",
     "numpy",
@@ -28,6 +30,7 @@
     "pydocstyle",
     "pyenv",
     "pyflow",
+    "pymdownx",
     "pypa",
     "pypackages",
     "pypi",

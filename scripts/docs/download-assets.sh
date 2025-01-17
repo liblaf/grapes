@@ -10,9 +10,7 @@ function download() {
   local output=$2
   if [[ ! -s $output ]]; then
     mkdir --parents --verbose "$(dirname -- "$output")"
-    if wget --output-document="$output" -- "$url"; then
-      rm --force "$output"
-    fi
+    wget --output-document="$output" -- "$url"
   fi
 }
 

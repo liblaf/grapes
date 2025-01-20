@@ -21,6 +21,7 @@ jobs:
         with:
           run-install: true
           activate-environment: true
+          locked: false
       - name: Build
         run: just docs-build
       - if: github.ref == 'refs/heads/main'

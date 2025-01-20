@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.0.1](https://github.com/liblaf/grapes/compare/v0.0.0...v0.0.1) (2025-01-20)
+
+
+### ✨ Features
+
+* add documentation workflow and assets ([daca118](https://github.com/liblaf/grapes/commit/daca1183a8f7685a35be4a61ce3d8833f7f6c593))
+* add MkDocs documentation setup and configuration ([4830aee](https://github.com/liblaf/grapes/commit/4830aee1fbedc0c1321597bbeb1fc6ba56828aee))
+
+
+### 🐛 Bug Fixes
+
+* correct logo asset format from SVG to PNG ([ae3c6a6](https://github.com/liblaf/grapes/commit/ae3c6a6b55bc00f9ab0c706cfde7d5893d51ebad))
+
+
+### ♻ Code Refactoring
+
+* improve code reference generation and documentation setup ([9911c42](https://github.com/liblaf/grapes/commit/9911c4229e79b0228505a6bb0af255c063e5a187))
+
+
+### 🔧 Continuous Integration
+
+* improve GitHub Actions workflow and asset download script ([9f9323e](https://github.com/liblaf/grapes/commit/9f9323e97353f3af04a0121a0baf51b6ce213da0))
+* update docs workflow and bump numpy version ([6d3417e](https://github.com/liblaf/grapes/commit/6d3417ea9a5152e6015c7b0542095cf7e5d7a202))
+
 ## 0.0.0 (2025-01-16)
 
 

@@ -35,16 +35,6 @@
 							}
 						},
 						{
-							"name": "Access Control",
-							"id": "CAT001",
-							"shortDescription": {
-								"text": "Service permission and identity management"
-							},
-							"fullDescription": {
-								"text": "Service permission and identity management"
-							}
-						},
-						{
 							"name": "Encryption",
 							"id": "CAT006",
 							"shortDescription": {
@@ -65,23 +55,23 @@
 							}
 						},
 						{
-							"name": "Resource Management",
-							"id": "CAT011",
+							"name": "Access Control",
+							"id": "CAT001",
 							"shortDescription": {
-								"text": "Resource and privilege limit configuration"
+								"text": "Service permission and identity management"
 							},
 							"fullDescription": {
-								"text": "Resource and privilege limit configuration"
+								"text": "Service permission and identity management"
 							}
 						},
 						{
-							"name": "Availability",
-							"id": "CAT002",
+							"name": "Backup",
+							"id": "CAT003",
 							"shortDescription": {
-								"text": "Reliability and Scalability"
+								"text": "Survivability and Recovery"
 							},
 							"fullDescription": {
-								"text": "Reliability and Scalability"
+								"text": "Survivability and Recovery"
 							}
 						},
 						{
@@ -92,6 +82,16 @@
 							},
 							"fullDescription": {
 								"text": "Configurations that are insecure by default"
+							}
+						},
+						{
+							"name": "Secret Management",
+							"id": "CAT012",
+							"shortDescription": {
+								"text": "Secret and Key management"
+							},
+							"fullDescription": {
+								"text": "Secret and Key management"
 							}
 						},
 						{
@@ -112,26 +112,6 @@
 							},
 							"fullDescription": {
 								"text": "List of resources provisioned"
-							}
-						},
-						{
-							"name": "Backup",
-							"id": "CAT003",
-							"shortDescription": {
-								"text": "Survivability and Recovery"
-							},
-							"fullDescription": {
-								"text": "Survivability and Recovery"
-							}
-						},
-						{
-							"name": "Best Practices",
-							"id": "CAT004",
-							"shortDescription": {
-								"text": "Metadata management"
-							},
-							"fullDescription": {
-								"text": "Metadata management"
 							}
 						},
 						{
@@ -165,13 +145,13 @@
 							}
 						},
 						{
-							"name": "Secret Management",
-							"id": "CAT012",
+							"name": "Resource Management",
+							"id": "CAT011",
 							"shortDescription": {
-								"text": "Secret and Key management"
+								"text": "Resource and privilege limit configuration"
 							},
 							"fullDescription": {
-								"text": "Secret and Key management"
+								"text": "Resource and privilege limit configuration"
 							}
 						},
 						{
@@ -182,6 +162,26 @@
 							},
 							"fullDescription": {
 								"text": "Dependency version management"
+							}
+						},
+						{
+							"name": "Availability",
+							"id": "CAT002",
+							"shortDescription": {
+								"text": "Reliability and Scalability"
+							},
+							"fullDescription": {
+								"text": "Reliability and Scalability"
+							}
+						},
+						{
+							"name": "Best Practices",
+							"id": "CAT004",
+							"shortDescription": {
+								"text": "Metadata management"
+							},
+							"fullDescription": {
+								"text": "Metadata management"
 							}
 						}
 					]

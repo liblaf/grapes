@@ -35,33 +35,33 @@
 							}
 						},
 						{
-							"name": "Networking and Firewall",
-							"id": "CAT009",
+							"name": "Access Control",
+							"id": "CAT001",
 							"shortDescription": {
-								"text": "Network port exposure and firewall configuration"
+								"text": "Service permission and identity management"
 							},
 							"fullDescription": {
-								"text": "Network port exposure and firewall configuration"
+								"text": "Service permission and identity management"
 							}
 						},
 						{
-							"name": "Secret Management",
-							"id": "CAT012",
+							"name": "Backup",
+							"id": "CAT003",
 							"shortDescription": {
-								"text": "Secret and Key management"
+								"text": "Survivability and Recovery"
 							},
 							"fullDescription": {
-								"text": "Secret and Key management"
+								"text": "Survivability and Recovery"
 							}
 						},
 						{
-							"name": "Best Practices",
-							"id": "CAT004",
+							"name": "Encryption",
+							"id": "CAT006",
 							"shortDescription": {
-								"text": "Metadata management"
+								"text": "Data Security and Encryption configuration"
 							},
 							"fullDescription": {
-								"text": "Metadata management"
+								"text": "Data Security and Encryption configuration"
 							}
 						},
 						{
@@ -75,23 +75,13 @@
 							}
 						},
 						{
-							"name": "Bill Of Materials",
-							"id": "CAT015",
+							"name": "Secret Management",
+							"id": "CAT012",
 							"shortDescription": {
-								"text": "List of resources provisioned"
+								"text": "Secret and Key management"
 							},
 							"fullDescription": {
-								"text": "List of resources provisioned"
-							}
-						},
-						{
-							"name": "Access Control",
-							"id": "CAT001",
-							"shortDescription": {
-								"text": "Service permission and identity management"
-							},
-							"fullDescription": {
-								"text": "Service permission and identity management"
+								"text": "Secret and Key management"
 							}
 						},
 						{
@@ -105,6 +95,16 @@
 							}
 						},
 						{
+							"name": "Networking and Firewall",
+							"id": "CAT009",
+							"shortDescription": {
+								"text": "Network port exposure and firewall configuration"
+							},
+							"fullDescription": {
+								"text": "Network port exposure and firewall configuration"
+							}
+						},
+						{
 							"name": "Observability",
 							"id": "CAT010",
 							"shortDescription": {
@@ -112,6 +112,16 @@
 							},
 							"fullDescription": {
 								"text": "Logging and Monitoring"
+							}
+						},
+						{
+							"name": "Bill Of Materials",
+							"id": "CAT015",
+							"shortDescription": {
+								"text": "List of resources provisioned"
+							},
+							"fullDescription": {
+								"text": "List of resources provisioned"
 							}
 						},
 						{
@@ -155,13 +165,13 @@
 							}
 						},
 						{
-							"name": "Backup",
-							"id": "CAT003",
+							"name": "Best Practices",
+							"id": "CAT004",
 							"shortDescription": {
-								"text": "Survivability and Recovery"
+								"text": "Metadata management"
 							},
 							"fullDescription": {
-								"text": "Survivability and Recovery"
+								"text": "Metadata management"
 							}
 						},
 						{
@@ -172,16 +182,6 @@
 							},
 							"fullDescription": {
 								"text": "Insecure configurations when building/deploying"
-							}
-						},
-						{
-							"name": "Encryption",
-							"id": "CAT006",
-							"shortDescription": {
-								"text": "Data Security and Encryption configuration"
-							},
-							"fullDescription": {
-								"text": "Data Security and Encryption configuration"
 							}
 						}
 					]

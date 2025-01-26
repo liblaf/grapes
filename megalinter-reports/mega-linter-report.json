@@ -203,7 +203,7 @@
         {
             "descriptor_id": "ACTION",
             "descriptor_type": "tooling_format",
-            "elapsed_time_s": 0.03168765899999926,
+            "elapsed_time_s": 0.02625445099999979,
             "files": [
                 ".github/workflows/auto-pr.yaml",
                 ".github/workflows/auto-repo.yaml",
@@ -275,7 +275,7 @@
         {
             "descriptor_id": "BASH",
             "descriptor_type": "language",
-            "elapsed_time_s": 0.012889791000020523,
+            "elapsed_time_s": 0.009340480000048501,
             "files": [
                 ".envrc",
                 "scripts/docs/download-assets.sh",
@@ -320,7 +320,7 @@
         {
             "descriptor_id": "BASH",
             "descriptor_type": "language",
-            "elapsed_time_s": 0.04460993700001836,
+            "elapsed_time_s": 0.04654044400001567,
             "files": [
                 ".envrc",
                 "scripts/docs/download-assets.sh",
@@ -365,7 +365,7 @@
         {
             "descriptor_id": "BASH",
             "descriptor_type": "language",
-            "elapsed_time_s": 0.0401748790000056,
+            "elapsed_time_s": 0.03175279799995678,
             "files": [
                 ".envrc",
                 "scripts/docs/download-assets.sh",
@@ -410,7 +410,7 @@
         {
             "descriptor_id": "COPYPASTE",
             "descriptor_type": "other",
-            "elapsed_time_s": 1.4577669770000057,
+            "elapsed_time_s": 1.4969372269999894,
             "files": [],
             "files_lint_results": [],
             "files_number": 0,
@@ -426,7 +426,7 @@
         {
             "descriptor_id": "JSON",
             "descriptor_type": "format",
-            "elapsed_time_s": 0.17802411700000675,
+            "elapsed_time_s": 0.18824800499999128,
             "files": [
                 ".cspell.json",
                 ".github/linters/.devskim.json",
@@ -507,7 +507,7 @@
         {
             "descriptor_id": "JSON",
             "descriptor_type": "format",
-            "elapsed_time_s": 0.5133977179999647,
+            "elapsed_time_s": 0.4645920350000097,
             "files": [
                 ".cspell.json",
                 ".github/linters/.devskim.json",
@@ -588,7 +588,7 @@
         {
             "descriptor_id": "JSON",
             "descriptor_type": "format",
-            "elapsed_time_s": 5.223824649999983,
+            "elapsed_time_s": 4.945702789999984,
             "files": [
                 ".cspell.json",
                 ".github/linters/.devskim.json",
@@ -669,7 +669,7 @@
         {
             "descriptor_id": "MARKDOWN",
             "descriptor_type": "format",
-            "elapsed_time_s": 0.5540249979999885,
+            "elapsed_time_s": 0.5375706369999875,
             "files": [
                 "CHANGELOG.md",
                 "docs/README.md",
@@ -714,7 +714,7 @@
         {
             "descriptor_id": "PYTHON",
             "descriptor_type": "language",
-            "elapsed_time_s": 8.45804904900001,
+            "elapsed_time_s": 8.263253205000012,
             "files": [
                 "scripts/docs/gen-ref-pages.py",
                 "src/liblaf/grapes/__init__.py",
@@ -1020,7 +1020,7 @@
         {
             "descriptor_id": "PYTHON",
             "descriptor_type": "language",
-            "elapsed_time_s": 0.03144622399997843,
+            "elapsed_time_s": 0.0339845020000098,
             "files": [
                 "scripts/docs/gen-ref-pages.py",
                 "src/liblaf/grapes/__init__.py",
@@ -1326,7 +1326,7 @@
         {
             "descriptor_id": "REPOSITORY",
             "descriptor_type": "other",
-            "elapsed_time_s": 13.297666892999985,
+            "elapsed_time_s": 12.948764187999984,
             "files": [],
             "files_lint_results": [],
             "files_number": 0,
@@ -1342,7 +1342,7 @@
         {
             "descriptor_id": "REPOSITORY",
             "descriptor_type": "other",
-            "elapsed_time_s": 0.9383574110000268,
+            "elapsed_time_s": 0.932669887999964,
             "files": [],
             "files_lint_results": [],
             "files_number": 0,
@@ -1358,7 +1358,7 @@
         {
             "descriptor_id": "REPOSITORY",
             "descriptor_type": "other",
-            "elapsed_time_s": 0.004683048999993389,
+            "elapsed_time_s": 0.004556992999994236,
             "files": [],
             "files_lint_results": [],
             "files_number": 0,
@@ -1374,7 +1374,7 @@
         {
             "descriptor_id": "REPOSITORY",
             "descriptor_type": "other",
-            "elapsed_time_s": 0.12491347399998176,
+            "elapsed_time_s": 0.12367637900001682,
             "files": [],
             "files_lint_results": [],
             "files_number": 0,
@@ -1390,7 +1390,7 @@
         {
             "descriptor_id": "REPOSITORY",
             "descriptor_type": "other",
-            "elapsed_time_s": 0.0048244410000393145,
+            "elapsed_time_s": 0.004817989999992278,
             "files": [],
             "files_lint_results": [],
             "files_number": 0,
@@ -1406,7 +1406,7 @@
         {
             "descriptor_id": "REPOSITORY",
             "descriptor_type": "other",
-            "elapsed_time_s": 9.345096268999953,
+            "elapsed_time_s": 9.10449998300004,
             "files": [],
             "files_lint_results": [],
             "files_number": 0,
@@ -1422,7 +1422,7 @@
         {
             "descriptor_id": "REPOSITORY",
             "descriptor_type": "other",
-            "elapsed_time_s": 1.0231963489999885,
+            "elapsed_time_s": 1.1325747419999743,
             "files": [],
             "files_lint_results": [],
             "files_number": 0,
@@ -1438,7 +1438,7 @@
         {
             "descriptor_id": "REPOSITORY",
             "descriptor_type": "other",
-            "elapsed_time_s": 0.9677527220000002,
+            "elapsed_time_s": 1.0125754750000056,
             "files": [],
             "files_lint_results": [],
             "files_number": 0,
@@ -1454,7 +1454,7 @@
         {
             "descriptor_id": "REPOSITORY",
             "descriptor_type": "other",
-            "elapsed_time_s": 1.2330894309999962,
+            "elapsed_time_s": 1.0332734259999938,
             "files": [],
             "files_lint_results": [],
             "files_number": 0,
@@ -1470,7 +1470,7 @@
         {
             "descriptor_id": "REPOSITORY",
             "descriptor_type": "other",
-            "elapsed_time_s": 4.6389867409999965,
+            "elapsed_time_s": 5.312112807999995,
             "files": [],
             "files_lint_results": [],
             "files_number": 0,
@@ -1486,7 +1486,7 @@
         {
             "descriptor_id": "REPOSITORY",
             "descriptor_type": "other",
-            "elapsed_time_s": 0.06451328499997544,
+            "elapsed_time_s": 0.06465103800002225,
             "files": [],
             "files_lint_results": [],
             "files_number": 0,
@@ -1502,7 +1502,7 @@
         {
             "descriptor_id": "REPOSITORY",
             "descriptor_type": "other",
-            "elapsed_time_s": 3.1846406589999674,
+            "elapsed_time_s": 2.241511532000004,
             "files": [],
             "files_lint_results": [],
             "files_number": 0,
@@ -1518,7 +1518,7 @@
         {
             "descriptor_id": "SPELL",
             "descriptor_type": "other",
-            "elapsed_time_s": 3.561686915999985,
+            "elapsed_time_s": 4.198784764000038,
             "files": [
                 ".cspell.json",
                 ".envrc",
@@ -1583,7 +1583,7 @@
                 "src/liblaf/grapes/serde/_yaml.py",
                 "src/liblaf/grapes/text/__init__.py",
                 "src/liblaf/grapes/text/_strip_comments.py",
-                "/github/workspace/e3d12a1c-9aa7-45fb-85d9-0d55688f4973-megalinter_file_names_cspell.txt"
+                "/github/workspace/a22e8e3b-adb8-4da7-9f20-f7a76ed9653e-megalinter_file_names_cspell.txt"
             ],
             "files_lint_results": [
                 {
@@ -2092,7 +2092,7 @@
                 },
                 {
                     "errors_number": null,
-                    "file": "/github/workspace/e3d12a1c-9aa7-45fb-85d9-0d55688f4973-megalinter_file_names_cspell.txt",
+                    "file": "/github/workspace/a22e8e3b-adb8-4da7-9f20-f7a76ed9653e-megalinter_file_names_cspell.txt",
                     "fixed": false,
                     "status": null,
                     "status_code": null,
@@ -2112,7 +2112,7 @@
         {
             "descriptor_id": "SPELL",
             "descriptor_type": "other",
-            "elapsed_time_s": 0.5110698880000086,
+            "elapsed_time_s": 0.5240983969999888,
             "files": [
                 ".cspell.json",
                 ".github/.mega-linter.yaml",
@@ -2346,7 +2346,7 @@
         {
             "descriptor_id": "YAML",
             "descriptor_type": "format",
-            "elapsed_time_s": 0.6929774609999981,
+            "elapsed_time_s": 0.9660040300000219,
             "files": [
                 ".github/.mega-linter.yaml",
                 ".github/copier/.copier-answers.python.yaml",
@@ -2481,7 +2481,7 @@
         {
             "descriptor_id": "YAML",
             "descriptor_type": "format",
-            "elapsed_time_s": 7.968939164999995,
+            "elapsed_time_s": 7.706600632999994,
             "files": [
                 ".github/.mega-linter.yaml",
                 ".github/copier/.copier-answers.python.yaml",
@@ -2616,7 +2616,7 @@
         {
             "descriptor_id": "YAML",
             "descriptor_type": "format",
-            "elapsed_time_s": 0.5984956700000339,
+            "elapsed_time_s": 0.45733088500003305,
             "files": [
                 ".github/.mega-linter.yaml",
                 ".github/copier/.copier-answers.python.yaml",

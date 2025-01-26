@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.2](https://github.com/liblaf/grapes/compare/v0.0.1...v0.0.2) (2025-01-26)
+
+
+### ⬆️ Dependencies
+
+* **deps:** update polars and pydantic versions ([e4cddbf](https://github.com/liblaf/grapes/commit/e4cddbf5e4d96660bc06191e225e615381e55f17))
+
 ## [0.0.1](https://github.com/liblaf/grapes/compare/v0.0.0...v0.0.1) (2025-01-20)
 
 ### ✨ Features

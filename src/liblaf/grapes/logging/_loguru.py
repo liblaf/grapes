@@ -1,3 +1,4 @@
+import contextlib
 import inspect
 import itertools
 import logging
@@ -9,6 +10,20 @@ from loguru import logger
 from rich.logging import RichHandler
 
 from liblaf import grapes
+
+type Filter = "str | loguru.FilterDict | loguru.FilterFunction"
+
+
+DEFAULT_FILTER: Filter = {
+    "": "INFO",
+    "__main__": "TRACE",
+    "liblaf": "DEBUG",
+}
+
+
+DEFAULT_LEVELS: Sequence["loguru.LevelConfig"] = [
+    {"name": "ICECREAM", "no": 15, "color": "<magenta><bold>", "icon": "🍦"}
+]
 
 
 class InterceptHandler(logging.Handler):
@@ -37,6 +52,13 @@ class InterceptHandler(logging.Handler):
         )
 
 
+def add_level(
+    name: str, no: int, color: str | None = None, icon: str | None = None
+) -> None:
+    with contextlib.suppress(ValueError):
+        logger.level(name, no, color=color, icon=icon)
+
+
 def setup_loguru_logging_intercept(
     level: int | str = logging.NOTSET, modules: Iterable[str] = ()
 ) -> None:
@@ -54,9 +76,11 @@ def setup_loguru_logging_intercept(
 
 def init_loguru(
     level: int | str = logging.NOTSET,
+    filter: Filter | None = None,  # noqa: A002
     handlers: Sequence["loguru.HandlerConfig"] | None = None,
     levels: Sequence["loguru.LevelConfig"] | None = None,
 ) -> None:
+    filter = filter or DEFAULT_FILTER  # noqa: A001
     if handlers is None:
         handlers: list[loguru.HandlerConfig] = [
             {
@@ -67,16 +91,17 @@ def init_loguru(
                     log_time_format="[%Y-%m-%d %H:%M:%S]",
                 ),
                 "format": "{message}",
+                "filter": filter,
             }
         ]
         env: Env = grapes.environ.init_env()
         if fpath := env.path("LOGGING_FILE", None):
-            handlers.append({"sink": fpath, "mode": "w"})
+            handlers.append({"sink": fpath, "filter": filter, "mode": "w"})
         if fpath := env.path("LOGGING_JSONL", None):
-            handlers.append({"sink": fpath, "serialize": True, "mode": "w"})
-    if levels is None:
-        levels = [
-            {"name": "ICECREAM", "no": 15, "color": "<magenta><bold>", "icon": "🍦"}
-        ]
-    logger.configure(handlers=handlers, levels=levels)
+            handlers.append(
+                {"sink": fpath, "filter": filter, "serialize": True, "mode": "w"}
+            )
+    logger.configure(handlers=handlers)
+    for lvl in levels or DEFAULT_LEVELS:
+        add_level(**lvl)
     setup_loguru_logging_intercept(level=level)

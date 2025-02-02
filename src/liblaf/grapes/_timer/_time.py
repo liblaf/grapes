@@ -17,7 +17,7 @@ type CounterName = Literal[
 
 
 def get_time(name: CounterName | str = "perf") -> float:  # noqa: C901, PLR0911
-    match name:
+    match name.lower():
         case "monotonic":
             return time.monotonic()
         case "perf":

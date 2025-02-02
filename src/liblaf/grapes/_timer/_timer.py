@@ -30,8 +30,8 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
         label: str | None = None,
         *,
         counters: Sequence[str] = ["perf", "process"],
-        log_at_exit: bool = True,
         record_log_level: int | str | None = "DEBUG",
+        report_at_exit: bool = True,
         report_log_level: int | str | None = "INFO",
     ) -> None:
         self.label = label
@@ -41,7 +41,7 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
         self.records = TimerRecords()
         self._start = {}
         self._end = {}
-        if log_at_exit:
+        if report_at_exit:
             TIMERS.append(self)
 
     def __getitem__(self, key: str) -> float:
@@ -110,7 +110,7 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
         return next(iter(self.values()))
 
     def human_report(self) -> str:
-        return self.records.report(self.label)
+        return self.records.human_report(self.label)
 
     def human_record(self) -> str:
         text: str = f"{self.label} > " if self.label else ""

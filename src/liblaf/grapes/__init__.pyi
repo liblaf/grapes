@@ -1,4 +1,4 @@
-from . import environ, human, logging, progress, serde, text
+from . import environ, human, logging, progress_bar, serde, text
 from ._optional import has_module, optional_imports
 from ._timer import TimerRecords, get_time, timer
 from .environ import init_env
@@ -11,7 +11,7 @@ from .human import (
     human_throughout,
 )
 from .logging import caller_location, full_qual_name, init_logging, logging_console
-from .progress import track
+from .progress_bar import progress, track
 from .serde import (
     deserialize,
     load_json,
@@ -52,6 +52,7 @@ __all__ = [
     "logging_console",
     "optional_imports",
     "progress",
+    "progress_bar",
     "save_json",
     "save_pydantic",
     "save_toml",

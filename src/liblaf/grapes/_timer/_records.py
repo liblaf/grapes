@@ -42,16 +42,16 @@ class TimerRecords(Mapping[str, list[float]]):
     def count(self) -> int:
         return len(next(iter(self._records.values()), []))
 
-    def report(self, label: str | None = None) -> str:
+    def human_report(self, label: str | None = None) -> str:
+        label = label or "Timer"
         text: str = ""
         for k in self._records:
             text += f"{k} > "
             arr: np.ndarray = self.to_numpy(k)
-            best_human: str = grapes.human_duration(arr.min())
-            mean_human: str = grapes.human_duration_series(arr)
-            text += f"best: {best_human}, mean: {mean_human}\n"
+            human_best: str = grapes.human_duration(arr.min())
+            human_mean: str = grapes.human_duration_series(arr)
+            text += f"mean: {human_mean}, best: {human_best}\n"
         text = text.strip()
-        label = label or "Timer"
         text = f"{label} (total: {self.count})" + "\n" + textwrap.indent(text, "  ")
         return text
 

@@ -51,7 +51,7 @@ license = "MIT"
 name = "liblaf-grapes"
 readme = "docs/README.md"
 requires-python = ">=3.12"
-version = "0.0.2"
+version = "0.0.3"
 
 [project.urls]
 "Changelog" = "https://github.com/liblaf/grapes/blob/main/CHANGELOG.md"

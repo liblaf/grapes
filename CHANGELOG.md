@@ -1,6 +1,17 @@
 # Changelog
 
-## [0.0.1](https://github.com/liblaf/grapes/compare/v0.0.0..v0.0.1) - 20250120
+## [0.0.3](https://github.com/liblaf/grapes/compare/v0.0.2..v0.0.3) - 2025-02-02
+
+### ♻ Code Refactoring
+
+- **grapes:** rename progress to progress_bar and enhance timer reporting - ([870b497](https://github.com/liblaf/grapes/commit/870b497df9f11eb3465d2de5da6bcd29c9f07f59))
+
+### ❤️ New Contributors
+
+- @liblaf made their first contribution
+- @renovate[bot] made their first contribution in [#9](https://github.com/liblaf/grapes/pull/9)
+
+## [0.0.1](https://github.com/liblaf/grapes/compare/v0.0.0..v0.0.1) - 2025-01-20
 
 ### ✨ Features
 
@@ -24,7 +35,7 @@
 
 - @liblaf-bot[bot] made their first contribution
 
-## [0.0.0] - 20250116
+## [0.0.0] - 2025-01-16
 
 ### ✨ Features
 

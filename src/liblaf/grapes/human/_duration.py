@@ -21,10 +21,29 @@ UNITS: dict[str, float] = {
 
 
 def get_unit_seconds(unit: str) -> float:
+    """Convert a time unit to its equivalent in seconds.
+
+    Args:
+        unit : The time unit to convert (e.g., 'm', 'h').
+
+    Returns:
+        The equivalent time in seconds.
+
+    Raises:
+        KeyError: If the provided unit is not found in the `UNITS` dictionary.
+    """
     return UNITS[unit.lower()]
 
 
 def human_duration_unit_precision(seconds: float) -> tuple[str, int]:  # noqa: C901, PLR0911, PLR0912
+    """Determine the appropriate human-readable duration unit and precision for a given time in seconds.
+
+    Args:
+        seconds: The duration in seconds.
+
+    Returns:
+        A tuple containing the unit of time as a string and the precision as an integer. The unit can be "ns" (nanoseconds), "us" (microseconds), "ms" (milliseconds), "s" (seconds), "m" (minutes), or "h" (hours). The precision indicates the number of decimal places to display for the given unit.
+    """
     if seconds <= 0:
         return "s", 0
     if seconds < 1e-09:
@@ -61,6 +80,22 @@ def human_duration_unit_precision(seconds: float) -> tuple[str, int]:  # noqa: C
 def human_duration(
     seconds: float, unit: str | None = None, precision: int | None = None
 ) -> str:
+    """Convert a duration in seconds to a human-readable string format.
+
+    Args:
+        seconds: The duration in seconds to be converted.
+        unit: The unit of time to use for the output. Can be one of {"ns", "us", "ms", "s", "m"}. If `None`, the unit will be determined automatically based on the duration.
+        precision: The number of decimal places to include in the output. If `None`, the precision will be determined automatically based on the duration.
+
+    Returns:
+        The human-readable duration string.
+
+    Notes:
+        - For units "ns", "us", "ms", and "s", the output will be a floating-point number followed by the unit.
+        - For unit "m", the output will be in the format "MM:SS".
+        - For durations longer than an hour, the output will be in the format "HH:MM:SS".
+        - The function currently does not handle durations longer than a day.
+    """
     if (unit is None) or (precision is None):
         unit, precision = human_duration_unit_precision(seconds)
     if unit in {"ns", "us", "ms", "s"}:
@@ -86,12 +121,29 @@ def human_duration(
 
 
 def human_duration_with_variance(mean: float, std: float) -> str:
+    """Returns a human-readable string representing a duration with variance.
+
+    Args:
+        mean: The mean duration.
+        std: The standard deviation of the duration.
+
+    Returns:
+        A string representing the mean duration with its variance in the format "mean ± std". If the standard deviation is not finite, only the mean duration is returned.
+    """
     if not math.isfinite(std):
         return human_duration(mean)
     return human_duration(mean) + " ± " + human_duration(std)
 
 
 def human_duration_series(series: npt.ArrayLike) -> str:
+    """Convert a series of durations into a human-readable string.
+
+    Args:
+        series: An array-like object containing duration values.
+
+    Returns:
+        A human-readable string representing the duration. If the series contains only one element, it returns the human-readable format of that single duration. If the series contains more than one element, it returns the mean duration with its variance in a human-readable format.
+    """
     series: npt.NDArray = np.asarray(series)
     if series.size <= 1:
         return human_duration(series.item())

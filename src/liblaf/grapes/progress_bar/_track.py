@@ -19,6 +19,19 @@ def track(
     timer: bool = True,
     total: float | None = None,
 ) -> Generator[_T, Any, None]:
+    """Tracks the progress of iterating over a sequence with optional logging and timing.
+
+    Args:
+        sequence: The sequence to iterate over.
+        description: Description for the progress bar. If `True`, uses caller location.
+        record_log_level: Log level for recording progress.
+        report_log_level: Log level for reporting progress.
+        timer: Whether to use a timer for tracking.
+        total: Total number of items in the sequence.
+
+    Yields:
+        Yields items from the sequence.
+    """
     if description is True:
         description = grapes.caller_location(2)
     description = description or ""

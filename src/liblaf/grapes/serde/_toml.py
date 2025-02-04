@@ -2,24 +2,21 @@ import os
 from pathlib import Path
 from typing import Any
 
-import etils.epy
+from liblaf import grapes
 
-
-def callback(exc: ImportError) -> None:
-    etils.epy.reraise(
-        exc,
-        suffix=f"""Missing optional dependency {exc.name}.
-Make sure to install liblaf.grapes using `pip install liblaf.grapes[toml]`.""",
-    )
-
-
-with etils.epy.lazy_imports(
-    error_callback="Make sure to install `liblaf.grapes` using `pip install liblaf.grapes[toml]`."
-):
+with grapes.optional_imports(extra="toml"):
     import tomlkit
 
 
 def load_toml(fpath: str | os.PathLike[str]) -> tomlkit.TOMLDocument:
+    """Load a TOML file and return its contents as a TOMLDocument.
+
+    Args:
+        fpath: The file path to the TOML file.
+
+    Returns:
+        The contents of the TOML file as a TOMLDocument.
+    """
     fpath: Path = Path(fpath)
     with fpath.open() as fp:
         return tomlkit.load(fp)
@@ -28,6 +25,13 @@ def load_toml(fpath: str | os.PathLike[str]) -> tomlkit.TOMLDocument:
 def save_toml(
     fpath: str | os.PathLike[str], data: Any, *, sort_keys: bool = False
 ) -> None:
+    """Save data to a TOML file.
+
+    Args:
+        fpath: The file path where the TOML data will be saved.
+        data: The data to be serialized and saved in TOML format.
+        sort_keys: Whether to sort the keys in the output.
+    """
     fpath: Path = Path(fpath)
     with fpath.open("w") as fp:
         tomlkit.dump(data, fp, sort_keys=sort_keys)

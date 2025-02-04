@@ -32,4 +32,12 @@ REGISTRY["user"] = lambda: os.times().user
 
 
 def get_time(name: TimeCounterName | str = "perf") -> float:
+    """Retrieve the current time from the specified time counter.
+
+    Args:
+        name: The name of the time counter to use.
+
+    Returns:
+        The current time from the specified time counter.
+    """
     return REGISTRY[name]()

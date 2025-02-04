@@ -1,6 +1,4 @@
 from . import environ, human, logging, progress_bar, serde, text
-from ._optional import has_module, optional_imports
-from ._timer import TimerRecords, get_time, timer
 from .environ import init_env
 from .human import (
     human_count,
@@ -10,6 +8,7 @@ from .human import (
     human_duration_with_variance,
     human_throughout,
 )
+from .imports import has_module, optional_imports
 from .logging import caller_location, full_qual_name, init_logging, logging_console
 from .progress_bar import progress, track
 from .serde import (
@@ -25,6 +24,7 @@ from .serde import (
     serialize,
 )
 from .text import strip_comments
+from .timing import TimerRecords, get_time, timer
 
 __all__ = [
     "TimerRecords",

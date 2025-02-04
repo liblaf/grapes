@@ -31,9 +31,24 @@ def logging_theme() -> Theme:
 
 @functools.cache
 def logging_console() -> Console:
+    """Create and return a rich Console object configured for logging.
+
+    The console is set to use a custom logging theme and output to stderr.
+
+    Returns:
+        A rich Console object configured for logging.
+    """
     return rich.console.Console(theme=logging_theme(), stderr=True)
 
 
 def init_rich(*, show_locals: bool = True) -> None:
+    """Initialize rich logging for pretty printing and tracebacks.
+
+    This function sets up rich's pretty printing and traceback handling
+    for the logging console.
+
+    Args:
+        show_locals: If True, local variables will be shown in tracebacks.
+    """
     rich.pretty.install(console=logging_console())
     rich.traceback.install(console=logging_console(), show_locals=show_locals)

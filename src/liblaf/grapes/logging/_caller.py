@@ -5,6 +5,15 @@ from loguru._get_frame import get_frame
 
 
 def caller_location(depth: int = 1, *, markup: bool = True) -> str:
+    """Returns the file name and line number of the caller's location in the code.
+
+    Args:
+        depth: The stack depth to inspect.
+        markup: If `True`, returns the file name and line number with markup for links.
+
+    Returns:
+        The file name and line number of the caller's location. If the frame cannot be retrieved, returns "<unknown>".
+    """
     frame: FrameType | None = get_frame(depth)
     if not frame:
         return "<unknown>"

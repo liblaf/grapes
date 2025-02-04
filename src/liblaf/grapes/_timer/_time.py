@@ -2,42 +2,34 @@ import os
 import time
 from typing import Literal
 
-type CounterName = Literal[
+import autoregistry
+
+type TimeCounterName = Literal[
+    "children_system",
+    "children_user",
+    "elapsed",
     "monotonic",
     "perf",
     "process",
-    "time",
-    "thread",
-    "user",
     "system",
-    "children_user",
-    "children_system",
-    "elapsed",
+    "thread",
+    "time",
+    "user",
 ]
 
 
-def get_time(name: CounterName | str = "perf") -> float:  # noqa: C901, PLR0911
-    match name.lower():
-        case "monotonic":
-            return time.monotonic()
-        case "perf":
-            return time.perf_counter()
-        case "process":
-            return time.process_time()
-        case "time":
-            return time.time()
-        case "thread":
-            return time.thread_time()
-        case "user":
-            return os.times().user
-        case "system":
-            return os.times().system
-        case "children_user":
-            return os.times().children_user
-        case "children_system":
-            return os.times().children_system
-        case "elapsed":
-            return os.times().elapsed
-        case _:
-            msg: str = f"Unsupported time: `{name}`"
-            raise ValueError(msg)
+REGISTRY = autoregistry.Registry()
+REGISTRY["children_system"] = lambda: os.times().children_system
+REGISTRY["children_user"] = lambda: os.times().children_user
+REGISTRY["elapsed"] = lambda: os.times().elapsed
+REGISTRY["monotonic"] = time.monotonic
+REGISTRY["perf"] = time.perf_counter
+REGISTRY["process"] = time.process_time
+REGISTRY["system"] = lambda: os.times().system
+REGISTRY["thread"] = time.thread_time
+REGISTRY["time"] = time.time
+REGISTRY["user"] = lambda: os.times().user
+
+
+def get_time(name: TimeCounterName | str = "perf") -> float:
+    return REGISTRY[name]()

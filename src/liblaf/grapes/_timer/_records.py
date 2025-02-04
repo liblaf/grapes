@@ -1,6 +1,6 @@
 import collections
 import textwrap
-from collections.abc import Iterator, Mapping
+from collections.abc import Iterable, Mapping, Sequence
 
 from liblaf import grapes
 
@@ -9,20 +9,17 @@ with grapes.optional_imports(extra="timer"):
     import polars as pl
 
 
-class TimerRecords(Mapping[str, list[float]]):
+class TimerRecords:
+    _default_key: str = "perf"
     _records: dict[str, list[float]]
 
-    def __init__(self) -> None:
+    def __init__(self, default_key: str = "perf") -> None:
+        self._default_key = default_key
         self._records = collections.defaultdict(list)
 
-    def __getitem__(self, key: str) -> list[float]:
-        return self._records[key]
-
-    def __iter__(self) -> Iterator[str]:
-        return iter(self._records)
-
-    def __len__(self) -> int:
-        return len(self._records)
+    @property
+    def count(self) -> int:
+        return len(self.column())
 
     def append(
         self,
@@ -30,33 +27,38 @@ class TimerRecords(Mapping[str, list[float]]):
         nanoseconds: float | Mapping[str, float] = {},
     ) -> None:
         if not isinstance(seconds, Mapping):
-            seconds = {"perf": seconds}
+            seconds = {self._default_key: seconds}
         if not isinstance(nanoseconds, Mapping):
-            nanoseconds = {"perf": nanoseconds}
+            nanoseconds = {self._default_key: nanoseconds}
         for k, v in seconds.items():
             self._records[k].append(v)
         for k, v in nanoseconds.items():
             self._records[k].append(v * 1e-9)
 
-    @property
-    def count(self) -> int:
-        return len(next(iter(self._records.values()), []))
+    def column(self, key: str | None = None) -> Sequence[float]:
+        return self._records[key or self._default_key]
 
     def human_report(self, label: str | None = None) -> str:
         label = label or "Timer"
         text: str = ""
-        for k in self._records:
+        for k in self.keys():
             text += f"{k} > "
             arr: np.ndarray = self.to_numpy(k)
-            human_best: str = grapes.human_duration(arr.min())
             human_mean: str = grapes.human_duration_series(arr)
+            human_best: str = grapes.human_duration(arr.min())
             text += f"mean: {human_mean}, best: {human_best}\n"
         text = text.strip()
-        text = f"{label} (total: {self.count})" + "\n" + textwrap.indent(text, "  ")
+        text = f"{label} (total: {self.count})\n" + textwrap.indent(text, "  ")
         return text
 
-    def to_polars(self) -> pl.DataFrame:
-        return pl.DataFrame(self._records)
+    def keys(self) -> Iterable[str]:
+        return self._records.keys()
 
-    def to_numpy(self, key: str = "perf") -> np.ndarray:
-        return np.asarray(self._records[key])
+    def row(self, index: int) -> dict[str, float]:
+        return {k: v[index] for k, v in self._records.items()}
+
+    def to_numpy(self, key: str | None = None) -> np.ndarray:
+        return np.asarray(self.column(key))
+
+    def to_polars(self) -> pl.DataFrame:
+        return pl.from_dict(self._records)

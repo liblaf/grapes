@@ -33,7 +33,8 @@ authors = [
 ]
 dependencies = [
   "about-time>=4.2.1,<5",
-  "boltons>=25,<26",
+  "autoregistry>=1.1.2,<2",
+  "boltons>=25.0.0,<26",
   "environs>=14.1.0,<15",
   "etils>=1.11.0,<2",
   "lazy-loader>=0.4,<0.5",

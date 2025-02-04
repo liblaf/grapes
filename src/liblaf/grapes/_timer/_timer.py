@@ -31,7 +31,7 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
         *,
         counters: Sequence[str] = ["perf", "process"],
         record_log_level: int | str | None = "DEBUG",
-        report_at_exit: bool = True,
+        report_at_exit: bool = False,
         report_log_level: int | str | None = "INFO",
     ) -> None:
         self.label = label
@@ -83,9 +83,9 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
 
         return wrapped
 
-    def start(self) -> None:
-        for time_name in self.counters:
-            self._start[time_name] = get_time(time_name)
+    @property
+    def elapsed(self) -> float:
+        return self[self.counters[0]]
 
     def end(self) -> None:
         for name in self.counters:
@@ -95,38 +95,42 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
         self.log_record()
         self.depth -= 1
 
-    def log_record(self) -> None:
-        if not self.record_log_level:
-            return
-        logger.opt(depth=self.depth + 1).log(self.record_log_level, self.human_record())
-
-    def log_report(self) -> None:
-        if not self.report_log_level:
-            return
-        logger.opt(depth=1).log(self.report_log_level, self.human_report())
-
-    @property
-    def elapsed(self) -> float:
-        return next(iter(self.values()))
-
     def human_report(self) -> str:
         return self.records.human_report(self.label)
 
     def human_record(self) -> str:
         text: str = f"{self.label} > " if self.label else ""
-        for k in self.counters:
-            human: str = grapes.human_duration(self[k])
+        for k, v in self.items():
+            human: str = grapes.human_duration(v)
             text += f"{k}: {human}, "
         text = text.removesuffix(", ")
         return text
 
-    def track(self, iterable: Iterable[_T]) -> Iterable[_T]:
+    def log_record(self, depth: int = 1) -> None:
+        if not self.record_log_level:
+            return
+        logger.opt(depth=self.depth + depth).log(
+            self.record_log_level, self.human_record()
+        )
+
+    def log_report(self, depth: int = 1) -> None:
+        if not self.report_log_level:
+            return
+        logger.opt(depth=depth).log(self.report_log_level, self.human_report())
+
+    def start(self) -> None:
+        for name in self.counters:
+            self._start[name] = get_time(name)
+
+    def track(self, iterable: Iterable[_T], *, log_report: bool = True) -> Iterable[_T]:
         self.depth += 1
         if self.label is None:
             self.label = grapes.caller_location(2)
         for item in iterable:
             with self:
                 yield item
+        if log_report:
+            self.log_report(self.depth + 1)
         self.depth -= 1
 
 

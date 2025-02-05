@@ -27,7 +27,3 @@ plugins:
           - https://numpy.org/doc/stable/objects.inv
           - https://rich.readthedocs.io/en/stable/objects.inv
           - https://tomlkit.readthedocs.io/en/latest/objects.inv
-        options:
-          extensions:
-            griffe_fieldz:
-            griffe_generics:

@@ -53,13 +53,10 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/d5/ad/57cfa3e8a006df88e723524127dbab2971a4877c97e7bad070257e15cb6c/environs-14.1.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/4f/4a/ff8aa2c57300613b69905308c5afe92c5b01112d766c25a305fd6796170a/etils-1.11.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/7b/8f/c4d9bafc34ad7ad5d8dc16dd1347ee0e507a52c3adb6bfa8887e1c6a26ba/executing-2.2.0-py2.py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/86/2d/90a713b473206f5505e01fbf86d881b3856cb3461503d9b073bf55b19ce6/fieldz-0.1.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f7/ec/67fbef5d497f86283db54c22eec6f6140243aae73265799baaaa19cd17fb/ghp_import-2.1.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a0/61/5c78b91c3143ed5c14207f463aecfc8f9dbb5092fb2869baf37c273b2705/gitdb-4.0.12-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1d/9a/4114a9057db2f1462d5c8f8390ab7383925fe1ac012eaa42402ad65c2963/GitPython-3.1.44-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/b6/87/505777c4e5ca9c4fa5ae53fa4b0d5c2ba13a6d55a503a5594e94a2ba9b5a/griffe-1.5.6-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/6f/fc/c059d128d77a369f54a3753162a38cd7668e5b4d14464672001a50cf2e9d/griffe_fieldz-0.2.1-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/d5/59/96c5bfdc24f5942690ac6161d425d4cc181d4c4624eb3f54b5d244672908/griffe_generics-1.0.13-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/95/04/ff642e65ad6b90db43e668d70ffb6736436c7ce41fcc549f4e9472234127/h11-0.14.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/87/f5/72347bc88306acb359581ac4d52f23c0ef445b57157adedb9aee0cd689d2/httpcore-1.0.7-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/2a/39/e50c7c3a983047577ee07d2a9e53faf5a69493943ec3f6a384bdc792deb2/httpx-0.28.1-py3-none-any.whl
@@ -554,27 +551,6 @@ packages:
   - littleutils ; extra == 'tests'
   - rich ; python_full_version >= '3.11' and extra == 'tests'
   requires_python: '>=3.8'
-- pypi: https://files.pythonhosted.org/packages/86/2d/90a713b473206f5505e01fbf86d881b3856cb3461503d9b073bf55b19ce6/fieldz-0.1.0-py3-none-any.whl
-  name: fieldz
-  version: 0.1.0
-  sha256: 0825a45396877769b107ce016e63f6fedbe625a0ace3e56fe2f9d6d61c7ea8df
-  requires_dist:
-  - typing-extensions
-  - black ; extra == 'dev'
-  - hatch ; extra == 'dev'
-  - ipython ; extra == 'dev'
-  - mypy ; extra == 'dev'
-  - pdbpp ; extra == 'dev'
-  - rich ; extra == 'dev'
-  - ruff ; extra == 'dev'
-  - annotated-types ; extra == 'test'
-  - attrs ; extra == 'test'
-  - dataclassy ; extra == 'test'
-  - msgspec ; extra == 'test'
-  - pydantic ; extra == 'test'
-  - pytest ; extra == 'test'
-  - pytest-cov ; extra == 'test'
-  requires_python: '>=3.8'
 - pypi: https://files.pythonhosted.org/packages/f7/ec/67fbef5d497f86283db54c22eec6f6140243aae73265799baaaa19cd17fb/ghp_import-2.1.0-py3-none-any.whl
   name: ghp-import
   version: 2.1.0
@@ -622,35 +598,6 @@ packages:
   - astunparse>=1.6 ; python_full_version < '3.9'
   - colorama>=0.4
   requires_python: '>=3.9'
-- pypi: https://files.pythonhosted.org/packages/6f/fc/c059d128d77a369f54a3753162a38cd7668e5b4d14464672001a50cf2e9d/griffe_fieldz-0.2.1-py3-none-any.whl
-  name: griffe-fieldz
-  version: 0.2.1
-  sha256: 04ae78b487c832a38b0495f971784d513da413b867c51e429f39d74f76d4f941
-  requires_dist:
-  - fieldz>=0.1.0
-  - griffe>=1.0
-  - ipython ; extra == 'dev'
-  - mypy ; extra == 'dev'
-  - pdbpp ; extra == 'dev'
-  - pre-commit ; extra == 'dev'
-  - rich ; extra == 'dev'
-  - ruff ; extra == 'dev'
-  - pytest ; extra == 'test'
-  - pytest-cov ; extra == 'test'
-  requires_python: '>=3.8'
-- pypi: https://files.pythonhosted.org/packages/d5/59/96c5bfdc24f5942690ac6161d425d4cc181d4c4624eb3f54b5d244672908/griffe_generics-1.0.13-py3-none-any.whl
-  name: griffe-generics
-  version: 1.0.13
-  sha256: e8139e485d256d0eba97ab310368c8800048918f0d5c7257817d769bba76ac94
-  requires_dist:
-  - griffe
-  - typing-extensions
-  - pytest ; extra == 'tests'
-  - pytest ; extra == 'dev'
-  - mypy ; extra == 'dev'
-  - rich ; extra == 'dev'
-  - ruff ; extra == 'dev'
-  requires_python: '>=3.8'
 - pypi: https://files.pythonhosted.org/packages/95/04/ff642e65ad6b90db43e668d70ffb6736436c7ce41fcc549f4e9472234127/h11-0.14.0-py3-none-any.whl
   name: h11
   version: 0.14.0
@@ -922,7 +869,7 @@ packages:
 - pypi: .
   name: liblaf-grapes
   version: 0.0.3
-  sha256: ae82014b29a5e2fb97e7914717b9c212a4d8a38b8da082cd932154d0b6e1aa02
+  sha256: 857a56a5ab9290a2bd5cb2383d085cb8143e6a5a1d35fcf234548f6efad7265b
   requires_dist:
   - about-time>=4.2.1,<5
   - autoregistry>=1.1.2,<2

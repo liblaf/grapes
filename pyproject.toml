@@ -11,7 +11,7 @@ build = [
   "check-wheel-contents>=0.6.1,<0.7",
   "twine>=6.0.1,<7",
 ]
-dev = ["icecream>=2.1.4,<3", "marimo>=0.11,<0.12"]
+dev = ["icecream>=2.1.4,<3"]
 docs = [
   "gitpython>=3.1.44,<4",
   "griffe-fieldz>=0.2.1,<0.3",
@@ -42,7 +42,6 @@ dependencies = [
   "lazy-loader>=0.4,<0.5",
   "loguru>=0.7.3,<0.8",
   "numpy>=2.2.2,<3",
-  "polars>=1.21.0,<2",
   "pydantic>=2.10.6,<3",
   "rich>=13.9.4,<14",
   "ruamel-yaml>=0.18.10,<0.19",

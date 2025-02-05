@@ -1,4 +1,4 @@
-from . import environ, human, logging, progress_bar, serde, text
+from . import environ, human, logging, progress_bar, serde, text, typed
 from .environ import init_env
 from .human import (
     human_count,
@@ -63,4 +63,5 @@ __all__ = [
     "text",
     "timer",
     "track",
+    "typed",
 ]

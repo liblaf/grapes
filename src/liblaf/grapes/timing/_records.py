@@ -6,7 +6,6 @@ from liblaf import grapes
 
 with grapes.optional_imports(extra="timer"):
     import numpy as np
-    import polars as pl
 
 
 class TimerRecords:
@@ -114,11 +113,3 @@ class TimerRecords:
             The column data as a NumPy array.
         """
         return np.asarray(self.column(key))
-
-    def to_polars(self) -> pl.DataFrame:
-        """Converts the internal records to a Polars DataFrame.
-
-        Returns:
-            A Polars DataFrame containing the internal records.
-        """
-        return pl.from_dict(self._records)

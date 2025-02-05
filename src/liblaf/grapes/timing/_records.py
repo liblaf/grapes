@@ -25,11 +25,7 @@ class TimerRecords:
 
     @property
     def count(self) -> int:
-        """Count the number of elements in the column.
-
-        Returns:
-            The number of elements in the column.
-        """
+        """The number of elements in the column."""
         return len(self.column())
 
     def append(

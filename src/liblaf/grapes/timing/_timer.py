@@ -150,11 +150,7 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
 
     @property
     def elapsed(self) -> float:
-        """Returns the elapsed time for the first counter.
-
-        Returns:
-            The elapsed time for the first counter.
-        """
+        """The elapsed time for the first counter."""
         return self[self.counters[0]]
 
     def end(self) -> None:

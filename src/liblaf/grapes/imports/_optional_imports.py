@@ -22,9 +22,6 @@ def optional_imports(
 
     Raises:
         ImportError: If an optional dependency is missing, an `ImportError` is raised with a helpful message suggesting how to install it.
-
-    Yields:
-        This context manager does not yield any value.
     """
     try:
         yield

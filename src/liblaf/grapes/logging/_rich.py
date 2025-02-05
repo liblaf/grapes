@@ -9,11 +9,24 @@ from rich.theme import Theme
 
 @functools.cache
 def logging_theme() -> Theme:
-    """...
+    """Returns a Theme object that defines the styles for different logging levels.
 
-    References:
-        [1] [loguru/loguru/_defaults.py at c490ce0534c6e176306f339a92c221dc6f41a6a7 · Delgan/loguru](https://github.com/Delgan/loguru/blob/c490ce0534c6e176306f339a92c221dc6f41a6a7/loguru/_defaults.py)
+    The styles are inspired by the loguru library and include the following levels:
+
+    - notset: Dimmed style
+    - trace: Cyan color, bold
+    - debug: Blue color, bold
+    - icecream: Magenta color, bold
+    - info: Bold
+    - success: Green color, bold
+    - warning: Yellow color, bold
+    - error: Red color, bold
+    - critical: Red color, bold, reversed
+
+    Returns:
+        A Theme object with the specified styles for logging levels.
     """
+    # [loguru/loguru/_defaults.py at c490ce0534c6e176306f339a92c221dc6f41a6a7 · Delgan/loguru](https://github.com/Delgan/loguru/blob/c490ce0534c6e176306f339a92c221dc6f41a6a7/loguru/_defaults.py)
     return Theme(
         {
             "logging.level.notset": Style(dim=True),

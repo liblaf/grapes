@@ -24,7 +24,7 @@ class RateColumn(ProgressColumn):
     """The unit of measurement for the progress bar."""
 
     def __init__(self, unit: str = "it", table_column: Column | None = None) -> None:
-        """Initialize the progress bar.
+        """.
 
         Args:
             unit: The unit of measurement for the progress bar.

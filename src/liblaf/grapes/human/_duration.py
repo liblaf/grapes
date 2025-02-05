@@ -4,7 +4,7 @@ from liblaf import grapes
 
 with grapes.optional_imports(extra="human"):
     import numpy as np
-    import numpy.typing as npt
+    from numpy.typing import ArrayLike
 
 
 UNITS: dict[str, float] = {
@@ -135,7 +135,7 @@ def human_duration_with_variance(mean: float, std: float) -> str:
     return human_duration(mean) + " ± " + human_duration(std)
 
 
-def human_duration_series(series: npt.ArrayLike) -> str:
+def human_duration_series(series: ArrayLike) -> str:
     """Convert a series of durations into a human-readable string.
 
     Args:
@@ -144,7 +144,7 @@ def human_duration_series(series: npt.ArrayLike) -> str:
     Returns:
         A human-readable string representing the duration. If the series contains only one element, it returns the human-readable format of that single duration. If the series contains more than one element, it returns the mean duration with its variance in a human-readable format.
     """
-    series: npt.NDArray = np.asarray(series)
+    series: np.ndarray = np.asarray(series)
     if series.size <= 1:
-        return human_duration(series.item())
+        return human_duration(series.item())  # pyright: ignore[reportArgumentType]
     return human_duration_with_variance(series.mean(), series.std())

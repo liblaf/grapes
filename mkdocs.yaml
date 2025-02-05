@@ -14,10 +14,6 @@ theme:
   logo: logo.png
 
 plugins:
-  gen-files:
-    scripts:
-      - docs/scripts/download-assets.py
-      - docs/scripts/gen-ref-pages.py
   mkdocstrings:
     handlers:
       python:

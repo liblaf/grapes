@@ -10,6 +10,7 @@ READERS = autoregistry.Registry()
 """A registry mapping file extensions to their respective deserialization functions.
 
 Supported extensions and their corresponding deserialization functions:
+
 - ".json": grapes.load_json
 - ".toml": grapes.load_toml (if the "tomlkit" module is available)
 - ".yaml": grapes.load_yaml (if the "ruamel.yaml" module is available)
@@ -20,6 +21,7 @@ WRITERS = autoregistry.Registry()
 """A registry mapping file extensions to their respective serialization functions.
 
 Supported extensions and their corresponding serialization functions:
+
 - ".json": grapes.save_json
 - ".toml": grapes.save_toml (if the "tomlkit" module is available)
 - ".yaml": grapes.save_yaml (if the "ruamel.yaml" module is available)

@@ -17,13 +17,13 @@ plugins:
   mkdocstrings:
     handlers:
       python:
-        inventories:
+        import:
+          - https://autoregistry.readthedocs.io/en/stable/objects.inv
           - https://boltons.readthedocs.io/en/stable/objects.inv
-          - https://docs.pola.rs/api/python/stable/objects.inv
           - https://docs.pydantic.dev/latest/objects.inv
           - https://docs.python.org/3/objects.inv
-          - https://etils.readthedocs.io/en/latest/objects.inv
+          - https://etils.readthedocs.io/en/stable/objects.inv
           - https://loguru.readthedocs.io/en/stable/objects.inv
           - https://numpy.org/doc/stable/objects.inv
           - https://rich.readthedocs.io/en/stable/objects.inv
-          - https://tomlkit.readthedocs.io/en/latest/objects.inv
+          - https://tomlkit.readthedocs.io/en/stable/objects.inv

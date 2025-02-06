@@ -3,7 +3,7 @@ import contextlib
 import functools
 from collections.abc import Callable, Generator, Iterable, Iterator, Mapping, Sequence
 from types import TracebackType
-from typing import ParamSpec, Self, TypeVar
+from typing import Self
 
 import attrs
 from loguru import logger
@@ -11,9 +11,6 @@ from loguru import logger
 from liblaf import grapes
 
 from . import TimerRecords, get_time
-
-_P = ParamSpec("_P")
-_T = TypeVar("_T")
 
 
 @attrs.define
@@ -126,7 +123,7 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
         self.end()
         self.depth -= 1
 
-    def __call__(self, fn: Callable[_P, _T]) -> Callable[_P, _T]:
+    def __call__[**P, T](self, fn: Callable[P, T]) -> Callable[P, T]:
         """A decorator that wraps a function to measure its execution time.
 
         Args:
@@ -139,10 +136,10 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
             self.label = grapes.full_qual_name(fn)
 
         @functools.wraps(fn)
-        def wrapped(*args: _P.args, **kwargs: _P.kwargs) -> _T:
+        def wrapped(*args: P.args, **kwargs: P.kwargs) -> T:
             self.depth += 1
             with self:
-                ret: _T = fn(*args, **kwargs)
+                ret: T = fn(*args, **kwargs)
             self.depth -= 1
             return ret
 
@@ -223,9 +220,9 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
         for name in self.counters:
             self._start[name] = get_time(name)
 
-    def track(
-        self, iterable: Iterable[_T], *, log_report: bool = True
-    ) -> Generator[_T]:
+    def track[T](
+        self, iterable: Iterable[T], *, log_report: bool = True
+    ) -> Generator[T]:
         """Tracks the execution time of an iterable's items.
 
         Args:

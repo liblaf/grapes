@@ -1,16 +1,14 @@
 import os
-from typing import Any, TypeVar
+from typing import Any
 
 import pydantic
 
 from liblaf import grapes
 
-_C = TypeVar("_C", bound=pydantic.BaseModel)
 
-
-def load_pydantic(
-    fpath: str | os.PathLike[str], cls: type[_C], *, ext: str | None = None
-) -> _C:
+def load_pydantic[C: pydantic.BaseModel](
+    fpath: str | os.PathLike[str], cls: type[C], *, ext: str | None = None
+) -> C:
     """Load and deserialize data from a file, then validate it using a Pydantic model.
 
     Args:

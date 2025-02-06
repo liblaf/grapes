@@ -1,4 +1,4 @@
-from . import environ, human, itertools, logging, progress_bar, serde, text, typed
+from . import environ, human, itertools, logging, path, progress_bar, serde, text, typed
 from .environ import init_env
 from .human import (
     human_count,
@@ -24,6 +24,7 @@ from .logging import (
     success_once,
     trace_once,
 )
+from .path import as_path
 from .progress_bar import progress, track
 from .serde import (
     deserialize,
@@ -43,6 +44,7 @@ from .timing import TimerRecords, get_time, timer
 __all__ = [
     "TimerRecords",
     "as_iterable",
+    "as_path",
     "as_sequence",
     "caller_location",
     "critical_once",
@@ -74,6 +76,7 @@ __all__ = [
     "logging",
     "logging_console",
     "optional_imports",
+    "path",
     "progress",
     "progress_bar",
     "save_json",

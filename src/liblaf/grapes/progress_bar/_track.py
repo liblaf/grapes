@@ -1,5 +1,4 @@
 from collections.abc import Generator, Iterable
-from typing import Any, TypeVar
 
 from rich.progress import Progress
 
@@ -7,18 +6,16 @@ from liblaf import grapes
 
 from . import progress
 
-_T = TypeVar("_T")
 
-
-def track(
-    sequence: Iterable[_T],
+def track[T](
+    sequence: Iterable[T],
     *,
     description: str | bool | None = True,
     record_log_level: int | str | None = "DEBUG",
     report_log_level: int | str | None = "INFO",
     timer: bool = True,
     total: float | None = None,
-) -> Generator[_T, Any, None]:
+) -> Generator[T]:
     """Tracks the progress of iterating over a sequence with optional logging and timing.
 
     Args:

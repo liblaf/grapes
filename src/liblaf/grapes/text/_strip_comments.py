@@ -7,7 +7,7 @@ def strip_comments(
     *,
     strip: bool = True,
     strip_empty_lines: bool = True,
-) -> Generator[str, None, None]:
+) -> Generator[str]:
     """Remove comments and optionally strip whitespace and empty lines from the given text.
 
     Args:

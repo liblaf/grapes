@@ -25,6 +25,7 @@ docs = [
   "mkdocs>=1.6.1,<2",
   "mkdocstrings[python]>=0.28,<0.29",
   "pymdown-extensions>=10.14,<11",
+  "ruff>=0.9.4,<0.10",
 ]
 
 [project]
@@ -52,8 +53,6 @@ name = "liblaf-grapes"
 readme = "docs/README.md"
 requires-python = ">=3.12"
 version = "0.0.3"
-
-[project.optional-dependencies]
 
 [project.urls]
 "Changelog" = "https://github.com/liblaf/grapes/blob/main/CHANGELOG.md"

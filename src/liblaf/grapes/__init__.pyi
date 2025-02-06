@@ -1,4 +1,4 @@
-from . import environ, human, logging, progress_bar, serde, text, typed
+from . import environ, human, itertools, logging, progress_bar, serde, text, typed
 from .environ import init_env
 from .human import (
     human_count,
@@ -9,7 +9,21 @@ from .human import (
     human_throughout,
 )
 from .imports import has_module, optional_imports
-from .logging import caller_location, full_qual_name, init_logging, logging_console
+from .itertools import as_iterable, as_sequence, generator_to_list
+from .logging import (
+    caller_location,
+    critical_once,
+    debug_once,
+    error_once,
+    exception_once,
+    full_qual_name,
+    info_once,
+    init_logging,
+    log_once,
+    logging_console,
+    success_once,
+    trace_once,
+)
 from .progress_bar import progress, track
 from .serde import (
     deserialize,
@@ -28,11 +42,17 @@ from .timing import TimerRecords, get_time, timer
 
 __all__ = [
     "TimerRecords",
-    "TimerRecords",
+    "as_iterable",
+    "as_sequence",
     "caller_location",
+    "critical_once",
+    "debug_once",
     "deserialize",
     "environ",
+    "error_once",
+    "exception_once",
     "full_qual_name",
+    "generator_to_list",
     "get_time",
     "has_module",
     "human",
@@ -42,12 +62,15 @@ __all__ = [
     "human_duration_unit_precision",
     "human_duration_with_variance",
     "human_throughout",
+    "info_once",
     "init_env",
     "init_logging",
+    "itertools",
     "load_json",
     "load_pydantic",
     "load_toml",
     "load_yaml",
+    "log_once",
     "logging",
     "logging_console",
     "optional_imports",
@@ -60,8 +83,10 @@ __all__ = [
     "serde",
     "serialize",
     "strip_comments",
+    "success_once",
     "text",
     "timer",
+    "trace_once",
     "track",
     "typed",
 ]

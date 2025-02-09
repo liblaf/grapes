@@ -1,42 +1,39 @@
 # Changelog
 
-## [0.0.4](https://github.com/liblaf/grapes/compare/v0.0.3...v0.0.4) (2025-02-09)
-
+## [0.0.4](https://github.com/liblaf/grapes/compare/v0.0.3..v0.0.4) - 2025-02-09
 
 ### ✨ Features
 
-* add itertools module and logging once functions ([10ad9cf](https://github.com/liblaf/grapes/commit/10ad9cfc1ace865296c1c380445750d0ca988187))
-* add path utilities and update type hints ([b66c1bd](https://github.com/liblaf/grapes/commit/b66c1bd4f4ad3abb56de4d5268fa7be98e98f68a))
-
+- add path utilities and update type hints - ([b66c1bd](https://github.com/liblaf/grapes/commit/b66c1bd4f4ad3abb56de4d5268fa7be98e98f68a))
+- add itertools module and logging once functions - ([10ad9cf](https://github.com/liblaf/grapes/commit/10ad9cfc1ace865296c1c380445750d0ca988187))
 
 ### ⬆️ Dependencies
 
-* **deps:** add ruff as a documentation dependency ([e8f14bb](https://github.com/liblaf/grapes/commit/e8f14bb8fa67c2c86a1662d98dac0032c1cb1e5c))
-* **deps:** update dependency boltons to v25 ([#11](https://github.com/liblaf/grapes/issues/11)) ([cae7976](https://github.com/liblaf/grapes/commit/cae797647886d4fd8c2a2ae4d469ba4b3910f7fc))
-* **deps:** update dependency marimo to &gt;=0.11,&lt;0.12 ([#14](https://github.com/liblaf/grapes/issues/14)) ([4e2dd55](https://github.com/liblaf/grapes/commit/4e2dd55953bfa037c328714cde905c6ec9202623))
-* **deps:** update dependency mkdocstrings to &gt;=0.28,&lt;0.29 ([#12](https://github.com/liblaf/grapes/issues/12)) ([66b28b1](https://github.com/liblaf/grapes/commit/66b28b17790f740e0ac7b461a8cb07290b0fe8a6))
-
+- **deps:** update dependency boltons to v25 (#11) - ([cae7976](https://github.com/liblaf/grapes/commit/cae797647886d4fd8c2a2ae4d469ba4b3910f7fc))
 
 ### 📝 Documentation
 
-* add and update module docstrings ([4740926](https://github.com/liblaf/grapes/commit/4740926faaebf47554065524d246b2c66fc64dd6))
-* add line breaks for readability in serde docs ([74f6f2c](https://github.com/liblaf/grapes/commit/74f6f2cf4843f13b3394cf9e47eeb30841ec28c2))
-* add markdown support in HTML for README ([eaafe22](https://github.com/liblaf/grapes/commit/eaafe22ac26e833788da5e9e7bde38b02e6d3713))
-* update and correct inventory URLs ([45c6835](https://github.com/liblaf/grapes/commit/45c6835f732df6f35d979b439cf181b2dbb1e2f2))
-* update and enhance documentation setup ([39b1dad](https://github.com/liblaf/grapes/commit/39b1dada99ca91812cdc69483a9d7fcfbc3b9b49))
-
+- add line breaks for readability in serde docs - ([74f6f2c](https://github.com/liblaf/grapes/commit/74f6f2cf4843f13b3394cf9e47eeb30841ec28c2))
+- add and update module docstrings - ([4740926](https://github.com/liblaf/grapes/commit/4740926faaebf47554065524d246b2c66fc64dd6))
+- update and correct inventory URLs - ([45c6835](https://github.com/liblaf/grapes/commit/45c6835f732df6f35d979b439cf181b2dbb1e2f2))
+- update and enhance documentation setup - ([39b1dad](https://github.com/liblaf/grapes/commit/39b1dada99ca91812cdc69483a9d7fcfbc3b9b49))
+- add markdown support in HTML for README - ([eaafe22](https://github.com/liblaf/grapes/commit/eaafe22ac26e833788da5e9e7bde38b02e6d3713))
 
 ### ♻ Code Refactoring
 
-* **docs:** replace Python asset download script with shell script ([4fe1869](https://github.com/liblaf/grapes/commit/4fe1869a0f76ffd45d18f74bfa971c3a1bc7f01c))
-* remove unused dependencies and update imports ([69bfcf4](https://github.com/liblaf/grapes/commit/69bfcf45474d3a7dd5dae6abff8ea92c302d1e20))
-* reorganize timer and optional imports modules ([a362ce5](https://github.com/liblaf/grapes/commit/a362ce55e4979c94601bb192c75bb5ac2869faa2))
-* **timer:** simplify time counter logic and improve TimerRecords class ([b40c2c3](https://github.com/liblaf/grapes/commit/b40c2c37fc5dd5c2afdf23727e355db4a8c38800))
-
+- **docs:** replace Python asset download script with shell script - ([4fe1869](https://github.com/liblaf/grapes/commit/4fe1869a0f76ffd45d18f74bfa971c3a1bc7f01c))
+- **timer:** simplify time counter logic and improve TimerRecords class - ([b40c2c3](https://github.com/liblaf/grapes/commit/b40c2c37fc5dd5c2afdf23727e355db4a8c38800))
+- remove unused dependencies and update imports - ([69bfcf4](https://github.com/liblaf/grapes/commit/69bfcf45474d3a7dd5dae6abff8ea92c302d1e20))
+- reorganize timer and optional imports modules - ([a362ce5](https://github.com/liblaf/grapes/commit/a362ce55e4979c94601bb192c75bb5ac2869faa2))
 
 ### 🔧 Continuous Integration
 
-* remove redundant docs workflow ([fad79ce](https://github.com/liblaf/grapes/commit/fad79cebc04e47a35fbf1de9ccfaa13aa863a86a))
+- remove redundant docs workflow - ([fad79ce](https://github.com/liblaf/grapes/commit/fad79cebc04e47a35fbf1de9ccfaa13aa863a86a))
+
+### ❤️ New Contributors
+
+- @liblaf made their first contribution
+- @renovate[bot] made their first contribution in [#14](https://github.com/liblaf/grapes/pull/14)
 
 ## [0.0.3](https://github.com/liblaf/grapes/compare/v0.0.2..v0.0.3) - 2025-02-02
 
@@ -46,7 +43,6 @@
 
 ### ❤️ New Contributors
 
-- @liblaf made their first contribution
 - @renovate[bot] made their first contribution in [#9](https://github.com/liblaf/grapes/pull/9)
 
 ## [0.0.1](https://github.com/liblaf/grapes/compare/v0.0.0..v0.0.1) - 2025-01-20

@@ -3,7 +3,7 @@
 
 [build-system]
 build-backend = "hatchling.build"
-requires = ["hatchling"]
+requires = ["hatch-vcs", "hatchling"]
 
 [dependency-groups]
 build = [
@@ -32,12 +32,16 @@ docs = [
 authors = [
   { email = "30631553+liblaf@users.noreply.github.com", name = "liblaf" },
 ]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "License :: OSI Approved :: MIT License",
+]
 dependencies = [
   "about-time>=4.2.1,<5",
   "autoregistry>=1.1.2,<2",
   "boltons>=25.0.0,<26",
-  "environs>=14.1.0,<15",
-  "etils>=1.11.0,<2",
+  "environs>=14.1.1,<15",
+  "etils>=1.12.0,<2",
   "lazy-loader>=0.4,<0.5",
   "loguru>=0.7.3,<0.8",
   "numpy>=2.2.2,<3",
@@ -47,15 +51,16 @@ dependencies = [
   "tomlkit>=0.13.2,<0.14",
 ]
 description = "Add your description here"
+dynamic = ["version"]
 keywords = []
 license = "MIT"
 name = "liblaf-grapes"
 readme = "docs/README.md"
 requires-python = ">=3.12"
-version = "0.0.4"
 
 [project.urls]
 "Changelog" = "https://github.com/liblaf/grapes/blob/main/CHANGELOG.md"
+"Documentation" = "https://liblaf.github.io/grapes/"
 "Homepage" = "https://github.com/liblaf/grapes"
 "Issue Tracker" = "https://github.com/liblaf/grapes/issues"
 "Release Notes" = "https://github.com/liblaf/grapes/releases"
@@ -64,8 +69,17 @@ version = "0.0.4"
 [tool.check-wheel-contents]
 ignore = ["W002"]
 
+[tool.hatch.build.hooks.vcs]
+version-file = "src/liblaf/grapes/_version.py"
+
+[tool.hatch.build.targets.sdist]
+only-packages = true
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/liblaf"]
+
+[tool.hatch.version]
+source = "vcs"
 
 [tool.pixi.environments]
 default = { features = ["build", "dev", "docs"] }
@@ -80,5 +94,5 @@ liblaf-grapes = { editable = true, path = "." }
 
 [tool.pixi.system-requirements]
 cuda = "12"
-libc = { family = "glibc", version = "2.40" }
-linux = "6.6"
+libc = { family = "glibc", version = "2.41" }
+linux = "6.12"

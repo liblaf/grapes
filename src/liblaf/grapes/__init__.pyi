@@ -1,4 +1,5 @@
 from . import environ, human, itertools, logging, path, progress_bar, serde, text, typed
+from ._version import __version__, __version_tuple__, version, version_tuple
 from .environ import init_env
 from .human import (
     human_count,
@@ -43,6 +44,8 @@ from .timing import TimerRecords, get_time, timer
 
 __all__ = [
     "TimerRecords",
+    "__version__",
+    "__version_tuple__",
     "as_iterable",
     "as_path",
     "as_sequence",
@@ -92,4 +95,6 @@ __all__ = [
     "trace_once",
     "track",
     "typed",
+    "version",
+    "version_tuple",
 ]

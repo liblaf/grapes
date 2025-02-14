@@ -17,6 +17,7 @@ from ._once import (
     log_once,
     success_once,
     trace_once,
+    warning_once,
 )
 from ._rich import init_rich, logging_console, logging_theme
 
@@ -40,4 +41,5 @@ __all__ = [
     "setup_loguru_logging_intercept",
     "success_once",
     "trace_once",
+    "warning_once",
 ]

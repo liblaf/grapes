@@ -24,6 +24,7 @@ from .logging import (
     logging_console,
     success_once,
     trace_once,
+    warning_once,
 )
 from .path import as_path
 from .progress_bar import progress, track
@@ -97,4 +98,5 @@ __all__ = [
     "typed",
     "version",
     "version_tuple",
+    "warning_once",
 ]

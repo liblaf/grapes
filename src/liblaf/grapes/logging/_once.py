@@ -27,6 +27,11 @@ def success_once(message: Any, *args, **kwargs) -> None:
 
 
 @functools.lru_cache
+def warning_once(message: Any, *args, **kwargs) -> None:
+    logger.warning(message, *args, **kwargs)
+
+
+@functools.lru_cache
 def error_once(message: Any, *args, **kwargs) -> None:
     logger.error(message, *args, **kwargs)
 
@@ -37,10 +42,10 @@ def critical_once(message: Any, *args, **kwargs) -> None:
 
 
 @functools.lru_cache
-def exception_once(message: Any, *args, **kwargs) -> None:
-    logger.exception(message, *args, **kwargs)
+def log_once(level: int | str, message: Any, *args, **kwargs) -> None:
+    logger.log(level, message, *args, **kwargs)
 
 
 @functools.lru_cache
-def log_once(level: int | str, message: Any, *args, **kwargs) -> None:
-    logger.log(level, message, *args, **kwargs)
+def exception_once(message: Any, *args, **kwargs) -> None:
+    logger.exception(message, *args, **kwargs)

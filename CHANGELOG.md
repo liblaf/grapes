@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.0.5](https://github.com/liblaf/grapes/compare/v0.0.4...v0.0.5) (2025-02-14)
+
+
+### ✨ Features
+
+* **logging:** add `warning_once` function to logging utilities ([a7e64ce](https://github.com/liblaf/grapes/commit/a7e64ce033f246837d57b17dd3645aa466eea148))
+
+
+### 👷 Build System
+
+* update project configuration and dependencies ([94683e5](https://github.com/liblaf/grapes/commit/94683e588f423b0df3103905a45199a9561d753c))
+
 ## [0.0.4](https://github.com/liblaf/grapes/compare/v0.0.3..v0.0.4) - 2025-02-09
 
 ### ✨ Features

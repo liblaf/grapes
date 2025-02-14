@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.0.5](https://github.com/liblaf/grapes/compare/v0.0.4..v0.0.5) - 2025-02-14
+
+### ✨ Features
+
+- **logging:** add `warning_once` function to logging utilities - ([a7e64ce](https://github.com/liblaf/grapes/commit/a7e64ce033f246837d57b17dd3645aa466eea148))
+
+### 👷 Build System
+
+- update project configuration and dependencies - ([94683e5](https://github.com/liblaf/grapes/commit/94683e588f423b0df3103905a45199a9561d753c))
+
+### ❤️ New Contributors
+
+- @liblaf made their first contribution
+
 ## [0.0.4](https://github.com/liblaf/grapes/compare/v0.0.3..v0.0.4) - 2025-02-09
 
 ### ✨ Features
@@ -29,11 +43,6 @@
 ### 🔧 Continuous Integration
 
 - remove redundant docs workflow - ([fad79ce](https://github.com/liblaf/grapes/commit/fad79cebc04e47a35fbf1de9ccfaa13aa863a86a))
-
-### ❤️ New Contributors
-
-- @liblaf made their first contribution
-- @renovate[bot] made their first contribution in [#14](https://github.com/liblaf/grapes/pull/14)
 
 ## [0.0.3](https://github.com/liblaf/grapes/compare/v0.0.2..v0.0.3) - 2025-02-02
 

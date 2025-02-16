@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.1.0](https://github.com/liblaf/grapes/compare/v0.0.5..v0.1.0) - 2025-02-16
+
+### ♻ Code Refactoring
+
+- replace numpy with standard library for timing calculations - ([fa8a985](https://github.com/liblaf/grapes/commit/fa8a985c2561b8f9346b22214ba7df9c7a75b00d))
+
+### ❤️ New Contributors
+
+- @liblaf made their first contribution
+
 ## [0.0.5](https://github.com/liblaf/grapes/compare/v0.0.4..v0.0.5) - 2025-02-14
 
 ### ✨ Features
@@ -9,10 +19,6 @@
 ### 👷 Build System
 
 - update project configuration and dependencies - ([94683e5](https://github.com/liblaf/grapes/commit/94683e588f423b0df3103905a45199a9561d753c))
-
-### ❤️ New Contributors
-
-- @liblaf made their first contribution
 
 ## [0.0.4](https://github.com/liblaf/grapes/compare/v0.0.3..v0.0.4) - 2025-02-09
 

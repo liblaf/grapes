@@ -1,11 +1,9 @@
 import collections
+import statistics
 import textwrap
 from collections.abc import Iterable, Mapping, Sequence
 
 from liblaf import grapes
-
-with grapes.optional_imports(extra="timer"):
-    import numpy as np
 
 
 class TimerRecords:
@@ -72,9 +70,8 @@ class TimerRecords:
         text: str = ""
         for k in self.keys():
             text += f"{k} > "
-            arr: np.ndarray = self.to_numpy(k)
-            human_mean: str = grapes.human_duration_series(arr)
-            human_best: str = grapes.human_duration(arr.min())
+            human_mean: str = grapes.human_duration_series(self.column(k))
+            human_best: str = grapes.human_duration(self.min(k))
             text += f"mean: {human_mean}, best: {human_best}\n"
         text = text.strip()
         text = f"{label} (total: {self.count})\n" + textwrap.indent(text, "  ")
@@ -88,6 +85,50 @@ class TimerRecords:
         """
         return self._records.keys()
 
+    def max(self, key: str | None = None) -> float:
+        """Retrieve the maximum value from the specified column.
+
+        Args:
+            key: The key of the column to retrieve the maximum value. If None, the default column is used.
+
+        Returns:
+            The maximum value from the specified column.
+        """
+        return max(self.column(key))
+
+    def mean(self, key: str | None = None) -> float:
+        """Calculate the mean of the specified column.
+
+        Args:
+            key: The key of the column to calculate the mean. If None, the default column is used.
+
+        Returns:
+            The mean of the column.
+        """
+        return statistics.mean(self.column(key))
+
+    def median(self, key: str | None = None) -> float:
+        """Calculate the median of the specified column.
+
+        Args:
+            key: The key of the column to calculate the median. If None, the default column is used.
+
+        Returns:
+            The median of the column.
+        """
+        return statistics.median(self.column(key))
+
+    def min(self, key: str | None = None) -> float:
+        """Retrieve the minimum value from the specified column.
+
+        Args:
+            key: The key of the column to retrieve the minimum value. If None, the default column is used.
+
+        Returns:
+            The minimum value from the specified column.
+        """
+        return min(self.column(key))
+
     def row(self, index: int) -> dict[str, float]:
         """Retrieve a specific row from the records.
 
@@ -99,13 +140,13 @@ class TimerRecords:
         """
         return {k: v[index] for k, v in self._records.items()}
 
-    def to_numpy(self, key: str | None = None) -> np.ndarray:
-        """Convert the specified column to a NumPy array.
+    def stdev(self, key: str | None = None) -> float:
+        """Calculate the standard deviation of the specified column.
 
         Args:
-            key: The key of the column to convert. If None, the default column is used.
+            key: The key of the column to calculate the standard deviation. If None, the default column is used.
 
         Returns:
-            The column data as a NumPy array.
+            The standard deviation of the column.
         """
-        return np.asarray(self.column(key))
+        return statistics.stdev(self.column(key))

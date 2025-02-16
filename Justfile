@@ -1,22 +1,10 @@
 default: gen-init lint
 
-
 build:
+    rm --force --recursive dist/
     pyproject-build
     check-wheel-contents dist/*.whl
     twine check --strict dist/*
-
-docs-assets:
-    ./scripts/docs/download-assets.sh
-
-docs-build: docs-assets
-    mkdocs build
-
-docs-serve: docs-assets
-    mkdocs serve
-
-docs-deploy: docs-assets
-    mkdocs gh-deploy --force --no-history
 
 gen-init:
     ./scripts/gen-init.sh
@@ -24,6 +12,7 @@ gen-init:
 lint: lint-python lint-toml
 
 lint-python:
+    ruff format
     ruff check --fix
 
 lint-toml:
@@ -31,4 +20,4 @@ lint-toml:
 
 upgrade:
     pixi upgrade
-    just
+    just lint

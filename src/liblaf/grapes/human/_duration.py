@@ -1,11 +1,6 @@
 import math
-
-from liblaf import grapes
-
-with grapes.optional_imports(extra="human"):
-    import numpy as np
-    from numpy.typing import ArrayLike
-
+import statistics
+from collections.abc import Sequence
 
 UNITS: dict[str, float] = {
     "ns": 1e-9,
@@ -135,7 +130,7 @@ def human_duration_with_variance(mean: float, std: float) -> str:
     return human_duration(mean) + " ± " + human_duration(std)
 
 
-def human_duration_series(series: ArrayLike) -> str:
+def human_duration_series(series: Sequence[float]) -> str:
     """Convert a series of durations into a human-readable string.
 
     Args:
@@ -144,7 +139,8 @@ def human_duration_series(series: ArrayLike) -> str:
     Returns:
         A human-readable string representing the duration. If the series contains only one element, it returns the human-readable format of that single duration. If the series contains more than one element, it returns the mean duration with its variance in a human-readable format.
     """
-    series: np.ndarray = np.asarray(series)
-    if series.size <= 1:
-        return human_duration(series.item())  # pyright: ignore[reportArgumentType]
-    return human_duration_with_variance(series.mean(), series.std())
+    if len(series) <= 1:
+        return human_duration(series[0])
+    return human_duration_with_variance(
+        statistics.mean(series), statistics.stdev(series)
+    )

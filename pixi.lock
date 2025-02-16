@@ -92,7 +92,6 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/51/23/d02d86553327296c3bf369d444194ea83410cce8f0e690565264f37f3261/mkdocstrings_python-1.13.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/23/62/0fe302c6d1be1c777cab0616e6302478251dfbf9055ad426f5d0def75c89/more_itertools-10.6.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e6/0e/c499453c296fb40366e3069cd68fde77a10f0a30a17b9d3b491eb3ebc5bf/nh3-0.2.20-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-      - pypi: https://files.pythonhosted.org/packages/83/9c/96a9ab62274ffafb023f8ee08c88d3d31ee74ca58869f859db6845494fa6/numpy-2.2.2-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/88/ef/eb23f262cca3c0c4eb7ab1933c3b1f03d021f2c48f54763065b6f0e321be/packaging-24.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/90/96/04b8e52da071d28f5e21a805b19cb9390aa17a47462ac87f5e2696b9566d/paginate-0.5.7-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/cc/20/ff623b09d963f88bfde16306a54e12ee5ea43e9b597108672ff3a408aad6/pathspec-0.12.1-py3-none-any.whl
@@ -869,8 +868,8 @@ packages:
   timestamp: 1729027639220
 - pypi: .
   name: liblaf-grapes
-  version: 0.0.5.dev0+gfc3db2a.d20250213
-  sha256: 01f5588fdf05a926d807757847152a82d08b0f5c668e615d4e19aeacb6ba6ddc
+  version: 0.0.6.dev1+ga115b38.d20250216
+  sha256: 1728184f5331e1cf4bf07db787ed5e05d8fff077d7f5fe2ec97a7ed06ab4a2b5
   requires_dist:
   - about-time>=4.2.1,<5
   - autoregistry>=1.1.2,<2
@@ -879,7 +878,6 @@ packages:
   - etils>=1.12.0,<2
   - lazy-loader>=0.4,<0.5
   - loguru>=0.7.3,<0.8
-  - numpy>=2.2.2,<3
   - pydantic>=2.10.6,<3
   - rich>=13.9.4,<14
   - ruamel-yaml>=0.18.10,<0.19
@@ -1257,11 +1255,6 @@ packages:
   version: 0.2.20
   sha256: 3eb04b9c3deb13c3a375ea39fd4a3c00d1f92e8fb2349f25f1e3e4506751774b
   requires_python: '>=3.8'
-- pypi: https://files.pythonhosted.org/packages/83/9c/96a9ab62274ffafb023f8ee08c88d3d31ee74ca58869f859db6845494fa6/numpy-2.2.2-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-  name: numpy
-  version: 2.2.2
-  sha256: e0c8854b09bc4de7b041148d8550d3bd712b5c21ff6a8ed308085f190235d7ff
-  requires_python: '>=3.10'
 - conda: https://conda.anaconda.org/conda-forge/linux-64/openssl-3.4.0-h7b32b05_1.conda
   sha256: f62f6bca4a33ca5109b6d571b052a394d836956d21b25b7ffd03376abf7a481f
   md5: 4ce6875f75469b2757a65e10a5d05e31

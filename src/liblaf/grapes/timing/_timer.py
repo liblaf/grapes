@@ -5,7 +5,6 @@ from collections.abc import Callable, Generator, Iterable, Iterator, Mapping, Se
 from types import TracebackType
 from typing import Self
 
-import attrs
 from loguru import logger
 
 from liblaf import grapes
@@ -13,7 +12,6 @@ from liblaf import grapes
 from . import TimerRecords, get_time
 
 
-@attrs.define
 class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N801
     """A class for measuring and recording execution time using various counters.
 
@@ -50,18 +48,40 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
     depth: int = 0
     label: str | None = None
     record_log_level: int | str | None = "DEBUG"
-    records: TimerRecords = attrs.field(factory=TimerRecords, init=False)
-    report_at_exit: bool = False
+    records: TimerRecords
     report_log_level: int | str | None = "INFO"
-    _end: dict[str, float] = attrs.field(factory=dict, init=False)
-    _start: dict[str, float] = attrs.field(factory=dict, init=False)
+    _end: dict[str, float]
+    _start: dict[str, float]
 
-    def __attrs_post_init__(self) -> None:
-        """Post-initialization method for the class.
+    def __init__(
+        self,
+        label: str | None = None,
+        *,
+        counters: Sequence[str] = ["perf", "process"],
+        depth: int = 0,
+        record_log_level: int | str | None = "DEBUG",
+        report_log_level: int | str | None = "INFO",
+        report_at_exit: bool = False,
+    ) -> None:
+        """Initializes the timer object.
 
-        This method is automatically called after the class is initialized. If the `report_at_exit` attribute is set to True, the instance is added to the global `TIMERS` list.
+        Args:
+            label: The label to be used for the timer.
+            counters: The list of counters to be used for timing.
+            depth: The depth of the timer.
+            record_log_level: The log level for recording the timer records.
+            report_log_level: The log level for reporting the timer records.
+            report_at_exit: If `True`, the timer will be added to the global `TIMERS` list.
         """
-        if self.report_at_exit:
+        self.counters = counters
+        self.depth = depth
+        self.label = label
+        self.record_log_level = record_log_level
+        self.records = TimerRecords(default_key=self.counters[0])
+        self.report_log_level = report_log_level
+        self._end = {}
+        self._start = {}
+        if report_at_exit:
             TIMERS.append(self)
 
     def __getitem__(self, key: str) -> float:
@@ -146,9 +166,25 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
         return wrapped
 
     @property
+    def count(self) -> int:
+        """The number of records in the timer."""
+        return self.records.count
+
+    @property
     def elapsed(self) -> float:
         """The elapsed time for the first counter."""
         return self[self.counters[0]]
+
+    def column(self, key: str | None = None) -> Sequence[float]:
+        """Retrieve a sequence of float values from the records.
+
+        Args:
+            key: The key to retrieve the sequence of floats. If None, the default key is used.
+
+        Returns:
+            A sequence of float values corresponding to the given key.
+        """
+        return self.records.column(key)
 
     def end(self) -> None:
         """Ends the timing for all counters, records the end times, and logs the record.
@@ -212,6 +248,50 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
             return
         logger.opt(depth=depth).log(self.report_log_level, self.human_report())
 
+    def max(self, key: str | None = None) -> float:
+        """Retrieve the maximum value of the specified counter.
+
+        Args:
+            key: The key of the counter for which to retrieve the maximum value.
+
+        Returns:
+            The maximum value of the specified counter.
+        """
+        return self.records.max(key)
+
+    def mean(self, key: str | None = None) -> float:
+        """Calculate the mean of the specified counter.
+
+        Args:
+            key: The key of the counter for which to calculate the mean.
+
+        Returns:
+            The mean value of the specified counter.
+        """
+        return self.records.mean(key)
+
+    def median(self, key: str | None = None) -> float:
+        """Calculate the median of the specified counter.
+
+        Args:
+            key: The key of the counter for which to calculate the median.
+
+        Returns:
+            The median value of the specified counter.
+        """
+        return self.records.median(key)
+
+    def min(self, key: str | None = None) -> float:
+        """Retrieve the minimum value of the specified counter.
+
+        Args:
+            key: The key of the counter for which to retrieve the minimum value.
+
+        Returns:
+            The minimum value of the specified counter.
+        """
+        return self.records.min(key)
+
     def start(self) -> None:
         """Starts the timer for each counter in the `counters` list.
 
@@ -219,6 +299,17 @@ class timer(Mapping[str, float], contextlib.AbstractContextManager):  # noqa: N8
         """
         for name in self.counters:
             self._start[name] = get_time(name)
+
+    def stdev(self, key: str | None = None) -> float:
+        """Calculate the standard deviation of the specified counter.
+
+        Args:
+            key: The key of the counter for which to calculate the standard deviation.
+
+        Returns:
+            The standard deviation of the specified counter.
+        """
+        return self.records.stdev(key)
 
     def track[T](
         self, iterable: Iterable[T], *, log_report: bool = True

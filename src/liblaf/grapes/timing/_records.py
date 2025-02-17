@@ -150,7 +150,7 @@ class TimerRecordsTrait(abc.ABC):
             return
         logger.opt(depth=depth).log(level, self.human_summary(label=label))
 
-    def row(self, index: int) -> Mapping[str, float]:
+    def row(self, index: int = -1) -> Mapping[str, float]:
         return {key: values[index] for key, values in self._records.items()}
 
     # region statistics

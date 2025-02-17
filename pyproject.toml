@@ -101,3 +101,7 @@ liblaf-grapes = { editable = true, path = "." }
 cuda = "12"
 libc = { family = "glibc", version = "2.41" }
 linux = "6.12"
+
+[tool.pytest.ini_options]
+junit_family = "legacy"
+testpaths = ["tests"]

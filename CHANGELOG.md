@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.1](https://github.com/liblaf/grapes/compare/v0.1.0...v0.1.1) (2025-02-17)
+
+
+### ✅ Tests
+
+* Add pytest configuration and enhance timing module ([ab798a8](https://github.com/liblaf/grapes/commit/ab798a843e7ef72016150c50b9c72489a2656470))
+* configure pytest options in pyproject.toml ([56defba](https://github.com/liblaf/grapes/commit/56defba01241189b074eab59ae9df528e4c8bcbb))
+
 ## [0.1.0](https://github.com/liblaf/grapes/compare/v0.0.5..v0.1.0) - 2025-02-16
 
 ### ♻ Code Refactoring

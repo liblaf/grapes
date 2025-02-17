@@ -9,7 +9,6 @@
     "dmypy",
     "etils",
     "getattr",
-    "httpx",
     "hynek",
     "ipynb",
     "ipython",
@@ -19,6 +18,7 @@
     "mkdocs",
     "mkdocstrings",
     "mypy",
+    "numprocesses",
     "numpy",
     "pipenv",
     "pixi",
@@ -47,7 +47,8 @@
     "tomlkit",
     "trimesh",
     "ubelt",
-    "venv"
+    "venv",
+    "xdist"
   ],
   "ignorePaths": [
     "**/.cspell.*",

@@ -18,6 +18,9 @@ lint-python:
 lint-toml:
     sort-toml .ruff.toml pyproject.toml
 
+test:
+    pytest --junit-xml="junit.xml" --cov --cov-report="xml" --cov-branch --numprocesses="auto"
+
 upgrade:
     pixi upgrade
     just lint

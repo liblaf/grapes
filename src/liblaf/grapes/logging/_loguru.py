@@ -7,7 +7,7 @@ from collections.abc import Iterable, Sequence
 import loguru
 from environs import Env
 from loguru import logger
-from rich.logging import RichHandler
+from rich.console import Console
 
 from liblaf import grapes
 
@@ -88,7 +88,6 @@ def setup_loguru_logging_intercept(
     Args:
         level: The logging level to set.
         modules: A list of module names whose loggers should be intercepted.
-
     """
     # [loguru-logging-intercept/loguru_logging_intercept.py at f358b75ef4162ea903bf7a3298c22b1be83110da · MatthewScholefield/loguru-logging-intercept](https://github.com/MatthewScholefield/loguru-logging-intercept/blob/f358b75ef4162ea903bf7a3298c22b1be83110da/loguru_logging_intercept.py#L35C5-L42)
     logging.basicConfig(level=level, handlers=[InterceptHandler()])
@@ -114,15 +113,13 @@ def init_loguru(
     """
     filter = filter or DEFAULT_FILTER  # noqa: A001
     if handlers is None:
+        console: Console = grapes.logging_console()
         handlers: list[loguru.HandlerConfig] = [
             {
-                "sink": RichHandler(
-                    console=grapes.logging.logging_console(),
-                    omit_repeated_times=False,
-                    markup=True,
-                    log_time_format="[%Y-%m-%d %H:%M:%S]",
+                "sink": lambda s: console.print(
+                    s, end="", no_wrap=True, crop=False, overflow="ignore"
                 ),
-                "format": "{message}",
+                "format": "[green]{time:YYYY-MM-DD HH:mm:ss.SSS}[/green] | [logging.level.{level}]{level: <8}[/logging.level.{level}] | [cyan]{name}[/cyan]:[cyan]{function}[/cyan]:[cyan]{line}[/cyan] - {message}",
                 "filter": filter,
             }
         ]

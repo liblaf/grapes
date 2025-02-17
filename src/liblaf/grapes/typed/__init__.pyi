@@ -1,3 +1,3 @@
-from ._misc import ClassInfo, StrPath
+from ._misc import ClassInfo, LogLevel, StrPath
 
-__all__ = ["ClassInfo", "StrPath"]
+__all__ = ["ClassInfo", "LogLevel", "StrPath"]

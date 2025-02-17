@@ -1,4 +1,15 @@
-from . import environ, human, itertools, logging, path, progress_bar, serde, text, typed
+from . import (
+    environ,
+    human,
+    itertools,
+    logging,
+    path,
+    progress_bar,
+    serde,
+    text,
+    timing,
+    typed,
+)
 from ._version import __version__, __version_tuple__, version, version_tuple
 from .environ import init_env
 from .human import (
@@ -10,7 +21,7 @@ from .human import (
     human_throughout,
 )
 from .imports import has_module, optional_imports
-from .itertools import as_iterable, as_sequence, generator_to_list
+from .itertools import IterableWrapper, as_iterable, as_sequence, generator_to_list
 from .logging import (
     caller_location,
     critical_once,
@@ -41,10 +52,10 @@ from .serde import (
     serialize,
 )
 from .text import strip_comments
-from .timing import TimerRecords, get_time, timer
+from .timing import get_time, timer
 
 __all__ = [
-    "TimerRecords",
+    "IterableWrapper",
     "__version__",
     "__version_tuple__",
     "as_iterable",
@@ -93,6 +104,7 @@ __all__ = [
     "success_once",
     "text",
     "timer",
+    "timing",
     "trace_once",
     "track",
     "typed",

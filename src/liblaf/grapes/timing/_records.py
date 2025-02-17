@@ -1,152 +1,170 @@
+import abc
 import collections
+import functools
 import statistics
 import textwrap
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Iterator, Mapping, Sequence
+from typing import overload
+
+import attrs
+from loguru import logger
 
 from liblaf import grapes
 
 
-class TimerRecords:
-    """A class to manage and store timer records with various functionalities."""
+@attrs.define
+class TimerRecordsAttrs:
+    label: str | None = None
+    log_summary_at_exit: bool = False
+    record_log_level: int | str | None = "DEBUG"
+    records: dict[str, list[float]] = attrs.field(
+        factory=lambda: collections.defaultdict(list)
+    )
+    summary_log_level: int | str | None = "INFO"
 
-    _default_key: str = "perf"
-    _records: dict[str, list[float]]
 
-    def __init__(self, default_key: str = "perf") -> None:
-        """Initializes the _records object with a default key.
+class TimerRecordsTrait(abc.ABC):
+    # region attrs
 
-        Args:
-            default_key: The default key to be used for the records.
-        """
-        self._default_key = default_key
-        self._records = collections.defaultdict(list)
+    @property
+    @abc.abstractmethod
+    def _timer_records_attrs(self) -> TimerRecordsAttrs: ...
+
+    @property
+    def label(self) -> str | None:
+        return self._timer_records_attrs.label
+
+    @label.setter
+    def label(self, value: str | None) -> None:
+        self._timer_records_attrs.label = value
+
+    @property
+    def log_summary_at_exit(self) -> bool:
+        return self._timer_records_attrs.log_summary_at_exit
+
+    @property
+    def record_log_level(self) -> int | str | None:
+        return self._timer_records_attrs.record_log_level
+
+    @property
+    def summary_log_level(self) -> int | str | None:
+        return self._timer_records_attrs.summary_log_level
+
+    @property
+    def _records(self) -> dict[str, list[float]]:
+        return self._timer_records_attrs.records
+
+    # endregion attrs
+
+    @overload
+    def __getitem__(self, index: int) -> Mapping[str, float]: ...
+    @overload
+    def __getitem__(self, index: str) -> Sequence[float]: ...
+    def __getitem__(self, index: int | str) -> Mapping[str, float] | Sequence[float]:
+        if isinstance(index, int):
+            return self.row(index)
+        return self.column(index)
+
+    def __len__(self) -> int:
+        return self.count
+
+    @property
+    def columns(self) -> Sequence[str]:
+        return list(self._records.keys())
 
     @property
     def count(self) -> int:
-        """The number of elements in the column."""
+        return self.n_rows
+
+    @functools.cached_property
+    def default_key(self) -> str:
+        return next(iter(self._records))
+
+    @property
+    def n_columns(self) -> int:
+        return len(self._records)
+
+    @property
+    def n_rows(self) -> int:
         return len(self.column())
 
     def append(
-        self,
-        seconds: float | Mapping[str, float] = {},
-        nanoseconds: float | Mapping[str, float] = {},
+        self, seconds: Mapping[str, float] = {}, nanoseconds: Mapping[str, float] = {}
     ) -> None:
-        """Append time records to the internal storage.
-
-        Args:
-            seconds: Time in seconds to be appended. If a float is provided, it will be stored with the default key. If a mapping is provided, it will be stored with the corresponding keys.
-            nanoseconds: Time in nanoseconds to be appended. If a float is provided, it will be stored with the default key. If a mapping is provided, it will be stored with the corresponding keys. The values will be converted to seconds before storing.
-        """
-        if not isinstance(seconds, Mapping):
-            seconds = {self._default_key: seconds}
-        if not isinstance(nanoseconds, Mapping):
-            nanoseconds = {self._default_key: nanoseconds}
-        for k, v in seconds.items():
-            self._records[k].append(v)
-        for k, v in nanoseconds.items():
-            self._records[k].append(v * 1e-9)
+        for key, value in seconds.items():
+            self._records[key].append(value)
+        for key, value in nanoseconds.items():
+            self._records[key].append(value * 1e-9)
 
     def column(self, key: str | None = None) -> Sequence[float]:
-        """Retrieve a sequence of float values from the records.
+        return self._records[key or self.default_key]
 
-        Args:
-            key: The key to retrieve the sequence of floats. If None, the default key is used.
-
-        Returns:
-            A sequence of float values corresponding to the given key.
-        """
-        return self._records[key or self._default_key]
-
-    def human_report(self, label: str | None = None) -> str:
-        """Generates a human-readable report of the timer records.
-
-        Args:
-            label: A label for the report. Defaults to "Timer".
-
-        Returns:
-            A formatted string containing the report with mean and best durations for each key.
-        """
-        label = label or "Timer"
-        text: str = ""
-        for k in self.keys():
-            text += f"{k} > "
-            human_mean: str = grapes.human_duration_series(self.column(k))
-            human_best: str = grapes.human_duration(self.min(k))
-            text += f"mean: {human_mean}, best: {human_best}\n"
-        text = text.strip()
-        text = f"{label} (total: {self.count})\n" + textwrap.indent(text, "  ")
+    def human_record(self, index: int = -1, label: str | None = None) -> str:
+        label: str = self.label or "Timer"
+        text: str = f"{label} > "
+        for key, value in self.row(index).items():
+            human_duration: str = grapes.human_duration(value)
+            text += f"{key}: {human_duration}, "
+        text = text.strip(", ")
         return text
 
-    def keys(self) -> Iterable[str]:
-        """Retrieve the keys from the records.
+    def human_summary(self, label: str | None = None) -> str:
+        label: str = label or self.label or "Timer"
+        header: str = f"{label} (total: {self.n_rows})"
+        if self.n_rows == 0:
+            return header
+        body: str = ""
+        for k in self.columns:
+            body += f"{k} > "
+            human_mean: str = grapes.human_duration_series(self.column(k))
+            human_best: str = grapes.human_duration(self.min(k))
+            body += f"mean: {human_mean}, best: {human_best}\n"
+        body = body.strip()
+        summary: str = header + "\n" + textwrap.indent(body, "  ")
+        return summary
 
-        Returns:
-            An iterable containing the keys of the records.
-        """
-        return self._records.keys()
+    def iter_columns(self) -> Iterator[tuple[str, Sequence[float]]]:
+        yield from self._records.items()
+
+    def iter_rows(self) -> Iterator[Mapping[str, float]]:
+        for index in range(self.n_rows):
+            yield self.row(index)
+
+    def log_record(
+        self,
+        index: int = -1,
+        label: str | None = None,
+        depth: int = 1,
+        level: int | str | None = None,
+    ) -> None:
+        level = level or self.record_log_level
+        if level is None:
+            return
+        logger.opt(depth=depth).log(level, self.human_record(index=index, label=label))
+
+    def log_summary(
+        self, label: str | None = None, depth: int = 1, level: int | str | None = None
+    ) -> None:
+        level = level or self.summary_log_level
+        if level is None:
+            return
+        logger.opt(depth=depth).log(level, self.human_summary(label=label))
+
+    def row(self, index: int) -> Mapping[str, float]:
+        return {key: values[index] for key, values in self._records.items()}
+
+    # region statistics
 
     def max(self, key: str | None = None) -> float:
-        """Retrieve the maximum value from the specified column.
-
-        Args:
-            key: The key of the column to retrieve the maximum value. If None, the default column is used.
-
-        Returns:
-            The maximum value from the specified column.
-        """
         return max(self.column(key))
 
     def mean(self, key: str | None = None) -> float:
-        """Calculate the mean of the specified column.
-
-        Args:
-            key: The key of the column to calculate the mean. If None, the default column is used.
-
-        Returns:
-            The mean of the column.
-        """
         return statistics.mean(self.column(key))
 
-    def median(self, key: str | None = None) -> float:
-        """Calculate the median of the specified column.
-
-        Args:
-            key: The key of the column to calculate the median. If None, the default column is used.
-
-        Returns:
-            The median of the column.
-        """
-        return statistics.median(self.column(key))
-
     def min(self, key: str | None = None) -> float:
-        """Retrieve the minimum value from the specified column.
-
-        Args:
-            key: The key of the column to retrieve the minimum value. If None, the default column is used.
-
-        Returns:
-            The minimum value from the specified column.
-        """
         return min(self.column(key))
 
-    def row(self, index: int) -> dict[str, float]:
-        """Retrieve a specific row from the records.
-
-        Args:
-            index: The index of the row to retrieve.
-
-        Returns:
-            A dictionary where the keys are the record names and the values are the corresponding values from the specified row.
-        """
-        return {k: v[index] for k, v in self._records.items()}
-
-    def stdev(self, key: str | None = None) -> float:
-        """Calculate the standard deviation of the specified column.
-
-        Args:
-            key: The key of the column to calculate the standard deviation. If None, the default column is used.
-
-        Returns:
-            The standard deviation of the column.
-        """
+    def std(self, key: str | None = None) -> float:
         return statistics.stdev(self.column(key))
+
+    # endregion statistics

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/liblaf/grapes/compare/v0.1.1...v0.1.2) (2025-02-23)
+
+
+### ♻ Code Refactoring
+
+* add default value to `row` method ([641858a](https://github.com/liblaf/grapes/commit/641858ab0827e010d4b88d3118905478a9053298))
+
 ## [0.1.1](https://github.com/liblaf/grapes/compare/v0.1.0..v0.1.1) - 2025-02-17
 
 ### ✅ Tests

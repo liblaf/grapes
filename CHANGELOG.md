@@ -1,11 +1,14 @@
 # Changelog
 
-## [0.1.2](https://github.com/liblaf/grapes/compare/v0.1.1...v0.1.2) (2025-02-23)
-
+## [0.1.2](https://github.com/liblaf/grapes/compare/v0.1.1..v0.1.2) - 2025-02-23
 
 ### ♻ Code Refactoring
 
-* add default value to `row` method ([641858a](https://github.com/liblaf/grapes/commit/641858ab0827e010d4b88d3118905478a9053298))
+- add default value to `row` method - ([641858a](https://github.com/liblaf/grapes/commit/641858ab0827e010d4b88d3118905478a9053298))
+
+### ❤️ New Contributors
+
+- @liblaf made their first contribution
 
 ## [0.1.1](https://github.com/liblaf/grapes/compare/v0.1.0..v0.1.1) - 2025-02-17
 
@@ -13,10 +16,6 @@
 
 - configure pytest options in pyproject.toml - ([56defba](https://github.com/liblaf/grapes/commit/56defba01241189b074eab59ae9df528e4c8bcbb))
 - Add pytest configuration and enhance timing module - ([ab798a8](https://github.com/liblaf/grapes/commit/ab798a843e7ef72016150c50b9c72489a2656470))
-
-### ❤️ New Contributors
-
-- @liblaf made their first contribution
 
 ## [0.1.0](https://github.com/liblaf/grapes/compare/v0.0.5..v0.1.0) - 2025-02-16
 

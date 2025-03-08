@@ -74,6 +74,10 @@ requires-python = ">=3.12"
 [tool.check-wheel-contents]
 ignore = ["W002"]
 
+[tool.coverage.run]
+branch = true
+source = ["src/"]
+
 [tool.hatch.build.hooks.vcs]
 version-file = "src/liblaf/grapes/_version.py"
 

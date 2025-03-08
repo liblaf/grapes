@@ -1,11 +1,14 @@
 # Changelog
 
-## [0.1.4](https://github.com/liblaf/grapes/compare/v0.1.3...v0.1.4) (2025-03-08)
-
+## [0.1.4](https://github.com/liblaf/grapes/compare/v0.1.3..v0.1.4) - 2025-03-08
 
 ### ♻ Code Refactoring
 
-* **serde:** replace autoregistry with plain dict for READERS and WRITERS ([10a33f2](https://github.com/liblaf/grapes/commit/10a33f25d747e3e988be52815251d4a2c4adb4a4))
+- **serde:** replace autoregistry with plain dict for READERS and WRITERS - ([10a33f2](https://github.com/liblaf/grapes/commit/10a33f25d747e3e988be52815251d4a2c4adb4a4))
+
+### ❤️ New Contributors
+
+- @liblaf made their first contribution
 
 ## [0.1.3](https://github.com/liblaf/grapes/compare/v0.1.2..v0.1.3) - 2025-03-08
 
@@ -16,10 +19,6 @@
 ### ✅ Tests
 
 - add sample test and configure pytest options - ([0c3a082](https://github.com/liblaf/grapes/commit/0c3a082b4334db7aa80ebfb0a62054c16f44652a))
-
-### ❤️ New Contributors
-
-- @liblaf made their first contribution
 
 ## [0.1.2](https://github.com/liblaf/grapes/compare/v0.1.1..v0.1.2) - 2025-02-23
 

@@ -1,27 +1,44 @@
-import json
+import json as json_
 import os
+import warnings
 from pathlib import Path
-from typing import Any
+from typing import Any, override
+
+from liblaf import grapes
+
+from . import AbstractSerializer
 
 
-def load_json(fpath: str | os.PathLike[str]) -> Any:
-    """Load and parse a JSON file from the given file path.
+class JSONSerializer(AbstractSerializer):
+    @override
+    def load(self, fpath: str | os.PathLike[str], **kwargs) -> Any:
+        fpath: Path = grapes.as_path(fpath)
+        with fpath.open() as fp:
+            return json_.load(fp, **kwargs)
 
-    Args:
-        fpath: The path to the JSON file.
+    @override
+    def loads(self, data: str, **kwargs) -> Any:
+        return json_.loads(data, **kwargs)
 
-    Returns:
-        Any: The parsed JSON data.
+    @override
+    def dump(self, fpath: str | os.PathLike[str], data: Any, **kwargs) -> None:
+        fpath: Path = grapes.as_path(fpath)
+        with fpath.open("w") as fp:
+            json_.dump(data, fp, **kwargs)
 
-    Raises:
-        FileNotFoundError: If the file does not exist.
-        json.JSONDecodeError: If the file contains invalid JSON.
-    """
-    fpath: Path = Path(fpath)
-    with fpath.open() as fp:
-        return json.load(fp)
+    @override
+    def dumps(self, data: Any, **kwargs) -> str:
+        return json_.dumps(data, **kwargs)
 
 
+json = JSONSerializer()
+load_json = json.load
+loads_json = json.loads
+dump_json = json.dump
+dumps_json = json.dumps
+
+
+@warnings.deprecated("Use `dump_json()` instead of `save_json()`")
 def save_json(fpath: str | os.PathLike[str], data: Any) -> None:
     """Save data to a JSON file.
 

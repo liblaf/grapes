@@ -50,7 +50,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/07/6c/aa3f2f849e01cb6a001cd8554a88d4c77c5c1a31c95bdf1cf9301e6d9ef4/defusedxml-0.7.1-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/8f/d7/9322c609343d929e75e7e5e6255e614fcc67572cfd083959cdef3b7aad79/docutils-0.21.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f4/1c/ab9752f02d32d981d647c05822be9ff93809be8953dacea2da2bec9a9de9/environs-14.1.1-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/05/83/bb4a4518bfa32a160dc455d8d944a6e00a7eb6759f449cb20c7b7879090e/etils-1.12.0-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/5d/3b/91a4e2716f118d87cf33059a9c65644f4836e7df73781009174802089e73/etils-1.12.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/43/09/2aea36ff60d16dd8879bdb2f5b3ee0ba8d08cbbdcdfe870e695ce3784385/execnet-2.1.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/7b/8f/c4d9bafc34ad7ad5d8dc16dd1347ee0e507a52c3adb6bfa8887e1c6a26ba/executing-2.2.0-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f7/ec/67fbef5d497f86283db54c22eec6f6140243aae73265799baaaa19cd17fb/ghp_import-2.1.0-py3-none-any.whl
@@ -446,10 +446,10 @@ packages:
   - packaging ; extra == 'tests'
   - backports-strenum ; python_full_version < '3.11' and extra == 'tests'
   requires_python: '>=3.9'
-- pypi: https://files.pythonhosted.org/packages/05/83/bb4a4518bfa32a160dc455d8d944a6e00a7eb6759f449cb20c7b7879090e/etils-1.12.0-py3-none-any.whl
+- pypi: https://files.pythonhosted.org/packages/5d/3b/91a4e2716f118d87cf33059a9c65644f4836e7df73781009174802089e73/etils-1.12.1-py3-none-any.whl
   name: etils
-  version: 1.12.0
-  sha256: f80c2ff4289cc504b58b7e7a9f9db8b373a33227e43694a66808bcc81e51ffb8
+  version: 1.12.1
+  sha256: 9a96b9193aa6e90cc0e0c759c092f863cf4fe972d803933598afbfad71a309c2
   requires_dist:
   - etils[array-types] ; extra == 'all'
   - etils[eapp] ; extra == 'all'
@@ -492,6 +492,7 @@ packages:
   - etils[etree] ; extra == 'ecolab'
   - etils[epy] ; extra == 'edc'
   - numpy ; extra == 'enp'
+  - einops ; extra == 'enp'
   - etils[epy] ; extra == 'enp'
   - fsspec ; extra == 'epath'
   - importlib-resources ; extra == 'epath'
@@ -831,13 +832,14 @@ packages:
   timestamp: 1729027639220
 - pypi: .
   name: liblaf-grapes
-  version: 0.1.5.dev0+g0b99981.d20250308
-  sha256: 186b65be5abc0a858c416ff1effb0734107d09388ce6f6fa14d7eab4f1a295aa
+  version: 0.1.5.dev1+g7699aab.d20250308
+  sha256: 793122b8d3c1cb03d0fb28cdc9567b13781a9b070d230bb03e0c2877ec01ff8d
   requires_dist:
   - about-time>=4.2.1,<5
   - autoregistry>=1.1.2,<2
   - environs>=14.1.1,<15
-  - etils>=1.12.0,<2
+  - etils>=1.12.1,<2
+  - gitpython>=3.1.44,<4
   - giturlparse>=0.12.0,<0.13
   - lazy-loader>=0.4,<0.5
   - loguru>=0.7.3,<0.8

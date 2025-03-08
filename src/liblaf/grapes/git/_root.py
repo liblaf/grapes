@@ -1,8 +1,11 @@
 import os
 from pathlib import Path
 
-import git
-import git.exc
+from liblaf import grapes
+
+with grapes.optional_imports(extra="git"):
+    import git
+    import git.exc
 
 
 def root(

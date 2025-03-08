@@ -1,8 +1,11 @@
 import os
 from typing import Protocol
 
-import git
-import giturlparse
+from liblaf import grapes
+
+with grapes.optional_imports(extra="git"):
+    import git
+    import giturlparse
 
 
 class GitInfo(Protocol):

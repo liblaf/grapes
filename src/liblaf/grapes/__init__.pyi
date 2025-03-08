@@ -1,5 +1,6 @@
 from . import (
     environ,
+    git,
     human,
     itertools,
     logging,
@@ -71,6 +72,7 @@ __all__ = [
     "full_qual_name",
     "generator_to_list",
     "get_time",
+    "git",
     "has_module",
     "human",
     "human_count",

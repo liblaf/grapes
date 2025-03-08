@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.5](https://github.com/liblaf/grapes/compare/v0.1.4...v0.1.5) (2025-03-08)
+
+
+### ✨ Features
+
+* **git:** add GitInfo and info function for parsing git repository URLs ([7699aab](https://github.com/liblaf/grapes/commit/7699aab9b86dabda009e2888878bf6d328865c3b))
+
+
+### ♻ Code Refactoring
+
+* **serde:** introduce AbstractSerializer for JSON, TOML, and YAML ([83860b1](https://github.com/liblaf/grapes/commit/83860b1131391d3847f3b040fcefe1013caf924e))
+
 ## [0.1.4](https://github.com/liblaf/grapes/compare/v0.1.3..v0.1.4) - 2025-03-08
 
 ### ♻ Code Refactoring

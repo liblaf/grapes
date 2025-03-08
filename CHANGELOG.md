@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/liblaf/grapes/compare/v0.1.3...v0.1.4) (2025-03-08)
+
+
+### ♻ Code Refactoring
+
+* **serde:** replace autoregistry with plain dict for READERS and WRITERS ([10a33f2](https://github.com/liblaf/grapes/commit/10a33f25d747e3e988be52815251d4a2c4adb4a4))
+
 ## [0.1.3](https://github.com/liblaf/grapes/compare/v0.1.2..v0.1.3) - 2025-03-08
 
 ### ✨ Features

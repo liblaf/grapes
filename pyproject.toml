@@ -103,5 +103,6 @@ libc = { family = "glibc", version = "2.41" }
 linux = "6.12"
 
 [tool.pytest.ini_options]
+addopts = ["--numprocesses=auto"]
 junit_family = "legacy"
-testpaths = ["tests"]
+testpaths = ["tests/"]

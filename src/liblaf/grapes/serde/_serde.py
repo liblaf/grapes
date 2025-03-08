@@ -1,12 +1,11 @@
 import os
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
-import autoregistry
-
 from liblaf import grapes
 
-READERS = autoregistry.Registry()
+READERS: dict[str, Callable] = {}
 """A registry mapping file extensions to their respective deserialization functions.
 
 Supported extensions and their corresponding deserialization functions:
@@ -17,7 +16,7 @@ Supported extensions and their corresponding deserialization functions:
 - ".yml": grapes.load_yaml (if the "ruamel.yaml" module is available)
 """
 
-WRITERS = autoregistry.Registry()
+WRITERS: dict[str, Callable] = {}
 """A registry mapping file extensions to their respective serialization functions.
 
 Supported extensions and their corresponding serialization functions:

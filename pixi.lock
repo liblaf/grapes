@@ -56,6 +56,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/f7/ec/67fbef5d497f86283db54c22eec6f6140243aae73265799baaaa19cd17fb/ghp_import-2.1.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a0/61/5c78b91c3143ed5c14207f463aecfc8f9dbb5092fb2869baf37c273b2705/gitdb-4.0.12-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1d/9a/4114a9057db2f1462d5c8f8390ab7383925fe1ac012eaa42402ad65c2963/GitPython-3.1.44-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/dd/94/c6ff3388b8e3225a014e55aed957188639aa0966443e0408d38f0c9614a7/giturlparse-0.12.0-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/b6/87/505777c4e5ca9c4fa5ae53fa4b0d5c2ba13a6d55a503a5594e94a2ba9b5a/griffe-1.5.6-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/57/1d/43ef7a6875190e6745ffcd1b12c7aaa7efed082897401e311ee1cd75c8b2/icecream-2.1.4-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/9f/cb/18326d2d89ad3b0dd143da971e77afd1e6ca6674f1b1c3df4b6bec6279fc/id-1.5.0-py3-none-any.whl
@@ -579,6 +580,11 @@ packages:
   - sphinx-rtd-theme ; extra == 'doc'
   - sphinx-autodoc-typehints ; extra == 'doc'
   requires_python: '>=3.7'
+- pypi: https://files.pythonhosted.org/packages/dd/94/c6ff3388b8e3225a014e55aed957188639aa0966443e0408d38f0c9614a7/giturlparse-0.12.0-py2.py3-none-any.whl
+  name: giturlparse
+  version: 0.12.0
+  sha256: 412b74f2855f1da2fefa89fd8dde62df48476077a72fc19b62039554d27360eb
+  requires_python: '>=3.8'
 - pypi: https://files.pythonhosted.org/packages/b6/87/505777c4e5ca9c4fa5ae53fa4b0d5c2ba13a6d55a503a5594e94a2ba9b5a/griffe-1.5.6-py3-none-any.whl
   name: griffe
   version: 1.5.6
@@ -825,13 +831,14 @@ packages:
   timestamp: 1729027639220
 - pypi: .
   name: liblaf-grapes
-  version: 0.1.3.dev4+g0c3a082.d20250308
-  sha256: 19146f0e9755e105067a3f2595f38448b58ac8e5b2bee143be3292ecee5ccb71
+  version: 0.1.5.dev0+g0b99981.d20250308
+  sha256: 186b65be5abc0a858c416ff1effb0734107d09388ce6f6fa14d7eab4f1a295aa
   requires_dist:
   - about-time>=4.2.1,<5
   - autoregistry>=1.1.2,<2
   - environs>=14.1.1,<15
   - etils>=1.12.0,<2
+  - giturlparse>=0.12.0,<0.13
   - lazy-loader>=0.4,<0.5
   - loguru>=0.7.3,<0.8
   - pydantic>=2.10.6,<3

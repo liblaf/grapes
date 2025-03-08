@@ -1,14 +1,24 @@
 # Changelog
 
+## [0.1.3](https://github.com/liblaf/grapes/compare/v0.1.2..v0.1.3) - 2025-03-08
+
+### ✨ Features
+
+- **git:** add git root detection utilities - ([6034ef0](https://github.com/liblaf/grapes/commit/6034ef071776a9acc5ad960158c9c23fa649e3c1))
+
+### ✅ Tests
+
+- add sample test and configure pytest options - ([0c3a082](https://github.com/liblaf/grapes/commit/0c3a082b4334db7aa80ebfb0a62054c16f44652a))
+
+### ❤️ New Contributors
+
+- @liblaf made their first contribution
+
 ## [0.1.2](https://github.com/liblaf/grapes/compare/v0.1.1..v0.1.2) - 2025-02-23
 
 ### ♻ Code Refactoring
 
 - add default value to `row` method - ([641858a](https://github.com/liblaf/grapes/commit/641858ab0827e010d4b88d3118905478a9053298))
-
-### ❤️ New Contributors
-
-- @liblaf made their first contribution
 
 ## [0.1.1](https://github.com/liblaf/grapes/compare/v0.1.0..v0.1.1) - 2025-02-17
 

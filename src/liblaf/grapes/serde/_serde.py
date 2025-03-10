@@ -30,7 +30,7 @@ class AutoSerializer(AbstractSerializer):
         return serializer.loads(data, **kwargs)
 
     @override
-    def dump(
+    def save(
         self,
         fpath: str | os.PathLike[str],
         data: Any,
@@ -39,12 +39,12 @@ class AutoSerializer(AbstractSerializer):
         **kwargs,
     ) -> None:
         serializer: AbstractSerializer = self.get_serializer(fpath, ext=ext)
-        serializer.dump(fpath, data, **kwargs)
+        serializer.save(fpath, data, **kwargs)
 
     @override
-    def dumps(self, data: Any, *, ext: str | None = None, **kwargs) -> str:
+    def saves(self, data: Any, *, ext: str | None = None, **kwargs) -> str:
         serializer: AbstractSerializer = self.get_serializer(fpath="", ext=ext)
-        return serializer.dumps(data, **kwargs)
+        return serializer.saves(data, **kwargs)
 
     def get_serializer(
         self, fpath: str | os.PathLike[str], *, ext: str | None = None
@@ -58,15 +58,15 @@ class AutoSerializer(AbstractSerializer):
 auto = AutoSerializer()
 load = auto.load
 loads = auto.loads
-dump = auto.dump
-dumps = auto.dumps
+save = auto.save
+saves = auto.saves
 
 
-@warnings.deprecated("Use `dump()` instead of `serialize()`")
+@warnings.deprecated("Use `save()` instead of `serialize()`")
 def serialize(
     fpath: str | os.PathLike[str], data: Any, *, ext: str | None = None
 ) -> None:
-    return dump(fpath, data, ext=ext)
+    return save(fpath, data, ext=ext)
 
 
 @warnings.deprecated("Use `load()` instead of `deserialize()`")

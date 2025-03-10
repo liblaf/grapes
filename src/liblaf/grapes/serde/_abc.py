@@ -20,15 +20,15 @@ class AbstractSerializer:
                 return self.load(Path(fp.name), **kwargs)
         raise NotImplementedError
 
-    def dump(self, fpath: str | os.PathLike[str], data: Any, **kwargs) -> None:
-        if type(self).dumps is not AbstractSerializer.dumps:
+    def save(self, fpath: str | os.PathLike[str], data: Any, **kwargs) -> None:
+        if type(self).saves is not AbstractSerializer.saves:
             fpath: Path = grapes.as_path(fpath)
-            fpath.write_text(self.dumps(data, **kwargs))
+            fpath.write_text(self.saves(data, **kwargs))
         raise NotImplementedError
 
-    def dumps(self, data: Any, **kwargs) -> str:
-        if type(self).dump is not AbstractSerializer.dump:
+    def saves(self, data: Any, **kwargs) -> str:
+        if type(self).save is not AbstractSerializer.save:
             with tempfile.NamedTemporaryFile("w") as fp:
-                self.dump(Path(fp.name), data, **kwargs)
+                self.save(Path(fp.name), data, **kwargs)
                 return fp.read()
         raise NotImplementedError

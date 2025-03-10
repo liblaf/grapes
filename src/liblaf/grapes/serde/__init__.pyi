@@ -1,31 +1,28 @@
 from ._abc import AbstractSerializer
 from ._json import (
     JSONSerializer,
-    dump_json,
-    dumps_json,
     json,
     load_json,
     loads_json,
     save_json,
+    saves_json,
 )
-from ._pydantic import dump_pydantic, load_pydantic, save_pydantic
-from ._serde import auto, deserialize, dump, dumps, load, loads, serialize
+from ._pydantic import load_pydantic, loads_pydantic, save_pydantic, saves_pydantic
+from ._serde import auto, deserialize, load, loads, save, saves, serialize
 from ._toml import (
     TOMLSerializer,
-    dump_toml,
-    dumps_toml,
     load_toml,
     loads_toml,
     save_toml,
+    saves_toml,
     toml,
 )
 from ._yaml import (
     YAMLSerializer,
-    dump_yaml,
-    dumps_yaml,
     load_yaml,
     loads_yaml,
     save_yaml,
+    saves_yaml,
     yaml,
 )
 
@@ -36,15 +33,6 @@ __all__ = [
     "YAMLSerializer",
     "auto",
     "deserialize",
-    "dump",
-    "dump_json",
-    "dump_pydantic",
-    "dump_toml",
-    "dump_yaml",
-    "dumps",
-    "dumps_json",
-    "dumps_toml",
-    "dumps_yaml",
     "json",
     "load",
     "load_json",
@@ -53,12 +41,23 @@ __all__ = [
     "load_yaml",
     "loads",
     "loads_json",
+    "loads_pydantic",
     "loads_toml",
     "loads_yaml",
+    "save",
+    "save_json",
     "save_json",
     "save_pydantic",
+    "save_pydantic",
+    "save_toml",
     "save_toml",
     "save_yaml",
+    "save_yaml",
+    "saves",
+    "saves_json",
+    "saves_pydantic",
+    "saves_toml",
+    "saves_yaml",
     "serialize",
     "toml",
     "yaml",

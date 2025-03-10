@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.7](https://github.com/liblaf/grapes/compare/v0.1.6...v0.1.7) (2025-03-10)
+
+
+### ✨ Features
+
+* **serde:** add AutoSerializer to public API ([8152e80](https://github.com/liblaf/grapes/commit/8152e80b0b82df425e1b9798d0bac030961a7c84))
+
 ## [0.1.6](https://github.com/liblaf/grapes/compare/v0.1.5..v0.1.6) - 2025-03-10
 
 ### ✨ Features

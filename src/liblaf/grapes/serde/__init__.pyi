@@ -8,7 +8,16 @@ from ._json import (
     saves_json,
 )
 from ._pydantic import load_pydantic, loads_pydantic, save_pydantic, saves_pydantic
-from ._serde import auto, deserialize, load, loads, save, saves, serialize
+from ._serde import (
+    AutoSerializer,
+    auto,
+    deserialize,
+    load,
+    loads,
+    save,
+    saves,
+    serialize,
+)
 from ._toml import (
     TOMLSerializer,
     load_toml,
@@ -28,6 +37,7 @@ from ._yaml import (
 
 __all__ = [
     "AbstractSerializer",
+    "AutoSerializer",
     "JSONSerializer",
     "TOMLSerializer",
     "YAMLSerializer",

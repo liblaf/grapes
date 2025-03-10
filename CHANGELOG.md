@@ -1,18 +1,20 @@
 # Changelog
 
-## [0.1.6](https://github.com/liblaf/grapes/compare/v0.1.5...v0.1.6) (2025-03-10)
-
+## [0.1.6](https://github.com/liblaf/grapes/compare/v0.1.5..v0.1.6) - 2025-03-10
 
 ### ✨ Features
 
-* **serde:** add dump/load functions and deprecate serialize/deserialize ([0bc118f](https://github.com/liblaf/grapes/commit/0bc118f3415863412f4eff67d1418a44debecd96))
-
+- **serde:** add dump/load functions and deprecate serialize/deserialize - ([0bc118f](https://github.com/liblaf/grapes/commit/0bc118f3415863412f4eff67d1418a44debecd96))
 
 ### ♻ Code Refactoring
 
-* **serde:** rename dump/dumps methods to save/saves for clarity ([a8feb62](https://github.com/liblaf/grapes/commit/a8feb621087bbb2f734b87950ba05523d0cb4224))
+- **serde:** rename dump/dumps methods to save/saves for clarity - ([a8feb62](https://github.com/liblaf/grapes/commit/a8feb621087bbb2f734b87950ba05523d0cb4224))
 
-## [0.1.5](https://github.com/liblaf/grapes/compare/v0.1.4..v0.1.5) - 2025-03-08
+### ❤️ New Contributors
+
+- @liblaf made their first contribution
+
+## [0.1.5](https://github.com/liblaf/grapes/compare/v0.1.4..v0.1.5) - 2025-03-09
 
 ### ✨ Features
 
@@ -21,10 +23,6 @@
 ### ♻ Code Refactoring
 
 - **serde:** introduce AbstractSerializer for JSON, TOML, and YAML - ([83860b1](https://github.com/liblaf/grapes/commit/83860b1131391d3847f3b040fcefe1013caf924e))
-
-### ❤️ New Contributors
-
-- @liblaf made their first contribution
 
 ## [0.1.4](https://github.com/liblaf/grapes/compare/v0.1.3..v0.1.4) - 2025-03-08
 

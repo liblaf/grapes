@@ -15,7 +15,7 @@ class AbstractSerializer:
 
     def loads(self, data: str, **kwargs) -> Any:
         if type(self).load is not AbstractSerializer.load:
-            with tempfile.TemporaryFile("w") as fp:
+            with tempfile.NamedTemporaryFile("w") as fp:
                 fp.write(data)
                 return self.load(Path(fp.name), **kwargs)
         raise NotImplementedError
@@ -28,7 +28,7 @@ class AbstractSerializer:
 
     def dumps(self, data: Any, **kwargs) -> str:
         if type(self).dump is not AbstractSerializer.dump:
-            with tempfile.TemporaryFile("w") as fp:
+            with tempfile.NamedTemporaryFile("w") as fp:
                 self.dump(Path(fp.name), data, **kwargs)
                 return fp.read()
         raise NotImplementedError

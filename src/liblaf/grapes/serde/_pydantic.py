@@ -1,28 +1,51 @@
 import os
+import warnings
 from typing import Any
 
 import pydantic
 
 from liblaf import grapes
 
+from . import dump, load
+
 
 def load_pydantic[C: pydantic.BaseModel](
-    fpath: str | os.PathLike[str], cls: type[C], *, ext: str | None = None
+    fpath: str | os.PathLike[str], cls: type[C], *, ext: str | None = None, **kwargs
 ) -> C:
-    """Load and deserialize data from a file, then validate it using a Pydantic model.
-
-    Args:
-        fpath: The file path to load the data from.
-        cls: The Pydantic model class to validate the data against.
-        ext: The file extension to use for deserialization.
-
-    Returns:
-        An instance of the Pydantic model class with the validated data.
-    """
-    data: Any = grapes.deserialize(fpath, ext=ext)
+    data: Any = load(fpath, ext=ext, **kwargs)
     return cls.model_validate(data)
 
 
+def dump_pydantic(
+    fpath: str | os.PathLike[str],
+    data: pydantic.BaseModel,
+    *,
+    ext: str | None = None,
+    # pydantic.BaseModel.model_dump(**kwargs)
+    context: Any | None = None,
+    by_alias: bool = False,
+    exclude_unset: bool = False,
+    exclude_defaults: bool = False,
+    exclude_none: bool = False,
+    round_trip: bool = False,
+    serialize_as_any: bool = False,
+) -> None:
+    dump(
+        fpath,
+        data.model_dump(
+            context=context,
+            by_alias=by_alias,
+            exclude_unset=exclude_unset,
+            exclude_defaults=exclude_defaults,
+            exclude_none=exclude_none,
+            round_trip=round_trip,
+            serialize_as_any=serialize_as_any,
+        ),
+        ext=ext,
+    )
+
+
+@warnings.deprecated("Use `dump_pydantic()` instead of `save_pydantic()`")
 def save_pydantic(
     fpath: str | os.PathLike[str],
     data: pydantic.BaseModel,

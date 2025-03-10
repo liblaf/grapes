@@ -4,12 +4,11 @@ import warnings
 from pathlib import Path
 from typing import Any
 
+from ruamel.yaml import YAML
+
 from liblaf import grapes
 
 from . import AbstractSerializer
-
-with grapes.optional_imports(extra="serde"):
-    from ruamel.yaml import YAML
 
 
 class YAMLSerializer(AbstractSerializer):

@@ -3,12 +3,11 @@ import warnings
 from pathlib import Path
 from typing import Any, override
 
+import tomlkit
+
 from liblaf import grapes
 
 from . import AbstractSerializer
-
-with grapes.optional_imports(extra="toml"):
-    import tomlkit
 
 
 class TOMLSerializer(AbstractSerializer):

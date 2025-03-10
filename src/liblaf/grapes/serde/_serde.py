@@ -1,86 +1,74 @@
 import os
-from collections.abc import Callable
+import warnings
 from pathlib import Path
-from typing import Any
+from typing import Any, override
+
+import autoregistry
 
 from liblaf import grapes
 
-READERS: dict[str, Callable] = {}
-"""A registry mapping file extensions to their respective deserialization functions.
+from . import AbstractSerializer, json, toml, yaml
 
-Supported extensions and their corresponding deserialization functions:
-
-- ".json": grapes.load_json
-- ".toml": grapes.load_toml (if the "tomlkit" module is available)
-- ".yaml": grapes.load_yaml (if the "ruamel.yaml" module is available)
-- ".yml": grapes.load_yaml (if the "ruamel.yaml" module is available)
-"""
-
-WRITERS: dict[str, Callable] = {}
-"""A registry mapping file extensions to their respective serialization functions.
-
-Supported extensions and their corresponding serialization functions:
-
-- ".json": grapes.save_json
-- ".toml": grapes.save_toml (if the "tomlkit" module is available)
-- ".yaml": grapes.save_yaml (if the "ruamel.yaml" module is available)
-- ".yml": grapes.save_yaml (if the "ruamel.yaml" module is available)
-"""
+SERIALIZERS = autoregistry.Registry()
+SERIALIZERS["json"] = json
+SERIALIZERS["toml"] = toml
+SERIALIZERS["yaml"] = yaml
+SERIALIZERS["yml"] = yaml
 
 
-READERS[".json"] = grapes.load_json
-WRITERS[".json"] = grapes.save_json
-if grapes.has_module("tomlkit"):
-    READERS[".toml"] = grapes.load_toml
-    WRITERS[".toml"] = grapes.save_toml
-if grapes.has_module("ruamel.yaml"):
-    READERS[".yaml"] = grapes.load_yaml
-    READERS[".yml"] = grapes.load_yaml
-    WRITERS[".yaml"] = grapes.save_yaml
-    WRITERS[".yml"] = grapes.save_yaml
+class AutoSerializer(AbstractSerializer):
+    @override
+    def load(
+        self, fpath: str | os.PathLike[str], *, ext: str | None = None, **kwargs
+    ) -> Any:
+        serializer: AbstractSerializer = self.get_serializer(fpath, ext=ext)
+        return serializer.load(fpath, **kwargs)
+
+    @override
+    def loads(self, data: str, *, ext: str | None = None, **kwargs) -> Any:
+        serializer: AbstractSerializer = self.get_serializer(fpath="", ext=ext)
+        return serializer.loads(data, **kwargs)
+
+    @override
+    def dump(
+        self,
+        fpath: str | os.PathLike[str],
+        data: Any,
+        *,
+        ext: str | None = None,
+        **kwargs,
+    ) -> None:
+        serializer: AbstractSerializer = self.get_serializer(fpath, ext=ext)
+        serializer.dump(fpath, data, **kwargs)
+
+    @override
+    def dumps(self, data: Any, *, ext: str | None = None, **kwargs) -> str:
+        serializer: AbstractSerializer = self.get_serializer(fpath="", ext=ext)
+        return serializer.dumps(data, **kwargs)
+
+    def get_serializer(
+        self, fpath: str | os.PathLike[str], *, ext: str | None = None
+    ) -> AbstractSerializer:
+        if ext is None:
+            fpath: Path = grapes.as_path(fpath)
+            ext = fpath.suffix.lstrip(".")
+        return SERIALIZERS[ext]  # pyright: ignore[reportReturnType]
 
 
+auto = AutoSerializer()
+load = auto.load
+loads = auto.loads
+dump = auto.dump
+dumps = auto.dumps
+
+
+@warnings.deprecated("Use `dump()` instead of `serialize()`")
 def serialize(
     fpath: str | os.PathLike[str], data: Any, *, ext: str | None = None
 ) -> None:
-    """Serialize data to a file.
-
-    Args:
-        fpath: The file path where the data will be serialized.
-        data: The data to be serialized.
-        ext: The file extension to determine the writer to use. If `None`, the extension is derived from the file path.
-
-    Raises:
-        ValueError: If the file extension is not supported.
-    """
-    fpath: Path = Path(fpath)
-    if ext is None:
-        ext = fpath.suffix
-    if ext not in WRITERS:
-        msg: str = f"Unsupported file extension: {ext}"
-        raise ValueError(msg)
-    writer = WRITERS[ext]
-    fpath.parent.mkdir(parents=True, exist_ok=True)
-    writer(fpath, data)
+    return dump(fpath, data, ext=ext)
 
 
+@warnings.deprecated("Use `load()` instead of `deserialize()`")
 def deserialize(fpath: str | os.PathLike[str], *, ext: str | None = None) -> Any:
-    """Deserialize the contents of a file.
-
-    Args:
-        fpath: The path to the file to be deserialized.
-        ext: The file extension. If not provided, it will be inferred from the file path.
-
-    Returns:
-        The deserialized content of the file.
-
-    Raises:
-        ValueError: If the file extension is not supported.
-    """
-    fpath: Path = Path(fpath)
-    if ext is None:
-        ext = fpath.suffix
-    if ext not in READERS:
-        msg: str = f"Unsupported file extension: {ext}"
-        raise ValueError(msg)
-    return READERS[ext](fpath)
+    return load(fpath, ext=ext)

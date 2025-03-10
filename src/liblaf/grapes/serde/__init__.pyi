@@ -8,9 +8,17 @@ from ._json import (
     loads_json,
     save_json,
 )
-from ._pydantic import load_pydantic, save_pydantic
-from ._serde import READERS, WRITERS, deserialize, serialize
-from ._toml import TOMLSerializer, dump_toml, dumps_toml, load_toml, save_toml, toml
+from ._pydantic import dump_pydantic, load_pydantic, save_pydantic
+from ._serde import auto, deserialize, dump, dumps, load, loads, serialize
+from ._toml import (
+    TOMLSerializer,
+    dump_toml,
+    dumps_toml,
+    load_toml,
+    loads_toml,
+    save_toml,
+    toml,
+)
 from ._yaml import (
     YAMLSerializer,
     dump_yaml,
@@ -22,25 +30,30 @@ from ._yaml import (
 )
 
 __all__ = [
-    "READERS",
-    "WRITERS",
     "AbstractSerializer",
     "JSONSerializer",
     "TOMLSerializer",
     "YAMLSerializer",
+    "auto",
     "deserialize",
+    "dump",
     "dump_json",
+    "dump_pydantic",
     "dump_toml",
     "dump_yaml",
+    "dumps",
     "dumps_json",
     "dumps_toml",
     "dumps_yaml",
     "json",
+    "load",
     "load_json",
     "load_pydantic",
     "load_toml",
     "load_yaml",
+    "loads",
     "loads_json",
+    "loads_toml",
     "loads_yaml",
     "save_json",
     "save_pydantic",

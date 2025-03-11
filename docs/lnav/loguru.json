@@ -1,0 +1,45 @@
+{
+  "$schema": "https://lnav.org/schemas/format-v1.schema.json",
+  "loguru": {
+    "title": "Loguru",
+    "description": "Loguru log format",
+    "json": true,
+    "line-format": [
+      { "field": "__timestamp__" },
+      " | ",
+      { "field": "__level__" },
+      " | ",
+      { "field": "record/name" },
+      ":",
+      { "field": "record/function" },
+      ":",
+      { "field": "record/line" },
+      " - ",
+      { "field": "record/message" }
+    ],
+    "timestamp-field": "record/time/timestamp",
+    "level-field": "record/level/name",
+    "body-field": "record/message",
+    "module-field": "record/function",
+    "hide-extra": true,
+    "multiline": false,
+    "value": {
+      "record/name": {
+        "kind": "string",
+        "identifier": true
+      },
+      "record/function": {
+        "kind": "string",
+        "identifier": true
+      },
+      "record/line": {
+        "kind": "integer",
+        "identifier": true
+      },
+      "record/message": {
+        "kind": "string",
+        "identifier": true
+      }
+    }
+  }
+}

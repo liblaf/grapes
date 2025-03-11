@@ -3,6 +3,7 @@
   "version": "0.2",
   "language": "en",
   "words": [
+    "assembla",
     "asyncio",
     "cuda",
     "cython",
@@ -18,6 +19,7 @@
     "mkdocs",
     "mkdocstrings",
     "mypy",
+    "nephila",
     "numprocesses",
     "numpy",
     "pipenv",

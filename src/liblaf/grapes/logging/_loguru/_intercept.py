@@ -1,29 +1,9 @@
-import contextlib
 import inspect
 import itertools
 import logging
-from collections.abc import Iterable, Sequence
+from collections.abc import Iterable
 
-import loguru
-from environs import Env
 from loguru import logger
-from rich.console import Console
-
-from liblaf import grapes
-
-type Filter = "str | loguru.FilterDict | loguru.FilterFunction"
-
-
-DEFAULT_FILTER: Filter = {
-    "": "INFO",
-    "__main__": "TRACE",
-    "liblaf": "DEBUG",
-}
-
-
-DEFAULT_LEVELS: Sequence["loguru.LevelConfig"] = [
-    {"name": "ICECREAM", "no": 15, "color": "<magenta><bold>", "icon": "🍦"}
-]
 
 
 class InterceptHandler(logging.Handler):
@@ -63,21 +43,6 @@ class InterceptHandler(logging.Handler):
         )
 
 
-def add_level(
-    name: str, no: int, color: str | None = None, icon: str | None = None
-) -> None:
-    """Add a new logging level to the logger.
-
-    Args:
-        name: The name of the new logging level.
-        no: The numeric value of the new logging level.
-        color: The color associated with the new logging level.
-        icon: The icon associated with the new logging level.
-    """
-    with contextlib.suppress(ValueError):
-        logger.level(name, no, color=color, icon=icon)
-
-
 def setup_loguru_logging_intercept(
     level: int | str = logging.NOTSET, modules: Iterable[str] = ()
 ) -> None:
@@ -95,42 +60,3 @@ def setup_loguru_logging_intercept(
         mod_logger: logging.Logger = logging.getLogger(logger_name)
         mod_logger.handlers = [InterceptHandler(level=level)]
         mod_logger.propagate = False
-
-
-def init_loguru(
-    level: int | str = logging.NOTSET,
-    filter: Filter | None = None,  # noqa: A002
-    handlers: Sequence["loguru.HandlerConfig"] | None = None,
-    levels: Sequence["loguru.LevelConfig"] | None = None,
-) -> None:
-    """Initialize the Loguru logger with specified configurations.
-
-    Args:
-        level: The logging level.
-        filter: A filter to apply to the logger.
-        handlers: A sequence of handler configurations.
-        levels: A sequence of level configurations.
-    """
-    filter = filter or DEFAULT_FILTER  # noqa: A001
-    if handlers is None:
-        console: Console = grapes.logging_console()
-        handlers: list[loguru.HandlerConfig] = [
-            {
-                "sink": lambda s: console.print(
-                    s, end="", no_wrap=True, crop=False, overflow="ignore"
-                ),
-                "format": "[green]{time:YYYY-MM-DD HH:mm:ss.SSS}[/green] | [logging.level.{level}]{level: <8}[/logging.level.{level}] | [cyan]{name}[/cyan]:[cyan]{function}[/cyan]:[cyan]{line}[/cyan] - {message}",
-                "filter": filter,
-            }
-        ]
-        env: Env = grapes.environ.init_env()
-        if fpath := env.path("LOGGING_FILE", None):
-            handlers.append({"sink": fpath, "filter": filter, "mode": "w"})
-        if fpath := env.path("LOGGING_JSONL", None):
-            handlers.append(
-                {"sink": fpath, "filter": filter, "serialize": True, "mode": "w"}
-            )
-    logger.configure(handlers=handlers)
-    for lvl in levels or DEFAULT_LEVELS:
-        add_level(**lvl)
-    setup_loguru_logging_intercept(level=level)

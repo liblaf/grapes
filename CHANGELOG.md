@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.7](https://github.com/liblaf/grapes/compare/v0.1.6...v0.1.7) (2025-03-11)
+
+
+### ✨ Features
+
+* **logging:** refactor loguru module and add JSONL logging support ([1bcfc19](https://github.com/liblaf/grapes/commit/1bcfc19a2b47f2fd782ee1ee94a8a8c55d6c460e))
+* **serde:** add AutoSerializer to public API ([8152e80](https://github.com/liblaf/grapes/commit/8152e80b0b82df425e1b9798d0bac030961a7c84))
+
 ## [0.1.6](https://github.com/liblaf/grapes/compare/v0.1.5..v0.1.6) - 2025-03-10
 
 ### ✨ Features

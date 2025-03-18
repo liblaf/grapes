@@ -7,11 +7,13 @@ from rich.console import Console
 
 from liblaf import grapes
 
-from . import DEFAULT_FILTER, Filter
+from . import Filter
+from ._default import DEFAULT_FILTER, DEFAULT_LEVEL
 
 
 def console_handler(
     console: Console | None = None,
+    level: int | str = DEFAULT_LEVEL,
     filter_: Filter | None = None,
 ) -> "loguru.HandlerConfig":
     if console is None:
@@ -24,26 +26,37 @@ def console_handler(
 
     return {
         "sink": sink,
+        "level": level,
         "format": "[green]{time:YYYY-MM-DD HH:mm:ss.SSS}[/green] | [logging.level.{level}]{level: <8}[/logging.level.{level}] | [cyan]{name}[/cyan]:[cyan]{function}[/cyan]:[cyan]{line}[/cyan] - {message}",
         "filter": filter_,
     }
 
 
 def file_handler(
-    fpath: str | os.PathLike[str] | None = None, filter_: Filter | None = None
+    fpath: str | os.PathLike[str] | None = None,
+    level: int | str = DEFAULT_LEVEL,
+    filter_: Filter | None = None,
 ) -> "loguru.HandlerConfig":
     if fpath is None:
         fpath = env.path("LOGGING_FILE", default=Path("run.log"))
     if filter_ is None:
         filter_ = DEFAULT_FILTER
-    return {"sink": fpath, "filter": filter_, "mode": "w"}
+    return {"sink": fpath, "level": level, "filter": filter_, "mode": "w"}
 
 
 def jsonl_handler(
-    fpath: str | os.PathLike[str] | None = None, filter_: Filter | None = None
+    fpath: str | os.PathLike[str] | None = None,
+    level: int | str = DEFAULT_LEVEL,
+    filter_: Filter | None = None,
 ) -> "loguru.HandlerConfig":
     if fpath is None:
         fpath = env.path("LOGGING_JSONL", default=Path("run.log.jsonl"))
     if filter_ is None:
         filter_ = DEFAULT_FILTER
-    return {"sink": fpath, "filter": filter_, "serialize": True, "mode": "w"}
+    return {
+        "sink": fpath,
+        "level": level,
+        "filter": filter_,
+        "serialize": True,
+        "mode": "w",
+    }

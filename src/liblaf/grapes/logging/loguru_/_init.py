@@ -8,14 +8,12 @@ from loguru import logger
 from liblaf import grapes
 
 from . import (
-    DEFAULT_LEVELS,
     Filter,
     add_level,
-    console_handler,
-    file_handler,
-    jsonl_handler,
     setup_loguru_logging_intercept,
 )
+from ._default import DEFAULT_LEVELS
+from ._handler import console_handler, file_handler, jsonl_handler
 
 
 def init_loguru(
@@ -33,12 +31,14 @@ def init_loguru(
         levels: A sequence of level configurations.
     """
     if handlers is None:
-        handlers: list[loguru.HandlerConfig] = [console_handler(filter_=filter_)]
+        handlers: list[loguru.HandlerConfig] = [
+            console_handler(level=level, filter_=filter_)
+        ]
         env: Env = grapes.environ.init_env()
         if fpath := env.path("LOGGING_FILE", None):
-            handlers.append(file_handler(fpath, filter_=filter_))
+            handlers.append(file_handler(fpath, level=level, filter_=filter_))
         if fpath := env.path("LOGGING_JSONL", None):
-            handlers.append(jsonl_handler(fpath, filter_=filter_))
+            handlers.append(jsonl_handler(fpath, level=level, filter_=filter_))
     logger.configure(handlers=handlers)
     for lvl in levels or DEFAULT_LEVELS:
         add_level(**lvl)

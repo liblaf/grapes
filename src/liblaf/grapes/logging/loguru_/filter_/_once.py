@@ -1,12 +1,12 @@
-import operator
-from collections.abc import Sequence
+from collections.abc import Callable, Hashable, Sequence
 
+import glom
 import loguru
 
-DEFAULT_KEYS: Sequence[str] = (
-    "file",
+DEFAULT_SPECS: Sequence[str] = (
+    "file.path",
     "function",
-    "level",
+    "level.no",
     "line",
     "message",
     "module",
@@ -14,15 +14,22 @@ DEFAULT_KEYS: Sequence[str] = (
 )
 
 
-def filter_once(keys: Sequence[str] = DEFAULT_KEYS) -> loguru.FilterFunction:
-    history: set[tuple] = set()
-    transform = operator.itemgetter(*keys)
+def default_transform(record: "loguru.Record") -> Hashable:
+    return tuple(glom.glom(record, spec) for spec in DEFAULT_SPECS)
 
-    def filter_(record: loguru.Record) -> bool:
-        partial: tuple = transform(record)
-        if partial in history:
+
+def filter_once(
+    transform: "Callable[[loguru.Record], Hashable]" = default_transform,
+) -> "loguru.FilterFunction":
+    history: set[Hashable] = set()
+
+    def filter_(record: "loguru.Record") -> bool:
+        if not record["extra"].get("once", False):
+            return True
+        transformed: Hashable = transform(record)
+        if transformed in history:
             return False
-        history.add(partial)
+        history.add(transformed)
         return True
 
     return filter_

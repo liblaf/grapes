@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.9](https://github.com/liblaf/grapes/compare/v0.1.8...v0.1.9) (2025-03-18)
+
+
+### ✨ Features
+
+* update package metadata and add type hints support ([f561c77](https://github.com/liblaf/grapes/commit/f561c77bee9c1ace68bb0ab0d279f8a50aa52fc6))
+
 ## [0.1.8](https://github.com/liblaf/grapes/compare/v0.1.7..v0.1.8) - 2025-03-18
 
 ### ✨ Features

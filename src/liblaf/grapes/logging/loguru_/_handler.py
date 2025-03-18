@@ -7,8 +7,7 @@ from rich.console import Console
 
 from liblaf import grapes
 
-from . import Filter
-from ._default import DEFAULT_FILTER, DEFAULT_LEVEL
+from . import DEFAULT_FILTER, DEFAULT_LEVEL, Filter
 
 
 def console_handler(

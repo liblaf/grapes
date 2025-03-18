@@ -8,12 +8,14 @@ from loguru import logger
 from liblaf import grapes
 
 from . import (
+    DEFAULT_LEVELS,
     Filter,
     add_level,
+    console_handler,
+    file_handler,
+    jsonl_handler,
     setup_loguru_logging_intercept,
 )
-from ._default import DEFAULT_LEVELS
-from ._handler import console_handler, file_handler, jsonl_handler
 
 
 def init_loguru(

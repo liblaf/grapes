@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.8](https://github.com/liblaf/grapes/compare/v0.1.7...v0.1.8) (2025-03-18)
+
+
+### ✨ Features
+
+* **logging:** add conditional dispatcher and enhance loguru filters ([db8f046](https://github.com/liblaf/grapes/commit/db8f046765da4509cc2ee25906ff90c3d5946b65))
+* **logging:** enhance loguru configuration with default level and improved filter_once ([1e72e8e](https://github.com/liblaf/grapes/commit/1e72e8e5c242a0d2259dc989fce3f85848801741))
+
+
+### ♻ Code Refactoring
+
+* **logging:** reorganize imports and rename filter types module ([9e2aa67](https://github.com/liblaf/grapes/commit/9e2aa6753822f74a5d8c564f34b7494763d5e07d))
+
 ## [0.1.7](https://github.com/liblaf/grapes/compare/v0.1.6..v0.1.7) - 2025-03-11
 
 ### ✨ Features

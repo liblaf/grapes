@@ -16,13 +16,13 @@ from ._once import (
 )
 from ._rich import init_rich, logging_console, logging_theme
 from .loguru_ import (
-    DEFAULT_FILTER,
     DEFAULT_LEVELS,
     Filter,
     InterceptHandler,
     add_level,
     as_filter_func,
     console_handler,
+    default_filter,
     file_handler,
     filter_all,
     filter_any,
@@ -33,7 +33,6 @@ from .loguru_ import (
 )
 
 __all__ = [
-    "DEFAULT_FILTER",
     "DEFAULT_LEVELS",
     "Filter",
     "InterceptHandler",
@@ -43,6 +42,7 @@ __all__ = [
     "console_handler",
     "critical_once",
     "debug_once",
+    "default_filter",
     "error_once",
     "exception_once",
     "file_handler",

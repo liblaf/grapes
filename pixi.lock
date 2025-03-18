@@ -856,8 +856,8 @@ packages:
   timestamp: 1729027639220
 - pypi: .
   name: liblaf-grapes
-  version: 0.1.8.dev3+gdb8f046.d20250318
-  sha256: f1b56057f6869fabf69c35de76cbf166f63b28de67d91a5f21a9987d0f1f0ae3
+  version: 0.1.9.dev0+g4cae41f.d20250318
+  sha256: 6e15ec25e8cb81587c836fd7e41be81d9c4d06dc8743bcb5dc84acd0623790d8
   requires_dist:
   - about-time>=4.2.1,<5
   - autoregistry>=1.1.2,<2

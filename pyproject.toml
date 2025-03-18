@@ -41,7 +41,28 @@ authors = [
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
   "License :: OSI Approved :: MIT License",
+  "License :: OSI Approved",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python",
+  "Topic :: File Formats :: JSON",
+  "Topic :: File Formats",
+  "Topic :: Software Development :: Bug Tracking",
+  "Topic :: Software Development :: Debuggers",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Software Development",
+  "Topic :: System :: Logging",
+  "Topic :: System",
+  "Topic :: Text Processing :: Filters",
+  "Topic :: Text Processing",
+  "Topic :: Utilities",
+  "Typing :: Typed",
 ]
 dependencies = [
   "about-time>=4.2.1,<5",

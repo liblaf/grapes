@@ -34,6 +34,8 @@ def file_handler(
 ) -> "loguru.HandlerConfig":
     if fpath is None:
         fpath = env.path("LOGGING_FILE", default=Path("run.log"))
+    if filter_ is None:
+        filter_ = DEFAULT_FILTER
     return {"sink": fpath, "filter": filter_, "mode": "w"}
 
 
@@ -42,4 +44,6 @@ def jsonl_handler(
 ) -> "loguru.HandlerConfig":
     if fpath is None:
         fpath = env.path("LOGGING_JSONL", default=Path("run.log.jsonl"))
+    if filter_ is None:
+        filter_ = DEFAULT_FILTER
     return {"sink": fpath, "filter": filter_, "serialize": True, "mode": "w"}

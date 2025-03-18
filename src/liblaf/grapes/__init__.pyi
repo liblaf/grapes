@@ -1,5 +1,6 @@
 from . import (
     environ,
+    functools,
     git,
     human,
     itertools,
@@ -13,6 +14,7 @@ from . import (
 )
 from ._version import __version__, __version_tuple__, version, version_tuple
 from .environ import init_env
+from .functools import ConditionalDispatcher
 from .human import (
     human_count,
     human_duration,
@@ -66,9 +68,15 @@ from .serde import (
 )
 from .text import strip_comments
 from .timing import get_time, timer
+from .typed import ClassInfo, Decorator, LogLevel, StrPath
 
 __all__ = [
+    "ClassInfo",
+    "ConditionalDispatcher",
+    "Decorator",
     "IterableWrapper",
+    "LogLevel",
+    "StrPath",
     "__version__",
     "__version_tuple__",
     "as_iterable",
@@ -82,6 +90,7 @@ __all__ = [
     "error_once",
     "exception_once",
     "full_qual_name",
+    "functools",
     "generator_to_list",
     "get_time",
     "git",

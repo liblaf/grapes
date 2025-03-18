@@ -1,18 +1,7 @@
+from . import loguru_
 from ._caller import caller_location
 from ._icecream import init_icecream
 from ._init import init_logging
-from ._loguru import (
-    DEFAULT_FILTER,
-    DEFAULT_LEVELS,
-    Filter,
-    InterceptHandler,
-    add_level,
-    console_handler,
-    file_handler,
-    init_loguru,
-    jsonl_handler,
-    setup_loguru_logging_intercept,
-)
 from ._name import full_qual_name
 from ._once import (
     critical_once,
@@ -26,6 +15,22 @@ from ._once import (
     warning_once,
 )
 from ._rich import init_rich, logging_console, logging_theme
+from .loguru_ import (
+    DEFAULT_FILTER,
+    DEFAULT_LEVELS,
+    Filter,
+    InterceptHandler,
+    add_level,
+    as_filter_func,
+    console_handler,
+    file_handler,
+    filter_all,
+    filter_any,
+    filter_once,
+    init_loguru,
+    jsonl_handler,
+    setup_loguru_logging_intercept,
+)
 
 __all__ = [
     "DEFAULT_FILTER",
@@ -33,6 +38,7 @@ __all__ = [
     "Filter",
     "InterceptHandler",
     "add_level",
+    "as_filter_func",
     "caller_location",
     "console_handler",
     "critical_once",
@@ -40,6 +46,9 @@ __all__ = [
     "error_once",
     "exception_once",
     "file_handler",
+    "filter_all",
+    "filter_any",
+    "filter_once",
     "full_qual_name",
     "info_once",
     "init_icecream",
@@ -50,6 +59,7 @@ __all__ = [
     "log_once",
     "logging_console",
     "logging_theme",
+    "loguru_",
     "setup_loguru_logging_intercept",
     "success_once",
     "trace_once",

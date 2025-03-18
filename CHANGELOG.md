@@ -1,16 +1,27 @@
 # Changelog
 
+## [0.1.8](https://github.com/liblaf/grapes/compare/v0.1.7..v0.1.8) - 2025-03-18
+
+### ✨ Features
+
+- **logging:** enhance loguru configuration with default level and improved filter_once - ([1e72e8e](https://github.com/liblaf/grapes/commit/1e72e8e5c242a0d2259dc989fce3f85848801741))
+- **logging:** add conditional dispatcher and enhance loguru filters - ([db8f046](https://github.com/liblaf/grapes/commit/db8f046765da4509cc2ee25906ff90c3d5946b65))
+
+### ♻ Code Refactoring
+
+- **logging:** reorganize imports and rename filter types module - ([9e2aa67](https://github.com/liblaf/grapes/commit/9e2aa6753822f74a5d8c564f34b7494763d5e07d))
+
+### ❤️ New Contributors
+
+- @liblaf made their first contribution
+- @renovate[bot] made their first contribution in [#27](https://github.com/liblaf/grapes/pull/27)
+
 ## [0.1.7](https://github.com/liblaf/grapes/compare/v0.1.6..v0.1.7) - 2025-03-11
 
 ### ✨ Features
 
 - **logging:** refactor loguru module and add JSONL logging support - ([1bcfc19](https://github.com/liblaf/grapes/commit/1bcfc19a2b47f2fd782ee1ee94a8a8c55d6c460e))
 - **serde:** add AutoSerializer to public API - ([8152e80](https://github.com/liblaf/grapes/commit/8152e80b0b82df425e1b9798d0bac030961a7c84))
-
-### ❤️ New Contributors
-
-- @liblaf made their first contribution
-- @renovate[bot] made their first contribution in [#25](https://github.com/liblaf/grapes/pull/25)
 
 ## [0.1.6](https://github.com/liblaf/grapes/compare/v0.1.5..v0.1.6) - 2025-03-10
 

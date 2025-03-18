@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
 
-INHERIT: .github/copier/mkdocs.yaml
+INHERIT: .config/copier/mkdocs.yaml
 site_name: Grapes
 site_description: TODO
 

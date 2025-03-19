@@ -1,14 +1,28 @@
 # Changelog
 
+## [0.1.10](https://github.com/liblaf/grapes/compare/v0.1.9..v0.1.10) - 2025-03-19
+
+### 🐛 Bug Fixes
+
+- **serde:** replace `warnings.deprecated` with `typing_extensions.deprecated` - ([ad88773](https://github.com/liblaf/grapes/commit/ad8877387f608e3c0382d9006c82054966a81dfe))
+
+### ♻ Code Refactoring
+
+- **logging:** replace DEFAULT_FILTER with default_filter function - ([33c7ad3](https://github.com/liblaf/grapes/commit/33c7ad3e78432231d8c117c05e2bf747e1ba69f0))
+
+### 🔧 Continuous Integration
+
+- update release-please config and manifest file paths - ([5a278e8](https://github.com/liblaf/grapes/commit/5a278e82c88a29422343194d41674c923c9fb315))
+
+### ❤️ New Contributors
+
+- @liblaf made their first contribution
+
 ## [0.1.9](https://github.com/liblaf/grapes/compare/v0.1.8..v0.1.9) - 2025-03-18
 
 ### ✨ Features
 
 - update package metadata and add type hints support - ([f561c77](https://github.com/liblaf/grapes/commit/f561c77bee9c1ace68bb0ab0d279f8a50aa52fc6))
-
-### ❤️ New Contributors
-
-- @liblaf made their first contribution
 
 ## [0.1.8](https://github.com/liblaf/grapes/compare/v0.1.7..v0.1.8) - 2025-03-18
 

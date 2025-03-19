@@ -1,9 +1,9 @@
 import os
-import warnings
 from pathlib import Path
 from typing import Any, override
 
 import autoregistry
+from typing_extensions import deprecated
 
 from liblaf import grapes
 
@@ -62,13 +62,13 @@ save = auto.save
 saves = auto.saves
 
 
-@warnings.deprecated("Use `save()` instead of `serialize()`")
+@deprecated("Use `save()` instead of `serialize()`")
 def serialize(
     fpath: str | os.PathLike[str], data: Any, *, ext: str | None = None
 ) -> None:
     return save(fpath, data, ext=ext)
 
 
-@warnings.deprecated("Use `load()` instead of `deserialize()`")
+@deprecated("Use `load()` instead of `deserialize()`")
 def deserialize(fpath: str | os.PathLike[str], *, ext: str | None = None) -> Any:
     return load(fpath, ext=ext)

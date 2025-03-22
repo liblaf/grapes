@@ -1,11 +1,14 @@
 # Changelog
 
-## [0.1.11](https://github.com/liblaf/grapes/compare/v0.1.10...v0.1.11) (2025-03-22)
-
+## [0.1.11](https://github.com/liblaf/grapes/compare/v0.1.10..v0.1.11) - 2025-03-22
 
 ### ♻ Code Refactoring
 
-* **environ:** modify `init_env` to accept a path parameter ([c35581a](https://github.com/liblaf/grapes/commit/c35581a400d16dfcf25e83d594766b70abb1de30))
+- **environ:** modify `init_env` to accept a path parameter - ([c35581a](https://github.com/liblaf/grapes/commit/c35581a400d16dfcf25e83d594766b70abb1de30))
+
+### ❤️ New Contributors
+
+- @liblaf made their first contribution
 
 ## [0.1.10](https://github.com/liblaf/grapes/compare/v0.1.9..v0.1.10) - 2025-03-19
 
@@ -20,10 +23,6 @@
 ### 🔧 Continuous Integration
 
 - update release-please config and manifest file paths - ([5a278e8](https://github.com/liblaf/grapes/commit/5a278e82c88a29422343194d41674c923c9fb315))
-
-### ❤️ New Contributors
-
-- @liblaf made their first contribution
 
 ## [0.1.9](https://github.com/liblaf/grapes/compare/v0.1.8..v0.1.9) - 2025-03-18
 

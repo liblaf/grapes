@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.11](https://github.com/liblaf/grapes/compare/v0.1.10...v0.1.11) (2025-03-22)
+
+
+### ♻ Code Refactoring
+
+* **environ:** modify `init_env` to accept a path parameter ([c35581a](https://github.com/liblaf/grapes/commit/c35581a400d16dfcf25e83d594766b70abb1de30))
+
 ## [0.1.10](https://github.com/liblaf/grapes/compare/v0.1.9..v0.1.10) - 2025-03-19
 
 ### 🐛 Bug Fixes

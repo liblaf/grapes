@@ -15,18 +15,24 @@ jobs:
       group: ${{ github.workflow }}-${{ github.ref }}-docs
       cancel-in-progress: true
     steps:
+      - id: auth
+        name: Auth App
+        uses: liblaf/actions/auth-app@main
+        with:
+          app-id: ${{ secrets.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          token: ${{ steps.auth.outputs.token }}
           fetch-depth: 0
       - name: Fetch `gh-pages`
+        # ref: <https://github.com/jimporter/mike?tab=readme-ov-file#deploying-via-ci>
         run: git fetch origin gh-pages --depth=1
-      - name: Configure Git User
-        run: |-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Setup Python
         uses: liblaf/actions/setup-python@main
+        with:
+          python-version: ${{ vars.PYTHON_VERSION || '3.12' }}
       - if: hashFiles('docs/scripts/prepare.sh') != ''
         name: Prepare
         run: docs/scripts/prepare.sh

@@ -19,32 +19,32 @@ jobs:
       group: ${{ github.workflow }}-${{ github.ref }}-docs
       cancel-in-progress: true
     steps:
+      - id: auth
+        name: Auth App
+        uses: liblaf/actions/auth-app@main
+        with:
+          app-id: ${{ secrets.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          token: ${{ steps.auth.outputs.token }}
           fetch-depth: 0
       - name: Fetch `gh-pages`
+        # ref: <https://github.com/jimporter/mike?tab=readme-ov-file#deploying-via-ci>
         run: git fetch origin gh-pages --depth=1
-      - name: Configure Git User
-        run: |-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Setup Python
         uses: liblaf/actions/setup-python@main
+        with:
+          python-version: ${{ vars.PYTHON_VERSION || '3.12' }}
       - if: hashFiles('docs/scripts/prepare.sh') != ''
         name: Prepare
         run: docs/scripts/prepare.sh
       - id: version
-        name: Get Version
-        run: |-
-          tag="${{ github.event.release.tag_name || github.ref_name }}"
-          tag="${tag#v}"
-          major="$(echo "$tag" | cut --delimiter="." --fields="1")"
-          minor="$(echo "$tag" | cut --delimiter="." --fields="2")"
-          patch="$(echo "$tag" | cut --delimiter="." --fields="3")"
-          echo "major=$major" >> "$GITHUB_OUTPUT"
-          echo "minor=$minor" >> "$GITHUB_OUTPUT"
-          echo "patch=$patch" >> "$GITHUB_OUTPUT"
+        name: SemVer Parse
+        uses: liblaf/actions/semver-parse@main
+        with:
+          version: ${{ github.ref_name }}
       - name: Deploy
         run: mike deploy --push "$MAJOR.$MINOR" stable
         env:

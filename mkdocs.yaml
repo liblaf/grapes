@@ -27,3 +27,8 @@ plugins:
           - https://numpy.org/doc/stable/objects.inv
           - https://rich.readthedocs.io/en/stable/objects.inv
           - https://tomlkit.readthedocs.io/en/stable/objects.inv
+  mike:
+
+extra:
+  version:
+    provider: mike

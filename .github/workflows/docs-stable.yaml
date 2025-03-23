@@ -1,0 +1,51 @@
+name: Docs (stable)
+
+on:
+  push:
+    tags:
+      - v*
+  release:
+    types:
+      - published
+
+jobs:
+  docs:
+    name: Docs
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}-docs
+      cancel-in-progress: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Fetch `gh-pages`
+        run: git fetch origin gh-pages --depth=1
+      - name: Configure Git User
+        run: |-
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Setup Python
+        uses: liblaf/actions/setup-python@main
+      - if: hashFiles('docs/scripts/prepare.sh') != ''
+        name: Prepare
+        run: docs/scripts/prepare.sh
+      - id: version
+        name: Get Version
+        run: |-
+          tag="${{ github.event.release.tag_name || github.ref_name }}"
+          tag="${tag#v}"
+          major="$(echo "$tag" | cut --delimiter="." --fields="1")"
+          minor="$(echo "$tag" | cut --delimiter="." --fields="2")"
+          patch="$(echo "$tag" | cut --delimiter="." --fields="3")"
+          echo "major=$major" >> "$GITHUB_OUTPUT"
+          echo "minor=$minor" >> "$GITHUB_OUTPUT"
+          echo "patch=$patch" >> "$GITHUB_OUTPUT"
+      - name: Deploy
+        run: mike deploy --push "$MAJOR.$MINOR" stable
+        env:
+          MAJOR: ${{ steps.version.outputs.major }}
+          MINOR: ${{ steps.version.outputs.minor }}

@@ -1,13 +1,12 @@
 <!-- -*- mode: markdown -*- -->
 
-<div align="center"><a name="readme-top"></a>
+<div align="center" markdown><a name="readme-top"></a>
 
 <img height="160" src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Grapes/3D/grapes_3d.png" />
 
 # Grapes
 
-Grapes is a comprehensive Python utility library offering robust tools for environment configuration, human-readable formatting, logging, progress tracking, serialization, and timing. Built with extensibility and performance in mind, it integrates seamlessly with popular libraries like Pydantic, Loguru, and Rich, providing developers with a powerful toolkit for building efficient and maintainable applications.
-
+Grapes is a comprehensive Python utility library offering robust tools for environment configuration, human-readable formatting, logging, progress tracking, serialization, and timing. Built with extensibility and performance in mind, it integrates seamlessly with popular libraries like Pydantic, Loguru, and Rich, providing developers with a powerful toolkit for building efficient and maintainable applications. <br />
 [**Explore the docs »**](https://liblaf.github.io/grapes/)
 
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/liblaf-grapes?logo=PyPI&label=Downloads)](https://pypi.org/project/liblaf-grapes)
@@ -41,7 +40,7 @@ Grapes is a comprehensive Python utility library offering robust tools for envir
 - 📄 **Text Processing:** Utilities for text processing, including comment stripping, to help clean up and process text data efficiently.
 - 🤝 **Extensive Documentation:** Detailed and well-structured documentation, making it easy to understand and use the library's features.
 
-<div align="right">
+<div align="right" markdown>
 
 [![](https://img.shields.io/badge/-BACK_TO_TOP-black?style=flat-square)](#readme-top)
 
@@ -55,7 +54,7 @@ To install `liblaf-grapes`, run the following command:
 $ uv add liblaf-grapes
 ```
 
-<div align="right">
+<div align="right" markdown>
 
 [![](https://img.shields.io/badge/-BACK_TO_TOP-black?style=flat-square)](#readme-top)
 
@@ -72,10 +71,12 @@ Or clone it for local development:
 ```bash
 $ gh repo clone liblaf/grapes
 $ cd grapes
+$ uv sync --all-extras --all-groups
+$ source ".venv/bin/activate"
 $ just test
 ```
 
-<div align="right">
+<div align="right" markdown>
 
 [![](https://img.shields.io/badge/-BACK_TO_TOP-black?style=flat-square)](#readme-top)
 
@@ -89,7 +90,7 @@ Contributions of all types are more than welcome, if you are interested in contr
 
 [![](https://contrib.rocks/image?repo=liblaf%2Fgrapes)](https://github.com/liblaf/grapes/graphs/contributors)
 
-<div align="right">
+<div align="right" markdown>
 
 [![](https://img.shields.io/badge/-BACK_TO_TOP-black?style=flat-square)](#readme-top)
 
@@ -105,7 +106,7 @@ Contributions of all types are more than welcome, if you are interested in contr
 
 - **Python** - <https://www.python.org/>
 
-<div align="right">
+<div align="right" markdown>
 
 [![](https://img.shields.io/badge/-BACK_TO_TOP-black?style=flat-square)](#readme-top)
 

@@ -12,7 +12,7 @@ plugins:
   mkdocstrings:
     handlers:
       python:
-        import:
+        inventories:
           - https://autoregistry.readthedocs.io/en/stable/objects.inv
           - https://boltons.readthedocs.io/en/stable/objects.inv
           - https://docs.pydantic.dev/latest/objects.inv

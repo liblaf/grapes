@@ -45,3 +45,4 @@ def init_loguru(
     for lvl in levels or DEFAULT_LEVELS:
         add_level(**lvl)
     setup_loguru_logging_intercept(level=level)
+    grapes.logging.clear_handlers()

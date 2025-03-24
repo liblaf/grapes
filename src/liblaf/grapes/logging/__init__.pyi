@@ -1,5 +1,6 @@
 from . import loguru_
 from ._caller import caller_location
+from ._clear_handlers import clear_handlers
 from ._icecream import init_icecream
 from ._init import init_logging
 from ._name import full_qual_name
@@ -39,6 +40,7 @@ __all__ = [
     "add_level",
     "as_filter_func",
     "caller_location",
+    "clear_handlers",
     "console_handler",
     "critical_once",
     "debug_once",

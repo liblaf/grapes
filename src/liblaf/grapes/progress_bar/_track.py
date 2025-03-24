@@ -44,7 +44,6 @@ def track[T](
             yield from t.track(
                 prog.track(sequence, total=total, description=description)
             )
-            t.log_summary()
     else:
         with prog:
             yield from prog.track(sequence, description=description)

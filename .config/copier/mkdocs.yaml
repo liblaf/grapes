@@ -11,8 +11,8 @@ site_url:
     "https://liblaf.github.io/grapes/"
   ]
 site_author: "liblaf"
-repo_name: "/grapes"
-repo_url: "https://github.com//grapes"
+repo_name: "liblaf/grapes"
+repo_url: "https://github.com/liblaf/grapes"
 edit_uri: blob/main/docs/
 
 extra_css:
@@ -87,7 +87,7 @@ plugins:
       - docs/scripts/gen-ref-pages.py
   git-committers:
     enabled: !ENV [READTHEDOCS, CI, false]
-    repository: "/grapes"
+    repository: "liblaf/grapes"
     branch: main
   literate-nav:
   section-index:
@@ -99,7 +99,7 @@ plugins:
     enable_inventory: true
     handlers:
       python:
-        import:
+        inventories:
           - https://docs.python.org/3/objects.inv
         options:
           # General

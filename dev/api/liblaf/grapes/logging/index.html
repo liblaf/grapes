@@ -1159,6 +1159,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#liblaf.grapes.logging.clear_handlers" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;clear_handlers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#liblaf.grapes.logging.console_handler" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;console_handler
@@ -1474,6 +1483,13 @@ locations and fully qualified names of objects.</p>
             –
             <div class="doc-md-description">
               <p>Returns the file name and line number of the caller's location in the code.</p>
+            </div>
+          </li>
+          <li class="doc-section-item field-body">
+            <b><code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-function&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-function-name&quot;&gt;clear_handlers&lt;/span&gt; (&lt;code&gt;liblaf.grapes.logging.clear_handlers&lt;/code&gt;)" href="#liblaf.grapes.logging.clear_handlers">clear_handlers</a></code></b>
+            –
+            <div class="doc-md-description">
+              
             </div>
           </li>
           <li class="doc-section-item field-body">
@@ -2144,6 +2160,39 @@ using Loguru.</p>
         <span class="n">filename</span> <span class="o">=</span> <span class="n">filepath</span><span class="o">.</span><span class="n">name</span>
         <span class="n">lineno</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">f_lineno</span><span class="p">)</span>
     <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">lineno</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="liblaf.grapes.logging.clear_handlers" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <span class="doc doc-object-name doc-function-name">clear_handlers</span>
+
+
+<a href="#liblaf.grapes.logging.clear_handlers" class="headerlink" title="Permanent link">¤</a></h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">clear_handlers</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+
+            <details class="quote">
+              <summary>Source code in <code>src/liblaf/grapes/logging/_clear_handlers.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clear_handlers</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">logger</span> <span class="ow">in</span> <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">loggerDict</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">logger</span><span class="p">,</span> <span class="n">logging</span><span class="o">.</span><span class="n">PlaceHolder</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2916,7 +2965,8 @@ using Loguru.</p>
 <span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
-<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">init_loguru</span><span class="p">(</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">init_loguru</span><span class="p">(</span>
     <span class="n">level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span><span class="p">,</span>
     <span class="n">filter_</span><span class="p">:</span> <span class="n">Filter</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">handlers</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="s2">&quot;loguru.HandlerConfig&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -2943,6 +2993,7 @@ using Loguru.</p>
     <span class="k">for</span> <span class="n">lvl</span> <span class="ow">in</span> <span class="n">levels</span> <span class="ow">or</span> <span class="n">DEFAULT_LEVELS</span><span class="p">:</span>
         <span class="n">add_level</span><span class="p">(</span><span class="o">**</span><span class="n">lvl</span><span class="p">)</span>
     <span class="n">setup_loguru_logging_intercept</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span>
+    <span class="n">grapes</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">clear_handlers</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -3473,7 +3524,7 @@ for the logging console.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 24, 2025 02:33:12">March 24, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 24, 2025 09:04:29">March 24, 2025</span>
   </span>
 
     
@@ -3483,7 +3534,7 @@ for the logging console.</p>
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 24, 2025 02:33:12">March 24, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 24, 2025 09:04:29">March 24, 2025</span>
   </span>
 
     

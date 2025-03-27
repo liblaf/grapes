@@ -1,13 +1,14 @@
 <div align="center" markdown><a name="readme-top"></a>
 
-<img height="160" src="https://api.iconify.design/logos/python.svg" />
+<img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Grapes/3D/grapes_3d.png" style="height: 120px" />
+<img src="https://gw.alipayobjects.com/zos/kitchen/qJ3l3EPsdW/split.svg" style="height: 120px" />
+<img src="https://api.iconify.design/logos/python.svg" style="height: 120px; padding: 12px" />
 
 # Grapes
 
-TODO: DESCRIPTION <br />
+Grapes is a comprehensive Python utility library offering robust tools for environment configuration, human-readable formatting, logging, progress tracking, serialization, and timing. Built with extensibility and performance in mind, it integrates seamlessly with popular libraries like Pydantic, Loguru, and Rich, providing developers with a powerful toolkit for building efficient and maintainable applications. <br />
 [**Explore the docs »**](https://liblaf.github.io/grapes/)
 
-<!-- prettier-ignore-start -->
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/liblaf-grapes?logo=PyPI&label=Downloads)](https://pypi.org/project/liblaf-grapes)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/liblaf-grapes?logo=Python&label=Python)](https://pypi.org/project/liblaf-grapes)
 [![PyPI - Version](https://img.shields.io/pypi/v/liblaf-grapes?logo=PyPI&label=PyPI)](https://pypi.org/project/liblaf-grapes)
@@ -20,8 +21,6 @@ TODO: DESCRIPTION <br />
 [![GitHub Issues](https://img.shields.io/github/issues/liblaf/grapes?logo=GitHub&label=Issues)](https://github.com/liblaf/grapes/issues)
 [![GitHub License](https://img.shields.io/github/license/liblaf/grapes?label=License)](https://github.com/liblaf/grapes/blob/main/LICENSE)
 
-<!-- prettier-ignore-end -->
-
 [Changelog](https://github.com/liblaf/grapes/blob/main/CHANGELOG.md) · [Report Bug](https://github.com/liblaf/grapes/issues) · [Request Feature](https://github.com/liblaf/grapes/issues)
 
 ![](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
@@ -30,7 +29,16 @@ TODO: DESCRIPTION <br />
 
 ## ✨ Features
 
-- [x] ✨ **TODO:** FEATURES;
+- 🍇 **Comprehensive Utility Library:** A rich collection of utility functions and classes to enhance your Python projects, covering a wide range of common tasks.
+- ⚡ **High-Performance Timing:** Advanced timing utilities for precise performance measurement, including support for multiple time counters and human-readable duration formatting.
+- 📊 **Progress Tracking:** Elegant progress bar and tracking functionality with customizable columns, making it easy to monitor the progress of long-running tasks.
+- 🗂️ **Serialization and Deserialization:** Flexible and efficient data serialization and deserialization for JSON, TOML, YAML, and Pydantic models, ensuring seamless data handling.
+- 📝 **Human-Readable Formats:** Functions to convert numerical values into human-readable formats, such as durations, counts, and throughput, enhancing the readability of your application's output.
+- 🛠️ **Environment Configuration:** Simplified environment configuration management, allowing you to easily read and manage environment variables with a prefix.
+- 🎨 **Rich Logging Integration:** Enhanced logging with Rich, Loguru, and IceCream, providing colorful, detailed, and user-friendly log outputs.
+- 🧪 **Optional Imports:** Graceful handling of optional dependencies, ensuring that your application can run smoothly even if some dependencies are missing.
+- 📄 **Text Processing:** Utilities for text processing, including comment stripping, to help clean up and process text data efficiently.
+- 🤝 **Extensive Documentation:** Detailed and well-structured documentation, making it easy to understand and use the library's features.
 
 <div align="right" markdown>
 

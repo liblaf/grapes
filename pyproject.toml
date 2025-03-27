@@ -1,39 +1,37 @@
 #:schema https://json.schemastore.org/pyproject.json
-# https://packaging.python.org/en/latest/specifications/pyproject-toml/
+# ref: <https://packaging.python.org/en/latest/specifications/pyproject-toml/>
 
 [build-system]
 build-backend = "hatchling.build"
 requires = ["hatch-vcs", "hatchling"]
 
 [dependency-groups]
-build = [
-  "build>=1.2.2.post1,<2",
-  "check-wheel-contents>=0.6.1,<0.7",
-  "twine>=6.0.1,<7",
-]
-dev = ["icecream>=2.1.4,<3"]
+build = ["check-wheel-contents", "hatch", "twine"]
+dev = ["icecream"]
 docs = [
-  "gitpython>=3.1.44,<4",
+  "gitpython",
   "mdx-truly-sane-lists>=1.3,<2",
   "mike>=2.1.3,<3",
   "mkdocs-autorefs>=1.4.1,<2",
   "mkdocs-gen-files>=0.5.0,<0.6",
   "mkdocs-git-committers-plugin-2>=2.5.0,<3",
   "mkdocs-git-revision-date-localized-plugin>=1.4.5,<2",
+  "mkdocs-include-markdown-plugin>=7.1.5,<8",
   "mkdocs-literate-nav>=0.6.2,<0.7",
   "mkdocs-material[imaging]>=9.6.9,<10",
   "mkdocs-section-index>=0.3.9,<0.4",
   "mkdocs>=1.6.1,<2",
-  "mkdocstrings-python>=1.16.7,<2",
+  "mkdocstrings-python>=1.16.8,<2",
   "mkdocstrings>=0.29.0,<0.30",
   "pymdown-extensions>=10.14.3,<11",
-  "ruff>=0.11,<0.12",
+  "ruff",
 ]
 test = [
-  "pytest-codspeed>=3.2.0,<4",
-  "pytest-cov>=6.0.0,<7",
-  "pytest-xdist>=3.6.1,<4",
-  "pytest>=8.3.4,<9",
+  "pytest",
+  "pytest-benchmark",
+  "pytest-codspeed",
+  "pytest-cov",
+  "pytest-xdist",
 ]
 
 [project]
@@ -107,10 +105,10 @@ source = ["src/"]
 version-file = "src/liblaf/grapes/_version.py"
 
 [tool.hatch.build.targets.sdist]
-only-packages = true
+only-include = ["src/"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/liblaf"]
+packages = ["src/liblaf/"]
 
 [tool.hatch.version]
 source = "vcs"
@@ -132,6 +130,6 @@ libc = { family = "glibc", version = "2.41" }
 linux = "6.13"
 
 [tool.pytest.ini_options]
-addopts = ["--numprocesses=auto"]
+addopts = ["--showlocals", "--strict-config", "--strict-markers"]
 junit_family = "legacy"
-testpaths = ["tests/"]
+testpaths = ["benches/", "tests/"]

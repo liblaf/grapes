@@ -4,11 +4,11 @@ import attrs
 
 from liblaf import grapes
 
-from . import TimerWithRecords
+from . import TimerRecords
 
 
 @attrs.define
-class TimedFunction[**P, T](TimerWithRecords):
+class TimedFunction[**P, T](TimerRecords):
     _func: Callable[P, T] = attrs.field(alias="func")
 
     def __attrs_post_init__(self) -> None:

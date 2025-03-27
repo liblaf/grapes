@@ -2,11 +2,11 @@ from collections.abc import Iterable, Iterator
 
 import attrs
 
-from . import TimerWithRecords
+from . import TimerRecords
 
 
 @attrs.define
-class TimedIterable[T](TimerWithRecords):
+class TimedIterable[T](TimerRecords):
     total: int | None = attrs.field(default=None, kw_only=True)
     _iterable: Iterable[T] = attrs.field(alias="iterable")
 

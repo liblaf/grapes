@@ -2,7 +2,6 @@ from ._base import (
     BaseTimer,
     TimerConfig,
     TimerRecords,
-    TimerWithRecords,
     register_timer_at_exit,
 )
 from ._function import TimedFunction
@@ -18,7 +17,6 @@ __all__ = [
     "TimerConfig",
     "TimerName",
     "TimerRecords",
-    "TimerWithRecords",
     "get_time",
     "register_timer_at_exit",
     "timer",

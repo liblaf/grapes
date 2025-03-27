@@ -7,14 +7,14 @@ import attrs
 
 from liblaf.grapes.timing._time import TimerName
 
-from . import TimedFunction, TimedIterable, TimerWithRecords
+from . import TimedFunction, TimedIterable, TimerRecords
 
 
 @attrs.define
 class Timer(
     contextlib.AbstractAsyncContextManager,
     contextlib.AbstractContextManager,
-    TimerWithRecords,
+    TimerRecords,
 ):
     async def __aenter__(self) -> Self:
         return self.__enter__()

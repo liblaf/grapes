@@ -55,7 +55,7 @@ class BaseTimer(TimerConfig):
 
 
 @attrs.define
-class TimerRecords(TimerConfig):
+class TimerRecords(BaseTimer):
     log_level_record: int | str | None = attrs.field(default="DEBUG", kw_only=True)
     log_level_summary: int | str | None = attrs.field(default="INFO", kw_only=True)
     log_summary_at_exit: bool = attrs.field(default=False, kw_only=True)
@@ -182,9 +182,9 @@ class TimerRecords(TimerConfig):
         for key, value in nanoseconds.items():
             self._records[key].append(value * 1e-9)
 
-
-@attrs.define
-class TimerWithRecords(BaseTimer, TimerRecords): ...
+    def _end(self) -> None:
+        super()._end()
+        self._append(seconds=self._current_record)
 
 
 TIMERS: list[TimerRecords] = []

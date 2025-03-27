@@ -9,6 +9,7 @@ theme:
   logo: logo.png
 
 plugins:
+  include-markdown:
   mkdocstrings:
     handlers:
       python:

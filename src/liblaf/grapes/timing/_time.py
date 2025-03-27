@@ -4,7 +4,7 @@ from typing import Literal
 
 import autoregistry
 
-type TimeCounterName = Literal[
+type TimerName = Literal[
     "children_system",
     "children_user",
     "elapsed",
@@ -31,13 +31,5 @@ REGISTRY["time"] = time.time
 REGISTRY["user"] = lambda: os.times().user
 
 
-def get_time(name: TimeCounterName | str = "perf") -> float:
-    """Retrieve the current time from the specified time counter.
-
-    Args:
-        name: The name of the time counter to use.
-
-    Returns:
-        The current time from the specified time counter.
-    """
+def get_time(name: TimerName | str = "perf") -> float:
     return REGISTRY[name]()

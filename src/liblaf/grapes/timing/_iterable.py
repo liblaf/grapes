@@ -1,30 +1,30 @@
 from collections.abc import Iterable, Iterator
 
-from . import TimerAttrs, TimerTrait
+import attrs
+
+from . import TimerWithRecords
 
 
-class TimedIterable[T](TimerTrait):
-    iterable: Iterable[T]
-    __timer_attrs: TimerAttrs
+@attrs.define
+class TimedIterable[T](TimerWithRecords):
+    total: int | None = attrs.field(default=None, kw_only=True)
+    _iterable: Iterable[T] = attrs.field(alias="iterable")
 
-    @property
-    def _timer_attrs(self) -> TimerAttrs:
-        return self.__timer_attrs
-
-    def __init__(self, iterable: Iterable[T], timer: TimerTrait) -> None:
-        self.__timer_attrs = timer._timer_attrs  # noqa: SLF001
-        self.iterable = iterable
+    def __attrs_post_init__(self) -> None:
         self.label = self.label or "Iterable"
 
     def __contains__(self, x: object, /) -> bool:
-        return x in self.iterable  # pyright: ignore[reportOperatorIssue]
+        return x in self._iterable  # pyright: ignore[reportOperatorIssue]
 
     def __iter__(self) -> Iterator[T]:
-        for item in self.iterable:
-            self.start()
+        for item in self._iterable:
+            self._start()
             yield item
-            self.end(depth=3)
+            self._end()
+            self.log_record(depth=3)
         self.log_summary(depth=2)
 
     def __len__(self) -> int:
-        return len(self.iterable)  # pyright: ignore[reportArgumentType]
+        if self.total is not None:
+            return self.total
+        return len(self._iterable)  # pyright: ignore[reportArgumentType]

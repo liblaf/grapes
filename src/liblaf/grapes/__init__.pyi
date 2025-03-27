@@ -67,7 +67,7 @@ from .serde import (
     serialize,
 )
 from .text import strip_comments
-from .timing import get_time, timer
+from .timing import TimedFunction, TimedIterable, TimerName, get_time, timer
 from .typed import ClassInfo, Decorator, LogLevel, StrPath
 
 __all__ = [
@@ -77,6 +77,9 @@ __all__ = [
     "IterableWrapper",
     "LogLevel",
     "StrPath",
+    "TimedFunction",
+    "TimedIterable",
+    "TimerName",
     "__version__",
     "__version_tuple__",
     "as_iterable",

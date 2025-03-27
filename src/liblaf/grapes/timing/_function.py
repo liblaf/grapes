@@ -1,27 +1,22 @@
-import functools
 from collections.abc import Callable
+
+import attrs
 
 from liblaf import grapes
 
-from . import TimerAttrs, TimerTrait
+from . import TimerWithRecords
 
 
-class TimedFunction[**P, T](TimerTrait):
-    fn: Callable[P, T]
-    __timer_attrs: TimerAttrs
+@attrs.define
+class TimedFunction[**P, T](TimerWithRecords):
+    _func: Callable[P, T] = attrs.field(alias="func")
 
-    @property
-    def _timer_attrs(self) -> TimerAttrs:
-        return self.__timer_attrs
+    def __attrs_post_init__(self) -> None:
+        self.label = self.label or grapes.full_qual_name(self._func) or "Function"
 
-    def __init__(self, fn: Callable[P, T], timer: TimerTrait) -> None:
-        self.__timer_attrs = timer._timer_attrs  # noqa: SLF001
-        self.fn = fn
-        self.label = self.label or grapes.full_qual_name(fn) or "Function"
-        functools.update_wrapper(self, fn)
-
-    def __call__(self, *args: P.args, **kwargs: P.kwargs) -> T:  # pyright: ignore[reportIncompatibleMethodOverride]
-        self.start()
-        result: T = self.fn(*args, **kwargs)
-        self.end(depth=3)
+    def __call__(self, *args: P.args, **kwargs: P.kwargs) -> T:
+        self._start()
+        result: T = self._func(*args, **kwargs)
+        self._end()
+        self.log_record(depth=3)
         return result

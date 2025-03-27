@@ -1,20 +1,25 @@
-from ._atexit import register_timer
-from ._base import TimerAttrs, TimerTrait
+from ._base import (
+    BaseTimer,
+    TimerConfig,
+    TimerRecords,
+    TimerWithRecords,
+    register_timer_at_exit,
+)
 from ._function import TimedFunction
 from ._iterable import TimedIterable
-from ._records import TimerRecordsAttrs, TimerRecordsTrait
-from ._time import TimeCounterName, get_time
-from ._timer import timer
+from ._time import TimerName, get_time
+from ._timer import Timer, timer
 
 __all__ = [
-    "TimeCounterName",
+    "BaseTimer",
     "TimedFunction",
     "TimedIterable",
-    "TimerAttrs",
-    "TimerRecordsAttrs",
-    "TimerRecordsTrait",
-    "TimerTrait",
+    "Timer",
+    "TimerConfig",
+    "TimerName",
+    "TimerRecords",
+    "TimerWithRecords",
     "get_time",
-    "register_timer",
+    "register_timer_at_exit",
     "timer",
 ]

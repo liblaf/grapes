@@ -1,4 +1,4 @@
-from collections.abc import Generator, Iterable
+from collections.abc import Generator, Iterable, Sequence
 
 from rich.progress import Progress
 
@@ -8,42 +8,40 @@ from . import progress
 
 
 def track[T](
-    sequence: Iterable[T],
+    iterable: Iterable[T],
     *,
     description: str | bool | None = True,
-    record_log_level: int | str | None = "DEBUG",
-    summary_log_level: int | str | None = "INFO",
-    timer: bool = True,
+    log_level_record: int | str | None = "DEBUG",
+    log_level_summary: int | str | None = "INFO",
+    timers: bool | Sequence[grapes.TimerName | str] = ["perf"],
     total: float | None = None,
 ) -> Generator[T]:
-    """Tracks the progress of iterating over a sequence with optional logging and timing.
-
-    Args:
-        sequence: The sequence to iterate over.
-        description: Description for the progress bar. If `True`, uses caller location.
-        record_log_level: Log level for recording progress.
-        summary_log_level: Log level for reporting progress.
-        timer: Whether to use a timer for tracking.
-        total: Total number of items in the sequence.
-
-    Yields:
-        Yields items from the sequence.
-    """
     if description is True:
         description = grapes.caller_location(2)
     description = description or ""
     prog: Progress = progress()
-    if timer:
-        t = grapes.timer(
+    if timers is True:
+        timers = ["perf"]
+    if total is None:
+        total = try_len(iterable)
+    if timers:
+        iterable: grapes.TimedIterable[T] = grapes.timer(
+            iterable,
             label=description,
-            log_summary_at_exit=False,
-            record_log_level=record_log_level,
-            summary_log_level=summary_log_level,
+            log_level_record=log_level_record,
+            log_level_summary=log_level_summary,
+            timers=timers,
+            total=int(total) if total is not None else None,
         )
         with prog:
-            yield from t.track(
-                prog.track(sequence, total=total, description=description)
-            )
+            yield from prog.track(iterable, total=total, description=description)
     else:
         with prog:
-            yield from prog.track(sequence, description=description)
+            yield from prog.track(iterable, total=total, description=description)
+
+
+def try_len(iterable: Iterable) -> int | None:
+    try:
+        return len(iterable)  # pyright: ignore[reportArgumentType]
+    except TypeError:
+        return None

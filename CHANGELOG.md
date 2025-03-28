@@ -1,14 +1,40 @@
 # Changelog
 
-## [0.1.11](https://github.com/liblaf/grapes/compare/v0.1.10..v0.1.11) - 2025-03-22
+## [0.1.12](https://github.com/liblaf/grapes/compare/v0.1.11..v0.1.12) - 2025-03-27
+
+### ✨ Features
+
+- **logging:** add clear_handlers function and integrate with loguru - ([a4f2954](https://github.com/liblaf/grapes/commit/a4f2954dde68dd69e6892a4afec7fbb21683609a))
+- enhance testing and benchmarking capabilities - ([c1c4eae](https://github.com/liblaf/grapes/commit/c1c4eae12c43fd6365cc08260a257cbfb484d2dd))
+
+### 📝 Documentation
+
+- update README with project description and features - ([6cdd39f](https://github.com/liblaf/grapes/commit/6cdd39fec0cb888dd63e0974508c6f52007263db))
+- update README.md and mkdocs.yaml for improved formatting and clarity - ([49d6e20](https://github.com/liblaf/grapes/commit/49d6e20a3f48cc30b14d4c55414ab2de3c79fa14))
 
 ### ♻ Code Refactoring
 
-- **environ:** modify `init_env` to accept a path parameter - ([c35581a](https://github.com/liblaf/grapes/commit/c35581a400d16dfcf25e83d594766b70abb1de30))
+- **timing:** restructure timer implementation and add protocol support - ([34e0b84](https://github.com/liblaf/grapes/commit/34e0b8418bd180cd6444d1badf2f9d16296a5e31))
+
+### 🔧 Continuous Integration
+
+- rename workflow from 'Test' to 'Bench' - ([228bfb3](https://github.com/liblaf/grapes/commit/228bfb3b83022fec0ebe4449e67b9434c8795c53))
+- restructure workflows and add benchmark support - ([7e2e3a5](https://github.com/liblaf/grapes/commit/7e2e3a5e636ae3ac315d86a6cfb9e70acdb2b4ee))
+- update GitHub Pages token configuration and repository references - ([679759f](https://github.com/liblaf/grapes/commit/679759f2eca7eaea5d8f1947af5919e24b5ddcfb))
+- add GitHub Pages write permissions and setup action - ([bd19931](https://github.com/liblaf/grapes/commit/bd1993141a9852aacf0d5b30a5d012c8bca178c4))
+- refactor GitHub Actions workflows for docs - ([eaec10d](https://github.com/liblaf/grapes/commit/eaec10d0700a9e15c7af47983fe7b770ac8175bb))
+- conditionally run docs workflow on version tags - ([e0c2aec](https://github.com/liblaf/grapes/commit/e0c2aecd233210509188b80227337a6224d7b216))
+- add GitHub workflows for docs deployment and testing - ([74b1906](https://github.com/liblaf/grapes/commit/74b190662918bf6c4ace03677c958731c147f3cb))
 
 ### ❤️ New Contributors
 
 - @liblaf made their first contribution
+
+## [0.1.11](https://github.com/liblaf/grapes/compare/v0.1.10..v0.1.11) - 2025-03-23
+
+### ♻ Code Refactoring
+
+- **environ:** modify `init_env` to accept a path parameter - ([c35581a](https://github.com/liblaf/grapes/commit/c35581a400d16dfcf25e83d594766b70abb1de30))
 
 ## [0.1.10](https://github.com/liblaf/grapes/compare/v0.1.9..v0.1.10) - 2025-03-19
 

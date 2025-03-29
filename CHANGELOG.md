@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.13](https://github.com/liblaf/grapes/compare/v0.1.12...v0.1.13) (2025-03-29)
+
+
+### ✨ Features
+
+* **logging:** add default log format to file handler ([257f508](https://github.com/liblaf/grapes/commit/257f508f79e0a85914cef0272421465feb2db66b))
+
+
+### ♻ Code Refactoring
+
+* **logging:** reorganize logging module structure and improve functionality ([a680077](https://github.com/liblaf/grapes/commit/a6800778a4ada4213e9ca2198d7163d589926a97))
+
 ## [0.1.12](https://github.com/liblaf/grapes/compare/v0.1.11..v0.1.12) - 2025-03-27
 
 ### ✨ Features

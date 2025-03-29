@@ -45,6 +45,13 @@ def file_handler(
         fpath = env.path("LOGGING_FILE", default=Path("run.log"))
     if filter_ is None:
         filter_ = default_filter()
+    if "format" not in kwargs:
+        kwargs["format"] = (
+            "<green>{elapsed}</green> | "
+            "<level>{level: <8}</level> | "
+            "<cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - "
+            "<level>{message}</level>"
+        )
     return {"sink": fpath, "filter": filter_, "mode": "w", **kwargs}
 
 

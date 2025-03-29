@@ -1,18 +1,20 @@
 # Changelog
 
-## [0.1.13](https://github.com/liblaf/grapes/compare/v0.1.12...v0.1.13) (2025-03-29)
-
+## [0.1.13](https://github.com/liblaf/grapes/compare/v0.1.12..v0.1.13) - 2025-03-29
 
 ### ✨ Features
 
-* **logging:** add default log format to file handler ([257f508](https://github.com/liblaf/grapes/commit/257f508f79e0a85914cef0272421465feb2db66b))
-
+- **logging:** add default log format to file handler - ([257f508](https://github.com/liblaf/grapes/commit/257f508f79e0a85914cef0272421465feb2db66b))
 
 ### ♻ Code Refactoring
 
-* **logging:** reorganize logging module structure and improve functionality ([a680077](https://github.com/liblaf/grapes/commit/a6800778a4ada4213e9ca2198d7163d589926a97))
+- **logging:** reorganize logging module structure and improve functionality - ([a680077](https://github.com/liblaf/grapes/commit/a6800778a4ada4213e9ca2198d7163d589926a97))
 
-## [0.1.12](https://github.com/liblaf/grapes/compare/v0.1.11..v0.1.12) - 2025-03-27
+### ❤️ New Contributors
+
+- @liblaf made their first contribution
+
+## [0.1.12](https://github.com/liblaf/grapes/compare/v0.1.11..v0.1.12) - 2025-03-28
 
 ### ✨ Features
 
@@ -37,10 +39,6 @@
 - refactor GitHub Actions workflows for docs - ([eaec10d](https://github.com/liblaf/grapes/commit/eaec10d0700a9e15c7af47983fe7b770ac8175bb))
 - conditionally run docs workflow on version tags - ([e0c2aec](https://github.com/liblaf/grapes/commit/e0c2aecd233210509188b80227337a6224d7b216))
 - add GitHub workflows for docs deployment and testing - ([74b1906](https://github.com/liblaf/grapes/commit/74b190662918bf6c4ace03677c958731c147f3cb))
-
-### ❤️ New Contributors
-
-- @liblaf made their first contribution
 
 ## [0.1.11](https://github.com/liblaf/grapes/compare/v0.1.10..v0.1.11) - 2025-03-23
 

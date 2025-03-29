@@ -6,6 +6,7 @@ from . import (
     itertools,
     logging,
     path,
+    pretty,
     progress_bar,
     serde,
     text,
@@ -31,7 +32,6 @@ from .logging import (
     debug_once,
     error_once,
     exception_once,
-    full_qual_name,
     info_once,
     init_logging,
     log_once,
@@ -41,6 +41,7 @@ from .logging import (
     warning_once,
 )
 from .path import as_path
+from .pretty import pretty_func, pretty_location
 from .progress_bar import progress, track
 from .serde import (
     deserialize,
@@ -68,7 +69,7 @@ from .serde import (
 )
 from .text import strip_comments
 from .timing import TimedFunction, TimedIterable, TimerName, get_time, timer
-from .typed import ClassInfo, Decorator, LogLevel, StrPath
+from .typed import ClassInfo, Decorator, LogLevel, SizedIterable, StrPath
 
 __all__ = [
     "ClassInfo",
@@ -76,6 +77,7 @@ __all__ = [
     "Decorator",
     "IterableWrapper",
     "LogLevel",
+    "SizedIterable",
     "StrPath",
     "TimedFunction",
     "TimedIterable",
@@ -92,7 +94,6 @@ __all__ = [
     "environ",
     "error_once",
     "exception_once",
-    "full_qual_name",
     "functools",
     "generator_to_list",
     "get_time",
@@ -124,6 +125,9 @@ __all__ = [
     "logging_console",
     "optional_imports",
     "path",
+    "pretty",
+    "pretty_func",
+    "pretty_location",
     "progress",
     "progress_bar",
     "save",

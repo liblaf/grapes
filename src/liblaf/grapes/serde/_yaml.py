@@ -7,7 +7,7 @@ from ruamel.yaml import YAML
 
 from liblaf import grapes
 
-from . import AbstractSerializer
+from ._abc import AbstractSerializer
 
 
 class YAMLSerializer(AbstractSerializer):

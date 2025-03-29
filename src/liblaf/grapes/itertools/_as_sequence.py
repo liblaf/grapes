@@ -1,9 +1,9 @@
 from collections.abc import Sequence
 from typing import Any
 
-from liblaf.grapes.typed import ClassInfo
+from liblaf.grapes import ClassInfo
 
-from . import as_iterable
+from ._as_iterable import as_iterable
 
 
 def as_sequence(obj: Any, base_type: ClassInfo | None = (str, bytes)) -> Sequence:

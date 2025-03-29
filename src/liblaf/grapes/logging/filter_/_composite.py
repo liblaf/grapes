@@ -1,6 +1,7 @@
 import loguru
 
-from . import Filter, as_filter_func
+from ._as_filter_func import as_filter_func
+from .typed import Filter
 
 
 def filter_all(*filters: Filter) -> "loguru.FilterFunction":

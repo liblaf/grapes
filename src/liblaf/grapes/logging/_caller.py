@@ -1,10 +1,12 @@
-from pathlib import Path
 from types import FrameType
 
 from loguru._get_frame import get_frame
+from rich.text import Text
+
+from liblaf import grapes
 
 
-def caller_location(depth: int = 1, *, markup: bool = True) -> str:
+def caller_location(depth: int = 1) -> Text:
     """Returns the file name and line number of the caller's location in the code.
 
     Args:
@@ -14,16 +16,21 @@ def caller_location(depth: int = 1, *, markup: bool = True) -> str:
     Returns:
         The file name and line number of the caller's location. If the frame cannot be retrieved, returns "<unknown>".
     """
-    frame: FrameType | None = get_frame(depth)
-    if not frame:
-        return "<unknown>"
-    filepath: Path = Path(frame.f_code.co_filename)
-    if markup:
-        filename: str = f"[link={filepath.as_uri()}]{filepath.name}[/link]"
-        lineno: str = (
-            f"[link={filepath.as_uri()}#{frame.f_lineno}]{frame.f_lineno}[/link]"
-        )
-    else:
-        filename = filepath.name
-        lineno = str(frame.f_lineno)
-    return f"{filename}:{lineno}"
+    frame: FrameType | None
+    try:
+        frame = get_frame(depth)  # pyright: ignore[reportAssignmentType]
+    except ValueError:
+        frame = None
+    file: str | None = None
+    function: str | None = None
+    line: int | None = None
+    name: str | None = None
+    if frame is not None:
+        file = frame.f_code.co_filename
+        function = frame.f_code.co_name
+        line = frame.f_lineno
+        name = frame.f_globals.get("__name__")
+    text: Text = grapes.pretty_location(
+        function=function, line=line, name=name, file=file
+    )
+    return text

@@ -7,7 +7,7 @@ from loguru import _filters, logger
 
 from liblaf import grapes
 
-from . import Filter
+from .typed import Filter
 
 dispatcher = grapes.ConditionalDispatcher()
 
@@ -88,6 +88,6 @@ def _(filter_: Callable) -> "loguru.FilterFunction":
 
 
 @dispatcher.final(fallback=True)
-def as_filter_func(filter_: Filter) -> "loguru.FilterFunction | None":  # noqa: ARG001
-    msg: str = f"Invalid filter, it should be a function, a string or a dict, not: '{type(filter).__name__}'"
+def as_filter_func(filter_: Filter) -> "loguru.FilterFunction | None":
+    msg: str = f"Invalid filter, it should be a function, a string or a dict, not: '{type(filter_).__name__}'"
     raise TypeError(msg)

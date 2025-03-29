@@ -10,7 +10,7 @@ from loguru import logger
 
 from liblaf import grapes
 
-from . import TimerName, get_time
+from ._time import TimerName, get_time
 
 
 @attrs.define
@@ -56,6 +56,7 @@ class BaseTimer(TimerConfig):
 
 @attrs.define
 class TimerRecords(BaseTimer):
+    depth: int = attrs.field(default=0, kw_only=True)
     log_level_record: int | str | None = attrs.field(default="DEBUG", kw_only=True)
     log_level_summary: int | str | None = attrs.field(default="INFO", kw_only=True)
     log_summary_at_exit: bool = attrs.field(default=False, kw_only=True)
@@ -104,10 +105,11 @@ class TimerRecords(BaseTimer):
     def human_record(self, index: int = -1, label: str | None = None) -> str:
         label = label or self.label or "Timer"
         text: str = f"{label} > "
+        items: list[str] = []
         for timer, value in self.row(index).items():
             human_duration: str = grapes.human_duration(value)
-            text += f"{timer}: {human_duration}, "
-        text = text.strip(", ")
+            items.append(f"{timer}: {human_duration}")
+        text += ", ".join(items)
         return text
 
     def human_summary(self, label: str | None = None) -> str:
@@ -142,7 +144,9 @@ class TimerRecords(BaseTimer):
         level = level or self.log_level_record
         if level is None:
             return
-        logger.opt(depth=depth).log(level, self.human_record(index=index, label=label))
+        logger.opt(depth=self.depth + depth).log(
+            level, self.human_record(index=index, label=label)
+        )
 
     def log_summary(
         self, label: str | None = None, depth: int = 1, level: int | str | None = None
@@ -150,7 +154,7 @@ class TimerRecords(BaseTimer):
         level = level or self.log_level_summary
         if level is None:
             return
-        logger.opt(depth=depth).log(level, self.human_summary(label=label))
+        logger.opt(depth=self.depth + depth).log(level, self.human_summary(label=label))
 
     def row(self, index: int) -> Mapping[str, float]:
         return {timer: values[index] for timer, values in self._records.items()}

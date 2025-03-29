@@ -5,12 +5,16 @@ from typing import Unpack
 import loguru
 from environs import env
 from rich.console import Console
+from typing_extensions import deprecated
 
 from liblaf import grapes
 
-from . import Filter, default_filter
+from ._default import default_filter
+from .filter_ import Filter
+from .handler import LoguruRichHandler, TracebackArgs
 
 
+@deprecated("Use `rich_handler()` instead.")
 def console_handler(
     console: Console | None = None,
     filter_: Filter | None = None,
@@ -54,3 +58,24 @@ def jsonl_handler(
     if filter_ is None:
         filter_ = default_filter()
     return {"sink": fpath, "filter": filter_, "serialize": True, "mode": "w", **kwargs}
+
+
+def rich_handler(
+    *,
+    console: Console | None = None,
+    filter_: Filter | None = None,
+    traceback: TracebackArgs | None = None,
+    **kwargs: Unpack["loguru.BasicHandlerConfig"],
+) -> "loguru.HandlerConfig":
+    if console is None:
+        console = grapes.logging_console()
+    if filter_ is None:
+        filter_ = default_filter()
+    if traceback is None:
+        traceback = TracebackArgs(show_locals=True)
+    return {
+        "sink": LoguruRichHandler(console=console, traceback=traceback),
+        "format": "",
+        "filter": filter_,
+        **kwargs,
+    }

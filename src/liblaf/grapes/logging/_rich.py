@@ -5,6 +5,7 @@ import rich.traceback
 from rich.console import Console
 from rich.style import Style
 from rich.theme import Theme
+from typing_extensions import deprecated
 
 
 @functools.cache
@@ -25,8 +26,10 @@ def logging_theme() -> Theme:
 
     Returns:
         A Theme object with the specified styles for logging levels.
+
+    References:
+        - [loguru/loguru/_defaults.py at c490ce0534c6e176306f339a92c221dc6f41a6a7 · Delgan/loguru](https://github.com/Delgan/loguru/blob/c490ce0534c6e176306f339a92c221dc6f41a6a7/loguru/_defaults.py)
     """
-    # [loguru/loguru/_defaults.py at c490ce0534c6e176306f339a92c221dc6f41a6a7 · Delgan/loguru](https://github.com/Delgan/loguru/blob/c490ce0534c6e176306f339a92c221dc6f41a6a7/loguru/_defaults.py)
     return Theme(
         {
             "logging.level.notset": Style(dim=True),
@@ -51,9 +54,10 @@ def logging_console() -> Console:
     Returns:
         A rich Console object configured for logging.
     """
-    return rich.console.Console(theme=logging_theme(), stderr=True)
+    return Console(theme=logging_theme(), stderr=True)
 
 
+@deprecated("This function is deprecated and will be removed in a future version.")
 def init_rich(*, show_locals: bool = True) -> None:
     """Initialize rich logging for pretty printing and tracebacks.
 

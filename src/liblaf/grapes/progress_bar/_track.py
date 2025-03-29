@@ -4,7 +4,7 @@ from rich.progress import Progress
 
 from liblaf import grapes
 
-from . import progress
+from ._progress import progress
 
 
 def track[T](
@@ -17,7 +17,7 @@ def track[T](
     total: float | None = None,
 ) -> Generator[T]:
     if description is True:
-        description = grapes.caller_location(2)
+        description = grapes.caller_location(2).plain
     description = description or ""
     prog: Progress = progress()
     if timers is True:
@@ -27,6 +27,7 @@ def track[T](
     if timers:
         iterable: grapes.TimedIterable[T] = grapes.timer(
             iterable,
+            depth=2,
             label=description,
             log_level_record=log_level_record,
             log_level_summary=log_level_summary,

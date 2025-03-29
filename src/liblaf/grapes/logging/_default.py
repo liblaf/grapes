@@ -2,7 +2,9 @@ from collections.abc import Sequence
 
 import loguru
 
-from . import Filter, filter_all, filter_once
+from .filter_._composite import filter_all
+from .filter_._once import filter_once
+from .filter_.typed import Filter
 
 DEFAULT_LEVEL: int | str = "DEBUG"
 

@@ -5,7 +5,7 @@ from typing import Any, override
 
 from liblaf import grapes
 
-from . import AbstractSerializer
+from ._abc import AbstractSerializer
 
 
 class JSONSerializer(AbstractSerializer):

@@ -7,7 +7,10 @@ from typing_extensions import deprecated
 
 from liblaf import grapes
 
-from . import AbstractSerializer, json, toml, yaml
+from ._abc import AbstractSerializer
+from ._json import json
+from ._toml import toml
+from ._yaml import yaml
 
 SERIALIZERS = autoregistry.Registry()
 SERIALIZERS["json"] = json

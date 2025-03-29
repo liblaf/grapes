@@ -2,7 +2,7 @@ from collections.abc import Iterable, Iterator
 
 import attrs
 
-from . import TimerRecords
+from ._base import TimerRecords
 
 
 @attrs.define
@@ -21,7 +21,7 @@ class TimedIterable[T](TimerRecords):
             self._start()
             yield item
             self._end()
-            self.log_record(depth=3)
+            self.log_record(depth=2)
         self.log_summary(depth=2)
 
     def __len__(self) -> int:

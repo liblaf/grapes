@@ -6,7 +6,7 @@ import tomlkit
 
 from liblaf import grapes
 
-from . import AbstractSerializer
+from ._abc import AbstractSerializer
 
 
 class TOMLSerializer(AbstractSerializer):

@@ -7,7 +7,9 @@ import attrs
 
 from liblaf.grapes.timing._time import TimerName
 
-from . import TimedFunction, TimedIterable, TimerRecords
+from ._base import TimerRecords
+from ._function import TimedFunction
+from ._iterable import TimedIterable
 
 
 @attrs.define
@@ -50,7 +52,7 @@ class Timer(
         /,
     ) -> None:
         self._end()
-        self.log_record(depth=3)
+        self.log_record(depth=2)
 
     def start(self) -> None:
         self._start()
@@ -64,6 +66,7 @@ class Timer(
 def timer[T](
     iterable: Iterable[T],
     *,
+    depth: int = 0,
     label: str | None = None,
     log_level_record: int | str | None = "DEBUG",
     log_level_summary: int | str | None = "INFO",
@@ -75,6 +78,7 @@ def timer[T](
 def timer(
     iterable: None = None,
     *,
+    depth: int = 0,
     label: str | None = None,
     log_level_record: int | str | None = "DEBUG",
     log_level_summary: int | str | None = "INFO",
@@ -85,6 +89,7 @@ def timer(
 def timer[T](
     iterable: Iterable[T] | None = None,
     *,
+    depth: int = 0,
     label: str | None = None,
     log_level_record: int | str | None = "DEBUG",
     log_level_summary: int | str | None = "INFO",
@@ -97,6 +102,7 @@ def timer[T](
             iterable=iterable,
             label=label,
             timers=timers,
+            depth=depth,
             log_level_record=log_level_record,
             log_level_summary=log_level_summary,
             log_summary_at_exit=log_summary_at_exit,
@@ -105,6 +111,7 @@ def timer[T](
     return Timer(
         label=label,
         timers=timers,
+        depth=depth,
         log_level_record=log_level_record,
         log_level_summary=log_level_summary,
         log_summary_at_exit=log_summary_at_exit,

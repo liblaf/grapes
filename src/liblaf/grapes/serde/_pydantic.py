@@ -3,7 +3,7 @@ from typing import Any
 
 import pydantic
 
-from . import load, loads, save, saves
+from ._serde import load, loads, save, saves
 
 
 def load_pydantic[C: pydantic.BaseModel](

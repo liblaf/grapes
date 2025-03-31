@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.1.14](https://github.com/liblaf/grapes/compare/v0.1.13..v0.1.14) - 2025-03-31
+
+### ✨ Features
+
+- **functools:** add decorator with optional arguments support - ([c0b86a0](https://github.com/liblaf/grapes/commit/c0b86a03bb9ddabaedf3ea82294fe8fd156f15fd))
+
+### ⬆️ Dependencies
+
+- **deps:** update dependency rich to v14 (#34) - ([e3e1e09](https://github.com/liblaf/grapes/commit/e3e1e09bdbd5fce6e9020cbd29ed256058780ea9))
+
+### ❤️ New Contributors
+
+- @liblaf made their first contribution
+- @renovate[bot] made their first contribution in [#34](https://github.com/liblaf/grapes/pull/34)
+
 ## [0.1.13](https://github.com/liblaf/grapes/compare/v0.1.12..v0.1.13) - 2025-03-29
 
 ### ✨ Features
@@ -9,10 +24,6 @@
 ### ♻ Code Refactoring
 
 - **logging:** reorganize logging module structure and improve functionality - ([a680077](https://github.com/liblaf/grapes/commit/a6800778a4ada4213e9ca2198d7163d589926a97))
-
-### ❤️ New Contributors
-
-- @liblaf made their first contribution
 
 ## [0.1.12](https://github.com/liblaf/grapes/compare/v0.1.11..v0.1.12) - 2025-03-28
 

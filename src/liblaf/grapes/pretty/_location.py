@@ -5,7 +5,7 @@ from rich.style import Style
 from rich.text import Text
 
 
-def pretty_location(
+def location(
     name: str | None,
     function: str | None,
     line: int | None,

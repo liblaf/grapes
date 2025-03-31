@@ -5,7 +5,7 @@ from rich.style import Style
 from rich.text import Text
 
 
-def pretty_func(obj: Callable) -> Text:
+def func(obj: Callable) -> Text:
     text = Text()
     file: Path = Path(obj.__code__.co_filename)
     if file.exists():

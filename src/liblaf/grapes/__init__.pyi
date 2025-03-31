@@ -40,8 +40,7 @@ from .logging import (
     trace_once,
     warning_once,
 )
-from .path import as_path
-from .pretty import pretty_func, pretty_location
+from .path import as_path, find_project_dir
 from .progress_bar import progress, track
 from .serde import (
     deserialize,
@@ -137,8 +136,6 @@ __all__ = [
     "optional_imports",
     "path",
     "pretty",
-    "pretty_func",
-    "pretty_location",
     "progress",
     "progress_bar",
     "save",
@@ -157,6 +154,7 @@ __all__ = [
     "saves_yaml",
     "serde",
     "serialize",
+    "find_project_dir",
     "strip_comments",
     "success_once",
     "text",

@@ -30,7 +30,7 @@ def caller_location(depth: int = 1) -> Text:
         function = frame.f_code.co_name
         line = frame.f_lineno
         name = frame.f_globals.get("__name__")
-    text: Text = grapes.pretty_location(
+    text: Text = grapes.pretty.location(
         function=function, line=line, name=name, file=file
     )
     return text

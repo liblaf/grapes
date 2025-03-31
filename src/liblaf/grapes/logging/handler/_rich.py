@@ -56,7 +56,7 @@ class RichLogRecordRenderer:
 
     def add_path(self, record: "loguru.Record") -> Self:
         self.table.add_column("Path", style="log.path")
-        path: Text = grapes.pretty_location(
+        path: Text = grapes.pretty.location(
             name=record["name"],
             function=record["function"],
             line=record["line"],

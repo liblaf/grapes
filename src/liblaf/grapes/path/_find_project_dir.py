@@ -11,4 +11,4 @@ def find_project_dir(start: Path | None = None, name: str = "src") -> Path:
         if path.parent == path:
             return start.parent
         path = path.parent
-    return start.parent
+    return path.parent

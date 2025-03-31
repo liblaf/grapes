@@ -1,14 +1,20 @@
 # Changelog
 
+## [0.1.17](https://github.com/liblaf/grapes/compare/v0.1.16..v0.1.17) - 2025-03-31
+
+### 🐛 Bug Fixes
+
+- **path:** correct project directory path resolution - ([b808842](https://github.com/liblaf/grapes/commit/b808842ca50e4033ec0d40bac0f2354f26391056))
+
+### ❤️ New Contributors
+
+- @liblaf made their first contribution
+
 ## [0.1.16](https://github.com/liblaf/grapes/compare/v0.1.15..v0.1.16) - 2025-03-31
 
 ### 🐛 Bug Fixes
 
 - **timing:** set `slots=False` for `TimedFunction` to support `functools.update_wrapper` - ([aebf7e2](https://github.com/liblaf/grapes/commit/aebf7e27637faa7f65ebf7fb78a4482745eb3fce))
-
-### ❤️ New Contributors
-
-- @liblaf made their first contribution
 
 ## [0.1.15](https://github.com/liblaf/grapes/compare/v0.1.14..v0.1.15) - 2025-03-31
 

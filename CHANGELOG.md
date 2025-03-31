@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.17](https://github.com/liblaf/grapes/compare/v0.1.16...v0.1.17) (2025-03-31)
+
+
+### 🐛 Bug Fixes
+
+* **path:** correct project directory path resolution ([b808842](https://github.com/liblaf/grapes/commit/b808842ca50e4033ec0d40bac0f2354f26391056))
+
 ## [0.1.16](https://github.com/liblaf/grapes/compare/v0.1.15..v0.1.16) - 2025-03-31
 
 ### 🐛 Bug Fixes

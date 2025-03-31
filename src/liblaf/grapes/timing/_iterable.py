@@ -8,7 +8,9 @@ from ._base import TimerRecords
 @attrs.define
 class TimedIterable[T](TimerRecords):
     total: int | None = attrs.field(default=None, kw_only=True)
-    _iterable: Iterable[T] = attrs.field(alias="iterable")
+    _iterable: Iterable[T] = attrs.field(
+        alias="iterable", on_setattr=attrs.setters.frozen
+    )
 
     def __attrs_post_init__(self) -> None:
         self.label = self.label or "Iterable"

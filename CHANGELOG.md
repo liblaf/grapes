@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.15](https://github.com/liblaf/grapes/compare/v0.1.14...v0.1.15) (2025-03-31)
+
+
+### 🐛 Bug Fixes
+
+* **timing:** make wrapped objects immutable and update function wrapper ([72d6440](https://github.com/liblaf/grapes/commit/72d64404cf6d04d5b71951b989b2dc7627c0663e))
+
+
+### ♻ Code Refactoring
+
+* **pretty:** reorganize pretty module and add find_project_dir ([68b67dc](https://github.com/liblaf/grapes/commit/68b67dccf7445e256c6d0684c0c4913b73b36c4f))
+
 ## [0.1.14](https://github.com/liblaf/grapes/compare/v0.1.13..v0.1.14) - 2025-03-31
 
 ### ✨ Features

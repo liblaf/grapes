@@ -8,7 +8,9 @@ from liblaf import grapes
 from ._base import TimerRecords
 
 
-@attrs.define
+# `slots=False` is required to make `functools.update_wrapper(...)` work
+# ref: <https://www.attrs.org/en/stable/glossary.html#term-slotted-classes>
+@attrs.define(slots=False)
 class TimedFunction[**P, T](TimerRecords):
     _func: Callable[P, T] = attrs.field(alias="func", on_setattr=attrs.setters.frozen)
 

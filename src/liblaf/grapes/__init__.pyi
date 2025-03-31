@@ -15,7 +15,7 @@ from . import (
 )
 from ._version import __version__, __version_tuple__, version, version_tuple
 from .environ import init_env
-from .functools import ConditionalDispatcher
+from .functools import ConditionalDispatcher, decorator_with_optional_arguments
 from .human import (
     human_count,
     human_duration,
@@ -69,12 +69,22 @@ from .serde import (
 )
 from .text import strip_comments
 from .timing import TimedFunction, TimedIterable, TimerName, get_time, timer
-from .typed import ClassInfo, Decorator, LogLevel, SizedIterable, StrPath
+from .typed import (
+    ClassInfo,
+    Decorator,
+    DecoratorWithArguments,
+    DecoratorWithOptionalArguments,
+    LogLevel,
+    SizedIterable,
+    StrPath,
+)
 
 __all__ = [
     "ClassInfo",
     "ConditionalDispatcher",
     "Decorator",
+    "DecoratorWithArguments",
+    "DecoratorWithOptionalArguments",
     "IterableWrapper",
     "LogLevel",
     "SizedIterable",
@@ -90,6 +100,7 @@ __all__ = [
     "caller_location",
     "critical_once",
     "debug_once",
+    "decorator_with_optional_arguments",
     "deserialize",
     "environ",
     "error_once",

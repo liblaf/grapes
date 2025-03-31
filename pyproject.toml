@@ -76,7 +76,7 @@ dependencies = [
   "pydantic>=2.10.6,<3",
   "rich>=14,<15",
   "ruamel-yaml>=0.18.10,<0.19",
-  "tomlkit>=0.13.2,<0.14",
+  "tomlkit>=0.13.2,<0.14", "wrapt>=1.17.2,<2", "decorator>=5.2.1,<6",
 ]
 description = "Add your description here"
 dynamic = ["version"]

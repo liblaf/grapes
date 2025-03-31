@@ -42,19 +42,19 @@ class ConditionalDispatcher:
                 continue
         return self._final(*args, **kwargs)
 
-    def final(self, *, fallback: bool = False) -> Decorator:
-        def decorator[**P, T](fn: Callable[P, T]) -> Callable[P, T]:
+    def final(self, /, *, fallback: bool = False) -> Decorator:
+        def decorator[**P, T](func: Callable[P, T]) -> Callable[P, T]:
             if fallback:
-                self._final = fn
+                self._final = func
             else:
                 self._final = _dummy_final
-            functools.update_wrapper(self, fn)
+            functools.update_wrapper(self, func)
             return self
 
         return decorator
 
     def register(
-        self, condition: Callable[..., bool] = _always_true, priority: int = 0
+        self, condition: Callable[..., bool] = _always_true, *, priority: int = 0
     ) -> Decorator:
         def decorator[**P, T](fn: Callable[P, T]) -> Callable[P, T]:
             bisect.insort(

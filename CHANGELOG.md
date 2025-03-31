@@ -1,16 +1,18 @@
 # Changelog
 
-## [0.1.15](https://github.com/liblaf/grapes/compare/v0.1.14...v0.1.15) (2025-03-31)
-
+## [0.1.15](https://github.com/liblaf/grapes/compare/v0.1.14..v0.1.15) - 2025-03-31
 
 ### 🐛 Bug Fixes
 
-* **timing:** make wrapped objects immutable and update function wrapper ([72d6440](https://github.com/liblaf/grapes/commit/72d64404cf6d04d5b71951b989b2dc7627c0663e))
-
+- **timing:** make wrapped objects immutable and update function wrapper - ([72d6440](https://github.com/liblaf/grapes/commit/72d64404cf6d04d5b71951b989b2dc7627c0663e))
 
 ### ♻ Code Refactoring
 
-* **pretty:** reorganize pretty module and add find_project_dir ([68b67dc](https://github.com/liblaf/grapes/commit/68b67dccf7445e256c6d0684c0c4913b73b36c4f))
+- **pretty:** reorganize pretty module and add find_project_dir - ([68b67dc](https://github.com/liblaf/grapes/commit/68b67dccf7445e256c6d0684c0c4913b73b36c4f))
+
+### ❤️ New Contributors
+
+- @liblaf made their first contribution
 
 ## [0.1.14](https://github.com/liblaf/grapes/compare/v0.1.13..v0.1.14) - 2025-03-31
 
@@ -21,11 +23,6 @@
 ### ⬆️ Dependencies
 
 - **deps:** update dependency rich to v14 (#34) - ([e3e1e09](https://github.com/liblaf/grapes/commit/e3e1e09bdbd5fce6e9020cbd29ed256058780ea9))
-
-### ❤️ New Contributors
-
-- @liblaf made their first contribution
-- @renovate[bot] made their first contribution in [#34](https://github.com/liblaf/grapes/pull/34)
 
 ## [0.1.13](https://github.com/liblaf/grapes/compare/v0.1.12..v0.1.13) - 2025-03-29
 

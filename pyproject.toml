@@ -73,10 +73,10 @@ dependencies = [
   "glom>=24.11.0,<25",
   "lazy-loader>=0.4,<0.5",
   "loguru>=0.7.3,<0.8",
-  "pydantic>=2.10.6,<3",
-  "rich>=14,<15",
+  "pydantic>=2.11.1,<3",
+  "rich>=14.0.0,<15",
   "ruamel-yaml>=0.18.10,<0.19",
-  "tomlkit>=0.13.2,<0.14", "wrapt>=1.17.2,<2", "decorator>=5.2.1,<6",
+  "tomlkit>=0.13.2,<0.14",
 ]
 description = "Add your description here"
 dynamic = ["version"]
@@ -131,5 +131,4 @@ linux = "6.13"
 
 [tool.pytest.ini_options]
 addopts = ["--showlocals", "--strict-config", "--strict-markers"]
-junit_family = "legacy"
 testpaths = ["benches/", "tests/"]

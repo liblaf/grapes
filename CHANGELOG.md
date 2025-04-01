@@ -1,21 +1,20 @@
 # Changelog
 
-## [0.1.18](https://github.com/liblaf/grapes/compare/v0.1.17...v0.1.18) (2025-04-01)
-
+## [0.1.18](https://github.com/liblaf/grapes/compare/v0.1.17..v0.1.18) - 2025-04-01
 
 ### ♻ Code Refactoring
 
-* **typed:** rename StrPath to PathLike for clarity ([cdb4f96](https://github.com/liblaf/grapes/commit/cdb4f968398db334adf5f3333d129dd494b9415e))
+- **typed:** rename StrPath to PathLike for clarity - ([cdb4f96](https://github.com/liblaf/grapes/commit/cdb4f968398db334adf5f3333d129dd494b9415e))
+
+### ❤️ New Contributors
+
+- @liblaf made their first contribution
 
 ## [0.1.17](https://github.com/liblaf/grapes/compare/v0.1.16..v0.1.17) - 2025-03-31
 
 ### 🐛 Bug Fixes
 
 - **path:** correct project directory path resolution - ([b808842](https://github.com/liblaf/grapes/commit/b808842ca50e4033ec0d40bac0f2354f26391056))
-
-### ❤️ New Contributors
-
-- @liblaf made their first contribution
 
 ## [0.1.16](https://github.com/liblaf/grapes/compare/v0.1.15..v0.1.16) - 2025-03-31
 

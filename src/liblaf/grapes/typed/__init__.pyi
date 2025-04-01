@@ -4,7 +4,7 @@ from ._decorator import (
     DecoratorWithArguments,
     DecoratorWithOptionalArguments,
 )
-from ._misc import ClassInfo, LogLevel, StrPath
+from ._misc import ClassInfo, LogLevel, PathLike
 
 __all__ = [
     "ClassInfo",
@@ -12,6 +12,6 @@ __all__ = [
     "DecoratorWithArguments",
     "DecoratorWithOptionalArguments",
     "LogLevel",
+    "PathLike",
     "SizedIterable",
-    "StrPath",
 ]

@@ -74,8 +74,8 @@ from .typed import (
     DecoratorWithArguments,
     DecoratorWithOptionalArguments,
     LogLevel,
+    PathLike,
     SizedIterable,
-    StrPath,
 )
 
 __all__ = [
@@ -86,8 +86,8 @@ __all__ = [
     "DecoratorWithOptionalArguments",
     "IterableWrapper",
     "LogLevel",
+    "PathLike",
     "SizedIterable",
-    "StrPath",
     "TimedFunction",
     "TimedIterable",
     "TimerName",
@@ -104,6 +104,7 @@ __all__ = [
     "environ",
     "error_once",
     "exception_once",
+    "find_project_dir",
     "functools",
     "generator_to_list",
     "get_time",
@@ -154,7 +155,6 @@ __all__ = [
     "saves_yaml",
     "serde",
     "serialize",
-    "find_project_dir",
     "strip_comments",
     "success_once",
     "text",

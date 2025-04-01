@@ -8,4 +8,4 @@ type LogLevel = (
     | int
     | str
 )
-type StrPath = str | os.PathLike[str]
+type PathLike = str | os.PathLike[str]

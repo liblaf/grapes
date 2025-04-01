@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.18](https://github.com/liblaf/grapes/compare/v0.1.17...v0.1.18) (2025-04-01)
+
+
+### ♻ Code Refactoring
+
+* **typed:** rename StrPath to PathLike for clarity ([cdb4f96](https://github.com/liblaf/grapes/commit/cdb4f968398db334adf5f3333d129dd494b9415e))
+
 ## [0.1.17](https://github.com/liblaf/grapes/compare/v0.1.16..v0.1.17) - 2025-03-31
 
 ### 🐛 Bug Fixes

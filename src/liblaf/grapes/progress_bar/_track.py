@@ -2,9 +2,9 @@ from collections.abc import Generator, Iterable, Sequence
 
 from rich.progress import Progress
 
-from liblaf import grapes
-from liblaf.grapes.logging import caller_location
+from liblaf.grapes import timing
 from liblaf.grapes.timing import TimerName
+from liblaf.grapes.typed import MISSING, MissingType
 
 from ._progress import progress
 
@@ -12,28 +12,28 @@ from ._progress import progress
 def track[T](
     iterable: Iterable[T],
     *,
-    description: str | bool | None = True,
-    log_level_record: int | str | None = "DEBUG",
-    log_level_summary: int | str | None = "INFO",
+    description: str = "Progress",
     timers: bool | Sequence[TimerName | str] = ["perf"],
     total: float | None = None,
+    callback_end: timing.Callback | MissingType | None = MISSING,
+    callback_finally: timing.Callback | MissingType | None = MISSING,
 ) -> Generator[T]:
-    if description is True:
-        description = caller_location(2).plain
-    description = description or ""
     prog: Progress = progress()
     if timers is True:
         timers = ["perf"]
     if total is None:
         total = try_len(iterable)
     if timers:
-        iterable: grapes.TimedIterable[T] = grapes.timer(
+        if callback_end is MISSING:
+            callback_end = timing.log_record(depth=6)
+        if callback_finally is MISSING:
+            callback_finally = timing.log_summary(depth=5)
+        iterable: timing.TimedIterable[T] = timing.timer(
             iterable,
-            depth=2,
             label=description,
-            log_level_record=log_level_record,
-            log_level_summary=log_level_summary,
             timers=timers,
+            callback_end=callback_end,
+            callback_finally=callback_finally,
             total=int(total) if total is not None else None,
         )
         with prog:

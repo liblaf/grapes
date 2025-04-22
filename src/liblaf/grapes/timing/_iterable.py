@@ -2,11 +2,26 @@ from collections.abc import Iterable, Iterator
 
 import attrs
 
+from liblaf.grapes.typed import MISSING, MissingType
+
 from ._base import TimerRecords
+from ._callback import log_record, log_summary
+from ._utils import default_if_missing
+from .typed import Callback
 
 
 @attrs.define
 class TimedIterable[T](TimerRecords):
+    callback_end: Callback | MissingType | None = attrs.field(
+        default=MISSING,
+        converter=default_if_missing(log_record(depth=4)),
+        kw_only=True,
+    )
+    callback_finally: Callback | MissingType | None = attrs.field(
+        default=MISSING,
+        converter=default_if_missing(log_summary(depth=3)),
+        kw_only=True,
+    )
     total: int | None = attrs.field(default=None, kw_only=True)
     _iterable: Iterable[T] = attrs.field(
         alias="iterable", on_setattr=attrs.setters.frozen
@@ -23,8 +38,8 @@ class TimedIterable[T](TimerRecords):
             self._start()
             yield item
             self._end()
-            self.log_record(depth=2)
-        self.log_summary(depth=2)
+        if callable(self.callback_finally):
+            self.callback_finally(self)
 
     def __len__(self) -> int:
         if self.total is not None:

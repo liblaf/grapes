@@ -116,6 +116,7 @@ class LoguruRichHandler:
         renderer.add_level(message.record)
         renderer.add_message(message.record)
         renderer.add_path(message.record)
+        # TODO: console.print() is extremely slow
         self.console.print(renderer.render())
         if (exception := renderer.render_exception(message.record)) is not None:
             self.console.print(exception)

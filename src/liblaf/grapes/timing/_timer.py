@@ -5,11 +5,14 @@ from typing import Self, overload
 
 import attrs
 
-from liblaf.grapes.timing._time import TimerName
+from liblaf.grapes.typed import MISSING, MissingType
 
 from ._base import TimerRecords
+from ._callback import log_record
 from ._function import TimedFunction
 from ._iterable import TimedIterable
+from ._time import TimerName
+from .typed import Callback
 
 
 @attrs.define
@@ -35,12 +38,16 @@ class Timer(
             func,
             label=self.label,
             timers=self.timers,
-            log_level_record=self.log_level_record,
-            log_level_summary=self.log_level_summary,
-            log_summary_at_exit=self.log_summary_at_exit,
+            callback_start=self.callback_start,
+            callback_end=self.callback_end,
+            callback_finally=self.callback_finally,
         )
 
     def __enter__(self) -> Self:
+        if self.label is None:
+            self.label = "With Block"
+        if self.callback_end is MISSING:
+            self.callback_end = log_record(depth=4)
         self._start()
         return self
 
@@ -52,49 +59,42 @@ class Timer(
         /,
     ) -> None:
         self._end()
-        self.log_record(depth=2)
 
     def start(self) -> None:
         self._start()
 
-    def end(self, depth: int = 2) -> None:
+    def end(self) -> None:
         self._end()
-        self.log_record(depth=depth)
 
 
 @overload
 def timer[T](
     iterable: Iterable[T],
     *,
-    depth: int = 0,
     label: str | None = None,
-    log_level_record: int | str | None = "DEBUG",
-    log_level_summary: int | str | None = "INFO",
-    log_summary_at_exit: bool = False,
     timers: Sequence[TimerName | str] = ["perf"],
+    callback_start: Callback | MissingType | None = MISSING,
+    callback_end: Callback | MissingType | None = MISSING,
+    callback_finally: Callback | MissingType | None = MISSING,
     total: int | None = None,
 ) -> TimedIterable[T]: ...
 @overload
 def timer(
-    iterable: None = None,
     *,
-    depth: int = 0,
     label: str | None = None,
-    log_level_record: int | str | None = "DEBUG",
-    log_level_summary: int | str | None = "INFO",
-    log_summary_at_exit: bool = False,
     timers: Sequence[TimerName | str] = ["perf"],
-    total: None = None,
+    callback_start: Callback | MissingType | None = MISSING,
+    callback_end: Callback | MissingType | None = MISSING,
+    callback_finally: Callback | MissingType | None = MISSING,
 ) -> Timer: ...
 def timer[T](
     iterable: Iterable[T] | None = None,
     *,
-    depth: int = 0,
     label: str | None = None,
-    log_level_record: int | str | None = "DEBUG",
-    log_level_summary: int | str | None = "INFO",
-    log_summary_at_exit: bool = False,
     timers: Sequence[TimerName | str] = ["perf"],
+    callback_start: Callback | MissingType | None = MISSING,
+    callback_end: Callback | MissingType | None = MISSING,
+    callback_finally: Callback | MissingType | None = MISSING,
     total: int | None = None,
 ) -> TimedIterable[T] | Timer:
     if iterable is not None:
@@ -102,17 +102,15 @@ def timer[T](
             iterable=iterable,
             label=label,
             timers=timers,
-            depth=depth,
-            log_level_record=log_level_record,
-            log_level_summary=log_level_summary,
-            log_summary_at_exit=log_summary_at_exit,
+            callback_start=callback_start,
+            callback_end=callback_end,
+            callback_finally=callback_finally,
             total=total,
         )
     return Timer(
         label=label,
         timers=timers,
-        depth=depth,
-        log_level_record=log_level_record,
-        log_level_summary=log_level_summary,
-        log_summary_at_exit=log_summary_at_exit,
+        callback_start=callback_start,
+        callback_end=callback_end,
+        callback_finally=callback_finally,
     )

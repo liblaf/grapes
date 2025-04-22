@@ -1,5 +1,5 @@
-import atexit
 import collections
+import math
 import statistics
 import textwrap
 from collections.abc import Generator, Mapping, Sequence
@@ -8,9 +8,13 @@ from typing import overload
 import attrs
 from loguru import logger
 
-from liblaf import grapes
+from liblaf.grapes import human
+from liblaf.grapes.typed import MISSING, MissingType
 
+from ._callback import log_summary
 from ._time import TimerName, get_time
+from ._utils import default_if_missing
+from .typed import Callback
 
 
 @attrs.define
@@ -34,9 +38,11 @@ class BaseTimer(TimerConfig):
         init=False, factory=dict, on_setattr=attrs.setters.frozen
     )
 
-    def current_time(self, timer: str | None = None) -> float:
+    def elapsed(self, timer: str | None = None) -> float:
         timer = timer or self.default_timer
-        return self._time_end[timer] - self._time_start[timer]
+        if self._time_start.get(timer, math.inf) < self._time_end.get(timer, -math.inf):
+            return self._time_end[timer] - self._time_start[timer]
+        return get_time(timer) - self._time_start[timer]
 
     def _start(self) -> None:
         for timer in self.timers:
@@ -56,19 +62,20 @@ class BaseTimer(TimerConfig):
 
 @attrs.define
 class TimerRecords(BaseTimer):
-    depth: int = attrs.field(default=0, kw_only=True)
-    log_level_record: int | str | None = attrs.field(default="DEBUG", kw_only=True)
-    log_level_summary: int | str | None = attrs.field(default="INFO", kw_only=True)
-    log_summary_at_exit: bool = attrs.field(default=False, kw_only=True)
+    callback_start: Callback | MissingType | None = attrs.field(
+        default=MISSING, kw_only=True
+    )
+    callback_end: Callback | MissingType | None = attrs.field(
+        default=MISSING, kw_only=True
+    )
+    callback_finally: Callback | MissingType | None = attrs.field(
+        default=MISSING, converter=default_if_missing(factory=log_summary), kw_only=True
+    )
     _records: dict[str, list[float]] = attrs.field(
         init=False,
         factory=lambda: collections.defaultdict(list),
         on_setattr=attrs.setters.frozen,
     )
-
-    def __post_attrs_init__(self) -> None:
-        if self.log_summary_at_exit:
-            register_timer_at_exit(self)
 
     @overload
     def __getitem__(self, index: int) -> Mapping[str, float]: ...
@@ -107,7 +114,7 @@ class TimerRecords(BaseTimer):
         text: str = f"{label} > "
         items: list[str] = []
         for timer, value in self.row(index).items():
-            human_duration: str = grapes.human_duration(value)
+            human_duration: str = human.human_duration(value)
             items.append(f"{timer}: {human_duration}")
         text += ", ".join(items)
         return text
@@ -120,11 +127,11 @@ class TimerRecords(BaseTimer):
         body: str = ""
         for timer in self.columns:
             body += f"{timer} > "
-            human_mean: str = grapes.human_duration_series(self.column(timer))
-            human_median: str = grapes.human_duration(self.median(timer))
+            human_mean: str = human.human_duration_series(self.column(timer))
+            human_median: str = human.human_duration(self.median(timer))
             body += f"mean: {human_mean}, median: {human_median}\n"
         body = body.strip()
-        summary: str = header + "\n" + textwrap.indent(body, "  ")
+        summary: str = header + "\n" + textwrap.indent(body, "    ")
         return summary
 
     def iter_columns(self) -> Generator[tuple[str, Sequence[float]]]:
@@ -139,22 +146,17 @@ class TimerRecords(BaseTimer):
         index: int = -1,
         label: str | None = None,
         depth: int = 1,
-        level: int | str | None = None,
+        level: int | str = "DEBUG",
     ) -> None:
-        level = level or self.log_level_record
-        if level is None:
-            return
-        logger.opt(depth=self.depth + depth).log(
-            level, self.human_record(index=index, label=label)
-        )
+        logger.opt(depth=depth).log(level, self.human_record(index=index, label=label))
 
     def log_summary(
-        self, label: str | None = None, depth: int = 1, level: int | str | None = None
+        self,
+        label: str | None = None,
+        depth: int = 1,
+        level: int | str = "INFO",
     ) -> None:
-        level = level or self.log_level_summary
-        if level is None:
-            return
-        logger.opt(depth=self.depth + depth).log(level, self.human_summary(label=label))
+        logger.opt(depth=depth).log(level, self.human_summary(label=label))
 
     def row(self, index: int) -> Mapping[str, float]:
         return {timer: values[index] for timer, values in self._records.items()}
@@ -189,19 +191,10 @@ class TimerRecords(BaseTimer):
     def _end(self) -> None:
         super()._end()
         self._append(seconds=self._current_record)
+        if callable(self.callback_end):
+            self.callback_end(self)
 
-
-TIMERS: list[TimerRecords] = []
-
-
-def register_timer_at_exit(timer: TimerRecords) -> None:
-    TIMERS.append(timer)
-
-
-def log_summary() -> None:
-    for timer in TIMERS:
-        if timer.log_summary_at_exit and timer.n_rows > 1:
-            timer.log_summary()
-
-
-atexit.register(log_summary)
+    def _start(self) -> None:
+        super()._start()
+        if callable(self.callback_start):
+            self.callback_start(self)

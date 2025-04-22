@@ -1,10 +1,11 @@
+from pathlib import Path
 from typing import Unpack
 
 import loguru
 from environs import env
 from rich.console import Console
 
-from liblaf.grapes import environ, path, pretty
+from liblaf.grapes import environ, pretty
 from liblaf.grapes.logging.filters import Filter, default_filter
 from liblaf.grapes.logging.sink import LoguruRichHandler, TracebackArgs
 from liblaf.grapes.typed import PathLike
@@ -38,9 +39,7 @@ def file_handler(
     **kwargs: Unpack["loguru.BasicHandlerConfig"],
 ) -> "loguru.HandlerConfig":
     if file is None:
-        file = env.path(environ.LOGGING_FILE, default=None)
-        if file is None:
-            file = path.resolve_project_path("run.log")
+        file = env.path(environ.LOGGING_FILE, default=Path("run.log"))
     console: Console = pretty.get_console(file)
     filter_ = default_filter(filter_)
     if traceback is None:

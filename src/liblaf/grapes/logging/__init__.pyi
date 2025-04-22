@@ -15,7 +15,7 @@ from ._once import (
     trace_once,
     warning_once,
 )
-from ._rich import init_rich, logging_console, logging_theme
+from ._rich import init_rich
 from ._std import clear_handlers
 from .filters import (
     Filter,
@@ -25,7 +25,7 @@ from .filters import (
     filter_any,
     filter_once,
 )
-from .handler import jsonl_handler, rich_handler
+from .handler import file_handler, jsonl_handler, rich_handler
 from .sink import LoguruRichHandler, TracebackArgs
 
 __all__ = [
@@ -41,6 +41,7 @@ __all__ = [
     "default_filter",
     "error_once",
     "exception_once",
+    "file_handler",
     "filter_all",
     "filter_any",
     "filter_once",
@@ -53,8 +54,6 @@ __all__ = [
     "init_rich",
     "jsonl_handler",
     "log_once",
-    "logging_console",
-    "logging_theme",
     "rich_handler",
     "setup_loguru_logging_intercept",
     "sink",

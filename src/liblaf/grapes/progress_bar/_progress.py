@@ -14,7 +14,8 @@ from rich.progress import (
 from rich.table import Column
 from rich.text import Text
 
-from liblaf import grapes
+from liblaf.grapes import human as _human
+from liblaf.grapes import pretty
 
 
 class RateColumn(ProgressColumn):
@@ -44,7 +45,7 @@ class RateColumn(ProgressColumn):
         """
         if not task.speed:
             return Text(f"?{self.unit}/s", style="progress.data.speed")
-        human: str = grapes.human_throughout(task.speed, self.unit)
+        human: str = _human.human_throughout(task.speed, self.unit)
         return Text(human, style="progress.data.speed")
 
 
@@ -86,6 +87,6 @@ def progress(
             RateColumn(),
             "]",
         ]
-    console = console or grapes.logging_console()
+    console = console or pretty.get_console("stderr")
     progress = Progress(*columns, console=console)
     return progress

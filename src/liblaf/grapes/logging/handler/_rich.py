@@ -9,6 +9,7 @@ from rich.table import Table
 from rich.text import Text
 from rich.traceback import Traceback
 
+import liblaf.grapes.logging
 from liblaf import grapes
 
 
@@ -18,7 +19,7 @@ class TracebackArgs(TypedDict, total=False):
 
 @attrs.frozen(kw_only=True)
 class RichLogRecordRenderer:
-    console: Console = attrs.field(factory=grapes.logging_console)
+    console: Console = attrs.field(factory=liblaf.grapes.logging.logging_console)
     highlighter: Highlighter = attrs.field(factory=ReprHighlighter)
     markup: bool = attrs.field(default=True)
     traceback: TracebackArgs = attrs.field(

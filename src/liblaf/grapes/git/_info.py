@@ -1,9 +1,9 @@
 import os
 from typing import Protocol
 
-from liblaf import grapes
+from liblaf.grapes import imports
 
-with grapes.optional_imports(extra="git"):
+with imports.optional_imports(extra="git"):
     import git
     import giturlparse
 

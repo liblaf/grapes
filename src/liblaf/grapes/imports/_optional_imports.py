@@ -7,7 +7,7 @@ import etils.epy
 
 @contextlib.contextmanager
 def optional_imports(
-    name: str = "liblaf.grapes", extra: str | None = None
+    name: str = "liblaf-grapes", extra: str | None = None
 ) -> Generator[None, Any, None]:
     """Context manager to handle optional imports gracefully.
 

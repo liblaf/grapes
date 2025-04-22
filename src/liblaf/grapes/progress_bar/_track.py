@@ -3,6 +3,8 @@ from collections.abc import Generator, Iterable, Sequence
 from rich.progress import Progress
 
 from liblaf import grapes
+from liblaf.grapes.logging import caller_location
+from liblaf.grapes.timing import TimerName
 
 from ._progress import progress
 
@@ -13,11 +15,11 @@ def track[T](
     description: str | bool | None = True,
     log_level_record: int | str | None = "DEBUG",
     log_level_summary: int | str | None = "INFO",
-    timers: bool | Sequence[grapes.TimerName | str] = ["perf"],
+    timers: bool | Sequence[TimerName | str] = ["perf"],
     total: float | None = None,
 ) -> Generator[T]:
     if description is True:
-        description = grapes.caller_location(2).plain
+        description = caller_location(2).plain
     description = description or ""
     prog: Progress = progress()
     if timers is True:

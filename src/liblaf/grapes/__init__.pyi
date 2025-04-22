@@ -40,7 +40,7 @@ from .logging import (
     trace_once,
     warning_once,
 )
-from .path import as_path, find_project_dir
+from .path import as_path, project_root, resolve_project_path
 from .progress_bar import progress, track
 from .serde import (
     deserialize,
@@ -104,7 +104,6 @@ __all__ = [
     "environ",
     "error_once",
     "exception_once",
-    "find_project_dir",
     "functools",
     "generator_to_list",
     "get_time",
@@ -139,6 +138,8 @@ __all__ = [
     "pretty",
     "progress",
     "progress_bar",
+    "project_root",
+    "resolve_project_path",
     "save",
     "save_json",
     "save_json",

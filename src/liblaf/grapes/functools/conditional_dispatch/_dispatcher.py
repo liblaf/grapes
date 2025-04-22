@@ -4,7 +4,7 @@ import operator
 from collections.abc import Callable
 from typing import Any, Literal, NamedTuple, NoReturn
 
-from liblaf.grapes.typed._decorator import Decorator
+from liblaf.grapes.typed import Decorator
 
 
 class Function(NamedTuple):

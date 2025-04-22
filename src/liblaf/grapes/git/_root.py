@@ -1,9 +1,9 @@
 import os
 from pathlib import Path
 
-from liblaf import grapes
+from liblaf.grapes import imports
 
-with grapes.optional_imports(extra="git"):
+with imports.optional_imports(extra="git"):
     import git
     import git.exc
 

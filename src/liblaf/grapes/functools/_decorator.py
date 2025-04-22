@@ -1,7 +1,7 @@
 import functools
 from collections.abc import Callable
 
-from liblaf.grapes.typed._decorator import (
+from liblaf.grapes.typed import (
     Decorator,
     DecoratorWithArguments,
     DecoratorWithOptionalArguments,

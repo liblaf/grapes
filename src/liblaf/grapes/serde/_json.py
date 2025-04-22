@@ -1,4 +1,4 @@
-import json as json_
+import json as _json
 import os
 from pathlib import Path
 from typing import Any, override
@@ -13,21 +13,21 @@ class JSONSerializer(AbstractSerializer):
     def load(self, fpath: str | os.PathLike[str], **kwargs) -> Any:
         fpath: Path = grapes.as_path(fpath)
         with fpath.open() as fp:
-            return json_.load(fp, **kwargs)
+            return _json.load(fp, **kwargs)
 
     @override
     def loads(self, data: str, **kwargs) -> Any:
-        return json_.loads(data, **kwargs)
+        return _json.loads(data, **kwargs)
 
     @override
     def save(self, fpath: str | os.PathLike[str], data: Any, **kwargs) -> None:
         fpath: Path = grapes.as_path(fpath)
         with fpath.open("w") as fp:
-            json_.dump(data, fp, **kwargs)
+            _json.dump(data, fp, **kwargs)
 
     @override
     def saves(self, data: Any, **kwargs) -> str:
-        return json_.dumps(data, **kwargs)
+        return _json.dumps(data, **kwargs)
 
 
 json = JSONSerializer()

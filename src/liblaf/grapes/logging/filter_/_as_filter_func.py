@@ -5,11 +5,11 @@ from collections.abc import Callable, Mapping
 import loguru
 from loguru import _filters, logger
 
-from liblaf import grapes
+from liblaf.grapes.functools import ConditionalDispatcher
 
 from .typed import Filter
 
-dispatcher = grapes.ConditionalDispatcher()
+dispatcher = ConditionalDispatcher()
 
 
 # ref: <https://github.com/Delgan/loguru/blob/master/loguru/_logger.py#L259>

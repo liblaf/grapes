@@ -25,10 +25,6 @@
          <lastmod>2025-04-22</lastmod>
     </url>
     <url>
-         <loc>https://liblaf.github.io/grapes/dev/api/liblaf/grapes/functools/conditional_dispatch/</loc>
-         <lastmod>2025-04-22</lastmod>
-    </url>
-    <url>
          <loc>https://liblaf.github.io/grapes/dev/api/liblaf/grapes/git/</loc>
          <lastmod>2025-04-22</lastmod>
     </url>
@@ -49,15 +45,19 @@
          <lastmod>2025-04-22</lastmod>
     </url>
     <url>
-         <loc>https://liblaf.github.io/grapes/dev/api/liblaf/grapes/logging/filter_/</loc>
+         <loc>https://liblaf.github.io/grapes/dev/api/liblaf/grapes/logging/filters/</loc>
          <lastmod>2025-04-22</lastmod>
     </url>
     <url>
-         <loc>https://liblaf.github.io/grapes/dev/api/liblaf/grapes/logging/filter_/typed/</loc>
+         <loc>https://liblaf.github.io/grapes/dev/api/liblaf/grapes/logging/filters/typed/</loc>
          <lastmod>2025-04-22</lastmod>
     </url>
     <url>
          <loc>https://liblaf.github.io/grapes/dev/api/liblaf/grapes/logging/handler/</loc>
+         <lastmod>2025-04-22</lastmod>
+    </url>
+    <url>
+         <loc>https://liblaf.github.io/grapes/dev/api/liblaf/grapes/logging/sink/</loc>
          <lastmod>2025-04-22</lastmod>
     </url>
     <url>

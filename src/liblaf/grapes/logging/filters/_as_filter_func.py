@@ -1,6 +1,7 @@
 import builtins
 import functools
-from collections.abc import Callable, Mapping
+from collections.abc import Mapping
+from typing import Literal
 
 import loguru
 from loguru import _filters, logger
@@ -15,24 +16,24 @@ dispatcher = ConditionalDispatcher()
 # ref: <https://github.com/Delgan/loguru/blob/master/loguru/_logger.py#L259>
 
 
-@dispatcher.register(lambda filter_: filter_ is None)
+@dispatcher.register(lambda f: f is None)
 def _(filter_: None) -> None:  # noqa: ARG001
     return None
 
 
-@dispatcher.register(lambda filter_: filter_ == "")
-def _(filter_: str) -> "loguru.FilterFunction":  # noqa: ARG001
+@dispatcher.register(lambda f: f == "")
+def _(filter_: Literal[""]) -> "loguru.FilterFunction":  # noqa: ARG001
     return _filters.filter_none
 
 
-@dispatcher.register(lambda filter_: isinstance(filter_, str))
+@dispatcher.register(lambda f: isinstance(f, str))
 def _(filter_: str) -> "loguru.FilterFunction":
     parent: str = filter_ + "."
     length: int = len(parent)
     return functools.partial(_filters.filter_by_name, parent=parent, length=length)
 
 
-@dispatcher.register(lambda filter_: isinstance(filter_, Mapping))
+@dispatcher.register(lambda f: isinstance(f, Mapping))
 def _(filter_: Mapping[str, int | str]) -> "loguru.FilterFunction":
     level_per_module: dict[str, int] = {}
     for module, level_ in filter_.items():
@@ -75,8 +76,8 @@ def _(filter_: Mapping[str, int | str]) -> "loguru.FilterFunction":
     )
 
 
-@dispatcher.register(callable)
-def _(filter_: Callable) -> "loguru.FilterFunction":
+@dispatcher.register(lambda f: callable(f))
+def _(filter_: "loguru.FilterFunction") -> "loguru.FilterFunction":
     if filter_ == builtins.filter:
         msg = (
             "The built-in 'filter()' function cannot be used as a 'filter' parameter, "
@@ -88,6 +89,6 @@ def _(filter_: Callable) -> "loguru.FilterFunction":
 
 
 @dispatcher.final(fallback=True)
-def as_filter_func(filter_: Filter) -> "loguru.FilterFunction | None":
+def as_filter_func(filter_: Filter | None) -> "loguru.FilterFunction | None":
     msg: str = f"Invalid filter, it should be a function, a string or a dict, not: '{type(filter_).__name__}'"
     raise TypeError(msg)

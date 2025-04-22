@@ -2,14 +2,14 @@ import logging
 from collections.abc import Sequence
 
 import loguru
+from environs import env
 from loguru import logger
 
-from ._clear_handlers import clear_handlers
-from ._default import DEFAULT_LEVELS
-from ._handler import file_handler, jsonl_handler, rich_handler
 from ._intercept import setup_loguru_logging_intercept
-from ._level import add_level
-from .filter_ import Filter
+from ._level import DEFAULT_LEVELS, add_level
+from ._std import clear_handlers
+from .filters import Filter
+from .handler import file_handler, jsonl_handler, rich_handler
 
 
 def init_loguru(
@@ -30,8 +30,10 @@ def init_loguru(
         handlers: list[loguru.HandlerConfig] = [
             rich_handler(level=level, filter_=filter_)
         ]
-        handlers.append(file_handler(level=level, filter_=filter_))
-        handlers.append(jsonl_handler(level=level, filter_=filter_))
+        if env.path("LOGGING_FILE", default=None):
+            handlers.append(file_handler(level=level, filter_=filter_))
+        if env.path("LOGGING_JSONL", default=None):
+            handlers.append(jsonl_handler(level=level, filter_=filter_))
     logger.configure(handlers=handlers)
     for lvl in levels or DEFAULT_LEVELS:
         add_level(**lvl)

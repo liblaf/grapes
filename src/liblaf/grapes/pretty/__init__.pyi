@@ -1,4 +1,5 @@
-from ._func import func
-from ._location import location
+from ._console import get_console
+from ._func import call, func
+from ._location import caller_location, location
 
-__all__ = ["func", "location"]
+__all__ = ["call", "caller_location", "func", "get_console", "location"]

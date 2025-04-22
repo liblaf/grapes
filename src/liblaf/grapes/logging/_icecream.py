@@ -1,10 +1,10 @@
 from loguru import logger
 
-from liblaf import grapes
+from liblaf.grapes import imports
 
 
 def init_icecream() -> None:
-    if not grapes.has_module("icecream"):
+    if not imports.has_module("icecream"):
         logger.warning(
             "`icecream` is not available. Skipping initialization of `icecream`."
         )

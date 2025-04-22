@@ -1,4 +1,4 @@
-from collections.abc import Callable
+from collections.abc import Callable, Mapping
 from pathlib import Path
 
 from rich.style import Style
@@ -18,3 +18,11 @@ def func(obj: Callable) -> Text:
     else:
         text.append(f"{obj.__module__}.{obj.__qualname__}(...)")
     return text
+
+
+_pretty_func = func
+
+
+def call(func: Callable, args: tuple, kwargs: Mapping) -> Text:  # noqa: ARG001
+    # TODO: add `args` and `kwargs`
+    return _pretty_func(func)

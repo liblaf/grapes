@@ -10,9 +10,10 @@ class InterceptHandler(logging.Handler):
     """A logging handler that intercepts log messages and redirects them to Loguru.
 
     This handler is designed to be compatible with the standard logging framework and allows the use of Loguru for logging while maintaining compatibility with existing logging configurations.
-    """
 
-    # [Overview — loguru documentation](https://loguru.readthedocs.io/en/stable/overview.html#entirely-compatible-with-standard-logging)
+    References:
+        1. [Overview — loguru documentation](https://loguru.readthedocs.io/en/stable/overview.html#entirely-compatible-with-standard-logging)
+    """
 
     def emit(self, record: logging.LogRecord) -> None:
         """Emit a log record.
@@ -53,8 +54,10 @@ def setup_loguru_logging_intercept(
     Args:
         level: The logging level to set.
         modules: A list of module names whose loggers should be intercepted.
+
+    References:
+        1. [loguru-logging-intercept/loguru_logging_intercept.py at f358b75ef4162ea903bf7a3298c22b1be83110da · MatthewScholefield/loguru-logging-intercept](https://github.com/MatthewScholefield/loguru-logging-intercept/blob/f358b75ef4162ea903bf7a3298c22b1be83110da/loguru_logging_intercept.py#L35C5-L42)
     """
-    # [loguru-logging-intercept/loguru_logging_intercept.py at f358b75ef4162ea903bf7a3298c22b1be83110da · MatthewScholefield/loguru-logging-intercept](https://github.com/MatthewScholefield/loguru-logging-intercept/blob/f358b75ef4162ea903bf7a3298c22b1be83110da/loguru_logging_intercept.py#L35C5-L42)
     logging.basicConfig(level=level, handlers=[InterceptHandler()])
     for logger_name in itertools.chain(("",), modules):
         mod_logger: logging.Logger = logging.getLogger(logger_name)

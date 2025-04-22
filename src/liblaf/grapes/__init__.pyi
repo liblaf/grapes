@@ -27,7 +27,6 @@ from .human import (
 from .imports import has_module, optional_imports
 from .itertools import IterableWrapper, as_iterable, as_sequence, generator_to_list
 from .logging import (
-    caller_location,
     critical_once,
     debug_once,
     error_once,
@@ -41,6 +40,7 @@ from .logging import (
     warning_once,
 )
 from .path import as_path, project_root, resolve_project_path
+from .pretty import caller_location, get_console
 from .progress_bar import progress, track
 from .serde import (
     deserialize,
@@ -68,26 +68,10 @@ from .serde import (
 )
 from .text import strip_comments
 from .timing import TimedFunction, TimedIterable, TimerName, get_time, timer
-from .typed import (
-    ClassInfo,
-    Decorator,
-    DecoratorWithArguments,
-    DecoratorWithOptionalArguments,
-    LogLevel,
-    PathLike,
-    SizedIterable,
-)
 
 __all__ = [
-    "ClassInfo",
     "ConditionalDispatcher",
-    "Decorator",
-    "DecoratorWithArguments",
-    "DecoratorWithOptionalArguments",
     "IterableWrapper",
-    "LogLevel",
-    "PathLike",
-    "SizedIterable",
     "TimedFunction",
     "TimedIterable",
     "TimerName",
@@ -96,6 +80,7 @@ __all__ = [
     "as_iterable",
     "as_path",
     "as_sequence",
+    "caller_location",
     "caller_location",
     "critical_once",
     "debug_once",
@@ -106,6 +91,7 @@ __all__ = [
     "exception_once",
     "functools",
     "generator_to_list",
+    "get_console",
     "get_time",
     "git",
     "has_module",

@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.19](https://github.com/liblaf/grapes/compare/v0.1.18...v0.1.19) (2025-04-23)
+
+
+### ✨ Features
+
+* **path:** replace find_project_dir with project_root and resolve_project_path ([9a3f474](https://github.com/liblaf/grapes/commit/9a3f47451f6b1357fbaef2562c2104a0df0d406a))
+
+
+### ♻ Code Refactoring
+
+* **logging:** reorganize logging module structure and improve functionality ([09c09da](https://github.com/liblaf/grapes/commit/09c09daab6245985701edff50cdcfa03c2294acf))
+* **logging:** simplify logging configuration and remove deprecated features ([c7b05bc](https://github.com/liblaf/grapes/commit/c7b05bce014ef623f0bdd002bc44b0c06f4e3543))
+
 ## [0.1.18](https://github.com/liblaf/grapes/compare/v0.1.17..v0.1.18) - 2025-04-01
 
 ### ♻ Code Refactoring

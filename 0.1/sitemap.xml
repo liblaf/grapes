@@ -2,90 +2,94 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://liblaf.github.io/grapes/0.1/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
          <loc>https://liblaf.github.io/grapes/0.1/SUMMARY/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
          <loc>https://liblaf.github.io/grapes/0.1/api/SUMMARY/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
          <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
          <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/environ/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
          <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/functools/</loc>
-         <lastmod>2025-04-06</lastmod>
-    </url>
-    <url>
-         <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/functools/conditional_dispatch/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
          <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/git/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
          <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/human/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
          <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/imports/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
          <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/itertools/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
          <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/logging/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
-         <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/logging/filter_/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/logging/filters/</loc>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
-         <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/logging/filter_/typed/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/logging/filters/typed/</loc>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
          <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/logging/handler/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <lastmod>2025-04-23</lastmod>
+    </url>
+    <url>
+         <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/logging/sink/</loc>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
          <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/path/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
          <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/pretty/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
          <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/progress_bar/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
          <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/serde/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
          <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/text/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
          <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/timing/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <lastmod>2025-04-23</lastmod>
+    </url>
+    <url>
+         <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/timing/typed/</loc>
+         <lastmod>2025-04-23</lastmod>
     </url>
     <url>
          <loc>https://liblaf.github.io/grapes/0.1/api/liblaf/grapes/typed/</loc>
-         <lastmod>2025-04-06</lastmod>
+         <lastmod>2025-04-23</lastmod>
     </url>
 </urlset>

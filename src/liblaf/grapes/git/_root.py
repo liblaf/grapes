@@ -1,7 +1,7 @@
-import os
 from pathlib import Path
 
 from liblaf.grapes import imports
+from liblaf.grapes.typed import PathLike
 
 with imports.optional_imports(extra="git"):
     import git
@@ -9,14 +9,14 @@ with imports.optional_imports(extra="git"):
 
 
 def root(
-    path: os.PathLike | None = None, *, search_parent_directories: bool = True
+    path: PathLike | None = None, *, search_parent_directories: bool = True
 ) -> Path:
     repo = git.Repo(path=path, search_parent_directories=search_parent_directories)
     return Path(repo.working_dir)
 
 
 def root_safe(
-    path: os.PathLike | None = None, *, search_parent_directories: bool = True
+    path: PathLike | None = None, *, search_parent_directories: bool = True
 ) -> Path:
     try:
         return root(path=path, search_parent_directories=search_parent_directories)

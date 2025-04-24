@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 from types import FrameType
 
@@ -6,14 +5,14 @@ from loguru._get_frame import get_frame
 from rich.style import Style
 from rich.text import Text
 
-from liblaf import grapes
+from liblaf.grapes.typed import PathLike
 
 
 def location(
     name: str | None,
     function: str | None,
     line: int | None,
-    file: str | os.PathLike[str] | None = None,
+    file: PathLike | None = None,
 ) -> Text:
     text = Text()
     file: Path | None = Path(file or "<unknown>")
@@ -43,7 +42,5 @@ def caller_location(depth: int = 1) -> Text:
         function = frame.f_code.co_name
         line = frame.f_lineno
         name = frame.f_globals.get("__name__")
-    text: Text = grapes.pretty.location(
-        function=function, line=line, name=name, file=file
-    )
+    text: Text = location(function=function, line=line, name=name, file=file)
     return text

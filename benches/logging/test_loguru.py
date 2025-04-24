@@ -1,5 +1,4 @@
 import functools
-import time
 
 import loguru
 import pytest
@@ -9,13 +8,13 @@ from rich.console import Console
 from rich.logging import RichHandler
 
 
-@pytest.mark.benchmark(group="logging", timer=time.process_time, warmup=True)
+@pytest.mark.benchmark(group="logging", warmup=True)
 def test_loguru(benchmark: BenchmarkFixture) -> None:
     logger.configure()
     benchmark(logger.info, "Hello, world!")
 
 
-@pytest.mark.benchmark(group="logging", timer=time.process_time, warmup=True)
+@pytest.mark.benchmark(group="logging", warmup=True)
 def test_loguru_rich_handler(benchmark: BenchmarkFixture) -> None:
     logger.configure(
         handlers=[
@@ -31,7 +30,7 @@ def test_loguru_rich_handler(benchmark: BenchmarkFixture) -> None:
     benchmark(logger.info, "Hello, world!")
 
 
-@pytest.mark.benchmark(group="logging", timer=time.process_time, warmup=True)
+@pytest.mark.benchmark(group="logging", warmup=True)
 def test_loguru_rich_handler_record(benchmark: BenchmarkFixture) -> None:
     logger.configure(
         handlers=[
@@ -51,7 +50,7 @@ def loguru_rich_console(message: "loguru.Message", console: Console) -> None:
     console.print(message, end="")
 
 
-@pytest.mark.benchmark(group="logging", timer=time.process_time, warmup=True)
+@pytest.mark.benchmark(group="logging", warmup=True)
 def test_loguru_rich_console(benchmark: BenchmarkFixture) -> None:
     logger.configure(
         handlers=[

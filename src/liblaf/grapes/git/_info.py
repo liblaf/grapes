@@ -1,7 +1,7 @@
-import os
 from typing import Protocol
 
 from liblaf.grapes import imports
+from liblaf.grapes.typed import PathLike
 
 with imports.optional_imports(extra="git"):
     import git
@@ -50,7 +50,7 @@ class GitInfo(Protocol):
 
 
 def info(
-    path: os.PathLike | None = None, *, search_parent_directories: bool = True
+    path: PathLike | None = None, *, search_parent_directories: bool = True
 ) -> GitInfo:
     repo = git.Repo(path=path, search_parent_directories=search_parent_directories)
     url: str = repo.remote().url

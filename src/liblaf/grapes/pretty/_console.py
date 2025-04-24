@@ -7,7 +7,7 @@ from rich.console import Console
 from rich.style import Style
 from rich.theme import Theme
 
-from liblaf.grapes import environ, path
+from liblaf.grapes import path
 from liblaf.grapes.typed import PathLike
 
 
@@ -34,14 +34,32 @@ def get_console(
 ) -> Console:
     match file:
         case "stdout":
-            rich.reconfigure(theme=theme(), **kwargs)
+            rich.reconfigure(force_terminal=force_terminal(), theme=theme(), **kwargs)
             return rich.get_console()
         case "stderr":
-            return Console(theme=theme(), stderr=True, **kwargs)
+            return Console(
+                force_terminal=force_terminal(), theme=theme(), stderr=True, **kwargs
+            )
         case IO():
             return Console(theme=theme(), file=file, **kwargs)
         case file:
-            width: int = env.int(environ.RICH_FILE_CONSOLE_WIDTH, default=160)
+            width: int = env.int("RICH_FILE_CONSOLE_WIDTH", default=120)
             return Console(
                 theme=theme(), file=path.as_path(file).open("w"), width=width, **kwargs
             )
+
+
+def force_terminal() -> bool | None:
+    """...
+
+    References:
+        1. <https://force-color.org/>
+        2. <https://no-color.org/>
+    """
+    if env.bool("FORCE_COLOR", None):
+        return True
+    if env.bool("NO_COLOR", None):
+        return False
+    if env.bool("GITHUB_ACTIONS", None):
+        return True
+    return None

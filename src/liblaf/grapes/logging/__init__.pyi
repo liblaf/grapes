@@ -1,7 +1,7 @@
 from . import filters, handler, sink
 from ._icecream import init_icecream
 from ._init import init_logging
-from ._init_loguru import init_loguru
+from ._init_loguru import init_loguru, traceback_install
 from ._intercept import InterceptHandler, setup_loguru_logging_intercept
 from ._level import add_level
 from ._once import (
@@ -59,5 +59,6 @@ __all__ = [
     "sink",
     "success_once",
     "trace_once",
+    "traceback_install",
     "warning_once",
 ]

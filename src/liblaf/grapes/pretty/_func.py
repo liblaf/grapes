@@ -1,11 +1,34 @@
 from collections.abc import Callable, Mapping
 from pathlib import Path
+from typing import Literal
 
+import autoregistry
 from rich.style import Style
 from rich.text import Text
 
+FUNC = autoregistry.Registry(prefix="_func_")
 
-def func(obj: Callable) -> Text:
+
+def func(obj: Callable, *, style: Literal["short", "long"] = "short") -> Text:
+    return FUNC[style](obj)
+
+
+@FUNC
+def _func_short(obj: Callable) -> Text:
+    text = Text()
+    file: Path = Path(obj.__code__.co_filename)
+    if file.exists():
+        text.append(
+            f"{obj.__name__}()",
+            style=Style(link=f"{file.as_uri()}#{obj.__code__.co_firstlineno}"),
+        )
+    else:
+        text.append(f"{obj.__name__}()")
+    return text
+
+
+@FUNC
+def _func_long(obj: Callable) -> Text:
     text = Text()
     file: Path = Path(obj.__code__.co_filename)
     if file.exists():

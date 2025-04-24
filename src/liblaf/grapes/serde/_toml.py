@@ -1,18 +1,18 @@
-import os
 from pathlib import Path
 from typing import Any, override
 
 import tomlkit
 
-from liblaf import grapes
+from liblaf.grapes import path
+from liblaf.grapes.typed import PathLike
 
 from ._abc import AbstractSerializer
 
 
 class TOMLSerializer(AbstractSerializer):
     @override
-    def load(self, fpath: str | os.PathLike[str], **kwargs) -> tomlkit.TOMLDocument:
-        fpath: Path = grapes.as_path(fpath)
+    def load(self, fpath: PathLike, **kwargs) -> tomlkit.TOMLDocument:
+        fpath: Path = path.as_path(fpath)
         with fpath.open() as fp:
             return tomlkit.load(fp, **kwargs)
 
@@ -21,8 +21,8 @@ class TOMLSerializer(AbstractSerializer):
         return tomlkit.loads(data, **kwargs)
 
     @override
-    def save(self, fpath: str | os.PathLike[str], data: Any, **kwargs) -> None:
-        fpath: Path = grapes.as_path(fpath)
+    def save(self, fpath: PathLike, data: Any, **kwargs) -> None:
+        fpath: Path = path.as_path(fpath)
         with fpath.open("w") as fp:
             tomlkit.dump(data, fp, **kwargs)
 

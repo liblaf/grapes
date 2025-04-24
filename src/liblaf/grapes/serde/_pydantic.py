@@ -1,13 +1,14 @@
-import os
 from typing import Any
 
 import pydantic
+
+from liblaf.grapes.typed import PathLike
 
 from ._serde import load, loads, save, saves
 
 
 def load_pydantic[C: pydantic.BaseModel](
-    fpath: str | os.PathLike[str], cls: type[C], *, ext: str | None = None, **kwargs
+    fpath: PathLike, cls: type[C], *, ext: str | None = None, **kwargs
 ) -> C:
     data: Any = load(fpath, ext=ext, **kwargs)
     return cls.model_validate(data)
@@ -21,7 +22,7 @@ def loads_pydantic[C: pydantic.BaseModel](
 
 
 def save_pydantic(
-    fpath: str | os.PathLike[str],
+    fpath: PathLike,
     data: pydantic.BaseModel,
     *,
     ext: str | None = None,

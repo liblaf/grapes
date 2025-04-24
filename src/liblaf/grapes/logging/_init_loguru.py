@@ -1,4 +1,7 @@
+import functools
 import logging
+import sys
+import types
 from collections.abc import Sequence
 
 import loguru
@@ -26,6 +29,7 @@ def init_loguru(
         handlers: A sequence of handler configurations.
         levels: A sequence of level configurations.
     """
+    traceback_install()
     if handlers is None:
         handlers: list[loguru.HandlerConfig] = [
             rich_handler(level=level, filter_=filter_)
@@ -39,3 +43,18 @@ def init_loguru(
         add_level(**lvl)
     setup_loguru_logging_intercept(level=level)
     clear_handlers()
+
+
+def traceback_install(level: int | str = "CRITICAL", message: str = "") -> None:
+    sys.excepthook = functools.partial(excepthook, level=level, message=message)
+
+
+def excepthook(
+    exc_type: type[BaseException],
+    exc_value: BaseException,
+    traceback: types.TracebackType,
+    *,
+    level: int | str = "CRITICAL",
+    message: str = "",
+) -> None:
+    logger.opt(exception=(exc_type, exc_value, traceback)).log(level, message)

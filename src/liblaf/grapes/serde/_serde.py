@@ -1,11 +1,11 @@
-import os
 from pathlib import Path
 from typing import Any, override
 
 import autoregistry
 from typing_extensions import deprecated
 
-from liblaf import grapes
+from liblaf.grapes import path
+from liblaf.grapes.typed import PathLike
 
 from ._abc import AbstractSerializer
 from ._json import json
@@ -21,9 +21,7 @@ SERIALIZERS["yml"] = yaml
 
 class AutoSerializer(AbstractSerializer):
     @override
-    def load(
-        self, fpath: str | os.PathLike[str], *, ext: str | None = None, **kwargs
-    ) -> Any:
+    def load(self, fpath: PathLike, *, ext: str | None = None, **kwargs) -> Any:
         serializer: AbstractSerializer = self.get_serializer(fpath, ext=ext)
         return serializer.load(fpath, **kwargs)
 
@@ -35,7 +33,7 @@ class AutoSerializer(AbstractSerializer):
     @override
     def save(
         self,
-        fpath: str | os.PathLike[str],
+        fpath: PathLike,
         data: Any,
         *,
         ext: str | None = None,
@@ -50,10 +48,10 @@ class AutoSerializer(AbstractSerializer):
         return serializer.saves(data, **kwargs)
 
     def get_serializer(
-        self, fpath: str | os.PathLike[str], *, ext: str | None = None
+        self, fpath: PathLike, *, ext: str | None = None
     ) -> AbstractSerializer:
         if ext is None:
-            fpath: Path = grapes.as_path(fpath)
+            fpath: Path = path.as_path(fpath)
             ext = fpath.suffix.lstrip(".")
         return SERIALIZERS[ext]  # pyright: ignore[reportReturnType]
 
@@ -66,12 +64,10 @@ saves = auto.saves
 
 
 @deprecated("Use `save()` instead of `serialize()`")
-def serialize(
-    fpath: str | os.PathLike[str], data: Any, *, ext: str | None = None
-) -> None:
+def serialize(fpath: PathLike, data: Any, *, ext: str | None = None) -> None:
     return save(fpath, data, ext=ext)
 
 
 @deprecated("Use `load()` instead of `deserialize()`")
-def deserialize(fpath: str | os.PathLike[str], *, ext: str | None = None) -> Any:
+def deserialize(fpath: PathLike, *, ext: str | None = None) -> Any:
     return load(fpath, ext=ext)

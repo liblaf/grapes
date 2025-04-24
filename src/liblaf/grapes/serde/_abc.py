@@ -1,15 +1,15 @@
-import os
 import tempfile
 from pathlib import Path
 from typing import Any
 
-from liblaf import grapes
+from liblaf.grapes import path
+from liblaf.grapes.typed import PathLike
 
 
 class AbstractSerializer:
-    def load(self, fpath: str | os.PathLike[str], **kwargs) -> Any:
+    def load(self, fpath: PathLike, **kwargs) -> Any:
         if type(self).loads is not AbstractSerializer.loads:
-            fpath: Path = grapes.as_path(fpath)
+            fpath: Path = path.as_path(fpath)
             return self.loads(fpath.read_text(), **kwargs)
         raise NotImplementedError
 
@@ -20,9 +20,9 @@ class AbstractSerializer:
                 return self.load(Path(fp.name), **kwargs)
         raise NotImplementedError
 
-    def save(self, fpath: str | os.PathLike[str], data: Any, **kwargs) -> None:
+    def save(self, fpath: PathLike, data: Any, **kwargs) -> None:
         if type(self).saves is not AbstractSerializer.saves:
-            fpath: Path = grapes.as_path(fpath)
+            fpath: Path = path.as_path(fpath)
             fpath.write_text(self.saves(data, **kwargs))
         raise NotImplementedError
 

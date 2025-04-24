@@ -1,19 +1,19 @@
 import io
-import os
 from pathlib import Path
 from typing import Any, override
 
 from ruamel.yaml import YAML
 
-from liblaf import grapes
+from liblaf.grapes import path
+from liblaf.grapes.typed import PathLike
 
 from ._abc import AbstractSerializer
 
 
 class YAMLSerializer(AbstractSerializer):
     @override
-    def load(self, fpath: str | os.PathLike[str], **kwargs) -> Any:
-        fpath: Path = grapes.as_path(fpath)
+    def load(self, fpath: PathLike, **kwargs) -> Any:
+        fpath: Path = path.as_path(fpath)
         yaml = YAML(**kwargs)
         with fpath.open() as fp:
             return yaml.load(fp)
@@ -25,8 +25,8 @@ class YAMLSerializer(AbstractSerializer):
         return yaml.load(stream)
 
     @override
-    def save(self, fpath: str | os.PathLike[str], data: Any, **kwargs) -> None:
-        fpath: Path = grapes.as_path(fpath)
+    def save(self, fpath: PathLike, data: Any, **kwargs) -> None:
+        fpath: Path = path.as_path(fpath)
         yaml = YAML(**kwargs)
         with fpath.open("w") as fp:
             yaml.dump(data, fp)

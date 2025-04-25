@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.20](https://github.com/liblaf/grapes/compare/v0.1.19...v0.1.20) (2025-04-25)
+
+
+### ♻ Code Refactoring
+
+* simplify logging benchmarks and environment variables ([97b79d3](https://github.com/liblaf/grapes/commit/97b79d3db0c246eb3752845d4d9fd945c8e6a706))
+
 ## [0.1.19](https://github.com/liblaf/grapes/compare/v0.1.18..v0.1.19) - 2025-04-23
 
 ### ✨ Features

@@ -1,11 +1,15 @@
 # Changelog
 
-## [0.1.20](https://github.com/liblaf/grapes/compare/v0.1.19...v0.1.20) (2025-04-25)
-
+## [0.1.20](https://github.com/liblaf/grapes/compare/v0.1.19..v0.1.20) - 2025-04-25
 
 ### ♻ Code Refactoring
 
-* simplify logging benchmarks and environment variables ([97b79d3](https://github.com/liblaf/grapes/commit/97b79d3db0c246eb3752845d4d9fd945c8e6a706))
+- simplify logging benchmarks and environment variables - ([97b79d3](https://github.com/liblaf/grapes/commit/97b79d3db0c246eb3752845d4d9fd945c8e6a706))
+
+### ❤️ New Contributors
+
+- @liblaf-bot[bot] made their first contribution
+- @liblaf made their first contribution
 
 ## [0.1.19](https://github.com/liblaf/grapes/compare/v0.1.18..v0.1.19) - 2025-04-23
 
@@ -17,11 +21,6 @@
 
 - **logging:** simplify logging configuration and remove deprecated features - ([c7b05bc](https://github.com/liblaf/grapes/commit/c7b05bce014ef623f0bdd002bc44b0c06f4e3543))
 - **logging:** reorganize logging module structure and improve functionality - ([09c09da](https://github.com/liblaf/grapes/commit/09c09daab6245985701edff50cdcfa03c2294acf))
-
-### ❤️ New Contributors
-
-- @liblaf-bot[bot] made their first contribution
-- @liblaf made their first contribution
 
 ## [0.1.18](https://github.com/liblaf/grapes/compare/v0.1.17..v0.1.18) - 2025-04-06
 

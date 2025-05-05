@@ -6,7 +6,7 @@ from environs import env
 from rich.console import Console
 
 from liblaf.grapes import pretty
-from liblaf.grapes.logging.filters import Filter, default_filter
+from liblaf.grapes.logging.filters import Filter, make_filter
 from liblaf.grapes.logging.sink import LoguruRichHandler, TracebackArgs
 from liblaf.grapes.typed import PathLike
 
@@ -20,7 +20,7 @@ def rich_handler(
 ) -> "loguru.HandlerConfig":
     if console is None:
         console = pretty.get_console("stderr")
-    filter_ = default_filter(filter_)
+    filter_ = make_filter(filter_)
     if traceback is None:
         traceback = TracebackArgs(show_locals=True)
     return {
@@ -41,7 +41,7 @@ def file_handler(
     if file is None:
         file = env.path("LOGGING_FILE", default=Path("run.log"))
     console: Console = pretty.get_console(file)
-    filter_ = default_filter(filter_)
+    filter_ = make_filter(filter_)
     if traceback is None:
         traceback = TracebackArgs(show_locals=True)
     return {

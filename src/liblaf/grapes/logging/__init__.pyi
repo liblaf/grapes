@@ -20,10 +20,10 @@ from ._std import clear_handlers
 from .filters import (
     Filter,
     as_filter_func,
-    default_filter,
     filter_all,
     filter_any,
     filter_once,
+    make_filter,
 )
 from .handler import file_handler, jsonl_handler, rich_handler
 from .sink import LoguruRichHandler, TracebackArgs
@@ -38,7 +38,6 @@ __all__ = [
     "clear_handlers",
     "critical_once",
     "debug_once",
-    "default_filter",
     "error_once",
     "exception_once",
     "file_handler",
@@ -54,6 +53,7 @@ __all__ = [
     "init_rich",
     "jsonl_handler",
     "log_once",
+    "make_filter",
     "rich_handler",
     "setup_loguru_logging_intercept",
     "sink",

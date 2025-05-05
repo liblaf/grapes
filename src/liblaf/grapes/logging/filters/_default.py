@@ -14,11 +14,14 @@ DEFAULT_FILTER: "loguru.FilterDict" = {
 }
 
 
-def default_filter(
+def make_filter(
     filter_: Filter | None = None, *, inherit: bool = True
 ) -> "loguru.FilterFunction | None":
-    if isinstance(filter_, Mapping) and inherit:
-        filter_ = {**DEFAULT_FILTER, **filter_}
+    if inherit:
+        if filter_ is None:
+            filter_ = DEFAULT_FILTER
+        elif isinstance(filter_, Mapping):
+            filter_ = {**DEFAULT_FILTER, **filter_}
     filter_ = as_filter_func(filter_)  # pyright: ignore[reportArgumentType]
     if inherit:
         filter_ = filter_all(filter_, filter_once())

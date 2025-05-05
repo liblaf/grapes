@@ -1,15 +1,21 @@
 # Changelog
 
+## [0.1.21](https://github.com/liblaf/grapes/compare/v0.1.20..v0.1.21) - 2025-05-05
+
+### 🐛 Bug Fixes
+
+- **logging:** replace default_filter with make_filter - ([a5d5e5b](https://github.com/liblaf/grapes/commit/a5d5e5b542495b0c9224ecb0e37f4e366b55b540))
+
+### ❤️ New Contributors
+
+- @liblaf made their first contribution
+- @liblaf-bot[bot] made their first contribution
+
 ## [0.1.20](https://github.com/liblaf/grapes/compare/v0.1.19..v0.1.20) - 2025-04-25
 
 ### ♻ Code Refactoring
 
 - simplify logging benchmarks and environment variables - ([97b79d3](https://github.com/liblaf/grapes/commit/97b79d3db0c246eb3752845d4d9fd945c8e6a706))
-
-### ❤️ New Contributors
-
-- @liblaf-bot[bot] made their first contribution
-- @liblaf made their first contribution
 
 ## [0.1.19](https://github.com/liblaf/grapes/compare/v0.1.18..v0.1.19) - 2025-04-23
 

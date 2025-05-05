@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.21](https://github.com/liblaf/grapes/compare/v0.1.20...v0.1.21) (2025-05-05)
+
+
+### 🐛 Bug Fixes
+
+* **logging:** replace default_filter with make_filter ([a5d5e5b](https://github.com/liblaf/grapes/commit/a5d5e5b542495b0c9224ecb0e37f4e366b55b540))
+
 ## [0.1.20](https://github.com/liblaf/grapes/compare/v0.1.19..v0.1.20) - 2025-04-25
 
 ### ♻ Code Refactoring

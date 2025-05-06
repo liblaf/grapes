@@ -12,7 +12,6 @@ from liblaf.grapes.typed import PathLike
 
 
 def rich_handler(
-    *,
     console: Console | None = None,
     filter_: Filter | None = None,
     traceback: TracebackArgs | None = None,
@@ -22,7 +21,7 @@ def rich_handler(
         console = pretty.get_console("stderr")
     filter_ = make_filter(filter_)
     if traceback is None:
-        traceback = TracebackArgs(show_locals=True)
+        traceback = TracebackArgs(show_locals=False)
     return {
         "sink": LoguruRichHandler(console=console, traceback=traceback),
         "format": "",
@@ -32,7 +31,6 @@ def rich_handler(
 
 
 def file_handler(
-    *,
     file: PathLike | None = None,
     filter_: Filter | None = None,
     traceback: TracebackArgs | None = None,

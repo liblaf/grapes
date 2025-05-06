@@ -68,6 +68,7 @@ class RichLogRecordRenderer:
             function=record["function"],
             line=record["line"],
             file=record["file"].path,
+            style="short",
         )
         self.row.append(path)
         return self
@@ -116,7 +117,7 @@ class LoguruRichHandler:
         renderer.add_level(message.record)
         renderer.add_message(message.record)
         renderer.add_path(message.record)
-        # TODO: console.print() is extremely slow
+        # TODO: console.print() is slow
         self.console.print(renderer.render())
         if (exception := renderer.render_exception(message.record)) is not None:
             self.console.print(exception)

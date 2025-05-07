@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.22](https://github.com/liblaf/grapes/compare/v0.1.21...v0.1.22) (2025-05-07)
+
+
+### 🐛 Bug Fixes
+
+* **logging:** simplify rich handler and location formatting ([47e46d0](https://github.com/liblaf/grapes/commit/47e46d06e2c06652d9c0cdc5cbdcc78efaf940da))
+
 ## [0.1.21](https://github.com/liblaf/grapes/compare/v0.1.20..v0.1.21) - 2025-05-05
 
 ### 🐛 Bug Fixes

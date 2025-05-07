@@ -1,15 +1,21 @@
 # Changelog
 
+## [0.1.22](https://github.com/liblaf/grapes/compare/v0.1.21..v0.1.22) - 2025-05-07
+
+### 🐛 Bug Fixes
+
+- **logging:** simplify rich handler and location formatting - ([47e46d0](https://github.com/liblaf/grapes/commit/47e46d06e2c06652d9c0cdc5cbdcc78efaf940da))
+
+### ❤️ New Contributors
+
+- @liblaf-bot[bot] made their first contribution
+- @liblaf made their first contribution
+
 ## [0.1.21](https://github.com/liblaf/grapes/compare/v0.1.20..v0.1.21) - 2025-05-05
 
 ### 🐛 Bug Fixes
 
 - **logging:** replace default_filter with make_filter - ([a5d5e5b](https://github.com/liblaf/grapes/commit/a5d5e5b542495b0c9224ecb0e37f4e366b55b540))
-
-### ❤️ New Contributors
-
-- @liblaf made their first contribution
-- @liblaf-bot[bot] made their first contribution
 
 ## [0.1.20](https://github.com/liblaf/grapes/compare/v0.1.19..v0.1.20) - 2025-04-25
 

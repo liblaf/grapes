@@ -21,7 +21,7 @@ def rich_handler(
         console = pretty.get_console("stderr")
     filter_ = make_filter(filter_)
     if traceback is None:
-        traceback = TracebackArgs(show_locals=False)
+        traceback = TracebackArgs(show_locals=True)
     return {
         "sink": LoguruRichHandler(console=console, traceback=traceback),
         "format": "",

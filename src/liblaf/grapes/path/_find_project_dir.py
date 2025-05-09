@@ -3,10 +3,12 @@ import sys
 from pathlib import Path
 
 from environs import env
+from typing_extensions import deprecated
 
 from liblaf.grapes.typed import PathLike
 
 
+@deprecated("Use `liblaf-cherries` instead.")
 def project_root(
     start: Path | None = None, name: str | re.Pattern = r"\.git|src|playground"
 ) -> Path:
@@ -25,6 +27,7 @@ def project_root(
     return path.parent
 
 
+@deprecated("Use `liblaf-cherries` instead.")
 def resolve_project_path(
     relative: PathLike = ".",
     *,

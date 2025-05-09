@@ -1,6 +1,6 @@
-from liblaf.grapes import imports
+from liblaf.grapes import deps
 
-with imports.optional_imports(extra="duration"):
+with deps.optional_imports(extra="duration"):
     import about_time
 
 

@@ -1,4 +1,5 @@
 from . import (
+    const,
     environ,
     functools,
     git,
@@ -14,6 +15,8 @@ from . import (
     typed,
 )
 from ._version import __version__, __version_tuple__, version, version_tuple
+from .const import noop
+from .deps import has_module, optional_imports
 from .environ import init_env
 from .functools import ConditionalDispatcher, decorator_with_optional_arguments
 from .human import (
@@ -24,7 +27,6 @@ from .human import (
     human_duration_with_variance,
     human_throughout,
 )
-from .imports import has_module, optional_imports
 from .itertools import IterableWrapper, as_iterable, as_sequence, generator_to_list
 from .logging import (
     critical_once,
@@ -81,6 +83,7 @@ __all__ = [
     "as_sequence",
     "caller_location",
     "caller_location",
+    "const",
     "critical_once",
     "debug_once",
     "decorator_with_optional_arguments",
@@ -117,6 +120,7 @@ __all__ = [
     "loads_yaml",
     "log_once",
     "logging",
+    "noop",
     "optional_imports",
     "path",
     "pretty",

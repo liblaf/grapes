@@ -1,6 +1,6 @@
 import datetime
 import types
-from typing import Self, TypedDict
+from typing import Literal, Self, TypedDict
 
 import attrs
 import loguru
@@ -102,6 +102,7 @@ class LoguruRichHandler:
     console: Console = attrs.field(factory=lambda: pretty.get_console("stderr"))
     highlighter: Highlighter = attrs.field(factory=ReprHighlighter)
     markup: bool = attrs.field(default=True)
+    path_style: Literal["short", "full"] = attrs.field(default="short")
     traceback: TracebackArgs = attrs.field(
         factory=lambda: TracebackArgs(show_locals=True)
     )

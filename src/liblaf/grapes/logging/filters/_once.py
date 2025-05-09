@@ -1,35 +1,32 @@
-from collections.abc import Callable, Hashable, Sequence
+from collections.abc import Callable, Hashable
 
-import glom
 import loguru
-
-DEFAULT_SPECS: Sequence[str] = (
-    "file.path",
-    "function",
-    "level.no",
-    "line",
-    "message",
-    "module",
-    "name",
-)
 
 
 def default_transform(record: "loguru.Record") -> Hashable:
-    return tuple(glom.glom(record, spec) for spec in DEFAULT_SPECS)
+    return (
+        record["file"].path,
+        record["function"],
+        record["level"].no,
+        record["line"],
+        record["message"],
+        record["module"],
+        record["name"],
+    )
 
 
 def filter_once(
-    transform: "Callable[[loguru.Record], Hashable]" = default_transform,
+    as_hashable: "Callable[[loguru.Record], Hashable]" = default_transform,
 ) -> "loguru.FilterFunction":
     history: set[Hashable] = set()
 
     def filter_(record: "loguru.Record") -> bool:
         if not record["extra"].get("once", False):
             return True
-        transformed: Hashable = transform(record)
-        if transformed in history:
+        hashable: Hashable = as_hashable(record)
+        if hashable in history:
             return False
-        history.add(transformed)
+        history.add(hashable)
         return True
 
     return filter_

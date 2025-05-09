@@ -25,10 +25,10 @@ def optional_imports(
     """
     try:
         yield
-    except ImportError as exc:
-        suffix: str = f"Missing optional dependency `{exc.name}`."
+    except ImportError as err:
+        suffix: str = f"Missing optional dependency `{err.name}`."
         if extra is not None:
             suffix += (
                 f"\nMake sure to install `{name}` using `pip install {name}[{extra}]`."
             )
-        etils.epy.reraise(exc, suffix=suffix)
+        etils.epy.reraise(err, suffix=suffix)

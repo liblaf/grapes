@@ -1,7 +1,7 @@
 from . import typed
 from ._as_filter_func import as_filter_func
 from ._composite import filter_all, filter_any
-from ._default import make_filter
+from ._factory import make_filter
 from ._once import filter_once
 from .typed import Filter
 

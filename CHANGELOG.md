@@ -1,15 +1,25 @@
 # Changelog
 
+## [0.1.23](https://github.com/liblaf/grapes/compare/v0.1.22..v0.1.23) - 2025-05-09
+
+### ✨ Features
+
+- **grapes:** reorganize modules and improve logging - ([ef28cd1](https://github.com/liblaf/grapes/commit/ef28cd103f43f4423a2884dbb3cf2a358269fc9a))
+- **timing:** add timer support and improve logging defaults - ([69f55d4](https://github.com/liblaf/grapes/commit/69f55d4fb6987038f2875d5bcdba9152517f77d9))
+
+### ♻ Code Refactoring
+
+- **timing:** simplify timer implementation and callback handling - ([3eaaa2a](https://github.com/liblaf/grapes/commit/3eaaa2a60079efe99981105a73d72f26441972a2))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [0.1.22](https://github.com/liblaf/grapes/compare/v0.1.21..v0.1.22) - 2025-05-07
 
 ### 🐛 Bug Fixes
 
 - **logging:** simplify rich handler and location formatting - ([47e46d0](https://github.com/liblaf/grapes/commit/47e46d06e2c06652d9c0cdc5cbdcc78efaf940da))
-
-### ❤️ New Contributors
-
-- @liblaf-bot[bot] made their first contribution
-- @liblaf made their first contribution
 
 ## [0.1.21](https://github.com/liblaf/grapes/compare/v0.1.20..v0.1.21) - 2025-05-05
 
@@ -255,7 +265,7 @@
 
 ### ❤️ New Contributors
 
-- @renovate[bot] made their first contribution in [#9](https://github.com/liblaf/grapes/pull/9)
+- [@renovate[bot]](https://github.com/apps/renovate) made their first contribution in [#9](https://github.com/liblaf/grapes/pull/9)
 
 ## [0.0.1](https://github.com/liblaf/grapes/compare/v0.0.0..v0.0.1) - 2025-01-20
 
@@ -279,7 +289,7 @@
 
 ### ❤️ New Contributors
 
-- @liblaf-bot[bot] made their first contribution
+- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
 
 ## [0.0.0] - 2025-01-16
 
@@ -307,5 +317,5 @@
 
 ### ❤️ New Contributors
 
-- @release-please[bot] made their first contribution in [#4](https://github.com/liblaf/grapes/pull/4)
-- @liblaf made their first contribution
+- [@release-please[bot]](https://github.com/apps/release-please) made their first contribution in [#4](https://github.com/liblaf/grapes/pull/4)
+- [@liblaf](https://github.com/liblaf) made their first contribution

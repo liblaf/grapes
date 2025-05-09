@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.23](https://github.com/liblaf/grapes/compare/v0.1.22...v0.1.23) (2025-05-09)
+
+
+### ✨ Features
+
+* **grapes:** reorganize modules and improve logging ([ef28cd1](https://github.com/liblaf/grapes/commit/ef28cd103f43f4423a2884dbb3cf2a358269fc9a))
+* **timing:** add timer support and improve logging defaults ([69f55d4](https://github.com/liblaf/grapes/commit/69f55d4fb6987038f2875d5bcdba9152517f77d9))
+
+
+### ♻ Code Refactoring
+
+* **timing:** simplify timer implementation and callback handling ([3eaaa2a](https://github.com/liblaf/grapes/commit/3eaaa2a60079efe99981105a73d72f26441972a2))
+
 ## [0.1.22](https://github.com/liblaf/grapes/compare/v0.1.21..v0.1.22) - 2025-05-07
 
 ### 🐛 Bug Fixes

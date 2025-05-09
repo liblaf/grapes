@@ -1,93 +1,79 @@
 import collections
-import math
 import statistics
 import textwrap
-from collections.abc import Generator, Mapping, Sequence
-from typing import overload
+from collections.abc import Callable, Generator, Mapping, Sequence
+from typing import overload, override
 
 import attrs
 from loguru import logger
 
 from liblaf.grapes import human
-from liblaf.grapes.typed import MISSING, MissingType
 
-from ._callback import log_summary
-from ._time import TimerName, get_time
-from ._utils import default_if_missing
-from .typed import Callback
+from ._time import get_time
 
 
 @attrs.define
-class TimerConfig:
-    label: str | None = attrs.field(default=None, kw_only=True)
-    timers: Sequence[TimerName | str] = attrs.field(
-        factory=lambda: ["perf"], kw_only=True, on_setattr=attrs.setters.frozen
-    )
+class SingleTimer:
+    name: str | None = attrs.field(default=None, kw_only=True)
+    timers: Sequence[str] = attrs.field(default=("perf",), kw_only=True)
+    _time_start: dict[str, float] = attrs.field(init=False, factory=dict)
+    _time_stop: dict[str, float] = attrs.field(init=False, factory=dict)
 
     @property
     def default_timer(self) -> str:
         return self.timers[0]
 
-
-@attrs.define
-class BaseTimer(TimerConfig):
-    _time_start: dict[str, float] = attrs.field(
-        init=False, factory=dict, on_setattr=attrs.setters.frozen
-    )
-    _time_end: dict[str, float] = attrs.field(
-        init=False, factory=dict, on_setattr=attrs.setters.frozen
-    )
+    @property
+    def _current_record(self) -> Mapping[str, float]:
+        return {timer: self.elapsed(timer) for timer in self.timers}
 
     def elapsed(self, timer: str | None = None) -> float:
-        timer = timer or self.default_timer
-        if self._time_start.get(timer, math.inf) < self._time_end.get(timer, -math.inf):
-            return self._time_end[timer] - self._time_start[timer]
+        if timer is None:
+            timer = self.default_timer
+        if timer in self._time_stop:
+            return self._time_stop[timer] - self._time_start[timer]
         return get_time(timer) - self._time_start[timer]
 
     def _start(self) -> None:
         for timer in self.timers:
             self._time_start[timer] = get_time(timer)
+        self._time_stop.clear()
 
-    def _end(self) -> None:
+    def _stop(self) -> None:
         for timer in self.timers:
-            self._time_end[timer] = get_time(timer)
+            self._time_stop[timer] = get_time(timer)
 
-    @property
-    def _current_record(self) -> Mapping[str, float]:
-        return {
-            timer: self._time_end[timer] - self._time_start[timer]
-            for timer in self.timers
-        }
+
+class NoOpType: ...
+
+
+NOOP = NoOpType()
+
+type Callback = Callable[["TimerRecords"], None] | NoOpType
 
 
 @attrs.define
-class TimerRecords(BaseTimer):
-    callback_start: Callback | MissingType | None = attrs.field(
-        default=MISSING, kw_only=True
-    )
-    callback_end: Callback | MissingType | None = attrs.field(
-        default=MISSING, kw_only=True
-    )
-    callback_finally: Callback | MissingType | None = attrs.field(
-        default=MISSING, converter=default_if_missing(factory=log_summary), kw_only=True
-    )
+class TimerRecords(SingleTimer):
     _records: dict[str, list[float]] = attrs.field(
-        init=False,
-        factory=lambda: collections.defaultdict(list),
-        on_setattr=attrs.setters.frozen,
+        init=False, factory=lambda: collections.defaultdict(list)
     )
+    callback_start: Callback | None = attrs.field(default=None, kw_only=True)
+    callback_stop: Callback | None = attrs.field(default=None, kw_only=True)
+    callback_finally: Callback | None = attrs.field(default=None, kw_only=True)
 
     @overload
-    def __getitem__(self, index: int) -> Mapping[str, float]: ...
+    def __getitem__(self, key: int) -> Mapping[str, float]: ...
     @overload
-    def __getitem__(self, index: str) -> Sequence[float]: ...
-    def __getitem__(self, index: int | str) -> Mapping[str, float] | Sequence[float]:
-        if isinstance(index, int):
-            return self.row(index)
-        return self.column(index)
+    def __getitem__(self, key: str) -> Sequence[float]: ...
+    def __getitem__(self, key: int | str) -> Mapping[str, float] | Sequence[float]:
+        if isinstance(key, int):
+            return {k: v[key] for k, v in self._records.items()}
+        if isinstance(key, str):
+            return self._records[key]
+        raise KeyError(key)
 
     def __len__(self) -> int:
-        return self.count
+        return len(self._records[self.default_timer])
 
     @property
     def columns(self) -> Sequence[str]:
@@ -106,22 +92,16 @@ class TimerRecords(BaseTimer):
         return len(self.column())
 
     def column(self, timer: str | None = None) -> Sequence[float]:
-        timer = timer or self.default_timer
+        if timer is None:
+            timer = self.default_timer
         return self._records[timer]
 
-    def human_record(self, index: int = -1, label: str | None = None) -> str:
-        label = label or self.label or "Timer"
-        text: str = f"{label} > "
-        items: list[str] = []
-        for timer, value in self.row(index).items():
-            human_duration: str = human.human_duration(value)
-            items.append(f"{timer}: {human_duration}")
-        text += ", ".join(items)
-        return text
+    def human_record(self, index: int = -1) -> str:
+        return human_record(self.row(index), name=self.name)
 
-    def human_summary(self, label: str | None = None) -> str:
-        label = label or self.label or "Timer"
-        header: str = f"{label} (total: {self.n_rows})"
+    def human_summary(self) -> str:
+        name: str = self.name or "Timer"
+        header: str = f"{name} (total: {self.n_rows})"
         if self.n_rows == 0:
             return header
         body: str = ""
@@ -142,21 +122,12 @@ class TimerRecords(BaseTimer):
             yield self.row(index)
 
     def log_record(
-        self,
-        index: int = -1,
-        label: str | None = None,
-        depth: int = 1,
-        level: int | str = "DEBUG",
+        self, index: int = -1, depth: int = 1, level: int | str = "DEBUG"
     ) -> None:
-        logger.opt(depth=depth).log(level, self.human_record(index=index, label=label))
+        logger.opt(depth=depth).log(level, self.human_record(index=index))
 
-    def log_summary(
-        self,
-        label: str | None = None,
-        depth: int = 1,
-        level: int | str = "INFO",
-    ) -> None:
-        logger.opt(depth=depth).log(level, self.human_summary(label=label))
+    def log_summary(self, depth: int = 1, level: int | str = "INFO") -> None:
+        logger.opt(depth=depth).log(level, self.human_summary())
 
     def row(self, index: int) -> Mapping[str, float]:
         return {timer: values[index] for timer, values in self._records.items()}
@@ -188,13 +159,46 @@ class TimerRecords(BaseTimer):
         for key, value in nanoseconds.items():
             self._records[key].append(value * 1e-9)
 
-    def _end(self) -> None:
-        super()._end()
-        self._append(seconds=self._current_record)
-        if callable(self.callback_end):
-            self.callback_end(self)
-
+    @override
     def _start(self) -> None:
-        super()._start()
         if callable(self.callback_start):
             self.callback_start(self)
+        super()._start()
+
+    @override
+    def _stop(self) -> None:
+        super()._stop()
+        self._append(seconds=self._current_record)
+        if callable(self.callback_stop):
+            self.callback_stop(self)
+
+    def _finally(self) -> None:
+        if callable(self.callback_finally):
+            self.callback_finally(self)
+
+
+def human_record(record: Mapping[str, float], name: str | None = None) -> str:
+    name = name or "Timer"
+    text: str = f"{name} > "
+    items: list[str] = []
+    for timer, value in record.items():
+        human_duration: str = human.human_duration(value)
+        items.append(f"{timer}: {human_duration}")
+    text += ", ".join(items)
+    return text
+
+
+def human_summary(records: Mapping[str, Sequence[float]], name: str | None) -> str:
+    name = name or "Timer"
+    header: str = f"{name} (total: {len(records)})"
+    if len(records) == 0:
+        return header
+    body: str = ""
+    for timer, values in records.items():
+        body += f"{timer} > "
+        human_mean: str = human.human_duration_series(values)
+        human_median: str = human.human_duration(statistics.median(values))
+        body += f"mean: {human_mean}, median: {human_median}\n"
+    body = body.strip()
+    summary: str = header + "\n" + textwrap.indent(body, "    ")
+    return summary

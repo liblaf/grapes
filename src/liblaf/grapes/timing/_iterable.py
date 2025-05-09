@@ -1,47 +1,52 @@
-from collections.abc import Iterable, Iterator
+from collections.abc import Iterable, Iterator, Sequence
 
-import attrs
-
-from liblaf.grapes.typed import MISSING, MissingType
-
-from ._base import TimerRecords
-from ._callback import log_record, log_summary
-from ._utils import default_if_missing
-from .typed import Callback
+from . import callback
+from ._base import Callback, TimerRecords
 
 
-@attrs.define
-class TimedIterable[T](TimerRecords):
-    callback_end: Callback | MissingType | None = attrs.field(
-        default=MISSING,
-        converter=default_if_missing(log_record(depth=4)),
-        kw_only=True,
-    )
-    callback_finally: Callback | MissingType | None = attrs.field(
-        default=MISSING,
-        converter=default_if_missing(log_summary(depth=3)),
-        kw_only=True,
-    )
-    total: int | None = attrs.field(default=None, kw_only=True)
-    _iterable: Iterable[T] = attrs.field(
-        alias="iterable", on_setattr=attrs.setters.frozen
-    )
+class TimedIterable[T]:
+    timing: TimerRecords
+    _iterable: Iterable[T]
+    _total: int | None = None
 
-    def __attrs_post_init__(self) -> None:
-        self.label = self.label or "Iterable"
+    def __init__(
+        self,
+        iterable: Iterable[T],
+        /,
+        total: int | None = None,
+        name: str | None = None,
+        timers: Sequence[str] = ("perf",),
+        callback_start: Callback | None = None,
+        callback_stop: Callback | None = None,
+        callback_finally: Callback | None = None,
+    ) -> None:
+        if name is None:
+            name = "Iterable"
+        if callback_stop is None:
+            callback_stop = callback.log_record()
+        if callback_finally is None:
+            callback_finally = callback.log_summary()
+        self.timing = TimerRecords(
+            name=name,
+            timers=timers,
+            callback_start=callback_start,
+            callback_stop=callback_stop,
+            callback_finally=callback_finally,
+        )
+        self._iterable = iterable
+        self._total = total
 
     def __contains__(self, x: object, /) -> bool:
         return x in self._iterable  # pyright: ignore[reportOperatorIssue]
 
+    def __len__(self) -> int:
+        if self._total is None:
+            return len(self._iterable)  # pyright: ignore[reportArgumentType]
+        return self._total
+
     def __iter__(self) -> Iterator[T]:
         for item in self._iterable:
-            self._start()
+            self.timing._start()  # noqa: SLF001
             yield item
-            self._end()
-        if callable(self.callback_finally):
-            self.callback_finally(self)
-
-    def __len__(self) -> int:
-        if self.total is not None:
-            return self.total
-        return len(self._iterable)  # pyright: ignore[reportArgumentType]
+            self.timing._stop()  # noqa: SLF001
+        self.timing._finally()  # noqa: SLF001

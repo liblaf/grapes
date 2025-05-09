@@ -1,32 +1,42 @@
 import functools
-from collections.abc import Callable
-
-import attrs
+from collections.abc import Callable, Sequence
 
 from liblaf.grapes import pretty
-from liblaf.grapes.typed import MISSING, MissingType
 
-from ._base import TimerRecords
-from ._callback import log_record
-from ._utils import default_if_missing
-from .typed import Callback
+from . import callback
+from ._base import Callback, TimerRecords
 
 
-# `slots=False` is required to make `functools.update_wrapper(...)` work
-# ref: <https://www.attrs.org/en/stable/glossary.html#term-slotted-classes>
-@attrs.define(slots=False)
-class TimedFunction[**P, T](TimerRecords):
-    callback_end: Callback | MissingType | None = attrs.field(
-        default=MISSING, converter=default_if_missing(log_record(depth=4)), kw_only=True
-    )
-    _func: Callable[P, T] = attrs.field(alias="func", on_setattr=attrs.setters.frozen)
+class TimedFunction[**P, T]:
+    timing: TimerRecords
+    _func: Callable[P, T]
 
-    def __attrs_post_init__(self) -> None:
-        self.label = self.label or pretty.func(self._func).plain or "Function"
-        functools.update_wrapper(self, self._func)
+    def __init__(
+        self,
+        func: Callable[P, T],
+        /,
+        name: str | None = None,
+        timers: Sequence[str] = ("perf",),
+        callback_start: Callback | None = None,
+        callback_stop: Callback | None = None,
+        callback_finally: Callback | None = None,
+    ) -> None:
+        if name is None:
+            name = pretty.func(func).plain or "Function"
+        if callback_stop is None:
+            callback_stop = callback.log_record()
+        self.timing = TimerRecords(
+            name=name,
+            timers=timers,
+            callback_start=callback_start,
+            callback_stop=callback_stop,
+            callback_finally=callback_finally,
+        )
+        self._func = func
+        functools.update_wrapper(self, func)
 
     def __call__(self, *args: P.args, **kwargs: P.kwargs) -> T:
-        self._start()
+        self.timing._start()  # noqa: SLF001
         result: T = self._func(*args, **kwargs)
-        self._end()
+        self.timing._stop()  # noqa: SLF001
         return result

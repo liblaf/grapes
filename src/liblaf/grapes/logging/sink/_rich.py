@@ -22,6 +22,7 @@ class RichLogRecordRenderer:
     console: Console = attrs.field(factory=lambda: pretty.get_console("stderr"))
     highlighter: Highlighter = attrs.field(factory=ReprHighlighter)
     markup: bool = attrs.field(default=True)
+    path_style: Literal["long", "short"] = attrs.field(default="long")
     traceback: TracebackArgs = attrs.field(
         factory=lambda: TracebackArgs(show_locals=True)
     )
@@ -68,7 +69,7 @@ class RichLogRecordRenderer:
             function=record["function"],
             line=record["line"],
             file=record["file"].path,
-            style="short",
+            style=self.path_style,
         )
         self.row.append(path)
         return self
@@ -102,7 +103,7 @@ class LoguruRichHandler:
     console: Console = attrs.field(factory=lambda: pretty.get_console("stderr"))
     highlighter: Highlighter = attrs.field(factory=ReprHighlighter)
     markup: bool = attrs.field(default=True)
-    path_style: Literal["short", "full"] = attrs.field(default="short")
+    path_style: Literal["long", "short"] = attrs.field(default="long")
     traceback: TracebackArgs = attrs.field(
         factory=lambda: TracebackArgs(show_locals=True)
     )
@@ -112,6 +113,7 @@ class LoguruRichHandler:
             console=self.console,
             highlighter=self.highlighter,
             markup=self.markup,
+            path_style=self.path_style,
             traceback=self.traceback,
         )
         renderer.add_time(message.record)

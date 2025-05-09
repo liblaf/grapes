@@ -14,13 +14,13 @@ def log_summary(depth: int = 1, level: int | str = "INFO") -> Callback:
 
 
 def _log_record(
-    timer: TimerRecords, *, index: int = -1, depth: int = 3, level: int | str = "DEBUG"
+    timer: TimerRecords, *, index: int = -1, depth: int = 1, level: int | str = "DEBUG"
 ) -> None:
     logger.opt(depth=depth).log(level, timer.human_record(index=index))
 
 
 def _log_summary(
-    timer: TimerRecords, *, depth: int = 3, level: int | str = "INFO"
+    timer: TimerRecords, *, depth: int = 1, level: int | str = "INFO"
 ) -> None:
     logger.opt(depth=depth).log(level, timer.human_summary())
 

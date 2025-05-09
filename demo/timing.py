@@ -13,6 +13,9 @@ def main() -> None:
 
     func()
 
+    for _ in grapes.timer(range(10)):
+        time.sleep(0.1)
+
     for _ in grapes.track(range(10)):
         time.sleep(0.1)
 

@@ -14,13 +14,13 @@ def location(
     function: str | None,
     line: int | None,
     file: PathLike | None = None,
-    style: Literal["long", "short"] = "short",
+    style: Literal["long", "short"] = "long",
 ) -> Text:
     text = Text()
     file: Path | None = Path(file or "<unknown>")
     function = function or "<unknown>"
     line = line or 0
-    if style == "short" and name:
+    if (style == "short") and (name is not None):
         name = name.split(".")[-1]
     if file.exists():
         text.append(
@@ -31,7 +31,7 @@ def location(
     return text
 
 
-def caller_location(depth: int = 1, style: Literal["long", "short"] = "short") -> Text:
+def caller_location(depth: int = 1, style: Literal["long", "short"] = "long") -> Text:
     frame: FrameType | None
     try:
         frame = get_frame(depth)

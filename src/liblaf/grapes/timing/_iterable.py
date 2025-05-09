@@ -23,9 +23,9 @@ class TimedIterable[T]:
         if name is None:
             name = "Iterable"
         if callback_stop is None:
-            callback_stop = callback.log_record()
+            callback_stop = callback.log_record(depth=3)
         if callback_finally is None:
-            callback_finally = callback.log_summary()
+            callback_finally = callback.log_summary(depth=3)
         self.timing = TimerRecords(
             name=name,
             timers=timers,

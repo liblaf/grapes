@@ -24,7 +24,7 @@ def track[T](
         total = try_len(iterable)
     if timers:
         if callback_stop is None:
-            callback_stop = timing.callback.log_record(depth=6)
+            callback_stop = timing.callback.log_record(depth=5)
         if callback_finally is None:
             callback_finally = timing.callback.log_summary(depth=5)
         iterable: timing.TimedIterable[T] = timing.timer(

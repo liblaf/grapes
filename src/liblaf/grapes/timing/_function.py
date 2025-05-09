@@ -24,7 +24,7 @@ class TimedFunction[**P, T]:
         if name is None:
             name = pretty.func(func).plain or "Function"
         if callback_stop is None:
-            callback_stop = callback.log_record()
+            callback_stop = callback.log_record(depth=3)
         self.timing = TimerRecords(
             name=name,
             timers=timers,

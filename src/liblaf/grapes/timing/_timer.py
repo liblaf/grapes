@@ -97,10 +97,10 @@ class Timer(
                 if self.name is None:
                     self.name = "Block"
                 if self.callback_stop is None:
-                    self.callback_stop = callback.log_record()
+                    self.callback_stop = callback.log_record(depth=3)
             case TimerMode.INLINE:
                 if self.callback_stop is None:
-                    self.callback_stop = callback.log_record()
+                    self.callback_stop = callback.log_record(depth=3)
             case _:
                 pass
 

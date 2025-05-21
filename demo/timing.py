@@ -11,7 +11,9 @@ def func() -> None:
 def main() -> None:
     grapes.init_logging()
 
-    func()
+    for _ in range(10):
+        func()
+    func.timing.finish()
 
     for _ in grapes.timer(range(10)):
         time.sleep(0.1)

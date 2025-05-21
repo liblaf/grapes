@@ -50,43 +50,36 @@ class RateColumn(ProgressColumn):
 
 
 def progress(
-    *columns: str | ProgressColumn, console: Console | None = None
+    *columns: str | ProgressColumn,
+    console: Console | None = None,
+    total_is_unknown: bool = False,
 ) -> Progress:
-    """Create and return a Progress instance with specified columns and console.
-
-    If no columns are provided, a default set of columns will be used:
-
-    - `SpinnerColumn`
-    - `TextColumn` with task description
-    - `BarColumn`
-    - `TaskProgressColumn` with speed display
-    - `MofNCompleteColumn`
-    - `TimeElapsedColumn`
-    - `TimeRemainingColumn`
-    - `RateColumn`
-
-    Args:
-        *columns: Variable length argument list of columns to include in the progress display.
-        console: The console to use for rendering the progress. Defaults to `None`, in which case the logging console is used.
-
-    Returns:
-        An instance of the Progress class configured with the specified columns and console.
-    """
     if not columns:
-        columns: list[ProgressColumn] = [SpinnerColumn()]
-        columns.append(TextColumn("[progress.description]{task.description}"))
-        columns += [
+        columns: list[ProgressColumn] = [
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
             BarColumn(),
-            TaskProgressColumn(show_speed=True),
-            MofNCompleteColumn(),
-            "[",
-            TimeElapsedColumn(),
-            "<",
-            TimeRemainingColumn(),
-            ",",
-            RateColumn(),
-            "]",
         ]
+        if total_is_unknown:
+            columns += [
+                MofNCompleteColumn(),
+                "[",
+                TimeElapsedColumn(),
+                ",",
+                RateColumn(),
+                "]",
+            ]
+        else:
+            columns += [
+                TaskProgressColumn(),
+                "[",
+                TimeElapsedColumn(),
+                "<",
+                TimeRemainingColumn(),
+                ",",
+                RateColumn(),
+                "]",
+            ]
     console = console or pretty.get_console("stderr")
     progress = Progress(*columns, console=console)
     return progress

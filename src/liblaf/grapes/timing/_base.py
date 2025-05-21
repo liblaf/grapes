@@ -34,32 +34,27 @@ class SingleTimer:
             return self._time_stop[timer] - self._time_start[timer]
         return get_time(timer) - self._time_start[timer]
 
-    def _start(self) -> None:
+    def start(self) -> None:
         for timer in self.timers:
             self._time_start[timer] = get_time(timer)
         self._time_stop.clear()
 
-    def _stop(self) -> None:
+    def stop(self) -> None:
         for timer in self.timers:
             self._time_stop[timer] = get_time(timer)
 
 
-class NoOpType: ...
-
-
-NOOP = NoOpType()
-
-type Callback = Callable[["TimerRecords"], None] | NoOpType
+type Callback = Callable[["TimerRecords"], None]
 
 
 @attrs.define
 class TimerRecords(SingleTimer):
+    callback_start: Callback | None = attrs.field(default=None, kw_only=True)
+    callback_stop: Callback | None = attrs.field(default=None, kw_only=True)
+    callback_finish: Callback | None = attrs.field(default=None, kw_only=True)
     _records: dict[str, list[float]] = attrs.field(
         init=False, factory=lambda: collections.defaultdict(list)
     )
-    callback_start: Callback | None = attrs.field(default=None, kw_only=True)
-    callback_stop: Callback | None = attrs.field(default=None, kw_only=True)
-    callback_finally: Callback | None = attrs.field(default=None, kw_only=True)
 
     @overload
     def __getitem__(self, key: int) -> Mapping[str, float]: ...
@@ -160,21 +155,21 @@ class TimerRecords(SingleTimer):
             self._records[key].append(value * 1e-9)
 
     @override
-    def _start(self) -> None:
+    def start(self) -> None:
         if callable(self.callback_start):
             self.callback_start(self)
-        super()._start()
+        super().start()
 
     @override
-    def _stop(self) -> None:
-        super()._stop()
+    def stop(self) -> None:
+        super().stop()
         self._append(seconds=self._current_record)
         if callable(self.callback_stop):
             self.callback_stop(self)
 
-    def _finally(self) -> None:
-        if callable(self.callback_finally):
-            self.callback_finally(self)
+    def finish(self) -> None:
+        if callable(self.callback_finish):
+            self.callback_finish(self)
 
 
 def human_record(record: Mapping[str, float], name: str | None = None) -> str:

@@ -8,14 +8,13 @@ from . import (
     logging,
     path,
     pretty,
-    progress_bar,
     serde,
     text,
     timing,
     typed,
 )
 from ._version import __version__, __version_tuple__, version, version_tuple
-from .const import noop
+from .const import nop
 from .deps import has_module, optional_imports
 from .environ import init_env
 from .functools import ConditionalDispatcher, decorator_with_optional_arguments
@@ -42,7 +41,6 @@ from .logging import (
 )
 from .path import as_path, project_root, resolve_project_path
 from .pretty import caller_location, get_console
-from .progress_bar import progress, track
 from .serde import (
     deserialize,
     load,
@@ -69,6 +67,7 @@ from .serde import (
 )
 from .text import strip_comments
 from .timing import TimedFunction, TimedIterable, TimerName, get_time, timer
+from .tqdm import progress, track
 
 __all__ = [
     "ConditionalDispatcher",
@@ -120,12 +119,11 @@ __all__ = [
     "loads_yaml",
     "log_once",
     "logging",
-    "noop",
+    "nop",
     "optional_imports",
     "path",
     "pretty",
     "progress",
-    "progress_bar",
     "project_root",
     "resolve_project_path",
     "save",

@@ -17,11 +17,11 @@ def track[T](
     callback_stop: timing.Callback | None = None,
     callback_finally: timing.Callback | None = None,
 ) -> Generator[T]:
-    prog: Progress = progress()
     if timers is True:
         timers = ["perf"]
     if total is None:
         total = try_len(iterable)
+    prog: Progress = progress(total_is_unknown=total is None)
     if timers:
         if callback_stop is None:
             callback_stop = timing.callback.log_record(depth=5)
@@ -34,7 +34,7 @@ def track[T](
             total=int(total) if total is not None else None,
             callback_start=callback_start,
             callback_stop=callback_stop,
-            callback_finally=callback_finally,
+            callback_finish=callback_finally,
         )
         with prog:
             yield from prog.track(iterable, total=total, description=description)

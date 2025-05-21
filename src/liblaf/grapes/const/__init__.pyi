@@ -1,3 +1,3 @@
-from ._function import noop
+from ._function import nop
 
-__all__ = ["noop"]
+__all__ = ["nop"]

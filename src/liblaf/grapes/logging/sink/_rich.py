@@ -1,78 +1,45 @@
 import datetime
 import types
-from typing import Literal, Self, TypedDict
+from collections.abc import Sequence
+from typing import Protocol, override
 
 import attrs
 import loguru
 from rich.console import Console, RenderableType
 from rich.highlighter import Highlighter, ReprHighlighter
-from rich.table import Table
+from rich.table import Column, Table
 from rich.text import Text
 from rich.traceback import Traceback
 
 from liblaf.grapes import pretty
 
 
-class TracebackArgs(TypedDict, total=False):
-    show_locals: bool
+class RichLoggingColumn(Protocol):
+    @property
+    def column(self) -> Column: ...
+    def render(self, record: "loguru.Record") -> RenderableType: ...
 
 
-@attrs.frozen(kw_only=True)
-class RichLogRecordRenderer:
+@attrs.define
+class LoguruRichHandler:
     console: Console = attrs.field(factory=lambda: pretty.get_console("stderr"))
-    highlighter: Highlighter = attrs.field(factory=ReprHighlighter)
-    markup: bool = attrs.field(default=True)
-    path_style: Literal["long", "short"] = attrs.field(default="long")
-    traceback: TracebackArgs = attrs.field(
-        factory=lambda: TracebackArgs(show_locals=True)
+    columns: Sequence[RichLoggingColumn] = attrs.field(
+        factory=lambda: [TimeColumn(), LevelColumn(), LocationColumn(), MessageColumn()]
     )
 
-    row: list[RenderableType] = attrs.field(init=False, factory=list)
-    table: Table = attrs.field(
-        init=False, factory=lambda: Table.grid(padding=(0, 1), expand=True)
-    )
+    def __call__(self, message: "loguru.Message") -> None:
+        record: loguru.Record = message.record
+        # TODO: `console.print()` is slow
+        self.console.print(self.render(record))
+        if (excpetion := self.render_exception(record)) is not None:
+            self.console.print(excpetion)
 
-    def add_time(self, record: "loguru.Record") -> Self:
-        self.table.add_column("Time", style="log.time")
-        elapsed: datetime.timedelta = record["elapsed"]
-        hh: int
-        mm: int
-        ss: int
-        mm, ss = divmod(int(elapsed.total_seconds()), 60)
-        hh, mm = divmod(mm, 60)
-        self.row.append(f"{hh:02}:{mm:02}:{ss:02}.{elapsed.microseconds:06d}")
-        return self
-
-    def add_level(self, record: "loguru.Record") -> Self:
-        self.table.add_column("Level", style="log.level", width=8)
-        level: str = record["level"].name
-        self.row.append(Text(level, style=f"logging.level.{level.lower()}"))
-        return self
-
-    def add_message(self, record: "loguru.Record") -> Self:
-        self.table.add_column("Message", style="log.message", ratio=1)
-        if (rich := record["extra"].get("rich")) is not None:
-            self.row.append(rich)
-            return self
-        message: RenderableType = record["message"].rstrip()
-        if record["extra"].get("markup", self.markup):
-            message = Text.from_markup(message)
-        if highlighter := record["extra"].get("highlighter", self.highlighter):
-            message = highlighter(message)
-        self.row.append(message)
-        return self
-
-    def add_path(self, record: "loguru.Record") -> Self:
-        self.table.add_column("Path", style="log.path")
-        path: Text = pretty.location(
-            name=record["name"],
-            function=record["function"],
-            line=record["line"],
-            file=record["file"].path,
-            style=self.path_style,
+    def render(self, record: "loguru.Record") -> RenderableType:
+        table: Table = Table.grid(
+            *(col.column for col in self.columns), padding=(0, 1), expand=True
         )
-        self.row.append(path)
-        return self
+        table.add_row(*(column.render(record) for column in self.columns))
+        return table
 
     def render_exception(self, record: "loguru.Record") -> RenderableType | None:
         exception: loguru.RecordException | None = record["exception"]
@@ -90,37 +57,77 @@ class RichLogRecordRenderer:
             traceback=traceback,
             width=self.console.width,
             code_width=self.console.width,
-            **self.traceback,
+            show_locals=True,
         )
 
-    def render(self) -> RenderableType:
-        self.table.add_row(*self.row)
-        return self.table
+
+class TimeColumn(RichLoggingColumn):
+    @property
+    @override
+    def column(self) -> Column:
+        return Column("Time", style="log.time")
+
+    @override
+    def render(self, record: "loguru.Record") -> RenderableType:
+        elapsed: datetime.timedelta = record["elapsed"]
+        hh: int
+        mm: int
+        ss: int
+        mm, ss = divmod(int(elapsed.total_seconds()), 60)
+        hh, mm = divmod(mm, 60)
+        return f"{hh:02d}:{mm:02d}:{ss:02d}.{elapsed.microseconds:06d}"
 
 
-@attrs.define(kw_only=True)
-class LoguruRichHandler:
-    console: Console = attrs.field(factory=lambda: pretty.get_console("stderr"))
+@attrs.define
+class LevelColumn(RichLoggingColumn):
+    @property
+    @override
+    def column(self) -> Column:
+        return Column("Level", style="log.level", width=8)
+
+    @override
+    def render(self, record: "loguru.Record") -> RenderableType:
+        level: str = record["level"].name
+        return Text(level, style=f"logging.level.{level.lower()}")
+
+
+@attrs.define
+class LocationColumn(RichLoggingColumn):
+    enable_link: bool = attrs.field(default=True)
+
+    @property
+    @override
+    def column(self) -> Column:
+        return Column("Location", style="log.path")
+
+    @override
+    def render(self, record: "loguru.Record") -> RenderableType:
+        location: Text = pretty.location(
+            name=record["name"],
+            function=record["function"],
+            line=record["line"],
+            file=record["file"].path,
+            enable_link=self.enable_link,
+        )
+        return location
+
+
+@attrs.define
+class MessageColumn(RichLoggingColumn):
     highlighter: Highlighter = attrs.field(factory=ReprHighlighter)
-    markup: bool = attrs.field(default=True)
-    path_style: Literal["long", "short"] = attrs.field(default="long")
-    traceback: TracebackArgs = attrs.field(
-        factory=lambda: TracebackArgs(show_locals=True)
-    )
 
-    def __call__(self, message: "loguru.Message") -> None:
-        renderer = RichLogRecordRenderer(
-            console=self.console,
-            highlighter=self.highlighter,
-            markup=self.markup,
-            path_style=self.path_style,
-            traceback=self.traceback,
-        )
-        renderer.add_time(message.record)
-        renderer.add_level(message.record)
-        renderer.add_message(message.record)
-        renderer.add_path(message.record)
-        # TODO: console.print() is slow
-        self.console.print(renderer.render())
-        if (exception := renderer.render_exception(message.record)) is not None:
-            self.console.print(exception)
+    @property
+    @override
+    def column(self) -> Column:
+        return Column("Message", style="log.message", ratio=1)
+
+    @override
+    def render(self, record: "loguru.Record") -> RenderableType:
+        if (rich := record["extra"].get("rich")) is not None:
+            return rich
+        message: RenderableType = record["message"].rstrip()
+        if record["extra"].get("markup", True):
+            message = Text.from_markup(message)
+        if highlighter := record["extra"].get("highlighter", self.highlighter):
+            message = highlighter(message)
+        return message

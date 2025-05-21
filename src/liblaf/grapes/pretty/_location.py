@@ -14,15 +14,17 @@ def location(
     function: str | None,
     line: int | None,
     file: PathLike | None = None,
+    *,
+    enable_link: bool = True,
     style: Literal["long", "short"] = "long",
 ) -> Text:
     text = Text()
-    file: Path | None = Path(file or "<unknown>")
+    file: Path | None = Path(file) if file is not None else None
     function = function or "<unknown>"
     line = line or 0
     if (style == "short") and (name is not None):
         name = name.split(".")[-1]
-    if file.exists():
+    if enable_link and file is not None and file.exists():
         text.append(
             f"{name}:{function}:{line}", style=Style(link=f"{file.as_uri()}#{line}")
         )

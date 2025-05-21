@@ -26,13 +26,24 @@ from .filters import (
     make_filter,
 )
 from .handler import file_handler, jsonl_handler, rich_handler
-from .sink import LoguruRichHandler, TracebackArgs
+from .sink import (
+    LevelColumn,
+    LocationColumn,
+    LoguruRichHandler,
+    MessageColumn,
+    RichLoggingColumn,
+    TimeColumn,
+)
 
 __all__ = [
     "Filter",
     "InterceptHandler",
+    "LevelColumn",
+    "LocationColumn",
     "LoguruRichHandler",
-    "TracebackArgs",
+    "MessageColumn",
+    "RichLoggingColumn",
+    "TimeColumn",
     "add_level",
     "as_filter_func",
     "clear_handlers",

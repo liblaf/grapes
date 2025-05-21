@@ -1,16 +1,19 @@
 # Changelog
 
-## [0.1.24](https://github.com/liblaf/grapes/compare/v0.1.23...v0.1.24) (2025-05-21)
-
+## [0.1.24](https://github.com/liblaf/grapes/compare/v0.1.23..v0.1.24) - 2025-05-21
 
 ### ✨ Features
 
-* **serde:** replace tomlkit and ruamel.yaml with msgspec ([5b0c626](https://github.com/liblaf/grapes/commit/5b0c626633401da14588032b72cc4d03f5057c42))
-
+- **serde:** replace tomlkit and ruamel.yaml with msgspec - ([5b0c626](https://github.com/liblaf/grapes/commit/5b0c626633401da14588032b72cc4d03f5057c42))
 
 ### ♻ Code Refactoring
 
-* **logging:** restructure rich logging handler with column-based approach ([8cdf600](https://github.com/liblaf/grapes/commit/8cdf600387b915f14d7d185a2b525bdf130f9ba4))
+- **logging:** restructure rich logging handler with column-based approach - ([8cdf600](https://github.com/liblaf/grapes/commit/8cdf600387b915f14d7d185a2b525bdf130f9ba4))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
 
 ## [0.1.23](https://github.com/liblaf/grapes/compare/v0.1.22..v0.1.23) - 2025-05-09
 
@@ -22,10 +25,6 @@
 ### ♻ Code Refactoring
 
 - **timing:** simplify timer implementation and callback handling - ([3eaaa2a](https://github.com/liblaf/grapes/commit/3eaaa2a60079efe99981105a73d72f26441972a2))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [0.1.22](https://github.com/liblaf/grapes/compare/v0.1.21..v0.1.22) - 2025-05-07
 

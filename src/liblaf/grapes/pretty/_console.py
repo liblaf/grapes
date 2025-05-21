@@ -43,10 +43,9 @@ def get_console(
         case IO():
             return Console(theme=theme(), file=file, **kwargs)
         case file:
-            width: int = env.int("RICH_FILE_CONSOLE_WIDTH", default=120)
-            return Console(
-                theme=theme(), file=path.as_path(file).open("w"), width=width, **kwargs
-            )
+            if "width" not in kwargs:
+                kwargs["width"] = 128
+            return Console(theme=theme(), file=path.as_path(file).open("w"), **kwargs)
 
 
 def force_terminal() -> bool | None:

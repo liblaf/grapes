@@ -1,19 +1,17 @@
-import logging
 from collections.abc import Sequence
+from typing import Unpack
 
 import loguru
 
 from ._icecream import init_icecream
 from ._init_loguru import init_loguru
-from .filters import Filter
 
 
 def init_logging(
-    level: int | str = logging.NOTSET,
     *,
-    filter_: Filter | None = None,
     handlers: Sequence["loguru.HandlerConfig"] | None = None,
     levels: Sequence["loguru.LevelConfig"] | None = None,
+    **kwargs: Unpack["loguru.BasicHandlerConfig"],
 ) -> None:
-    init_loguru(level=level, filter_=filter_, handlers=handlers, levels=levels)
+    init_loguru(handlers=handlers, levels=levels, **kwargs)
     init_icecream()

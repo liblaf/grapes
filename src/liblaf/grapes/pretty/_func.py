@@ -6,14 +6,14 @@ import autoregistry
 from rich.style import Style
 from rich.text import Text
 
-FUNC = autoregistry.Registry(prefix="_func_")
+_func = autoregistry.Registry(prefix="_func_")
 
 
 def func(obj: Callable, *, style: Literal["short", "long"] = "short") -> Text:
-    return FUNC[style](obj)
+    return _func[style](obj)
 
 
-@FUNC
+@_func
 def _func_short(obj: Callable) -> Text:
     text = Text()
     file: Path = Path(obj.__code__.co_filename)
@@ -27,7 +27,7 @@ def _func_short(obj: Callable) -> Text:
     return text
 
 
-@FUNC
+@_func
 def _func_long(obj: Callable) -> Text:
     text = Text()
     file: Path = Path(obj.__code__.co_filename)

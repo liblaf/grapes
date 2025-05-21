@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.24](https://github.com/liblaf/grapes/compare/v0.1.23...v0.1.24) (2025-05-21)
+
+
+### ✨ Features
+
+* **serde:** replace tomlkit and ruamel.yaml with msgspec ([5b0c626](https://github.com/liblaf/grapes/commit/5b0c626633401da14588032b72cc4d03f5057c42))
+
+
+### ♻ Code Refactoring
+
+* **logging:** restructure rich logging handler with column-based approach ([8cdf600](https://github.com/liblaf/grapes/commit/8cdf600387b915f14d7d185a2b525bdf130f9ba4))
+
 ## [0.1.23](https://github.com/liblaf/grapes/compare/v0.1.22..v0.1.23) - 2025-05-09
 
 ### ✨ Features

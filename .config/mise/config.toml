@@ -3,6 +3,9 @@
 [hooks]
 enter = "mise run install"
 
+[task_config]
+includes = [".config/mise/tasks/", ".config/copier/mise/tasks/"]
+
 [tasks.lint]
 depends = ["lint-python", "lint-toml"]
 

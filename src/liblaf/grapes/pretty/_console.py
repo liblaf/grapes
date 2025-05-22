@@ -32,29 +32,31 @@ def theme() -> Theme:
 def get_console(
     file: Literal["stdout", "stderr"] | IO | PathLike = "stdout", **kwargs
 ) -> Console:
+    kwargs.setdefault("force_terminal", force_terminal(file))
+    kwargs.setdefault("theme", theme())
     match file:
         case "stdout":
-            rich.reconfigure(force_terminal=force_terminal(), theme=theme(), **kwargs)
+            rich.reconfigure(**kwargs)
             return rich.get_console()
         case "stderr":
-            return Console(
-                force_terminal=force_terminal(), theme=theme(), stderr=True, **kwargs
-            )
+            kwargs.setdefault("stderr", True)
+            return Console(**kwargs)
         case IO():
-            return Console(theme=theme(), file=file, **kwargs)
+            return Console(file=file, **kwargs)
         case file:
-            if "width" not in kwargs:
-                kwargs["width"] = 128
-            return Console(theme=theme(), file=path.as_path(file).open("w"), **kwargs)
+            kwargs.setdefault("width", 128)
+            return Console(file=path.as_path(file).open("w"), **kwargs)
 
 
-def force_terminal() -> bool | None:
+def force_terminal(file: Literal["stdout", "stderr"] | IO | PathLike) -> bool | None:
     """...
 
     References:
         1. <https://force-color.org/>
         2. <https://no-color.org/>
     """
+    if file not in ("stdout", "stderr"):
+        return None
     if env.bool("FORCE_COLOR", None):
         return True
     if env.bool("NO_COLOR", None):

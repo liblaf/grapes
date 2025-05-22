@@ -27,7 +27,9 @@ class LoguruRichHandler:
     def __call__(self, message: "loguru.Message") -> None:
         record: loguru.Record = message.record
         # TODO: `console.print()` is slow
-        self.console.print(*self.render(record))
+        self.console.print(
+            *self.render(record), overflow="ignore", no_wrap=True, crop=False
+        )
         if (excpetion := self.render_exception(record)) is not None:
             self.console.print(excpetion)
 

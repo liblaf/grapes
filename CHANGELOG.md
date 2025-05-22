@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.25](https://github.com/liblaf/grapes/compare/v0.1.24...v0.1.25) (2025-05-22)
+
+
+### 🐛 Bug Fixes
+
+* **logging:** improve rich console output handling ([083778d](https://github.com/liblaf/grapes/commit/083778def714fb9907ea274024beb7f9204cdb8d))
+
+
+### 👷 Build System
+
+* migrate from pixi to uv for package management ([f9028e7](https://github.com/liblaf/grapes/commit/f9028e7eb996fd8355ec2bee19c6a21df98d76e2))
+* migrate from pixi to uv package manager ([86d8b6c](https://github.com/liblaf/grapes/commit/86d8b6cc0b46d053b4269e473e6ad216ec51619f))
+
 ## [0.1.24](https://github.com/liblaf/grapes/compare/v0.1.23..v0.1.24) - 2025-05-21
 
 ### ✨ Features

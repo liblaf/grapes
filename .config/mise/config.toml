@@ -1,8 +1,11 @@
 #:schema https://mise.jdx.dev/schema/mise.json
 
+[hooks]
+enter = "mise run install"
+
 [tasks.lint]
 depends = ["lint-python", "lint-toml"]
 
 [[watch_files]]
-patterns = ["pyproject.toml", "pixi.toml", "pixi.lock"]
-run = "pixi install"
+patterns = ["pixi.lock", "pyproject.toml", "uv.lock"]
+run = "mise run install"

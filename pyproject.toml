@@ -114,22 +114,9 @@ packages = ["src/liblaf/"]
 [tool.hatch.version]
 source = "vcs"
 
-[tool.pixi.environments]
-default = { features = ["build", "dev", "docs", "test"] }
-
-[tool.pixi.project]
-channel-priority = "disabled"
-channels = ["conda-forge"]
-platforms = ["linux-64"]
-
-[tool.pixi.pypi-dependencies]
-liblaf-grapes = { editable = true, path = "." }
-
-[tool.pixi.system-requirements]
-cuda = "12"
-libc = { family = "glibc", version = "2.41" }
-linux = "6.13"
-
 [tool.pytest.ini_options]
 addopts = ["--showlocals", "--strict-config", "--strict-markers"]
 testpaths = ["benches/", "tests/"]
+
+[tool.uv]
+default-groups = "all"

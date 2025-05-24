@@ -12,9 +12,16 @@ build:
   tools:
     python: latest
   jobs:
-    pre_install:
-      - curl -LsSf https://astral.sh/uv/install.sh | sh
-      - uv export --all-extras --all-groups --output-file "requirements.txt"
+    pre_create_environment:
+      - asdf plugin add uv
+      - asdf install uv latest
+      - asdf global uv latest
+    create_environment:
+      - uv venv "$READTHEDOCS_VIRTUALENV_PATH"
+    install:
+      - UV_PROJECT_ENVIRONMENT="$READTHEDOCS_VIRTUALENV_PATH" uv sync --all-extras --all-groups --link-mode copy
+    pre_build:
+      - if test -f "docs/scripts/pre-build.sh"; then bash "docs/scripts/pre-build.sh"; fi
 
 mkdocs:
   configuration: mkdocs.yaml

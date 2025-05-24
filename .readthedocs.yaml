@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/readthedocs/readthedocs.org/master/readthedocs/rtd_tests/fixtures/spec/v2/schema.json
+# ref: <https://docs.readthedocs.com/platform/stable/config-file/v2.html>
+
+version: 2
+
+python:
+  install:
+    - requirements: requirements.txt
+
+build:
+  os: ubuntu-lts-latest
+  tools:
+    python: latest
+  jobs:
+    pre_install:
+      - curl -LsSf https://astral.sh/uv/install.sh | sh
+      - uv export --all-extras --all-groups --output-file "requirements.txt"
+
+mkdocs:
+  configuration: mkdocs.yaml

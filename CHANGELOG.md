@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.1.27](https://github.com/liblaf/grapes/compare/v0.1.26...v0.1.27) (2025-05-24)
+
+
+### ✨ Features
+
+* **docs:** switch from mike to mkdocs for documentation ([51a836a](https://github.com/liblaf/grapes/commit/51a836a5913b6f53fe460a56967b51bcbc634423))
+
+
+### 🐛 Bug Fixes
+
+* update project dependencies ([eb01ec6](https://github.com/liblaf/grapes/commit/eb01ec6f8608b05d8ea7599746aaacb08209a83c))
+
+
+### 📝 Documentation
+
+* update copier configuration files ([1ac9813](https://github.com/liblaf/grapes/commit/1ac9813c7b7b763269e8f837fcc20d84ea8b45cc))
+
+
+### 🔧 Continuous Integration
+
+* add Read the Docs configuration file ([7215139](https://github.com/liblaf/grapes/commit/72151396a3ed1befb60721ca8ff2ec3ce56e61fc))
+* update ReadTheDocs configuration to use asdf and uv ([8fbcc4a](https://github.com/liblaf/grapes/commit/8fbcc4a5380a9b1ab864e9f353e33a84ae3490e5))
+
 ## [0.1.26](https://github.com/liblaf/grapes/compare/v0.1.25..v0.1.26) - 2025-05-24
 
 ### ✨ Features

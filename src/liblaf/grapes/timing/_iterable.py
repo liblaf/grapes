@@ -1,7 +1,7 @@
-from collections.abc import Iterable, Iterator, Sequence
+from collections.abc import Iterable, Iterator
 
 from . import callback
-from ._base import Callback, TimerRecords
+from ._base import TimerRecords
 
 
 class TimedIterable[T]:
@@ -13,25 +13,14 @@ class TimedIterable[T]:
         self,
         iterable: Iterable[T],
         /,
+        *,
+        timing: TimerRecords,
         total: int | None = None,
-        name: str | None = None,
-        timers: Sequence[str] = ("perf",),
-        callback_start: Callback | None = None,
-        callback_stop: Callback | None = None,
-        callback_finish: Callback | None = None,
     ) -> None:
-        if name is None:
-            name = "Iterable"
-        if callback_stop is None:
-            callback_stop = callback.log_record(depth=3)
-        if callback_finish is None:
-            callback_finish = callback.log_summary(depth=3)
-        self.timing = TimerRecords(
-            name=name,
-            timers=timers,
-            callback_start=callback_start,
-            callback_stop=callback_stop,
-            callback_finish=callback_finish,
+        self.timing = timing.replace_if_none(
+            name="Iterable",
+            cb_stop=callback.log_record(depth=4),
+            cb_finish=callback.log_summary(depth=4),
         )
         self._iterable = iterable
         self._total = total
@@ -45,8 +34,10 @@ class TimedIterable[T]:
         return self._total
 
     def __iter__(self) -> Iterator[T]:
+        # measure generator + consumer time
+        self.timing.start()
         for item in self._iterable:
-            self.timing.start()
             yield item
             self.timing.stop()
+            self.timing.start()
         self.timing.finish()

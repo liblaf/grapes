@@ -1,8 +1,8 @@
 from . import callback
 from ._base import Callback, TimerRecords
 from ._function import TimedFunction
+from ._get_time import TimerName, get_time
 from ._iterable import TimedIterable
-from ._time import TimerName, get_time
 from ._timer import Timer, timer
 
 __all__ = [

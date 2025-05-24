@@ -1,21 +1,27 @@
+from collections.abc import Iterable
+from typing import Literal, override
+
 from rich.console import Console, RenderableType
 from rich.progress import (
     BarColumn,
     MofNCompleteColumn,
-    Progress,
     ProgressColumn,
     SpinnerColumn,
     Task,
+    TaskID,
     TaskProgressColumn,
     TextColumn,
     TimeElapsedColumn,
     TimeRemainingColumn,
 )
+from rich.progress import (
+    Progress as RichProgress,
+)
 from rich.table import Column
 from rich.text import Text
 
 from liblaf.grapes import human as _human
-from liblaf.grapes import pretty
+from liblaf.grapes import pretty, timing
 
 
 class RateColumn(ProgressColumn):
@@ -49,37 +55,71 @@ class RateColumn(ProgressColumn):
         return Text(human, style="progress.data.speed")
 
 
-def progress(
-    *columns: str | ProgressColumn,
-    console: Console | None = None,
-    total_is_unknown: bool = False,
-) -> Progress:
-    if not columns:
-        columns: list[ProgressColumn] = [
+class Progress(RichProgress):
+    timer: timing.Timer | Literal[False]
+
+    def __init__(
+        self,
+        *columns: str | ProgressColumn,
+        console: Console | None = None,
+        timer: timing.Timer | Literal[False] | None = None,
+    ) -> None:
+        if console is None:
+            console = pretty.get_console("stderr")
+        if timer is None:
+            timer = timing.timer(
+                cb_finish=timing.callback.log_summary(depth=5),
+                cb_stop=timing.callback.log_record(depth=5),
+            )
+        self.timer = timer
+        super().__init__(*columns, console=console)
+
+    @classmethod
+    @override
+    def get_default_columns(cls) -> tuple[str | ProgressColumn, ...]:  # pyright: ignore[reportIncompatibleMethodOverride]
+        return (
             SpinnerColumn(),
             TextColumn("[progress.description]{task.description}"),
             BarColumn(),
-        ]
-        if total_is_unknown:
-            columns += [
-                MofNCompleteColumn(),
-                "[",
-                TimeElapsedColumn(),
-                ",",
-                RateColumn(),
-                "]",
-            ]
-        else:
-            columns += [
-                TaskProgressColumn(),
-                "[",
-                TimeElapsedColumn(),
-                "<",
-                TimeRemainingColumn(),
-                ",",
-                RateColumn(),
-                "]",
-            ]
-    console = console or pretty.get_console("stderr")
-    progress = Progress(*columns, console=console)
-    return progress
+            TaskProgressColumn(),
+            MofNCompleteColumn(),
+            "[",
+            TimeElapsedColumn(),
+            "<",
+            TimeRemainingColumn(),
+            ",",
+            RateColumn(),
+            "]",
+        )
+
+    @override
+    def track[T](
+        self,
+        sequence: Iterable[T],
+        total: float | None = None,
+        completed: int = 0,
+        task_id: TaskID | None = None,
+        description: str = "Working...",
+        update_period: float = 0.1,
+        *,
+        timer: timing.Timer | Literal[False] | None = None,
+    ) -> Iterable[T]:
+        if total is None:
+            total = len_safe(sequence)
+        if timer := (timer or self.timer):
+            sequence = timer(sequence)
+        return super().track(
+            sequence,
+            total=total,
+            completed=completed,
+            task_id=task_id,
+            description=description,
+            update_period=update_period,
+        )
+
+
+def len_safe(iterable: Iterable) -> int | None:
+    try:
+        return len(iterable)  # pyright: ignore[reportArgumentType]
+    except TypeError:
+        return None

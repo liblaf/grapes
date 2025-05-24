@@ -1,47 +1,68 @@
 import functools
-
-from loguru import logger
+from collections.abc import Sequence
+from typing import overload
 
 from ._base import Callback, TimerRecords
 
 
+@overload
 def log_record(
     *,
     depth: int = 1,
-    elapsed_threshold: float = 1e-3,
     index: int = -1,
     level: int | str = "DEBUG",
-) -> Callback:
-    return functools.partial(
-        _log_record,
-        depth=depth,
-        elapsed_threshold=elapsed_threshold,
-        index=index,
-        level=level,
-    )
-
-
-def log_summary(*, depth: int = 1, level: int | str = "INFO") -> Callback:
-    return functools.partial(_log_summary, depth=depth, level=level)
-
-
-def _log_record(
-    timer: TimerRecords,
+) -> Callback: ...
+@overload
+def log_record(
+    records: TimerRecords,
+    /,
     *,
     depth: int = 1,
-    elapsed_threshold: float = 1e-3,
     index: int = -1,
     level: int | str = "DEBUG",
-) -> None:
-    if timer.elapsed() < elapsed_threshold:
-        return
-    logger.opt(depth=depth).log(level, timer.human_record(index=index))
+) -> None: ...
+def log_record(
+    records: TimerRecords | None = None,
+    /,
+    *,
+    depth: int = 1,
+    index: int = -1,
+    level: int | str = "DEBUG",
+) -> Callback | None:
+    if records is None:
+        return functools.partial(log_record, depth=depth, index=index, level=level)  # pyright: ignore[reportReturnType]
+    records.log_record(depth=depth, index=index, level=level)
+    return None
 
 
-def _log_summary(
-    timer: TimerRecords, *, depth: int = 1, level: int | str = "INFO"
-) -> None:
-    logger.opt(depth=depth).log(level, timer.human_summary())
+@overload
+def log_summary(
+    *,
+    depth: int = 1,
+    level: int | str = "INFO",
+    stats: Sequence[str] = ("mean+std", "median"),
+) -> Callback: ...
+@overload
+def log_summary(
+    records: TimerRecords,
+    /,
+    *,
+    depth: int = 1,
+    level: int | str = "INFO",
+    stats: Sequence[str] = ("mean+std", "median"),
+) -> None: ...
+def log_summary(
+    records: TimerRecords | None = None,
+    /,
+    *,
+    depth: int = 1,
+    level: int | str = "INFO",
+    stats: Sequence[str] = ("mean+std", "median"),
+) -> Callback | None:
+    if records is None:
+        return functools.partial(log_summary, depth=depth, level=level, stats=stats)
+    records.log_summary(depth=depth, level=level, stats=stats)
+    return None
 
 
 __all__ = ["log_record", "log_summary"]

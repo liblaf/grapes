@@ -1,50 +1,34 @@
-from collections.abc import Generator, Iterable, Sequence
-
-from rich.progress import Progress
+from collections.abc import Iterable
+from typing import Literal
 
 from liblaf.grapes import timing
 
-from ._progress import progress
+from ._progress import Progress
 
 
 def track[T](
-    iterable: Iterable[T],
-    *,
-    description: str = "Progress",
-    timers: bool | Sequence[timing.TimerName | str] = ["perf"],
+    sequence: Iterable[T],
     total: float | None = None,
-    callback_start: timing.Callback | None = None,
-    callback_stop: timing.Callback | None = None,
-    callback_finally: timing.Callback | None = None,
-) -> Generator[T]:
-    if timers is True:
-        timers = ["perf"]
-    if total is None:
-        total = try_len(iterable)
-    prog: Progress = progress(total_is_unknown=total is None)
-    if timers:
-        if callback_stop is None:
-            callback_stop = timing.callback.log_record(depth=5)
-        if callback_finally is None:
-            callback_finally = timing.callback.log_summary(depth=5)
-        iterable: timing.TimedIterable[T] = timing.timer(
-            iterable,
-            name=description,
-            timers=timers,
-            total=int(total) if total is not None else None,
-            callback_start=callback_start,
-            callback_stop=callback_stop,
-            callback_finish=callback_finally,
+    completed: int = 0,
+    description: str = "Working...",
+    update_period: float = 0.1,
+    *,
+    progress: Progress | None = None,
+    timer: timing.Timer | Literal[False] | None = None,
+) -> Iterable[T]:
+    if timer is None:
+        timer = timing.timer(
+            cb_finish=timing.callback.log_summary(depth=6),
+            cb_stop=timing.callback.log_record(depth=6),
         )
-        with prog:
-            yield from prog.track(iterable, total=total, description=description)
-    else:
-        with prog:
-            yield from prog.track(iterable, total=total, description=description)
-
-
-def try_len(iterable: Iterable) -> int | None:
-    try:
-        return len(iterable)  # pyright: ignore[reportArgumentType]
-    except TypeError:
-        return None
+    if progress is None:
+        progress = Progress(timer=timer)
+    with progress:
+        yield from progress.track(
+            sequence,
+            total=total,
+            completed=completed,
+            description=description,
+            update_period=update_period,
+            timer=timer,
+        )

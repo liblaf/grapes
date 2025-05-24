@@ -1,4 +1,5 @@
-from ._progress import RateColumn, progress
+from ._joblib import parallel
+from ._progress import Progress, RateColumn, len_safe
 from ._track import track
 
-__all__ = ["RateColumn", "progress", "track"]
+__all__ = ["Progress", "RateColumn", "len_safe", "parallel", "track"]

@@ -44,15 +44,27 @@ from .path import as_path, project_root, resolve_project_path
 from .pretty import caller_location, get_console
 from .serde import json, load, load_pydantic, save, save_pydantic, toml, yaml
 from .text import strip_comments
-from .timing import TimedFunction, TimedIterable, TimerName, get_time, timer
-from .tqdm import progress, track
+from .timing import (
+    TimedFunction,
+    TimedIterable,
+    Timer,
+    TimerName,
+    TimerRecords,
+    get_time,
+    timer,
+)
+from .tqdm import Progress, RateColumn, len_safe, parallel, track
 
 __all__ = [
     "ConditionalDispatcher",
     "IterableWrapper",
+    "Progress",
+    "RateColumn",
     "TimedFunction",
     "TimedIterable",
+    "Timer",
     "TimerName",
+    "TimerRecords",
     "__version__",
     "__version_tuple__",
     "as_iterable",
@@ -85,15 +97,16 @@ __all__ = [
     "init_logging",
     "itertools",
     "json",
+    "len_safe",
     "load",
     "load_pydantic",
     "log_once",
     "logging",
     "nop",
     "optional_imports",
+    "parallel",
     "path",
     "pretty",
-    "progress",
     "project_root",
     "resolve_project_path",
     "save",

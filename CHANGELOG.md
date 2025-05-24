@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.1.26](https://github.com/liblaf/grapes/compare/v0.1.25..v0.1.26) - 2025-05-24
+
+### ✨ Features
+
+- **logging:** add enable_link parameter to control rich handler links - ([e6b606a](https://github.com/liblaf/grapes/commit/e6b606abdfeac325d0b433e663f1c004055eb0e3))
+- **timing:** refactor timer implementation and add parallel processing - ([2a13037](https://github.com/liblaf/grapes/commit/2a1303744a397e5939d714a4a715fe85821815f2))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [0.1.25](https://github.com/liblaf/grapes/compare/v0.1.24..v0.1.25) - 2025-05-22
 
 ### 🐛 Bug Fixes
@@ -10,10 +21,6 @@
 
 - migrate from pixi to uv package manager - ([86d8b6c](https://github.com/liblaf/grapes/commit/86d8b6cc0b46d053b4269e473e6ad216ec51619f))
 - migrate from pixi to uv for package management - ([f9028e7](https://github.com/liblaf/grapes/commit/f9028e7eb996fd8355ec2bee19c6a21df98d76e2))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [0.1.24](https://github.com/liblaf/grapes/compare/v0.1.23..v0.1.24) - 2025-05-22
 

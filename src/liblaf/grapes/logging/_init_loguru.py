@@ -18,11 +18,15 @@ from .handler import file_handler, jsonl_handler, rich_handler
 def init_loguru(
     handlers: Sequence["loguru.HandlerConfig"] | None = None,
     levels: Sequence["loguru.LevelConfig"] | None = None,
+    *,
+    enable_link: bool = True,
     **kwargs: Unpack["loguru.BasicHandlerConfig"],
 ) -> None:
     traceback_install()
     if handlers is None:
-        handlers: list[loguru.HandlerConfig] = [rich_handler(**kwargs)]
+        handlers: list[loguru.HandlerConfig] = [
+            rich_handler(enable_link=enable_link, **kwargs)
+        ]
         if env.path("LOGGING_FILE", default=None):
             handlers.append(file_handler(**kwargs))  # pyright: ignore[reportArgumentType]
         if env.path("LOGGING_JSONL", default=None):

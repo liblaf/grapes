@@ -11,7 +11,6 @@ dev = ["icecream"]
 docs = [
   "gitpython",
   "mdx-truly-sane-lists",
-  "mike",
   "mkdocs",
   "mkdocs-autorefs",
   "mkdocs-gen-files",
@@ -65,6 +64,7 @@ classifiers = [
 ]
 dependencies = [
   "about-time>=4.2.1,<5",
+  "attrs>=25.3.0,<26",
   "autoregistry>=1.1.2,<2",
   "environs>=14.2.0,<15",
   "etils>=1.12.2,<2",

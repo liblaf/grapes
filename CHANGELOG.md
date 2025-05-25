@@ -1,16 +1,19 @@
 # Changelog
 
-## [0.1.28](https://github.com/liblaf/grapes/compare/v0.1.27...v0.1.28) (2025-05-25)
-
+## [0.1.28](https://github.com/liblaf/grapes/compare/v0.1.27..v0.1.28) - 2025-05-25
 
 ### ✨ Features
 
-* **timing:** add threshold parameter to skip logging fast operations ([a233683](https://github.com/liblaf/grapes/commit/a233683a98c1cd808b3183d36929d49d7c1a8b54))
-
+- **timing:** add threshold parameter to skip logging fast operations - ([a233683](https://github.com/liblaf/grapes/commit/a233683a98c1cd808b3183d36929d49d7c1a8b54))
 
 ### 👷 Build System
 
-* migrate from mise to direnv for Python environment management ([dea6790](https://github.com/liblaf/grapes/commit/dea67905419cb82cac356bbc00e2b515c8ba65f3))
+- migrate from mise to direnv for Python environment management - ([dea6790](https://github.com/liblaf/grapes/commit/dea67905419cb82cac356bbc00e2b515c8ba65f3))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
 
 ## [0.1.27](https://github.com/liblaf/grapes/compare/v0.1.26..v0.1.27) - 2025-05-24
 
@@ -30,10 +33,6 @@
 
 - update ReadTheDocs configuration to use asdf and uv - ([8fbcc4a](https://github.com/liblaf/grapes/commit/8fbcc4a5380a9b1ab864e9f353e33a84ae3490e5))
 - add Read the Docs configuration file - ([7215139](https://github.com/liblaf/grapes/commit/72151396a3ed1befb60721ca8ff2ec3ce56e61fc))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [0.1.26](https://github.com/liblaf/grapes/compare/v0.1.25..v0.1.26) - 2025-05-24
 

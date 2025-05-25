@@ -152,8 +152,14 @@ class TimerRecords(BaseTimer):
             yield self.row(index)
 
     def log_record(
-        self, depth: int = 1, index: int = -1, level: int | str = "DEBUG"
+        self,
+        depth: int = 1,
+        index: int = -1,
+        level: int | str = "DEBUG",
+        threshold: float = 0.1,  # seconds
     ) -> None:
+        if index == -1 and self.elapsed() < threshold:
+            return
         logger.opt(depth=depth).log(level, self.human_record(index=index))
 
     def log_summary(

@@ -83,7 +83,7 @@ dynamic = ["version"]
 keywords = []
 license = "MIT"
 name = "liblaf-grapes"
-readme = "docs/README.md"
+readme = "README.md"
 requires-python = ">=3.12"
 
 [project.urls]

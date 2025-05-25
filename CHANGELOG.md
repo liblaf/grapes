@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.28](https://github.com/liblaf/grapes/compare/v0.1.27...v0.1.28) (2025-05-25)
+
+
+### ✨ Features
+
+* **timing:** add threshold parameter to skip logging fast operations ([a233683](https://github.com/liblaf/grapes/commit/a233683a98c1cd808b3183d36929d49d7c1a8b54))
+
+
+### 👷 Build System
+
+* migrate from mise to direnv for Python environment management ([dea6790](https://github.com/liblaf/grapes/commit/dea67905419cb82cac356bbc00e2b515c8ba65f3))
+
 ## [0.1.27](https://github.com/liblaf/grapes/compare/v0.1.26..v0.1.27) - 2025-05-24
 
 ### ✨ Features

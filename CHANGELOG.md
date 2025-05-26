@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.1.29](https://github.com/liblaf/grapes/compare/v0.1.28..v0.1.29) - 2025-05-26
+
+### 🐛 Bug Fixes
+
+- **pretty:** handle wrapped functions in pretty printing - ([3e42a50](https://github.com/liblaf/grapes/commit/3e42a502421bfd2ed9a6c85786d93ae7675d6a93))
+
+### ♻ Code Refactoring
+
+- **pretty:** improve function pretty printing robustness - ([09b6f87](https://github.com/liblaf/grapes/commit/09b6f8731e18b7ac4fc8ee503abca86ae3b4739d))
+
+### 🔧 Continuous Integration
+
+- update MegaLinter workflow to use head ref - ([4f57647](https://github.com/liblaf/grapes/commit/4f57647f9d1fadeaa593997cbf5f06d22e231b07))
+- reorder workflow steps and update linter configuration - ([4844ce1](https://github.com/liblaf/grapes/commit/4844ce195885b7afddfbba214371093304053acd))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [0.1.28](https://github.com/liblaf/grapes/compare/v0.1.27..v0.1.28) - 2025-05-25
 
 ### ✨ Features
@@ -9,11 +28,6 @@
 ### 👷 Build System
 
 - migrate from mise to direnv for Python environment management - ([dea6790](https://github.com/liblaf/grapes/commit/dea67905419cb82cac356bbc00e2b515c8ba65f3))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
-- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
 
 ## [0.1.27](https://github.com/liblaf/grapes/compare/v0.1.26..v0.1.27) - 2025-05-24
 

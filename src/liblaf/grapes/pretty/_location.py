@@ -47,7 +47,7 @@ def caller_location(depth: int = 1, style: Literal["long", "short"] = "long") ->
         file = frame.f_code.co_filename
         function = frame.f_code.co_name
         line = frame.f_lineno
-        name = frame.f_globals.get("__name__")
+        name = frame.f_globals.get("__name__", "unknown")
     text: Text = location(
         function=function, line=line, name=name, file=file, style=style
     )

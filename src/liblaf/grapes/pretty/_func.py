@@ -1,3 +1,5 @@
+import inspect
+import types
 from collections.abc import Callable, Mapping
 from pathlib import Path
 from typing import Literal
@@ -15,12 +17,13 @@ def func(obj: Callable, *, style: Literal["short", "long"] = "short") -> Text:
 
 @_func
 def _func_short(obj: Callable) -> Text:
+    obj = inspect.unwrap(obj)
     text = Text()
-    file: Path = Path(obj.__code__.co_filename)
-    if file.exists():
+    code: types.CodeType | None = getattr(obj, "__code__", None)
+    if code and (file := Path(code.co_filename)).exists():
         text.append(
             f"{obj.__name__}()",
-            style=Style(link=f"{file.as_uri()}#{obj.__code__.co_firstlineno}"),
+            style=Style(link=f"{file.as_uri()}#{code.co_firstlineno}"),
         )
     else:
         text.append(f"{obj.__name__}()")
@@ -29,9 +32,10 @@ def _func_short(obj: Callable) -> Text:
 
 @_func
 def _func_long(obj: Callable) -> Text:
+    obj = inspect.unwrap(obj)
     text = Text()
-    file: Path = Path(obj.__code__.co_filename)
-    if file.exists():
+    code: types.CodeType | None = getattr(obj, "__code__", None)
+    if code and (file := Path(code.co_filename)).exists():
         text.append(obj.__module__, style=Style(link=file.as_uri()))
         text.append(".")
         text.append(

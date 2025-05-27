@@ -33,7 +33,8 @@ class Auto(Serde):
     def get_serde(self, path: PathLike, *, ext: str | None = None) -> Serde:
         if ext is None:
             path: Path = Path(path)
-            ext = path.suffix.lstrip(".")
+            ext = path.suffix
+        ext = ext.lstrip(".")
         return SERIALIZERS[ext]  # pyright: ignore[reportReturnType]
 
 

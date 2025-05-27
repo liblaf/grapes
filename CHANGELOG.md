@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.30](https://github.com/liblaf/grapes/compare/v0.1.29...v0.1.30) (2025-05-27)
+
+
+### 🐛 Bug Fixes
+
+* **serde:** handle file extension stripping consistently ([f75c986](https://github.com/liblaf/grapes/commit/f75c9868b324820337c1447228fcefdedd728408))
+
 ## [0.1.29](https://github.com/liblaf/grapes/compare/v0.1.28..v0.1.29) - 2025-05-26
 
 ### 🐛 Bug Fixes

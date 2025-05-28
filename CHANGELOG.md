@@ -1,14 +1,20 @@
 # Changelog
 
+## [0.1.31](https://github.com/liblaf/grapes/compare/v0.1.30..v0.1.31) - 2025-05-28
+
+### ✨ Features
+
+- **tqdm:** set timer name from progress description - ([f243bea](https://github.com/liblaf/grapes/commit/f243bea321cf612ae32ccd735bfc6d2d9c1fdb05))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [0.1.30](https://github.com/liblaf/grapes/compare/v0.1.29..v0.1.30) - 2025-05-27
 
 ### 🐛 Bug Fixes
 
 - **serde:** handle file extension stripping consistently - ([f75c986](https://github.com/liblaf/grapes/commit/f75c9868b324820337c1447228fcefdedd728408))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [0.1.29](https://github.com/liblaf/grapes/compare/v0.1.28..v0.1.29) - 2025-05-26
 

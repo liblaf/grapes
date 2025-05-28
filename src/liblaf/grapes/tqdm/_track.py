@@ -18,6 +18,7 @@ def track[T](
 ) -> Iterable[T]:
     if timer is None:
         timer = timing.timer(
+            name=description,
             cb_finish=timing.callback.log_summary(depth=6),
             cb_stop=timing.callback.log_record(depth=6),
         )

@@ -108,6 +108,7 @@ class Progress(RichProgress):
             total = len_safe(sequence)
         if timer := (timer or self.timer):
             sequence = timer(sequence)
+            sequence.timing.name = description
         return super().track(
             sequence,
             total=total,

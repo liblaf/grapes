@@ -1,21 +1,20 @@
 # Changelog
 
-## [0.1.32](https://github.com/liblaf/grapes/compare/v0.1.31...v0.1.32) (2025-05-31)
-
+## [0.1.32](https://github.com/liblaf/grapes/compare/v0.1.31..v0.1.32) - 2025-05-31
 
 ### 🐛 Bug Fixes
 
-* **logging:** properly handle ANSI escape sequences in messages ([7b771ed](https://github.com/liblaf/grapes/commit/7b771edd16805aa8db4a927acdafa1655fac52d6))
+- **logging:** properly handle ANSI escape sequences in messages - ([7b771ed](https://github.com/liblaf/grapes/commit/7b771edd16805aa8db4a927acdafa1655fac52d6))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [0.1.31](https://github.com/liblaf/grapes/compare/v0.1.30..v0.1.31) - 2025-05-28
 
 ### ✨ Features
 
 - **tqdm:** set timer name from progress description - ([f243bea](https://github.com/liblaf/grapes/commit/f243bea321cf612ae32ccd735bfc6d2d9c1fdb05))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [0.1.30](https://github.com/liblaf/grapes/compare/v0.1.29..v0.1.30) - 2025-05-27
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.32](https://github.com/liblaf/grapes/compare/v0.1.31...v0.1.32) (2025-05-31)
+
+
+### 🐛 Bug Fixes
+
+* **logging:** properly handle ANSI escape sequences in messages ([7b771ed](https://github.com/liblaf/grapes/commit/7b771edd16805aa8db4a927acdafa1655fac52d6))
+
 ## [0.1.31](https://github.com/liblaf/grapes/compare/v0.1.30..v0.1.31) - 2025-05-28
 
 ### ✨ Features

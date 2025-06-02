@@ -74,6 +74,9 @@ class UnraisableHookArgs(Protocol):
 def unraisablehook(
     unraisable: UnraisableHookArgs, /, *, level: int | str = "ERROR"
 ) -> None:
+    if logger is None:
+        # workaround for "Error ignored in: ..."
+        return
     logger.opt(
         exception=(unraisable.exc_type, unraisable.exc_value, unraisable.exc_traceback)
     ).log(

@@ -26,6 +26,10 @@ class InterceptHandler(logging.Handler):
         Args:
             record: The log record to be emitted.
         """
+        if logger is None:
+            # workaround for "Error ignored in: ..."
+            return
+
         # Get corresponding Loguru level if it exists.
         level: str | int
         try:

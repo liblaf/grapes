@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.33](https://github.com/liblaf/grapes/compare/v0.1.32...v0.1.33) (2025-06-02)
+
+
+### ✨ Features
+
+* **logging:** handle unraisable exceptions ([19b137f](https://github.com/liblaf/grapes/commit/19b137ff6eb1f036874161ac050fcc7c68b5d86c))
+
 ## [0.1.32](https://github.com/liblaf/grapes/compare/v0.1.31..v0.1.32) - 2025-05-31
 
 ### 🐛 Bug Fixes

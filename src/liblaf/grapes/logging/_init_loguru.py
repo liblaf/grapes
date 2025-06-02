@@ -3,7 +3,7 @@ import logging
 import sys
 import types
 from collections.abc import Sequence
-from typing import Unpack
+from typing import Protocol, Unpack
 
 import loguru
 from environs import env
@@ -38,8 +38,18 @@ def init_loguru(
     clear_handlers()
 
 
-def traceback_install(level: int | str = "CRITICAL", message: str = "") -> None:
-    sys.excepthook = functools.partial(excepthook, level=level, message=message)
+def traceback_install(
+    except_level: int | str | None = "CRITICAL",
+    except_message: str = "",
+    *,
+    unraisable_level: int | str | None = "ERROR",
+) -> None:
+    if except_level is not None:
+        sys.excepthook = functools.partial(
+            excepthook, level=except_level, message=except_message
+        )
+    if unraisable_level is not None:
+        sys.unraisablehook = functools.partial(unraisablehook, level=unraisable_level)
 
 
 def excepthook(
@@ -51,3 +61,24 @@ def excepthook(
     message: str = "",
 ) -> None:
     logger.opt(exception=(exc_type, exc_value, traceback)).log(level, message)
+
+
+class UnraisableHookArgs(Protocol):
+    exc_type: type[BaseException]
+    exc_value: BaseException | None
+    exc_traceback: types.TracebackType | None
+    err_msg: str | None
+    object: object
+
+
+def unraisablehook(
+    unraisable: UnraisableHookArgs, /, *, level: int | str = "ERROR"
+) -> None:
+    logger.opt(
+        exception=(unraisable.exc_type, unraisable.exc_value, unraisable.exc_traceback)
+    ).log(
+        level,
+        "{err_msg}: {object!r}",
+        err_msg=unraisable.err_msg or "Exception ignored in",
+        object=unraisable.object,
+    )

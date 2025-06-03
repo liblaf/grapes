@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.1.35](https://github.com/liblaf/grapes/compare/v0.1.34..v0.1.35) - 2025-06-03
+
+### ✨ Features
+
+- **error:** add MatchError class - ([cd9319d](https://github.com/liblaf/grapes/commit/cd9319d6db49da32fdc9e14e5b837768b3fbe4bc))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [0.1.34](https://github.com/liblaf/grapes/compare/v0.1.33..v0.1.34) - 2025-06-03
 
 ### ✨ Features
@@ -10,10 +20,6 @@
 
 - **logging:** add null checks for logger instances - ([146c58f](https://github.com/liblaf/grapes/commit/146c58fe6714897425dc2710671639fe4709d5ee))
 - **tqdm:** use direct local imports for joblib utilities - ([36f5e07](https://github.com/liblaf/grapes/commit/36f5e07afe0945097ec5f71451d101042ae0b9ba))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [0.1.33](https://github.com/liblaf/grapes/compare/v0.1.32..v0.1.33) - 2025-06-02
 

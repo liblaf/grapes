@@ -3,9 +3,12 @@ import functools
 from collections.abc import Callable, Generator, Iterable
 from typing import Literal, overload
 
-from rich.progress import Progress, TaskID
+from rich.progress import Progress as RichProgress
+from rich.progress import TaskID
 
-from liblaf.grapes import deps, tqdm
+from liblaf.grapes import deps
+
+from ._progress import Progress, len_safe
 
 with deps.optional_imports():
     import joblib
@@ -40,13 +43,13 @@ def parallel[T](
     for iterable in iterables:
         if total is not None:
             break
-        total = tqdm.len_safe(iterable)
+        total = len_safe(iterable)
 
     parallel = joblib.Parallel(return_as=return_as)
 
     task_id: TaskID | None = None
     if progress is None:
-        progress = tqdm.Progress()
+        progress = Progress()
     progress: Progress | contextlib.nullcontext
     if progress:
         task_id = progress.add_task(description=description, total=total)
@@ -66,10 +69,10 @@ def parallel[T](
 
 def print_progress(
     self: joblib.Parallel,
-    progress: Progress | contextlib.nullcontext,
+    progress: RichProgress | contextlib.nullcontext,
     task_id: TaskID | None,
 ) -> None:
-    if isinstance(progress, Progress):
+    if isinstance(progress, RichProgress):
         assert task_id is not None
         progress.update(task_id, total=self.n_tasks, completed=self.n_completed_tasks)
 

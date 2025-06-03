@@ -1,7 +1,7 @@
 import contextlib
 import functools
 from collections.abc import Callable, Generator, Iterable
-from typing import Literal
+from typing import Literal, overload
 
 from rich.progress import Progress, TaskID
 
@@ -11,6 +11,24 @@ with deps.optional_imports():
     import joblib
 
 
+@overload
+def parallel[T](
+    fn: Callable[..., T],
+    *iterables: Iterable,
+    description: str = "Working...",
+    progress: Progress | Literal[False] | None = None,
+    return_as: Literal["list"] = "list",
+    total: int | None = None,
+) -> list[T]: ...
+@overload
+def parallel[T](
+    fn: Callable[..., T],
+    *iterables: Iterable,
+    description: str = "Working...",
+    progress: Progress | Literal[False] | None = None,
+    return_as: Literal["generator", "generator_unordered"],
+    total: int | None = None,
+) -> Generator[T]: ...
 def parallel[T](
     fn: Callable[..., T],
     *iterables: Iterable,

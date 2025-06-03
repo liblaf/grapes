@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.35](https://github.com/liblaf/grapes/compare/v0.1.34...v0.1.35) (2025-06-03)
+
+
+### ✨ Features
+
+* **error:** add MatchError class ([cd9319d](https://github.com/liblaf/grapes/commit/cd9319d6db49da32fdc9e14e5b837768b3fbe4bc))
+
 ## [0.1.34](https://github.com/liblaf/grapes/compare/v0.1.33..v0.1.34) - 2025-06-03
 
 ### ✨ Features

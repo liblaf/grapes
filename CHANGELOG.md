@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.34](https://github.com/liblaf/grapes/compare/v0.1.33...v0.1.34) (2025-06-03)
+
+
+### ✨ Features
+
+* **tqdm:** add type overloads for parallel function ([9cbd71f](https://github.com/liblaf/grapes/commit/9cbd71f60f6024bed707c67bc2ea4ccb6a14d119))
+
+
+### 🐛 Bug Fixes
+
+* **logging:** add null checks for logger instances ([146c58f](https://github.com/liblaf/grapes/commit/146c58fe6714897425dc2710671639fe4709d5ee))
+* **tqdm:** use direct local imports for joblib utilities ([36f5e07](https://github.com/liblaf/grapes/commit/36f5e07afe0945097ec5f71451d101042ae0b9ba))
+
 ## [0.1.33](https://github.com/liblaf/grapes/compare/v0.1.32..v0.1.33) - 2025-06-02
 
 ### ✨ Features

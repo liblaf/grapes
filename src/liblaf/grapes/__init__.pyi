@@ -1,6 +1,7 @@
 from . import (
     const,
     environ,
+    error,
     functools,
     git,
     human,
@@ -18,6 +19,7 @@ from ._version import __version__, __version_tuple__, version, version_tuple
 from .const import nop
 from .deps import has_module, optional_imports
 from .environ import init_env
+from .error import MatchError
 from .functools import ConditionalDispatcher, decorator_with_optional_arguments
 from .human import (
     human_count,
@@ -58,6 +60,7 @@ from .tqdm import Progress, RateColumn, len_safe, parallel, track
 __all__ = [
     "ConditionalDispatcher",
     "IterableWrapper",
+    "MatchError",
     "Progress",
     "RateColumn",
     "TimedFunction",
@@ -77,6 +80,7 @@ __all__ = [
     "debug_once",
     "decorator_with_optional_arguments",
     "environ",
+    "error",
     "error_once",
     "exception_once",
     "functools",

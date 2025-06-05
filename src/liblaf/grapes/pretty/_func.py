@@ -1,9 +1,11 @@
 import inspect
-from collections.abc import Callable, Mapping
+from collections.abc import Callable, Mapping, Sequence
 from pathlib import Path
 from typing import Any, Literal
 
 import autoregistry
+import rich
+import rich.highlighter
 from rich.style import Style
 from rich.text import Text
 
@@ -51,9 +53,39 @@ def _func_long(obj: Callable) -> Text:
     return text
 
 
-def call(fn: Callable, args: tuple, kwargs: Mapping) -> Text:  # noqa: ARG001
-    # TODO: add `args` and `kwargs`
-    return func(fn)
+highlighter = rich.highlighter.ReprHighlighter()
+
+
+def call(fn: Callable, args: Sequence, kwargs: Mapping) -> Text:
+    args, kwargs = _bind_safe(fn, args, kwargs)
+    fn = inspect.unwrap(fn)
+    name: str = _get_name(fn)
+    source_file: Path | None = _get_source_file(fn)
+    lineno: int = _get_source_lineno(fn)
+    text: Text = Text()
+    if source_file:
+        text.append(name, style=Style(link=f"{source_file.as_uri()}#{lineno}"))
+    else:
+        text.append(name)
+    text.append("(")
+    parts: list[str] = [repr(value) for value in args]
+    parts += [f"{key}={value!r}" for key, value in kwargs.items()]
+    text.append(", ".join(parts))
+    text.append(")")
+    text = highlighter(text)
+    return text
+
+
+def _bind_safe(
+    fn: Callable, args: Sequence, kwargs: Mapping
+) -> tuple[Sequence, Mapping]:
+    try:
+        signature: inspect.Signature = inspect.signature(fn)
+        arguments: inspect.BoundArguments = signature.bind(*args, **kwargs)
+    except TypeError:
+        return args, kwargs
+    else:
+        return arguments.args, arguments.kwargs
 
 
 def _get_module(obj: Any) -> str:

@@ -1,12 +1,13 @@
-import bisect
 import functools
 from collections.abc import Callable, Mapping
-from typing import Any, Literal, NoReturn
+from typing import Any, NoReturn, overload
 
 import attrs
+import sortedcontainers
 from rich.text import Text
 
 from liblaf.grapes import pretty
+from liblaf.grapes.typed import Decorator
 
 
 @attrs.frozen
@@ -34,10 +35,6 @@ class NotFoundLookupError(LookupError):
         return pretty.call(self.func, self.args, self.kwargs)
 
 
-def _always_true(*args, **kwargs) -> Literal[True]:  # noqa: ARG001
-    return True
-
-
 def _fallback(func: Callable) -> Callable[..., NoReturn]:
     def fallback(*args, **kwargs) -> NoReturn:
         raise NotFoundLookupError(func, args, kwargs)
@@ -46,11 +43,11 @@ def _fallback(func: Callable) -> Callable[..., NoReturn]:
 
 
 class ConditionalDispatcher:
-    functions: list[Function]
     fallback: Callable
+    functions: sortedcontainers.SortedList[Function]
 
     def __init__(self) -> None:
-        self.functions = []
+        self.functions = sortedcontainers.SortedList(key=lambda f: -f.precedence)
 
     def __call__(self, *args, **kwargs) -> Any:
         for func in self.functions:
@@ -61,23 +58,29 @@ class ConditionalDispatcher:
                 continue
         return self.fallback(*args, **kwargs)
 
-    def final(self, /, *, fallback: bool = False) -> Callable:
-        def decorator[**P, T](func: Callable[P, T]) -> Callable[P, T]:
-            if fallback:
-                self.fallback = func
-            else:
-                self.fallback = _fallback(func)
-            functools.update_wrapper(self, func)
-            return self
-
-        return decorator
+    @overload
+    def final[**P, T](
+        self, fn: Callable[P, T], /, *, fallback: bool = False
+    ) -> Callable[P, T]: ...
+    @overload
+    def final(self, /, *, fallback: bool = False) -> Decorator: ...
+    def final[**P, T](
+        self, fn: Callable[P, T] | None = None, /, *, fallback: bool = False
+    ) -> Callable:
+        if fn is None:
+            return functools.partial(self.final, fallback=fallback)
+        if fallback:
+            self.fallback = fn
+        else:
+            self.fallback = _fallback(fn)
+        functools.update_wrapper(self, fn)
+        return self
 
     def register(
-        self, condition: Callable[..., bool] = _always_true, *, precedence: int = 0
-    ) -> Callable:
-        def decorator[**P, T](func: Callable[P, T]) -> Callable[P, T]:
-            function = Function(condition, func, precedence)
-            bisect.insort(self.functions, function, key=lambda f: -f.precedence)
-            return func
+        self, condition: Callable[..., bool], *, precedence: int = 0
+    ) -> Decorator:
+        def decorator[**P, T](fn: Callable[P, T]) -> Callable[P, T]:
+            self.functions.add(Function(condition, fn, precedence))
+            return fn
 
         return decorator

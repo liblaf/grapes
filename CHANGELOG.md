@@ -1,26 +1,24 @@
 # Changelog
 
-## [0.2.0](https://github.com/liblaf/grapes/compare/v0.1.35...v0.2.0) (2025-06-05)
+## [0.2.0](https://github.com/liblaf/grapes/compare/v0.1.35..v0.2.0) - 2025-06-05
 
+### 💥 BREAKING CHANGES
 
-### ⚠ BREAKING CHANGES
-
-* 
+- reorganize utilities and clean up deprecated code - ([f9858c2](https://github.com/liblaf/grapes/commit/f9858c2b99deb4822fc996a7ecba19cc0ca704e4))
 
 ### ♻ Code Refactoring
 
-* **functools:** improve ConditionalDispatcher implementation ([6b49bef](https://github.com/liblaf/grapes/commit/6b49beffd6da362598f4f8a74a796b4349ec2aa9))
-* reorganize utilities and clean up deprecated code ([f9858c2](https://github.com/liblaf/grapes/commit/f9858c2b99deb4822fc996a7ecba19cc0ca704e4))
+- **functools:** improve ConditionalDispatcher implementation - ([6b49bef](https://github.com/liblaf/grapes/commit/6b49beffd6da362598f4f8a74a796b4349ec2aa9))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [0.1.35](https://github.com/liblaf/grapes/compare/v0.1.34..v0.1.35) - 2025-06-03
 
 ### ✨ Features
 
 - **error:** add MatchError class - ([cd9319d](https://github.com/liblaf/grapes/commit/cd9319d6db49da32fdc9e14e5b837768b3fbe4bc))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [0.1.34](https://github.com/liblaf/grapes/compare/v0.1.33..v0.1.34) - 2025-06-03
 

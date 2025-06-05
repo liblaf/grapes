@@ -127,7 +127,7 @@ def human_duration_with_variance(mean: float, std: float) -> str:
     """
     if not math.isfinite(std):
         return human_duration(mean)
-    return human_duration(mean) + " ± " + human_duration(std)
+    return f"{human_duration(mean)} ± {human_duration(std)}"
 
 
 def human_duration_series(series: Sequence[float]) -> str:
@@ -139,6 +139,8 @@ def human_duration_series(series: Sequence[float]) -> str:
     Returns:
         A human-readable string representing the duration. If the series contains only one element, it returns the human-readable format of that single duration. If the series contains more than one element, it returns the mean duration with its variance in a human-readable format.
     """
+    if len(series) == 0:
+        return "NaN"
     if len(series) <= 1:
         return human_duration(series[0])
     return human_duration_with_variance(

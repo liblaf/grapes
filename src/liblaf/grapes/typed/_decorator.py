@@ -3,7 +3,7 @@ from typing import Protocol, overload
 
 
 class Decorator(Protocol):
-    def __call__[**P, T](self, func: Callable[P, T], /) -> Callable[P, T]: ...
+    def __call__[**P, T](self, fn: Callable[P, T], /) -> Callable[P, T]: ...
 
 
 class DecoratorWithArguments[**P](Protocol):
@@ -12,6 +12,8 @@ class DecoratorWithArguments[**P](Protocol):
 
 class DecoratorWithOptionalArguments[**Q](Protocol):
     @overload
-    def __call__[**P, T](self, func: Callable[P, T], /) -> Callable[P, T]: ...
+    def __call__[**P, T](
+        self, fn: Callable[P, T], /, *args: Q.args, **kwargs: Q.kwargs
+    ) -> Callable[P, T]: ...
     @overload
     def __call__(self, *args: Q.args, **kwargs: Q.kwargs) -> Decorator: ...

@@ -1,5 +1,6 @@
 import functools
-from typing import IO, Literal
+import sys
+from typing import IO, Literal, TypedDict, Unpack
 
 import rich
 from environs import env
@@ -28,24 +29,54 @@ def theme() -> Theme:
     )
 
 
+class ConsoleKwargs(TypedDict, total=False):
+    theme: Theme | None
+    stderr: bool | None
+    file: IO | PathLike | None
+    width: int | None
+
+
 @functools.cache
-def get_console(
-    file: Literal["stdout", "stderr"] | IO | PathLike = "stdout", **kwargs
-) -> Console:
-    kwargs.setdefault("force_terminal", force_terminal(file))
+def get_console(**kwargs: Unpack[ConsoleKwargs]) -> Console:
     kwargs.setdefault("theme", theme())
-    match file:
-        case "stdout":
-            rich.reconfigure(**kwargs)
-            return rich.get_console()
-        case "stderr":
-            kwargs.setdefault("stderr", True)
-            return Console(**kwargs)
-        case IO():
-            return Console(file=file, **kwargs)
-        case file:
-            kwargs.setdefault("width", 128)
-            return Console(file=path.as_path(file).open("w"), **kwargs)
+    file: IO | PathLike | None = kwargs.get("file")
+    if _is_stdout(**kwargs):
+        kwargs = _ci(**kwargs)
+        rich.reconfigure(**kwargs)
+        return rich.get_console()
+    if _is_stderr(**kwargs):
+        kwargs = _ci(**kwargs)
+        kwargs.pop("file", None)
+        kwargs["stderr"] = True
+        return Console(**kwargs)  # pyright: ignore[reportArgumentType]
+    if path.is_path_like(file):
+        kwargs["file"] = path.as_path(file).open("w")
+    return Console(**kwargs)  # pyright: ignore[reportArgumentType]
+
+
+def _is_stdout(**kwargs: Unpack[ConsoleKwargs]) -> bool:
+    file: IO | PathLike | None = kwargs.get("file")
+    return (
+        (file is None and not kwargs.get("stderr", False))
+        or (file in ("stdout", "<stdout>", sys.stdout))
+        or getattr(file, "name", None) in ("stdout", "<stdout>")
+    )
+
+
+def _is_stderr(**kwargs: Unpack[ConsoleKwargs]) -> bool:
+    file: IO | PathLike | None = kwargs.get("file")
+    return (
+        (file is None and kwargs.get("stderr", False))
+        or (file in ("stderr", "<stderr>", sys.stderr))
+        or getattr(file, "name", None) in ("stderr", "<stderr>")
+    )
+
+
+def _ci(**kwargs: Unpack[ConsoleKwargs]) -> ConsoleKwargs:
+    if not env.bool("GITHUB_ACTIONS", False):
+        return kwargs
+    kwargs.setdefault("width", 128)
+    return kwargs
 
 
 def force_terminal(file: Literal["stdout", "stderr"] | IO | PathLike) -> bool | None:

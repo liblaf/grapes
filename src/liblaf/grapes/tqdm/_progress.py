@@ -65,7 +65,7 @@ class Progress(RichProgress):
         timer: timing.Timer | Literal[False] | None = None,
     ) -> None:
         if console is None:
-            console = pretty.get_console("stderr")
+            console = pretty.get_console(stderr=True)
         if timer is None:
             timer = timing.timer(
                 cb_finish=timing.callback.log_summary(depth=5),

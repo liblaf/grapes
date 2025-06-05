@@ -6,7 +6,7 @@ from typing import Self, overload, override
 
 import attrs
 
-from liblaf.grapes import utils
+from liblaf.grapes import itertools as _it
 from liblaf.grapes.timing import callback
 
 from ._base import Callback, TimerRecords
@@ -119,11 +119,11 @@ class Timer(
     ) -> Self:
         return attrs.evolve(
             self,
-            name=utils.first_not_none(self._user_name, name),
-            timers=utils.first_not_none(self._user_timers, timers),
-            cb_finish=utils.first_not_none(self._user_cb_finish, cb_finish),
-            cb_start=utils.first_not_none(self._user_cb_start, cb_start),
-            cb_stop=utils.first_not_none(self._user_cb_stop, cb_stop),
+            name=_it.first_not_none(self._user_name, name),
+            timers=_it.first_not_none(self._user_timers, timers),
+            cb_finish=_it.first_not_none(self._user_cb_finish, cb_finish),
+            cb_start=_it.first_not_none(self._user_cb_start, cb_start),
+            cb_stop=_it.first_not_none(self._user_cb_stop, cb_stop),
         )
 
     @override

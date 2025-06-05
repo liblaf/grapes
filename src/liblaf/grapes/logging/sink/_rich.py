@@ -19,7 +19,7 @@ class RichLoggingColumn(Protocol):
 
 @attrs.define
 class LoguruRichHandler:
-    console: Console = attrs.field(factory=lambda: pretty.get_console("stderr"))
+    console: Console = attrs.field(factory=lambda: pretty.get_console(stderr=True))
     columns: Sequence[RichLoggingColumn] = attrs.field(
         factory=lambda: [TimeColumn(), LevelColumn(), LocationColumn(), MessageColumn()]
     )

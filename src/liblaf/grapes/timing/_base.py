@@ -8,7 +8,8 @@ from typing import Self, overload, override
 import attrs
 from loguru import logger
 
-from liblaf.grapes import human, utils
+from liblaf.grapes import const, human
+from liblaf.grapes import itertools as _it
 
 from ._get_time import get_time
 
@@ -48,14 +49,14 @@ class BaseTimer:
             self._time_stop[timer] = get_time(timer)
 
 
-type Callback = Callable[["TimerRecords"], None]
+type Callback = Callable[["TimerRecords"], None] | const.NopType
 
 
 @attrs.define
 class TimerRecords(BaseTimer):
-    cb_finish: Callable | None = attrs.field(default=None)
-    cb_start: Callable | None = attrs.field(default=None)
-    cb_stop: Callable | None = attrs.field(default=None)
+    cb_finish: Callback | None = attrs.field(default=None)
+    cb_start: Callback | None = attrs.field(default=None)
+    cb_stop: Callback | None = attrs.field(default=None)
     _records: dict[str, list[float]] = attrs.field(
         init=False, factory=lambda: collections.defaultdict(list)
     )
@@ -181,11 +182,11 @@ class TimerRecords(BaseTimer):
     ) -> Self:
         return attrs.evolve(
             self,
-            name=utils.first_not_none(self.name, name),
-            timers=utils.first_not_none(self.timers, timers),
-            cb_finish=utils.first_not_none(self.cb_finish, cb_finish),
-            cb_start=utils.first_not_none(self.cb_start, cb_start),
-            cb_stop=utils.first_not_none(self.cb_stop, cb_stop),
+            name=_it.first_not_none(self.name, name),
+            timers=_it.first_not_none(self.timers, timers),
+            cb_finish=_it.first_not_none(self.cb_finish, cb_finish),
+            cb_start=_it.first_not_none(self.cb_start, cb_start),
+            cb_stop=_it.first_not_none(self.cb_stop, cb_stop),
         )
 
     def row(self, index: int) -> Mapping[str, float]:

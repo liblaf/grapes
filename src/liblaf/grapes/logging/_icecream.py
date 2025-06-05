@@ -5,9 +5,6 @@ from liblaf.grapes import deps
 
 def init_icecream() -> None:
     if not deps.has_module("icecream"):
-        logger.warning(
-            "`icecream` is not available. Skipping initialization of `icecream`."
-        )
         return
     from icecream import ic
 

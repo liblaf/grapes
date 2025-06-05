@@ -16,11 +16,11 @@ from . import (
     typed,
 )
 from ._version import __version__, __version_tuple__, version, version_tuple
-from .const import nop
+from .const import MISSING, NOP, MissingType, NopType, Sentinel, nop
 from .deps import has_module, optional_imports
 from .environ import init_env
 from .error import MatchError
-from .functools import ConditionalDispatcher, decorator_with_optional_arguments
+from .functools import ConditionalDispatcher
 from .human import (
     human_count,
     human_duration,
@@ -29,20 +29,15 @@ from .human import (
     human_duration_with_variance,
     human_throughout,
 )
-from .itertools import IterableWrapper, as_iterable, as_sequence, generator_to_list
-from .logging import (
-    critical_once,
-    debug_once,
-    error_once,
-    exception_once,
-    info_once,
-    init_logging,
-    log_once,
-    success_once,
-    trace_once,
-    warning_once,
+from .itertools import (
+    IterableWrapper,
+    as_iterable,
+    as_sequence,
+    first_not_none,
+    generator_to_list,
 )
-from .path import as_path, project_root, resolve_project_path
+from .logging import file_handler, init_logging, jsonl_handler, rich_handler
+from .path import as_path, is_path_like, project_root, resolve_project_path
 from .pretty import caller_location, get_console
 from .serde import json, load, load_pydantic, save, save_pydantic, toml, yaml
 from .text import strip_comments
@@ -56,13 +51,35 @@ from .timing import (
     timer,
 )
 from .tqdm import Progress, RateColumn, len_safe, parallel, track
+from .typed import (
+    ClassInfo,
+    Decorator,
+    DecoratorWithArguments,
+    DecoratorWithOptionalArguments,
+    LogLevel,
+    PathLike,
+    SizedIterable,
+)
 
 __all__ = [
+    "MISSING",
+    "NOP",
+    "ClassInfo",
     "ConditionalDispatcher",
+    "Decorator",
+    "DecoratorWithArguments",
+    "DecoratorWithOptionalArguments",
     "IterableWrapper",
+    "LogLevel",
     "MatchError",
+    "MissingType",
+    "MissingType",
+    "NopType",
+    "PathLike",
     "Progress",
     "RateColumn",
+    "Sentinel",
+    "SizedIterable",
     "TimedFunction",
     "TimedIterable",
     "Timer",
@@ -74,15 +91,11 @@ __all__ = [
     "as_path",
     "as_sequence",
     "caller_location",
-    "caller_location",
     "const",
-    "critical_once",
-    "debug_once",
-    "decorator_with_optional_arguments",
     "environ",
     "error",
-    "error_once",
-    "exception_once",
+    "file_handler",
+    "first_not_none",
     "functools",
     "generator_to_list",
     "get_console",
@@ -96,15 +109,15 @@ __all__ = [
     "human_duration_unit_precision",
     "human_duration_with_variance",
     "human_throughout",
-    "info_once",
     "init_env",
     "init_logging",
+    "is_path_like",
     "itertools",
     "json",
+    "jsonl_handler",
     "len_safe",
     "load",
     "load_pydantic",
-    "log_once",
     "logging",
     "nop",
     "optional_imports",
@@ -113,22 +126,19 @@ __all__ = [
     "pretty",
     "project_root",
     "resolve_project_path",
+    "rich_handler",
     "save",
-    "save_pydantic",
     "save_pydantic",
     "serde",
     "strip_comments",
-    "success_once",
     "text",
     "timer",
     "timing",
     "toml",
     "tqdm",
-    "trace_once",
     "track",
     "typed",
     "version",
     "version_tuple",
-    "warning_once",
     "yaml",
 ]

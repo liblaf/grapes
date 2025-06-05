@@ -5,16 +5,13 @@ from ._decorator import (
     DecoratorWithOptionalArguments,
 )
 from ._misc import ClassInfo, LogLevel, PathLike
-from ._sentinel import MISSING, MissingType
 
 __all__ = [
-    "MISSING",
     "ClassInfo",
     "Decorator",
     "DecoratorWithArguments",
     "DecoratorWithOptionalArguments",
     "LogLevel",
-    "MissingType",
     "PathLike",
     "SizedIterable",
 ]

@@ -51,12 +51,9 @@ def _func_long(obj: Callable) -> Text:
     return text
 
 
-_pretty_func = func
-
-
-def call(func: Callable, args: tuple, kwargs: Mapping) -> Text:  # noqa: ARG001
+def call(fn: Callable, args: tuple, kwargs: Mapping) -> Text:  # noqa: ARG001
     # TODO: add `args` and `kwargs`
-    return _pretty_func(func)
+    return func(fn)
 
 
 def _get_module(obj: Any) -> str:

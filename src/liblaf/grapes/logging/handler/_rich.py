@@ -24,7 +24,7 @@ def rich_handler(
     **kwargs: Unpack["loguru.BasicHandlerConfig"],
 ) -> "loguru.BasicHandlerConfig":
     if console is None:
-        console = pretty.get_console("stderr")
+        console = pretty.get_console(stderr=True)
     if columns is None:
         columns = [
             TimeColumn(),

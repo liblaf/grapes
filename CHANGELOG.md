@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.0](https://github.com/liblaf/grapes/compare/v0.1.35...v0.2.0) (2025-06-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* 
+
+### ♻ Code Refactoring
+
+* **functools:** improve ConditionalDispatcher implementation ([6b49bef](https://github.com/liblaf/grapes/commit/6b49beffd6da362598f4f8a74a796b4349ec2aa9))
+* reorganize utilities and clean up deprecated code ([f9858c2](https://github.com/liblaf/grapes/commit/f9858c2b99deb4822fc996a7ecba19cc0ca704e4))
+
 ## [0.1.35](https://github.com/liblaf/grapes/compare/v0.1.34..v0.1.35) - 2025-06-03
 
 ### ✨ Features

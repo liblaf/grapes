@@ -1,8 +1,29 @@
 import contextlib
+import enum
 from collections.abc import Sequence
+from typing import override
 
 import loguru
 from loguru import logger
+
+
+class LogLevel(enum.StrEnum):
+    @override
+    @staticmethod
+    def _generate_next_value_(
+        name: str, start: int, count: int, last_values: list[str]
+    ) -> str:
+        return name.upper()
+
+    # ref: <https://github.com/Delgan/loguru/blob/master/loguru/_defaults.py>
+    TRACE = enum.auto()
+    DEBUG = enum.auto()
+    INFO = enum.auto()
+    SUCCESS = enum.auto()
+    WARNING = enum.auto()
+    ERROR = enum.auto()
+    CRITICAL = enum.auto()
+
 
 DEFAULT_LEVELS: Sequence["loguru.LevelConfig"] = [
     {"name": "ICECREAM", "no": 15, "color": "<magenta><bold>", "icon": "🍦"}

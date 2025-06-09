@@ -36,7 +36,7 @@ from .itertools import (
     first_not_none,
     generator_to_list,
 )
-from .logging import file_handler, init_logging, jsonl_handler, rich_handler
+from .logging import LogLevel, file_handler, init_logging, jsonl_handler, rich_handler
 from .path import as_path, is_path_like, project_root, resolve_project_path
 from .pretty import caller_location, get_console
 from .serde import json, load, load_pydantic, save, save_pydantic, toml, yaml
@@ -56,7 +56,6 @@ from .typed import (
     Decorator,
     DecoratorWithArguments,
     DecoratorWithOptionalArguments,
-    LogLevel,
     PathLike,
     SizedIterable,
 )

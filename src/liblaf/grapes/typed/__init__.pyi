@@ -4,14 +4,13 @@ from ._decorator import (
     DecoratorWithArguments,
     DecoratorWithOptionalArguments,
 )
-from ._misc import ClassInfo, LogLevel, PathLike
+from ._misc import ClassInfo, PathLike
 
 __all__ = [
     "ClassInfo",
     "Decorator",
     "DecoratorWithArguments",
     "DecoratorWithOptionalArguments",
-    "LogLevel",
     "PathLike",
     "SizedIterable",
 ]

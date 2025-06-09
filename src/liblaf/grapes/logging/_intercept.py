@@ -3,6 +3,7 @@ import itertools
 import logging
 from collections.abc import Iterable
 
+import loguru._logger
 from loguru import logger
 
 
@@ -62,6 +63,9 @@ def setup_loguru_logging_intercept(
     References:
         1. [loguru-logging-intercept/loguru_logging_intercept.py at f358b75ef4162ea903bf7a3298c22b1be83110da · MatthewScholefield/loguru-logging-intercept](https://github.com/MatthewScholefield/loguru-logging-intercept/blob/f358b75ef4162ea903bf7a3298c22b1be83110da/loguru_logging_intercept.py#L35C5-L42)
     """
+    core: loguru._logger.Core = logger._core  # pyright: ignore[reportAttributeAccessIssue] # noqa: SLF001
+    for lvl in core.levels.values():
+        logging.addLevelName(lvl.no, lvl.name)
     logging.basicConfig(level=level, handlers=[InterceptHandler()])
     for logger_name in itertools.chain(("",), modules):
         mod_logger: logging.Logger = logging.getLogger(logger_name)

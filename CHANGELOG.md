@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.1](https://github.com/liblaf/grapes/compare/v0.2.0..v0.2.1) - 2025-06-09
+
+### 🐛 Bug Fixes
+
+- **logging:** properly register loguru levels with logging module - ([94b008e](https://github.com/liblaf/grapes/commit/94b008e8c561706098e963636b58bd32ea5f3051))
+
+### ♻ Code Refactoring
+
+- **logging:** move LogLevel to logging module - ([cfb0272](https://github.com/liblaf/grapes/commit/cfb027298b22fd75cc9c943662381f1a12b2d526))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [0.2.0](https://github.com/liblaf/grapes/compare/v0.1.35..v0.2.0) - 2025-06-05
 
 ### 💥 BREAKING CHANGES
@@ -9,10 +23,6 @@
 ### ♻ Code Refactoring
 
 - **functools:** improve ConditionalDispatcher implementation - ([6b49bef](https://github.com/liblaf/grapes/commit/6b49beffd6da362598f4f8a74a796b4349ec2aa9))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [0.1.35](https://github.com/liblaf/grapes/compare/v0.1.34..v0.1.35) - 2025-06-03
 

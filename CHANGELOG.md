@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/liblaf/grapes/compare/v0.2.1...v0.2.2) (2025-06-10)
+
+
+### ✨ Features
+
+* **functools:** add clone_signature utility ([4caccca](https://github.com/liblaf/grapes/commit/4caccca48893ed9beca43386ff1e826615b69fd5))
+
 ## [0.2.1](https://github.com/liblaf/grapes/compare/v0.2.0..v0.2.1) - 2025-06-09
 
 ### 🐛 Bug Fixes

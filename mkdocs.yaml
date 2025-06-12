@@ -1,22 +1,12 @@
-# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
-
 INHERIT: .config/copier/mkdocs.yaml
 site_name: Grapes
 site_description: TODO
 
-theme:
-  favicon: favicon.png
-  logo: logo.png
-
 plugins:
-  include-markdown:
   mkdocstrings:
     handlers:
       python:
         inventories:
-          - https://autoregistry.readthedocs.io/en/stable/objects.inv
-          - https://boltons.readthedocs.io/en/stable/objects.inv
-          - https://docs.pydantic.dev/latest/objects.inv
           - https://docs.python.org/3/objects.inv
           - https://etils.readthedocs.io/en/stable/objects.inv
           - https://loguru.readthedocs.io/en/stable/objects.inv

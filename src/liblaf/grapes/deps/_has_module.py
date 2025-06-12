@@ -1,6 +1,8 @@
+import functools
 import importlib.util
 
 
+@functools.lru_cache
 def has_module(name: str, package: str | None = None) -> bool:
     """Check if a module can be imported.
 

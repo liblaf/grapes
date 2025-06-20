@@ -1,42 +1,51 @@
 import builtins
 import functools
-from collections.abc import Mapping
-from typing import Literal, overload
+from collections.abc import Callable, Mapping
 
 import loguru
 from loguru import _filters, logger
 
-from liblaf.grapes.functools import ConditionalDispatcher
-
 from .typed import Filter
 
-_dispatcher = ConditionalDispatcher()
+# ref: <https://github.com/Delgan/loguru/blob/a69bfc451413f71b81761a238db4b5833cf0a992/loguru/_logger.py#L899-L956>
 
 
-# ref: <https://github.com/Delgan/loguru/blob/master/loguru/_logger.py#L259>
+@functools.singledispatch
+def as_filter_func(filter_: Filter | None, /) -> "loguru.FilterFunction | None":
+    msg: str = f"Invalid filter, it should be a function, a string or a dict, not: '{type(filter_).__name__}'"
+    raise TypeError(msg)
 
 
-@_dispatcher.register(lambda f: f is None)
-def _(filter_: None) -> None:  # noqa: ARG001
+@as_filter_func.register
+def _(_f: None, /) -> None:
     return None
 
 
-@_dispatcher.register(lambda f: f == "")
-def _(filter_: Literal[""]) -> "loguru.FilterFunction":  # noqa: ARG001
-    return _filters.filter_none
-
-
-@_dispatcher.register(lambda f: isinstance(f, str))
-def _(filter_: str) -> "loguru.FilterFunction":
-    parent: str = filter_ + "."
+@as_filter_func.register(str)
+def _(f: str, /) -> "loguru.FilterFunction":
+    if f == "":
+        return _filters.filter_none
+    parent: str = f + "."
     length: int = len(parent)
     return functools.partial(_filters.filter_by_name, parent=parent, length=length)
 
 
-@_dispatcher.register(lambda f: isinstance(f, Mapping))
-def _(filter_: Mapping[str, int | str]) -> "loguru.FilterFunction":
+@as_filter_func.register(Callable)  # pyright: ignore[reportArgumentType, reportCallIssue]
+def _(f: Callable, /) -> "loguru.FilterFunction":
+    if f == builtins.filter:
+        msg = (
+            "The built-in 'filter()' function cannot be used as a 'filter' parameter, "
+            "this is most likely a mistake (please double-check the arguments passed "
+            "to 'logger.add()')."
+        )
+        raise ValueError(msg)
+    return f
+
+
+@as_filter_func.register(Mapping)
+def _(f: Mapping[str, int | str], /) -> "loguru.FilterFunction":
     level_per_module: dict[str, int] = {}
-    for module, level_ in filter_.items():
+    for module, level_ in f.items():
         if module is not None and not isinstance(module, str):
             msg: str = (
                 "The filter dict contains an invalid module, "
@@ -74,25 +83,3 @@ def _(filter_: Mapping[str, int | str]) -> "loguru.FilterFunction":
     return functools.partial(
         _filters.filter_by_level, level_per_module=level_per_module
     )
-
-
-@_dispatcher.register(lambda f: callable(f))
-def _(filter_: "loguru.FilterFunction") -> "loguru.FilterFunction":
-    if filter_ == builtins.filter:
-        msg = (
-            "The built-in 'filter()' function cannot be used as a 'filter' parameter, "
-            "this is most likely a mistake (please double-check the arguments passed "
-            "to 'logger.add()')."
-        )
-        raise ValueError(msg)
-    return filter_
-
-
-@overload
-def as_filter_func(filter_: None) -> None: ...
-@overload
-def as_filter_func(filter_: Filter) -> "loguru.FilterFunction": ...
-@_dispatcher.final(fallback=True)
-def as_filter_func(filter_: Filter | None) -> "loguru.FilterFunction | None":
-    msg: str = f"Invalid filter, it should be a function, a string or a dict, not: '{type(filter_).__name__}'"
-    raise TypeError(msg)

@@ -3,7 +3,8 @@ from ._base import Callback, TimerRecords
 from ._function import TimedFunction
 from ._get_time import TimerName, get_time
 from ._iterable import TimedIterable
-from ._timer import Timer, timer
+from ._main import timer
+from ._timer import Timer
 
 __all__ = [
     "Callback",
@@ -14,5 +15,6 @@ __all__ = [
     "TimerRecords",
     "callback",
     "get_time",
+    "timer",
     "timer",
 ]

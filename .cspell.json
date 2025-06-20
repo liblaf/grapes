@@ -20,7 +20,6 @@
     "itertools",
     "levelno",
     "liblaf",
-    "mathjax",
     "mkdocs",
     "mkdocstrings",
     "mypy",
@@ -56,8 +55,10 @@
     "ubelt",
     "unraisable",
     "unraisablehook",
+    "unshallow",
     "venv",
     "virtualenv",
+    "wadler",
     "xdist"
   ],
   "ignorePaths": [

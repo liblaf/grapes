@@ -340,6 +340,7 @@ wheels = [
 name = "docstring-inheritance"
 version = "2.2.2"
 source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/16/f4/988a96d45e7db09e1c43dbb8ab0ef0e093e82869fb38e30d41647571a024/docstring_inheritance-2.2.2.tar.gz", hash = "sha256:224eeaee1aeea6503341f9d39eea075d50760f9f2ad9c73dbe8ae61af785d3c0", size = 28341, upload-time = "2025-06-19T08:34:23.571Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/df/c4/a098fe2006371014eddf84244751352c6160c2dc7d2d033aee732f4b2065/docstring_inheritance-2.2.2-py3-none-any.whl", hash = "sha256:090d7a6e098bbea8914839391d56cc38e32d37d471d99a3397ef9d94fa84b5e9", size = 24201, upload-time = "2024-11-30T19:55:33.477Z" },
 ]
@@ -793,6 +794,7 @@ dependencies = [
     { name = "rich" },
     { name = "sortedcontainers" },
     { name = "sortedcontainers-stubs" },
+    { name = "wadler-lindig" },
 ]
 
 [package.dev-dependencies]
@@ -847,10 +849,11 @@ requires-dist = [
     { name = "lazy-loader", specifier = ">=0.4,<0.5" },
     { name = "loguru", specifier = ">=0.7.3,<0.8" },
     { name = "msgspec", extras = ["toml", "yaml"], specifier = ">=0.19.0,<0.20" },
-    { name = "pydantic", specifier = ">=2.11.5,<3" },
+    { name = "pydantic", specifier = ">=2.11.7,<3" },
     { name = "rich", specifier = ">=14.0.0,<15" },
     { name = "sortedcontainers", specifier = ">=2.4.0" },
     { name = "sortedcontainers-stubs", specifier = ">=2.4.3" },
+    { name = "wadler-lindig", specifier = ">=0.1.7" },
 ]
 
 [package.metadata.requires-dev]
@@ -1374,7 +1377,7 @@ wheels = [
 
 [[package]]
 name = "pydantic"
-version = "2.11.5"
+version = "2.11.7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "annotated-types" },
@@ -1382,9 +1385,9 @@ dependencies = [
     { name = "typing-extensions" },
     { name = "typing-inspection" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f0/86/8ce9040065e8f924d642c58e4a344e33163a07f6b57f836d0d734e0ad3fb/pydantic-2.11.5.tar.gz", hash = "sha256:7f853db3d0ce78ce8bbb148c401c2cdd6431b3473c0cdff2755c7690952a7b7a", size = 787102, upload-time = "2025-05-22T21:18:08.761Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/00/dd/4325abf92c39ba8623b5af936ddb36ffcfe0beae70405d456ab1fb2f5b8c/pydantic-2.11.7.tar.gz", hash = "sha256:d989c3c6cb79469287b1569f7447a17848c998458d49ebe294e975b9baf0f0db", size = 788350, upload-time = "2025-06-14T08:33:17.137Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b5/69/831ed22b38ff9b4b64b66569f0e5b7b97cf3638346eb95a2147fdb49ad5f/pydantic-2.11.5-py3-none-any.whl", hash = "sha256:f9c26ba06f9747749ca1e5c94d6a85cb84254577553c8785576fd38fa64dc0f7", size = 444229, upload-time = "2025-05-22T21:18:06.329Z" },
+    { url = "https://files.pythonhosted.org/packages/6a/c0/ec2b1c8712ca690e5d61979dee872603e92b8a32f94cc1b72d53beab008a/pydantic-2.11.7-py3-none-any.whl", hash = "sha256:dde5df002701f6de26248661f6835bbe296a47bf73990135c7d07ce741b9623b", size = 444782, upload-time = "2025-06-14T08:33:14.905Z" },
 ]
 
 [[package]]
@@ -1897,6 +1900,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/56/2c/444f465fb2c65f40c3a104fd0c495184c4f2336d65baf398e3c75d72ea94/virtualenv-20.31.2.tar.gz", hash = "sha256:e10c0a9d02835e592521be48b332b6caee6887f332c111aa79a09b9e79efc2af", size = 6076316, upload-time = "2025-05-08T17:58:23.811Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/f3/40/b1c265d4b2b62b58576588510fc4d1fe60a86319c8de99fd8e9fec617d2c/virtualenv-20.31.2-py3-none-any.whl", hash = "sha256:36efd0d9650ee985f0cad72065001e66d49a6f24eb44d98980f630686243cf11", size = 6057982, upload-time = "2025-05-08T17:58:21.15Z" },
+]
+
+[[package]]
+name = "wadler-lindig"
+version = "0.1.7"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/1e/67/cbae4bf7683a64755c2c1778c418fea96d00e34395bb91743f08bd951571/wadler_lindig-0.1.7.tar.gz", hash = "sha256:81d14d3fe77d441acf3ebd7f4aefac20c74128bf460e84b512806dccf7b2cd55", size = 15842, upload-time = "2025-06-18T07:00:42.843Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8d/96/04e7b441807b26b794da5b11e59ed7f83b2cf8af202bd7eba8ad2fa6046e/wadler_lindig-0.1.7-py3-none-any.whl", hash = "sha256:e3ec83835570fd0a9509f969162aeb9c65618f998b1f42918cfc8d45122fe953", size = 20516, upload-time = "2025-06-18T07:00:41.684Z" },
 ]
 
 [[package]]

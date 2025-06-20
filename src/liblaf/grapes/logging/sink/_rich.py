@@ -1,10 +1,12 @@
 import datetime
 import types
+import unittest.mock
 from collections.abc import Generator, Sequence
 from typing import Protocol, override
 
 import attrs
 import loguru
+import wadler_lindig as wl
 from rich.console import Console, RenderableType
 from rich.highlighter import Highlighter, ReprHighlighter
 from rich.text import Text
@@ -47,14 +49,24 @@ class LoguruRichHandler:
         exc_type, exc_value, traceback = exception
         if exc_type is None or exc_value is None:
             return None
-        return Traceback.from_exception(
-            exc_type=exc_type,
-            exc_value=exc_value,
-            traceback=traceback,
-            width=self.console.width,
-            code_width=self.console.width,
-            show_locals=True,
-        )
+
+        # ? dirty hack to avoid long `repr()` output
+        # ref: <https://github.com/Textualize/rich/discussions/3774>
+        with unittest.mock.patch("rich.pretty.repr", new=wl.pformat):
+            rich_tb: Traceback = Traceback.from_exception(
+                exc_type=exc_type,
+                exc_value=exc_value,
+                traceback=traceback,
+                width=self.console.width,
+                code_width=self.console.width,
+                show_locals=True,
+            )
+
+        # ? dirty hack to support ANSI in exception messages
+        for stack in rich_tb.trace.stacks:
+            if pretty.has_ansi(stack.exc_value):
+                stack.exc_value = Text.from_ansi(stack.exc_value)  # pyright: ignore[reportAttributeAccessIssue]
+        return rich_tb
 
 
 class TimeColumn(RichLoggingColumn):

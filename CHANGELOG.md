@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.2.3](https://github.com/liblaf/grapes/compare/v0.2.2...v0.2.3) (2025-06-21)
+
+
+### ✨ Features
+
+* **error:** add DispatchLookupError class ([0efbe4f](https://github.com/liblaf/grapes/commit/0efbe4f68d26e5b0860463415ba6a6db73770fb2))
+
+
+### 🐛 Bug Fixes
+
+* **logging:** improve traceback formatting and add ANSI support ([52940fb](https://github.com/liblaf/grapes/commit/52940fbdec25cff392e573d5562d1dd3bb827e7e))
+
+
+### ♻ Code Refactoring
+
+* **logging:** simplify filter dispatch ([fbe4bf6](https://github.com/liblaf/grapes/commit/fbe4bf6921b3f15adb724a14eee37cb6a767a2ac))
+
 ## [0.2.2](https://github.com/liblaf/grapes/compare/v0.2.1..v0.2.2) - 2025-06-10
 
 ### ✨ Features

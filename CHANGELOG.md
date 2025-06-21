@@ -1,31 +1,29 @@
 # Changelog
 
-## [0.2.3](https://github.com/liblaf/grapes/compare/v0.2.2...v0.2.3) (2025-06-21)
-
+## [0.2.3](https://github.com/liblaf/grapes/compare/v0.2.2..v0.2.3) - 2025-06-21
 
 ### ✨ Features
 
-* **error:** add DispatchLookupError class ([0efbe4f](https://github.com/liblaf/grapes/commit/0efbe4f68d26e5b0860463415ba6a6db73770fb2))
-
+- **error:** add DispatchLookupError class - ([0efbe4f](https://github.com/liblaf/grapes/commit/0efbe4f68d26e5b0860463415ba6a6db73770fb2))
 
 ### 🐛 Bug Fixes
 
-* **logging:** improve traceback formatting and add ANSI support ([52940fb](https://github.com/liblaf/grapes/commit/52940fbdec25cff392e573d5562d1dd3bb827e7e))
-
+- **logging:** improve traceback formatting and add ANSI support - ([52940fb](https://github.com/liblaf/grapes/commit/52940fbdec25cff392e573d5562d1dd3bb827e7e))
 
 ### ♻ Code Refactoring
 
-* **logging:** simplify filter dispatch ([fbe4bf6](https://github.com/liblaf/grapes/commit/fbe4bf6921b3f15adb724a14eee37cb6a767a2ac))
-
-## [0.2.2](https://github.com/liblaf/grapes/compare/v0.2.1..v0.2.2) - 2025-06-10
-
-### ✨ Features
-
-- **functools:** add clone_signature utility - ([4caccca](https://github.com/liblaf/grapes/commit/4caccca48893ed9beca43386ff1e826615b69fd5))
+- **logging:** simplify filter dispatch - ([fbe4bf6](https://github.com/liblaf/grapes/commit/fbe4bf6921b3f15adb724a14eee37cb6a767a2ac))
 
 ### ❤️ New Contributors
 
 - [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
+
+## [0.2.2](https://github.com/liblaf/grapes/compare/v0.2.1..v0.2.2) - 2025-06-11
+
+### ✨ Features
+
+- **functools:** add clone_signature utility - ([4caccca](https://github.com/liblaf/grapes/commit/4caccca48893ed9beca43386ff1e826615b69fd5))
 
 ## [0.2.1](https://github.com/liblaf/grapes/compare/v0.2.0..v0.2.1) - 2025-06-09
 

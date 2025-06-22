@@ -1,73 +1,46 @@
 import functools
-from collections.abc import Sequence
-from typing import overload
+from collections.abc import Callable, Iterable
+from typing import TYPE_CHECKING
 
-from ._base import Callback, TimerRecords
+import loguru
+
+from liblaf.grapes.logging import depth_tracker
+
+from .defaults import DEFAULT_STATS
+
+if TYPE_CHECKING:
+    from ._base import BaseTimer
 
 
-@overload
+@depth_tracker
 def log_record(
-    *,
-    depth: int = 1,
-    index: int = -1,
-    level: int | str = "DEBUG",
-    threshold: float = 0.1,  # seconds
-) -> Callback: ...
-@overload
-def log_record(
-    records: TimerRecords,
+    records: "BaseTimer | None" = None,
     /,
     *,
-    depth: int = 1,
-    index: int = -1,
+    idx: int = -1,
     level: int | str = "DEBUG",
+    logger: "loguru.Logger | None" = None,
     threshold: float = 0.1,  # seconds
-) -> None: ...
-def log_record(
-    records: TimerRecords | None = None,
-    /,
-    *,
-    depth: int = 1,
-    index: int = -1,
-    level: int | str = "DEBUG",
-    threshold: float = 0.1,  # seconds
-) -> Callback | None:
+) -> Callable | None:
     if records is None:
         return functools.partial(
-            log_record, depth=depth, index=index, level=level, threshold=threshold
-        )  # pyright: ignore[reportReturnType]
-    records.log_record(depth=depth, index=index, level=level, threshold=threshold)
-    return None
+            log_record, idx=idx, level=level, logger=logger, threshold=threshold
+        )
+    return records.log_record(idx=idx, level=level, logger=logger, threshold=threshold)
 
 
-@overload
+@depth_tracker
 def log_summary(
-    *,
-    depth: int = 1,
-    level: int | str = "INFO",
-    stats: Sequence[str] = ("mean+std", "median"),
-) -> Callback: ...
-@overload
-def log_summary(
-    records: TimerRecords,
+    records: "BaseTimer | None" = None,
     /,
     *,
-    depth: int = 1,
     level: int | str = "INFO",
-    stats: Sequence[str] = ("mean+std", "median"),
-) -> None: ...
-def log_summary(
-    records: TimerRecords | None = None,
-    /,
-    *,
-    depth: int = 1,
-    level: int | str = "INFO",
-    stats: Sequence[str] = ("mean+std", "median"),
-) -> Callback | None:
+    logger: "loguru.Logger | None" = None,
+    stats: Iterable[str] = DEFAULT_STATS,
+) -> Callable | None:
     if records is None:
-        return functools.partial(log_summary, depth=depth, level=level, stats=stats)
-    records.log_summary(depth=depth, level=level, stats=stats)
-    return None
+        return functools.partial(log_summary, level=level, logger=logger, stats=stats)
+    return records.log_summary(level=level, logger=logger, stats=stats)
 
 
 __all__ = ["log_record", "log_summary"]

@@ -22,6 +22,7 @@ from rich.text import Text
 
 from liblaf.grapes import human as _human
 from liblaf.grapes import pretty, timing
+from liblaf.grapes.logging import depth_tracker
 
 
 class RateColumn(ProgressColumn):
@@ -67,10 +68,7 @@ class Progress(RichProgress):
         if console is None:
             console = pretty.get_console(stderr=True)
         if timer is None:
-            timer = timing.timer(
-                cb_finish=timing.callback.log_summary(depth=5),
-                cb_stop=timing.callback.log_record(depth=5),
-            )
+            timer = timing.timer()
         self.timer = timer
         super().__init__(*columns, console=console)
 
@@ -93,6 +91,7 @@ class Progress(RichProgress):
         )
 
     @override
+    @depth_tracker
     def track[T](
         self,
         sequence: Iterable[T],
@@ -108,15 +107,16 @@ class Progress(RichProgress):
             total = len_safe(sequence)
         if timer := (timer or self.timer):
             sequence = timer(sequence)
-            sequence.timing.name = description
-        return super().track(
-            sequence,
-            total=total,
-            completed=completed,
-            task_id=task_id,
-            description=description,
-            update_period=update_period,
-        )
+            sequence.timing.label = description
+        with depth_tracker(depth=2):
+            yield from super().track(
+                sequence,
+                total=total,
+                completed=completed,
+                task_id=task_id,
+                description=description,
+                update_period=update_period,
+            )
 
 
 def len_safe(iterable: Iterable) -> int | None:

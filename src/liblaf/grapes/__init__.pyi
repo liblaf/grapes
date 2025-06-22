@@ -42,11 +42,11 @@ from .pretty import caller_location, get_console
 from .serde import json, load, load_pydantic, save, save_pydantic, toml, yaml
 from .text import strip_comments
 from .timing import (
+    BaseTimer,
     TimedFunction,
     TimedIterable,
     Timer,
     TimerName,
-    TimerRecords,
     get_time,
     timer,
 )
@@ -63,6 +63,7 @@ from .typed import (
 __all__ = [
     "MISSING",
     "NOP",
+    "BaseTimer",
     "ClassInfo",
     "ConditionalDispatcher",
     "Decorator",
@@ -83,7 +84,6 @@ __all__ = [
     "TimedIterable",
     "Timer",
     "TimerName",
-    "TimerRecords",
     "__version__",
     "__version_tuple__",
     "as_iterable",

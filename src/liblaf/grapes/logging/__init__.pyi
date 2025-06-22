@@ -1,4 +1,5 @@
 from . import filters, handler, sink
+from ._depth_tracker import depth_tracker
 from ._icecream import init_icecream
 from ._init import init_logging
 from ._init_loguru import init_loguru, traceback_install
@@ -36,6 +37,7 @@ __all__ = [
     "add_level",
     "as_filter_func",
     "clear_handlers",
+    "depth_tracker",
     "file_handler",
     "filter_all",
     "filter_any",

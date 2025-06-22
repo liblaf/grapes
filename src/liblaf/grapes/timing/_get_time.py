@@ -1,21 +1,9 @@
 import os
 import time
-from typing import Literal
 
 import autoregistry
 
-type TimerName = Literal[
-    "children_system",
-    "children_user",
-    "elapsed",
-    "monotonic",
-    "perf",
-    "process",
-    "system",
-    "thread",
-    "time",
-    "user",
-]
+type TimerName = str
 
 
 _get_time = autoregistry.Registry()
@@ -31,5 +19,5 @@ _get_time["time"] = time.time
 _get_time["user"] = lambda: os.times().user
 
 
-def get_time(name: TimerName | str = "perf") -> float:
-    return _get_time[name]()
+def get_time(timer: TimerName = "perf") -> float:
+    return _get_time[timer]()

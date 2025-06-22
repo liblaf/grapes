@@ -91,6 +91,8 @@ def human_duration(
         - For durations longer than an hour, the output will be in the format "HH:MM:SS".
         - The function currently does not handle durations longer than a day.
     """
+    if not math.isfinite(seconds):
+        return "?? sec"
     if (unit is None) or (precision is None):
         unit, precision = human_duration_unit_precision(seconds)
     if unit in {"ns", "us", "ms", "s"}:

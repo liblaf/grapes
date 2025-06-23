@@ -22,7 +22,7 @@ def track[T](
         timer = timing.timer(label=description)
     if progress is None:
         progress = Progress(timer=timer)
-    with progress, depth_tracker:
+    with progress, depth_tracker():
         yield from progress.track(
             sequence,
             total=total,

@@ -28,7 +28,7 @@ class TimedIterable[T]:
         return self._total
 
     def __iter__(self) -> Iterator[T]:
-        with depth_tracker(depth=1):
+        with depth_tracker():
             self.timing.start()
             for item in self._iterable:
                 yield item

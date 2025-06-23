@@ -29,6 +29,7 @@ class Timer(contextlib.AbstractContextManager, BaseTimer):
         exc_type: type[BaseException] | None,
         exc_value: BaseException | None,
         traceback: types.TracebackType | None,
+        /,
     ) -> None:
         self.stop()
 
@@ -37,12 +38,10 @@ class Timer(contextlib.AbstractContextManager, BaseTimer):
         raise DispatchLookupError(self.__call__, args, kwargs)
 
     @__call__.register(Callable)
-    @depth_tracker(depth=3)
     def _[**P, T](self, func: Callable[P, T], /, **kwargs) -> TimedFunction[P, T]:
         return TimedFunction(func, timing=attrs.evolve(self, **kwargs))
 
     @__call__.register(Iterable)
-    @depth_tracker(depth=3)
     def _[T](
         self, iterable: Iterable[T], /, total: int | None = None, **kwargs
     ) -> TimedIterable[T]:

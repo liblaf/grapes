@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.1](https://github.com/liblaf/grapes/compare/v0.3.0..v0.3.1) - 2025-06-23
+
+### ⬆️ Dependencies
+
+- **deps:** standardize lazy-loader version pin - ([690f814](https://github.com/liblaf/grapes/commit/690f81482ee73543b168f08fa3200ae98792f697))
+- **deps:** pin dependency versions - ([514cd3b](https://github.com/liblaf/grapes/commit/514cd3b47c63010e9e5e5f67c258ce97d60700b8))
+- **deps:** remove version constraints from dependencies - ([5500a05](https://github.com/liblaf/grapes/commit/5500a050976da7f6640334ec932dc29597ae08fb))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [0.3.0](https://github.com/liblaf/grapes/compare/v0.2.3..v0.3.0) - 2025-06-23
 
 ### 💥 BREAKING CHANGES
@@ -10,10 +22,6 @@
 
 - **logging:** split depth tracker into context manager and tracker - ([2b77ae0](https://github.com/liblaf/grapes/commit/2b77ae0f4280dfb65be5468c83886fe482c586ae))
 - clean up timing module and build config - ([3973878](https://github.com/liblaf/grapes/commit/39738789aa1c26d166bb8b84f4caeb220b766197))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [0.2.3](https://github.com/liblaf/grapes/compare/v0.2.2..v0.2.3) - 2025-06-22
 

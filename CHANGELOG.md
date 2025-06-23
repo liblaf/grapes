@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.0](https://github.com/liblaf/grapes/compare/v0.2.3...v0.3.0) (2025-06-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **timing:** 
+
+### ♻ Code Refactoring
+
+* clean up timing module and build config ([3973878](https://github.com/liblaf/grapes/commit/39738789aa1c26d166bb8b84f4caeb220b766197))
+* **logging:** split depth tracker into context manager and tracker ([2b77ae0](https://github.com/liblaf/grapes/commit/2b77ae0f4280dfb65be5468c83886fe482c586ae))
+* **timing:** restructure timing module and add depth tracking ([1d160d8](https://github.com/liblaf/grapes/commit/1d160d87c5281d4dfa4bef1aff196e35dcc765f7))
+
 ## [0.2.3](https://github.com/liblaf/grapes/compare/v0.2.2..v0.2.3) - 2025-06-21
 
 ### ✨ Features

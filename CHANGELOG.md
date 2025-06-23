@@ -1,19 +1,21 @@
 # Changelog
 
-## [0.3.0](https://github.com/liblaf/grapes/compare/v0.2.3...v0.3.0) (2025-06-23)
+## [0.3.0](https://github.com/liblaf/grapes/compare/v0.2.3..v0.3.0) - 2025-06-23
 
+### 💥 BREAKING CHANGES
 
-### ⚠ BREAKING CHANGES
-
-* **timing:** 
+- **timing:** restructure timing module and add depth tracking - ([1d160d8](https://github.com/liblaf/grapes/commit/1d160d87c5281d4dfa4bef1aff196e35dcc765f7))
 
 ### ♻ Code Refactoring
 
-* clean up timing module and build config ([3973878](https://github.com/liblaf/grapes/commit/39738789aa1c26d166bb8b84f4caeb220b766197))
-* **logging:** split depth tracker into context manager and tracker ([2b77ae0](https://github.com/liblaf/grapes/commit/2b77ae0f4280dfb65be5468c83886fe482c586ae))
-* **timing:** restructure timing module and add depth tracking ([1d160d8](https://github.com/liblaf/grapes/commit/1d160d87c5281d4dfa4bef1aff196e35dcc765f7))
+- **logging:** split depth tracker into context manager and tracker - ([2b77ae0](https://github.com/liblaf/grapes/commit/2b77ae0f4280dfb65be5468c83886fe482c586ae))
+- clean up timing module and build config - ([3973878](https://github.com/liblaf/grapes/commit/39738789aa1c26d166bb8b84f4caeb220b766197))
 
-## [0.2.3](https://github.com/liblaf/grapes/compare/v0.2.2..v0.2.3) - 2025-06-21
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
+## [0.2.3](https://github.com/liblaf/grapes/compare/v0.2.2..v0.2.3) - 2025-06-22
 
 ### ✨ Features
 
@@ -26,11 +28,6 @@
 ### ♻ Code Refactoring
 
 - **logging:** simplify filter dispatch - ([fbe4bf6](https://github.com/liblaf/grapes/commit/fbe4bf6921b3f15adb724a14eee37cb6a767a2ac))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
-- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
 
 ## [0.2.2](https://github.com/liblaf/grapes/compare/v0.2.1..v0.2.2) - 2025-06-11
 

@@ -1,4 +1,5 @@
 from . import (
+    conf,
     const,
     environ,
     error,
@@ -16,6 +17,7 @@ from . import (
     typed,
 )
 from ._version import __version__, __version_tuple__, version, version_tuple
+from .conf import Config, config
 from .const import MISSING, NOP, MissingType, NopType, Sentinel, nop
 from .deps import has_module, optional_imports
 from .environ import init_env
@@ -66,6 +68,7 @@ __all__ = [
     "BaseTimer",
     "ClassInfo",
     "ConditionalDispatcher",
+    "Config",
     "Decorator",
     "DecoratorWithArguments",
     "DecoratorWithOptionalArguments",
@@ -90,6 +93,8 @@ __all__ = [
     "as_path",
     "as_sequence",
     "caller_location",
+    "conf",
+    "config",
     "const",
     "environ",
     "error",

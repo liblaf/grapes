@@ -6,8 +6,9 @@ from collections.abc import Sequence
 from typing import Protocol, Unpack
 
 import loguru
-from environs import env
 from loguru import logger
+
+from liblaf.grapes.conf import config
 
 from ._intercept import setup_loguru_logging_intercept
 from ._level import DEFAULT_LEVELS, add_level
@@ -27,9 +28,9 @@ def init_loguru(
         handlers: list[loguru.HandlerConfig] = [
             rich_handler(enable_link=enable_link, **kwargs)
         ]
-        if env.path("LOGGING_FILE", default=None):
+        if config.file("LOGGING_FILE", default=None):
             handlers.append(file_handler(**kwargs))  # pyright: ignore[reportArgumentType]
-        if env.path("LOGGING_JSONL", default=None):
+        if config.file("LOGGING_JSONL", default=None):
             handlers.append(jsonl_handler(**kwargs))  # pyright: ignore[reportArgumentType]
     logger.configure(handlers=handlers)
     for lvl in levels or DEFAULT_LEVELS:

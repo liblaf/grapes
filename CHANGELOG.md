@@ -1,11 +1,15 @@
 # Changelog
 
-## [0.3.2](https://github.com/liblaf/grapes/compare/v0.3.1...v0.3.2) (2025-06-30)
-
+## [0.3.2](https://github.com/liblaf/grapes/compare/v0.3.1..v0.3.2) - 2025-06-30
 
 ### ✨ Features
 
-* **config:** add centralized configuration system ([7eeae03](https://github.com/liblaf/grapes/commit/7eeae0304ba1fe40eb997353e39df4530179243b))
+- **config:** add centralized configuration system - ([7eeae03](https://github.com/liblaf/grapes/commit/7eeae0304ba1fe40eb997353e39df4530179243b))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
 
 ## [0.3.1](https://github.com/liblaf/grapes/compare/v0.3.0..v0.3.1) - 2025-06-23
 
@@ -14,10 +18,6 @@
 - **deps:** standardize lazy-loader version pin - ([690f814](https://github.com/liblaf/grapes/commit/690f81482ee73543b168f08fa3200ae98792f697))
 - **deps:** pin dependency versions - ([514cd3b](https://github.com/liblaf/grapes/commit/514cd3b47c63010e9e5e5f67c258ce97d60700b8))
 - **deps:** remove version constraints from dependencies - ([5500a05](https://github.com/liblaf/grapes/commit/5500a050976da7f6640334ec932dc29597ae08fb))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [0.3.0](https://github.com/liblaf/grapes/compare/v0.2.3..v0.3.0) - 2025-06-23
 

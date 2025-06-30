@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2](https://github.com/liblaf/grapes/compare/v0.3.1...v0.3.2) (2025-06-30)
+
+
+### ✨ Features
+
+* **config:** add centralized configuration system ([7eeae03](https://github.com/liblaf/grapes/commit/7eeae0304ba1fe40eb997353e39df4530179243b))
+
 ## [0.3.1](https://github.com/liblaf/grapes/compare/v0.3.0..v0.3.1) - 2025-06-23
 
 ### ⬆️ Dependencies

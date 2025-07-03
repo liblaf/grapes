@@ -1,22 +1,20 @@
 # Changelog
 
-## [0.3.3](https://github.com/liblaf/grapes/compare/v0.3.2...v0.3.3) (2025-07-03)
-
-
-### ✨ Features
-
-* **functools:** add cache utilities and platformdirs integration ([8f73830](https://github.com/liblaf/grapes/commit/8f738306e19e01577dfea8824118e322d17ebea0))
-
-## [0.3.2](https://github.com/liblaf/grapes/compare/v0.3.1..v0.3.2) - 2025-06-30
+## [0.3.3](https://github.com/liblaf/grapes/compare/v0.3.2..v0.3.3) - 2025-07-03
 
 ### ✨ Features
 
-- **config:** add centralized configuration system - ([7eeae03](https://github.com/liblaf/grapes/commit/7eeae0304ba1fe40eb997353e39df4530179243b))
+- **functools:** add cache utilities and platformdirs integration - ([8f73830](https://github.com/liblaf/grapes/commit/8f738306e19e01577dfea8824118e322d17ebea0))
 
 ### ❤️ New Contributors
 
 - [@liblaf](https://github.com/liblaf) made their first contribution
-- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
+
+## [0.3.2](https://github.com/liblaf/grapes/compare/v0.3.1..v0.3.2) - 2025-07-01
+
+### ✨ Features
+
+- **config:** add centralized configuration system - ([7eeae03](https://github.com/liblaf/grapes/commit/7eeae0304ba1fe40eb997353e39df4530179243b))
 
 ## [0.3.1](https://github.com/liblaf/grapes/compare/v0.3.0..v0.3.1) - 2025-06-23
 

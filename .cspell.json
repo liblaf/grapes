@@ -28,6 +28,7 @@
     "numpy",
     "pipenv",
     "pixi",
+    "platformdirs",
     "prec",
     "pybuilder",
     "pycache",

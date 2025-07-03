@@ -4,6 +4,7 @@ from collections.abc import Callable
 from typing import Any, Protocol, TypedDict, Unpack, overload
 
 import joblib
+import platformdirs
 
 
 class MemorizedFunc[**P, T](Protocol):
@@ -51,15 +52,16 @@ def cache[**P, T](
             cache, memory=memory, reduce_size=reduce_size, **kwargs
         )
     if memory is None:
-        memory = joblib.Memory()
+        memory = joblib.Memory(platformdirs.user_cache_path("joblib"))
     if reduce_size is None:
         reduce_size = {"bytes_limit": "1G"}
 
     @memory.cache(**kwargs)
+    @functools.wraps(func)
     def wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
         ret: T = func(*args, **kwargs)
         memory.reduce_size(**reduce_size)
         return ret
 
-    wrapper.memory = memory  # pyright: ignore[reportFunctionMemberAccess]
+    wrapper.memory = memory  # pyright: ignore[reportAttributeAccessIssue]
     return wrapper

@@ -22,7 +22,7 @@ from .const import MISSING, NOP, MissingType, NopType, Sentinel, nop
 from .deps import has_module, optional_imports
 from .environ import init_env
 from .error import MatchError
-from .functools import ConditionalDispatcher
+from .functools import ConditionalDispatcher, MemorizedFunc, cache, clone_signature
 from .human import (
     human_count,
     human_duration,
@@ -75,6 +75,7 @@ __all__ = [
     "IterableWrapper",
     "LogLevel",
     "MatchError",
+    "MemorizedFunc",
     "MissingType",
     "MissingType",
     "NopType",
@@ -92,7 +93,9 @@ __all__ = [
     "as_iterable",
     "as_path",
     "as_sequence",
+    "cache",
     "caller_location",
+    "clone_signature",
     "conf",
     "config",
     "const",

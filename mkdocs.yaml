@@ -3,6 +3,8 @@ site_name: Grapes
 site_description: TODO
 
 plugins:
+  privacy:
+    enabled: false
   mkdocstrings:
     handlers:
       python:

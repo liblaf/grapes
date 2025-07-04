@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.4](https://github.com/liblaf/grapes/compare/v0.3.3...v0.3.4) (2025-07-04)
+
+
+### 📝 Documentation
+
+* disable privacy plugin in mkdocs ([9b2289d](https://github.com/liblaf/grapes/commit/9b2289d41c6ad1bb739a3cc0248a7b36c24f3acb))
+* update commit hash in copier answers and correct readthedocs JavaScript path ([a33f1fc](https://github.com/liblaf/grapes/commit/a33f1fc3431a79a284d4df161b7bec99a24f6aba))
+
 ## [0.3.3](https://github.com/liblaf/grapes/compare/v0.3.2..v0.3.3) - 2025-07-03
 
 ### ✨ Features

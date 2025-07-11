@@ -5,6 +5,7 @@ import types
 from collections.abc import Sequence
 from typing import Protocol, Unpack
 
+import cytoolz as toolz
 import loguru
 from loguru import logger
 
@@ -13,7 +14,7 @@ from liblaf.grapes.conf import config
 from ._intercept import setup_loguru_logging_intercept
 from ._level import DEFAULT_LEVELS, add_level
 from ._std import clear_handlers
-from .handler import file_handler, jsonl_handler, rich_handler
+from .handler import file_handler, rich_handler
 
 
 def init_loguru(
@@ -28,10 +29,10 @@ def init_loguru(
         handlers: list[loguru.HandlerConfig] = [
             rich_handler(enable_link=enable_link, **kwargs)
         ]
-        if config.file("LOGGING_FILE", default=None):
-            handlers.append(file_handler(**kwargs))  # pyright: ignore[reportArgumentType]
-        if config.file("LOGGING_JSONL", default=None):
-            handlers.append(jsonl_handler(**kwargs))  # pyright: ignore[reportArgumentType]
+        if config.log_file:
+            handlers.append(
+                file_handler(**toolz.merge(kwargs, {"sink": config.log_file}))
+            )
     logger.configure(handlers=handlers)
     for lvl in levels or DEFAULT_LEVELS:
         add_level(**lvl)

@@ -4,7 +4,8 @@ from collections.abc import Callable
 from typing import Any, Protocol, TypedDict, Unpack, overload
 
 import joblib
-import platformdirs
+
+from liblaf.grapes.conf import config
 
 
 class MemorizedFunc[**P, T](Protocol):
@@ -52,9 +53,9 @@ def cache[**P, T](
             cache, memory=memory, reduce_size=reduce_size, **kwargs
         )
     if memory is None:
-        memory = joblib.Memory(platformdirs.user_cache_path("joblib"))
+        memory = joblib.Memory(config.joblib_memory_location)
     if reduce_size is None:
-        reduce_size = {"bytes_limit": "1G"}
+        reduce_size = {"bytes_limit": config.joblib_memory_bytes_limit}
 
     @memory.cache(**kwargs)
     @functools.wraps(func)

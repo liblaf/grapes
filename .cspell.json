@@ -7,6 +7,7 @@
     "assembla",
     "asyncio",
     "cython",
+    "cytoolz",
     "direnv",
     "dmypy",
     "etils",

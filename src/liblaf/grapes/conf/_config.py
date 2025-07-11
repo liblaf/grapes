@@ -1,105 +1,43 @@
-from __future__ import annotations
-
-from collections.abc import Mapping
+import enum
+import sys
 from pathlib import Path
-from typing import Any
 
-import environs
 import platformdirs
+import pydantic
+import pydantic_settings as ps
 
 
-class Config:
-    env: environs.Env
-
-    def __init__(self) -> None:
-        self.env = environs.Env()
-        self.env.read_env()
-
-    def dump(self) -> Mapping[str, Any]:
-        return self.env.dump()
-
-    def _field_name(self, name: str, module: str = "") -> str:
-        parts: list[str] = _remove_private_prefix(module)
-        parts.append(name)
-        return "_".join(parts).upper()
-
-    # region Fields
-
-    def bool(
-        self,
-        name: str,
-        default: bool = ...,  # pyright: ignore[reportArgumentType]
-        *,
-        module: str = "",
-        **kwargs,
-    ) -> bool:
-        name: str = self._field_name(name, module)
-        value: bool = self.env.bool(name, default=default, **kwargs)
-        return value
-
-    def cache_dir(
-        self,
-        name: str,
-        default: Path = ...,  # pyright: ignore[reportArgumentType]
-        *,
-        ensure_exists: bool = True,
-        module: str = "",
-        **kwargs,
-    ) -> Path:
-        if default is Ellipsis:
-            default = platformdirs.user_cache_path(
-                "/".join(_remove_private_prefix(module))
-            )
-        return self.dir(
-            name, default=default, ensure_exists=ensure_exists, module=module, **kwargs
-        )
-
-    def dir(
-        self,
-        name: str,
-        default: Path | None = ...,  # pyright: ignore[reportArgumentType]
-        *,
-        ensure_exists: bool = True,
-        module: str = "",
-        **kwargs,
-    ) -> Path:
-        value: Path = self.path(name, default=default, module=module, **kwargs)
-        if ensure_exists:
-            value.mkdir(parents=True, exist_ok=True)
-        return value
-
-    def file(
-        self,
-        name: str,
-        default: Path | None = ...,  # pyright: ignore[reportArgumentType]
-        *,
-        module: str = "",
-        **kwargs,
-    ) -> Path:
-        value: Path = self.path(name, default=default, module=module, **kwargs)
-        return value
-
-    def path(
-        self,
-        name: str,
-        default: Path | None = ...,  # pyright: ignore[reportArgumentType]
-        *,
-        module: str = "",
-        **kwargs,
-    ) -> Path:
-        name: str = self._field_name(name, module)
-        value: Path = self.env.path(name, default=default, **kwargs)
-        return value
-
-    # endregion Fields
+def joblib_memory_location() -> Path:
+    return platformdirs.user_cache_path(appname="joblib")
 
 
-def _remove_private_prefix(
-    s: str, /, sep: str | None = ".", prefix: str = "_"
-) -> list[str]:
-    parts: list[str] = s.split(sep)
-    parts = [part for part in parts if part and not part.startswith(prefix)]
-    return parts
+def log_file() -> Path:
+    entrypoint: Path = Path(sys.argv[0])
+    return entrypoint.parent / "run.log"
+
+
+class LogLevel(enum.StrEnum):
+    TRACE = "TRACE"
+    DEBUG = "DEBUG"
+    INFO = "INFO"
+    SUCCESS = "SUCCESS"
+    WARNING = "WARNING"
+    ERROR = "ERROR"
+    CRITICAL = "CRITICAL"
+
+
+class Config(ps.BaseSettings):
+    model_config = ps.SettingsConfigDict(env_prefix="PLAYGROUND_")
+
+    joblib_memory_bytes_limit: int | str | None = pydantic.Field(default="1G")
+
+    joblib_memory_location: Path = pydantic.Field(
+        default_factory=joblib_memory_location
+    )
+
+    log_file: Path | None = pydantic.Field(default=None)
+
+    log_level: LogLevel = pydantic.Field(default=LogLevel.INFO)
 
 
 config = Config()

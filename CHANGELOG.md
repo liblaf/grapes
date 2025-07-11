@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.4.0](https://github.com/liblaf/grapes/compare/v0.3.4...v0.4.0) (2025-07-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **config:** The Config class interface has been completely redesigned. Any code using the old config system will need to be updated to use the new pydantic settings model.
+
+### ♻ Code Refactoring
+
+* **config:** migrate to pydantic-settings ([ad36566](https://github.com/liblaf/grapes/commit/ad3656656eee2b11d7fbcb4890deb84d68628f3b))
+
 ## [0.3.4](https://github.com/liblaf/grapes/compare/v0.3.3..v0.3.4) - 2025-07-04
 
 ### 📝 Documentation

@@ -1,15 +1,21 @@
 # Changelog
 
-## [0.3.4](https://github.com/liblaf/grapes/compare/v0.3.3..v0.3.4) - 2025-07-04
+## [0.4.0](https://github.com/liblaf/grapes/compare/v0.3.4..v0.4.0) - 2025-07-11
+
+### 💥 BREAKING CHANGES
+
+- **config:** migrate to pydantic-settings - ([ad36566](https://github.com/liblaf/grapes/commit/ad3656656eee2b11d7fbcb4890deb84d68628f3b))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
+## [0.3.4](https://github.com/liblaf/grapes/compare/v0.3.3..v0.3.4) - 2025-07-05
 
 ### 📝 Documentation
 
 - update commit hash in copier answers and correct readthedocs JavaScript path - ([a33f1fc](https://github.com/liblaf/grapes/commit/a33f1fc3431a79a284d4df161b7bec99a24f6aba))
 - disable privacy plugin in mkdocs - ([9b2289d](https://github.com/liblaf/grapes/commit/9b2289d41c6ad1bb739a3cc0248a7b36c24f3acb))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [0.3.3](https://github.com/liblaf/grapes/compare/v0.3.2..v0.3.3) - 2025-07-04
 

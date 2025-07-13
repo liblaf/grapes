@@ -27,6 +27,7 @@
     "nephila",
     "numprocesses",
     "numpy",
+    "pdoc",
     "pipenv",
     "pixi",
     "platformdirs",

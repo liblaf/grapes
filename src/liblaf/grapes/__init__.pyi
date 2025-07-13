@@ -40,7 +40,7 @@ from .itertools import (
 )
 from .logging import LogLevel, file_handler, init_logging, jsonl_handler, rich_handler
 from .path import as_path, is_path_like, project_root, resolve_project_path
-from .pretty import caller_location, get_console
+from .pretty import WadlerLindigMixin, caller_location, get_console, pdoc_attrs
 from .serde import json, load, load_pydantic, save, save_pydantic, toml, yaml
 from .text import strip_comments
 from .timing import (
@@ -88,6 +88,7 @@ __all__ = [
     "TimedIterable",
     "Timer",
     "TimerName",
+    "WadlerLindigMixin",
     "__version__",
     "__version_tuple__",
     "as_iterable",
@@ -130,6 +131,7 @@ __all__ = [
     "optional_imports",
     "parallel",
     "path",
+    "pdoc_attrs",
     "pretty",
     "project_root",
     "resolve_project_path",

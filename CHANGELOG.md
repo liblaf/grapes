@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/liblaf/grapes/compare/v0.4.0...v0.4.1) (2025-07-13)
+
+
+### ✨ Features
+
+* **pretty:** add WadlerLindigMixin and pdoc_attrs ([52fd6a1](https://github.com/liblaf/grapes/commit/52fd6a1322e221a24f71ac32b02391d40d2f084f))
+
 ## [0.4.0](https://github.com/liblaf/grapes/compare/v0.3.4..v0.4.0) - 2025-07-11
 
 ### 💥 BREAKING CHANGES

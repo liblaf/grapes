@@ -1,21 +1,20 @@
 # Changelog
 
-## [0.4.1](https://github.com/liblaf/grapes/compare/v0.4.0...v0.4.1) (2025-07-13)
-
+## [0.4.1](https://github.com/liblaf/grapes/compare/v0.4.0..v0.4.1) - 2025-07-13
 
 ### ✨ Features
 
-* **pretty:** add WadlerLindigMixin and pdoc_attrs ([52fd6a1](https://github.com/liblaf/grapes/commit/52fd6a1322e221a24f71ac32b02391d40d2f084f))
-
-## [0.4.0](https://github.com/liblaf/grapes/compare/v0.3.4..v0.4.0) - 2025-07-11
-
-### 💥 BREAKING CHANGES
-
-- **config:** migrate to pydantic-settings - ([ad36566](https://github.com/liblaf/grapes/commit/ad3656656eee2b11d7fbcb4890deb84d68628f3b))
+- **pretty:** add WadlerLindigMixin and pdoc_attrs - ([52fd6a1](https://github.com/liblaf/grapes/commit/52fd6a1322e221a24f71ac32b02391d40d2f084f))
 
 ### ❤️ New Contributors
 
 - [@liblaf](https://github.com/liblaf) made their first contribution
+
+## [0.4.0](https://github.com/liblaf/grapes/compare/v0.3.4..v0.4.0) - 2025-07-12
+
+### 💥 BREAKING CHANGES
+
+- **config:** migrate to pydantic-settings - ([ad36566](https://github.com/liblaf/grapes/commit/ad3656656eee2b11d7fbcb4890deb84d68628f3b))
 
 ## [0.3.4](https://github.com/liblaf/grapes/compare/v0.3.3..v0.3.4) - 2025-07-05
 

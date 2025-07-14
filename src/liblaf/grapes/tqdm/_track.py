@@ -19,7 +19,7 @@ def track[T](
     timer: timing.Timer | Literal[False] | None = None,
 ) -> Iterable[T]:
     if timer is None:
-        timer = timing.timer(label=description)
+        timer = timing.timer(name=description)
     if progress is None:
         progress = Progress(timer=timer)
     with progress, depth_tracker():

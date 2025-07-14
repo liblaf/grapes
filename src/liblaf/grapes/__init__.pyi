@@ -1,6 +1,5 @@
 from . import (
     conf,
-    const,
     environ,
     error,
     functools,
@@ -10,6 +9,7 @@ from . import (
     logging,
     path,
     pretty,
+    sentinel,
     serde,
     text,
     timing,
@@ -18,7 +18,6 @@ from . import (
 )
 from ._version import __version__, __version_tuple__, version, version_tuple
 from .conf import Config, config
-from .const import MISSING, NOP, MissingType, NopType, Sentinel, nop
 from .deps import has_module, optional_imports
 from .environ import init_env
 from .error import MatchError
@@ -41,15 +40,16 @@ from .itertools import (
 from .logging import LogLevel, file_handler, init_logging, jsonl_handler, rich_handler
 from .path import as_path, is_path_like, project_root, resolve_project_path
 from .pretty import WadlerLindigMixin, caller_location, get_console, pdoc_attrs
+from .sentinel import MISSING, NOP, Sentinel, nop
 from .serde import json, load, load_pydantic, save, save_pydantic, toml, yaml
 from .text import strip_comments
 from .timing import (
     BaseTimer,
-    TimedFunction,
-    TimedIterable,
+    ClockName,
     Timer,
-    TimerName,
-    get_time,
+    Timings,
+    clock,
+    get_timer,
     timer,
 )
 from .tqdm import Progress, RateColumn, len_safe, parallel, track
@@ -67,6 +67,7 @@ __all__ = [
     "NOP",
     "BaseTimer",
     "ClassInfo",
+    "ClockName",
     "ConditionalDispatcher",
     "Config",
     "Decorator",
@@ -76,18 +77,13 @@ __all__ = [
     "LogLevel",
     "MatchError",
     "MemorizedFunc",
-    "MissingType",
-    "MissingType",
-    "NopType",
     "PathLike",
     "Progress",
     "RateColumn",
     "Sentinel",
     "SizedIterable",
-    "TimedFunction",
-    "TimedIterable",
     "Timer",
-    "TimerName",
+    "Timings",
     "WadlerLindigMixin",
     "__version__",
     "__version_tuple__",
@@ -96,10 +92,10 @@ __all__ = [
     "as_sequence",
     "cache",
     "caller_location",
+    "clock",
     "clone_signature",
     "conf",
     "config",
-    "const",
     "environ",
     "error",
     "file_handler",
@@ -107,7 +103,7 @@ __all__ = [
     "functools",
     "generator_to_list",
     "get_console",
-    "get_time",
+    "get_timer",
     "git",
     "has_module",
     "human",
@@ -138,6 +134,7 @@ __all__ = [
     "rich_handler",
     "save",
     "save_pydantic",
+    "sentinel",
     "serde",
     "strip_comments",
     "text",

@@ -25,7 +25,7 @@ def normalize_filter_dict(
 
 
 @functools.singledispatch
-def get_level_no(level: str | int | bool) -> int | bool:
+def get_level_no(level: str | int | bool) -> int | bool:  # noqa: FBT001
     raise error.DispatchLookupError(get_level_no, (level,))
 
 
@@ -126,7 +126,7 @@ class CompositeFilter:
         self._once_history.add(key)
         return True
 
-    def set_level(self, module: str | None, level: str | int | bool | None) -> None:
+    def set_level(self, module: str | None, level: str | int | bool | None) -> None:  # noqa: FBT001
         if self.by_level is None:
             self.by_level = {}
         if level is None:

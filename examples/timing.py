@@ -13,18 +13,18 @@ def main() -> None:
 
     for _ in range(10):
         func()
-    func.timing.finish()
+    grapes.get_timer(func).finish()
 
     for _ in grapes.timer(range(10)):
         time.sleep(0.1)
 
-    t: grapes.Timer = grapes.timer()
+    t: grapes.Timer = grapes.timer("With")
     for _ in range(10):
         with t:
             time.sleep(0.1)
     t.finish()
 
-    t.clear()
+    t = grapes.timer("Start / Stop")
     for _ in range(10):
         t.start()
         time.sleep(0.1)

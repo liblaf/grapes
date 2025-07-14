@@ -86,6 +86,7 @@ dependencies = [
   "rich>=14.0.0,<15",
   "sortedcontainers-stubs>=2.0.0,<3",
   "sortedcontainers>=2.0.0,<3",
+  "typing-extensions>=4.14.0,<5",
   "wadler-lindig>=0.1.0,<0.2",
   "wrapt>=1.0.0,<2",
 ]

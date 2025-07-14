@@ -1,11 +1,11 @@
 import contextlib
 import contextvars
-import functools
 import types
 from collections.abc import Callable
-from typing import Self, overload
+from typing import Any, Self, overload, override
 
 import attrs
+import wrapt
 
 from liblaf.grapes import itertools as _it
 
@@ -13,14 +13,16 @@ _depth: contextvars.ContextVar[int] = contextvars.ContextVar("depth", default=0)
 
 
 @attrs.define
-class DepthTrackerContextManager(contextlib.AbstractContextManager):
+class DepthTrackerDecorator(contextlib.AbstractContextManager):
     _depth_inc: int | None = attrs.field(default=None, alias="depth_inc")
     _token: contextvars.Token[int] = attrs.field(default=None, init=False)
 
+    @override  # contextlib.AbstractContextManager
     def __enter__(self) -> Self:
         self._token = _depth.set(_depth.get() + _it.first_not_none(self._depth_inc, 1))
         return self
 
+    @override  # contextlib.AbstractContextManager
     def __exit__(
         self,
         exc_type: type[BaseException] | None,
@@ -29,39 +31,37 @@ class DepthTrackerContextManager(contextlib.AbstractContextManager):
         /,
     ) -> None:
         _depth.reset(self._token)
-        self._token = None  # pyright: ignore[reportAttributeAccessIssue]
+        del self._token
 
-    def __call__[**P, T](self, func: Callable[P, T], /) -> Callable[P, T]:
-        @functools.wraps(func)
-        def wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
+    def __call__[C: Callable](self, func: C, /) -> C:
+        @wrapt.decorator
+        def wrapper(
+            wrapped: Callable, _instance: Any, args: tuple, kwargs: dict[str, Any]
+        ) -> Any:
             token: contextvars.Token[int] = _depth.set(
                 _depth.get() + _it.first_not_none(self._depth_inc, 2)
             )
             try:
-                return func(*args, **kwargs)
+                return wrapped(*args, **kwargs)
             finally:
                 _depth.reset(token)
 
-        return wrapper
+        return wrapper(func)  # pyright: ignore[reportCallIssue]
 
 
 @attrs.define
 class DepthTracker:
     @overload
-    def __call__(
-        self, /, *, depth: int | None = None
-    ) -> DepthTrackerContextManager: ...
+    def __call__(self, /, *, depth: int | None = None) -> DepthTrackerDecorator: ...
     @overload
-    def __call__[**P, T](
-        self, func: Callable[P, T], /, *, depth: int | None = None
-    ) -> Callable[P, T]: ...
+    def __call__[C: Callable](self, func: C, /, *, depth: int | None = None) -> C: ...
     def __call__(
         self, func: Callable | None = None, /, *, depth: int | None = None
     ) -> Callable:
-        context_manager = DepthTrackerContextManager(depth_inc=depth)
+        decorator = DepthTrackerDecorator(depth_inc=depth)
         if func is None:
-            return context_manager
-        return context_manager(func)
+            return decorator
+        return decorator(func)
 
     @property
     def depth(self) -> int:

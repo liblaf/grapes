@@ -1,46 +1,59 @@
 import functools
-from collections.abc import Callable, Iterable
-from typing import TYPE_CHECKING
-
-import loguru
+from collections.abc import Iterable
+from typing import Any, overload
 
 from liblaf.grapes.logging import depth_tracker
 
-from .defaults import DEFAULT_STATS
+from ._statistics import StatisticName
+from ._timings import Callback, Timings
+from .defaults import (
+    LOG_RECORD_DEFAULT_INDEX,
+    LOG_RECORD_DEFAULT_LEVEL,
+    LOG_RECORD_DEFAULT_THRESHOLD_SEC,
+    LOG_SUMMARY_DEFAULT_LEVEL,
+    LOG_SUMMARY_DEFAULT_STATISTICS,
+)
 
-if TYPE_CHECKING:
-    from ._base import BaseTimer
 
-
-@depth_tracker
+@overload
 def log_record(
-    records: "BaseTimer | None" = None,
+    timer: Timings,
     /,
     *,
-    idx: int = -1,
-    level: int | str = "DEBUG",
-    logger: "loguru.Logger | None" = None,
-    threshold: float = 0.1,  # seconds
-) -> Callable | None:
-    if records is None:
-        return functools.partial(
-            log_record, idx=idx, level=level, logger=logger, threshold=threshold
-        )
-    return records.log_record(idx=idx, level=level, logger=logger, threshold=threshold)
-
-
+    index: int = LOG_RECORD_DEFAULT_INDEX,
+    level: int | str = LOG_RECORD_DEFAULT_LEVEL,
+    threshold_sec: float | None = LOG_RECORD_DEFAULT_THRESHOLD_SEC,
+) -> Any: ...
+@overload
+def log_record(
+    *,
+    index: int = LOG_RECORD_DEFAULT_INDEX,
+    level: int | str = LOG_RECORD_DEFAULT_LEVEL,
+    threshold_sec: float | None = LOG_RECORD_DEFAULT_THRESHOLD_SEC,
+) -> Callback: ...
 @depth_tracker
+def log_record(timer: Timings | None = None, /, **kwargs) -> Any:
+    if timer is None:
+        return functools.partial(log_record, **kwargs)
+    return timer.log_record(**kwargs)
+
+
+@overload
 def log_summary(
-    records: "BaseTimer | None" = None,
+    timer: Timings,
     /,
     *,
-    level: int | str = "INFO",
-    logger: "loguru.Logger | None" = None,
-    stats: Iterable[str] = DEFAULT_STATS,
-) -> Callable | None:
-    if records is None:
-        return functools.partial(log_summary, level=level, logger=logger, stats=stats)
-    return records.log_summary(level=level, logger=logger, stats=stats)
-
-
-__all__ = ["log_record", "log_summary"]
+    level: int | str = LOG_SUMMARY_DEFAULT_LEVEL,
+    stats: Iterable[StatisticName] = LOG_SUMMARY_DEFAULT_STATISTICS,
+) -> None: ...
+@overload
+def log_summary(
+    *,
+    level: int | str = LOG_SUMMARY_DEFAULT_LEVEL,
+    stats: Iterable[StatisticName] = LOG_SUMMARY_DEFAULT_STATISTICS,
+) -> Callback: ...
+@depth_tracker
+def log_summary(timer: Timings | None = None, /, **kwargs) -> Any:
+    if timer is None:
+        return functools.partial(log_summary, **kwargs)
+    return timer.log_summary(**kwargs)

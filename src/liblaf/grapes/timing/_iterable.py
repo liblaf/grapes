@@ -1,37 +1,33 @@
-from collections.abc import Iterable, Iterator
+from collections.abc import Generator, Iterable
+
+import wrapt
 
 from liblaf.grapes.logging import depth_tracker
 
 from ._base import BaseTimer
 
 
-class TimedIterable[T]:
-    timing: BaseTimer
-    _iterable: Iterable[T]
-    _total: int | None = None
+class TimedIterable[T](wrapt.ObjectProxy):
+    __wrapped__: Iterable[T]
+    _self_timer: BaseTimer
 
-    def __init__(
-        self, iterable: Iterable[T], /, *, timing: BaseTimer, total: int | None = None
-    ) -> None:
-        self.timing = timing
-        self._iterable = iterable
-        self._total = total
-        if self.timing.label is None:
-            self.timing.label = "Iterable"
+    def __init__(self, wrapped: Iterable[T], timer: BaseTimer) -> None:
+        super().__init__(wrapped)
+        if timer.name is None:
+            timer.name = "Iterable"
+        self._self_timer = timer
 
-    def __contains__(self, x: object, /) -> bool:
-        return x in self._iterable  # pyright: ignore[reportOperatorIssue]
-
-    def __len__(self) -> int:
-        if self._total is None:
-            return len(self._iterable)  # pyright: ignore[reportArgumentType]
-        return self._total
-
-    def __iter__(self) -> Iterator[T]:
+    def __iter__(self) -> Generator[T]:
         with depth_tracker():
-            self.timing.start()
-            for item in self._iterable:
-                yield item
-                self.timing.stop()
-                self.timing.start()
-            self.timing.finish()
+            self._self_timer.start()
+            try:
+                for item in self.__wrapped__:
+                    self._self_timer.start()
+                    yield item
+                    self._self_timer.stop()
+            finally:
+                # When the `for` loop is exhausted, it does not re-enter the loop
+                # body. Therefore, the `start()` call after the *last* item is
+                # redundant. However, since `timer._start_time` is not used anywhere
+                # else, we can safely leave it out.
+                self._self_timer.finish()

@@ -107,7 +107,7 @@ class Progress(RichProgress):
             total = len_safe(sequence)
         if timer := (timer or self.timer):
             sequence = timer(sequence)
-            sequence.timing.label = description
+            timing.get_timer(sequence).name = description
         with depth_tracker(depth=2):
             yield from super().track(
                 sequence,

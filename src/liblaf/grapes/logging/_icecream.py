@@ -6,7 +6,7 @@ from liblaf.grapes import deps
 def init_icecream() -> None:
     if not deps.has_module("icecream"):
         return
-    from icecream import ic  # noqa: PLC0415
+    from icecream import ic
 
     ic.configureOutput(prefix="", outputFunction=icecream_output_function)
 

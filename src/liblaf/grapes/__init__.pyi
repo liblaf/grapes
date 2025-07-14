@@ -17,7 +17,7 @@ from . import (
     typed,
 )
 from ._version import __version__, __version_tuple__, version, version_tuple
-from .conf import Config, config
+from .conf import Config, Paths, config, paths
 from .deps import has_module, optional_imports
 from .environ import init_env
 from .error import MatchError
@@ -78,6 +78,7 @@ __all__ = [
     "MatchError",
     "MemorizedFunc",
     "PathLike",
+    "Paths",
     "Progress",
     "RateColumn",
     "Sentinel",
@@ -127,6 +128,7 @@ __all__ = [
     "optional_imports",
     "parallel",
     "path",
+    "paths",
     "pdoc_attrs",
     "pretty",
     "project_root",

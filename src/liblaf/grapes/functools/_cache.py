@@ -1,21 +1,12 @@
 import datetime
 import functools
 from collections.abc import Callable
-from typing import Any, Protocol, TypedDict, Unpack, overload
+from typing import Any, Protocol, TypedDict, overload
 
 import joblib
+import wrapt
 
 from liblaf.grapes.conf import config
-
-
-class MemorizedFunc[**P, T](Protocol):
-    @property
-    def memory(self) -> joblib.Memory: ...
-    def __call__(self, *args: P.args, **kwargs: P.kwargs) -> T: ...
-
-
-class CacheKwargs(TypedDict, total=False):
-    pass
 
 
 class ReduceSizeKwargs(TypedDict, total=False):
@@ -24,13 +15,12 @@ class ReduceSizeKwargs(TypedDict, total=False):
     age_limit: datetime.timedelta | None
 
 
-@overload
-def cache[**P, T](
-    *,
-    memory: joblib.Memory | None = None,
-    reduce_size: ReduceSizeKwargs | None = None,
-    **kwargs: Unpack[CacheKwargs],
-) -> Callable[[Callable[P, T]], MemorizedFunc[P, T]]: ...
+class MemorizedFunc[**P, T](Protocol):
+    def __call__(self, *args: P.args, **kwargs: P.kwargs) -> T: ...
+    @property
+    def _self_memory(self) -> joblib.Memory: ...
+
+
 @overload
 def cache[**P, T](
     func: Callable[P, T],
@@ -38,15 +28,22 @@ def cache[**P, T](
     *,
     memory: joblib.Memory | None = None,
     reduce_size: ReduceSizeKwargs | None = None,
-    **kwargs: Unpack[CacheKwargs],
+    **kwargs: Any,
 ) -> MemorizedFunc[P, T]: ...
+@overload
 def cache[**P, T](
-    func: Callable[P, T] | None = None,
+    *,
+    memory: joblib.Memory | None = None,
+    reduce_size: ReduceSizeKwargs | None = None,
+    **kwargs: Any,
+) -> Callable[[Callable[P, T]], MemorizedFunc[P, T]]: ...
+def cache(
+    func: Callable | None = None,
     /,
     *,
     memory: joblib.Memory | None = None,
     reduce_size: ReduceSizeKwargs | None = None,
-    **kwargs: Unpack[CacheKwargs],
+    **kwargs: Any,
 ) -> Any:
     if func is None:
         return functools.partial(
@@ -56,13 +53,16 @@ def cache[**P, T](
         memory = joblib.Memory(config.joblib_memory_location)
     if reduce_size is None:
         reduce_size = {"bytes_limit": config.joblib_memory_bytes_limit}
+    func = memory.cache(func, **kwargs)  # pyright: ignore[reportAssignmentType]
 
-    @memory.cache(**kwargs)
-    @functools.wraps(func)
-    def wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
-        ret: T = func(*args, **kwargs)
+    @wrapt.decorator
+    def wrapper(
+        wrapped: Callable, _instance: Any, args: tuple, kwargs: dict[str, Any]
+    ) -> Any:
+        ret: Any = wrapped(*args, **kwargs)
         memory.reduce_size(**reduce_size)
         return ret
 
-    wrapper.memory = memory  # pyright: ignore[reportAttributeAccessIssue]
+    func = wrapper(func)  # pyright: ignore[reportCallIssue]
+    func._self_memory = memory  # pyright: ignore[reportOptionalMemberAccess, reportFunctionMemberAccess] # noqa: SLF001
     return wrapper

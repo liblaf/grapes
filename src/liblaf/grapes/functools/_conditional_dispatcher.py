@@ -7,7 +7,6 @@ import sortedcontainers
 from rich.text import Text
 
 from liblaf.grapes import pretty
-from liblaf.grapes.typed import Decorator
 
 
 @attrs.frozen
@@ -63,24 +62,26 @@ class ConditionalDispatcher:
         self, fn: Callable[P, T], /, *, fallback: bool = False
     ) -> Callable[P, T]: ...
     @overload
-    def final(self, /, *, fallback: bool = False) -> Decorator: ...
     def final[**P, T](
-        self, fn: Callable[P, T] | None = None, /, *, fallback: bool = False
+        self, /, *, fallback: bool = False
+    ) -> Callable[[Callable[P, T]], Callable[P, T]]: ...
+    def final[**P, T](
+        self, func: Callable[P, T] | None = None, /, *, fallback: bool = False
     ) -> Callable:
-        if fn is None:
+        if func is None:
             return functools.partial(self.final, fallback=fallback)
         if fallback:
-            self.fallback = fn
+            self.fallback = func
         else:
-            self.fallback = _fallback(fn)
-        functools.update_wrapper(self, fn)
+            self.fallback = _fallback(func)
+        functools.update_wrapper(self, func)
         return self
 
-    def register(
+    def register[**P, T](
         self, condition: Callable[..., bool], *, precedence: int = 0
-    ) -> Decorator:
-        def decorator[**P, T](fn: Callable[P, T]) -> Callable[P, T]:
-            self.functions.add(Function(condition, fn, precedence))
-            return fn
+    ) -> Callable[[Callable[P, T]], Callable[P, T]]:
+        def decorator(func: Callable[P, T], /) -> Callable[P, T]:
+            self.functions.add(Function(condition, func, precedence))
+            return func
 
         return decorator

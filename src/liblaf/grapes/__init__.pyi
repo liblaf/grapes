@@ -42,7 +42,7 @@ from .itertools import (
 from .logging import file_handler, init_logging, jsonl_handler, rich_handler
 from .path import as_path, is_path_like, project_root, resolve_project_path
 from .pretty import WadlerLindigMixin, caller_location, get_console, pdoc_attrs
-from .sentinel import MISSING, NOP, Sentinel, nop
+from .sentinel import MISSING, NOP, nop
 from .serde import json, load, load_pydantic, save, save_pydantic, toml, yaml
 from .text import strip_comments
 from .timing import (
@@ -55,14 +55,7 @@ from .timing import (
     timer,
 )
 from .tqdm import Progress, RateColumn, len_safe, parallel, track
-from .typed import (
-    ClassInfo,
-    Decorator,
-    DecoratorWithArguments,
-    DecoratorWithOptionalArguments,
-    PathLike,
-    SizedIterable,
-)
+from .typed import ClassInfo, PathLike
 
 __all__ = [
     "MISSING",
@@ -73,9 +66,6 @@ __all__ = [
     "ClockName",
     "ConditionalDispatcher",
     "Config",
-    "Decorator",
-    "DecoratorWithArguments",
-    "DecoratorWithOptionalArguments",
     "IterableWrapper",
     "LogLevel",
     "MatchError",
@@ -84,8 +74,6 @@ __all__ = [
     "Paths",
     "Progress",
     "RateColumn",
-    "Sentinel",
-    "SizedIterable",
     "Timer",
     "Timings",
     "WadlerLindigMixin",

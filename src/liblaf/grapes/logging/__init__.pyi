@@ -7,6 +7,7 @@ from ._intercept import InterceptHandler, setup_loguru_logging_intercept
 from ._level import LogLevel, add_level
 from ._std import clear_handlers
 from .filters import (
+    CompositeFilter,
     Filter,
     as_filter_func,
     filter_all,
@@ -25,6 +26,7 @@ from .sink import (
 )
 
 __all__ = [
+    "CompositeFilter",
     "Filter",
     "InterceptHandler",
     "LevelColumn",

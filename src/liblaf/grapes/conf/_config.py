@@ -1,29 +1,14 @@
-import enum
-import sys
 from pathlib import Path
 
 import platformdirs
 import pydantic
 import pydantic_settings as ps
 
+from ._log_level import LogLevel
+
 
 def joblib_memory_location() -> Path:
     return platformdirs.user_cache_path(appname="joblib")
-
-
-def log_file() -> Path:
-    entrypoint: Path = Path(sys.argv[0])
-    return entrypoint.parent / "run.log"
-
-
-class LogLevel(enum.StrEnum):
-    TRACE = "TRACE"
-    DEBUG = "DEBUG"
-    INFO = "INFO"
-    SUCCESS = "SUCCESS"
-    WARNING = "WARNING"
-    ERROR = "ERROR"
-    CRITICAL = "CRITICAL"
 
 
 class Config(ps.BaseSettings):

@@ -4,7 +4,7 @@ from ._icecream import init_icecream
 from ._init import init_logging
 from ._init_loguru import init_loguru, traceback_install
 from ._intercept import InterceptHandler, setup_loguru_logging_intercept
-from ._level import LogLevel, add_level
+from ._level import add_level
 from ._std import clear_handlers
 from .filters import (
     CompositeFilter,
@@ -31,7 +31,6 @@ __all__ = [
     "InterceptHandler",
     "LevelColumn",
     "LocationColumn",
-    "LogLevel",
     "LoguruRichHandler",
     "MessageColumn",
     "RichLoggingColumn",

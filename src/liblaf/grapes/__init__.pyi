@@ -1,5 +1,6 @@
 from . import (
     conf,
+    enum,
     environ,
     error,
     functools,
@@ -17,8 +18,9 @@ from . import (
     typed,
 )
 from ._version import __version__, __version_tuple__, version, version_tuple
-from .conf import Config, Paths, config, paths
+from .conf import Config, LogLevel, Paths, config, paths
 from .deps import has_module, optional_imports
+from .enum import CaseInsensitiveEnum
 from .environ import init_env
 from .error import MatchError
 from .functools import ConditionalDispatcher, MemorizedFunc, cache, clone_signature
@@ -37,7 +39,7 @@ from .itertools import (
     first_not_none,
     generator_to_list,
 )
-from .logging import LogLevel, file_handler, init_logging, jsonl_handler, rich_handler
+from .logging import file_handler, init_logging, jsonl_handler, rich_handler
 from .path import as_path, is_path_like, project_root, resolve_project_path
 from .pretty import WadlerLindigMixin, caller_location, get_console, pdoc_attrs
 from .sentinel import MISSING, NOP, Sentinel, nop
@@ -66,6 +68,7 @@ __all__ = [
     "MISSING",
     "NOP",
     "BaseTimer",
+    "CaseInsensitiveEnum",
     "ClassInfo",
     "ClockName",
     "ConditionalDispatcher",
@@ -97,6 +100,7 @@ __all__ = [
     "clone_signature",
     "conf",
     "config",
+    "enum",
     "environ",
     "error",
     "file_handler",

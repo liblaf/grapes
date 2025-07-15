@@ -19,7 +19,7 @@ from . import (
 )
 from ._version import __version__, __version_tuple__, version, version_tuple
 from .conf import Config, LogLevel, Paths, config, paths
-from .deps import has_module, optional_imports
+from .deps import has_module, optional_imports, try_import
 from .enum import CaseInsensitiveEnum
 from .env import init_env
 from .error import MatchError
@@ -145,6 +145,7 @@ __all__ = [
     "toml",
     "tqdm",
     "track",
+    "try_import",
     "typed",
     "version",
     "version_tuple",

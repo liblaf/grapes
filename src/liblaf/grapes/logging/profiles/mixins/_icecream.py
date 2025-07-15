@@ -12,7 +12,7 @@ class LoggingProfileMixinIcecream:
 
     def configure_icecream(self, prefix: str | None = None) -> None:
         try:
-            from icecream import ic  # noqa: PLC0415
+            from icecream import ic
         except ImportError:
             return
 

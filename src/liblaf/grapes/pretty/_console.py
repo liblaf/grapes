@@ -1,18 +1,16 @@
 import functools
-import sys
-from typing import IO, Literal, TypedDict, Unpack
+from typing import IO
 
 import rich
-from environs import env
 from rich.console import Console
 from rich.style import Style
 from rich.theme import Theme
 
-from liblaf.grapes import path
-from liblaf.grapes.typed import PathLike
+from liblaf.grapes import env
+from liblaf.grapes.typed import clone_param_spec
 
 
-def theme() -> Theme:
+def default_theme() -> Theme:
     return Theme(
         {
             "logging.level.notset": Style(dim=True),
@@ -29,69 +27,15 @@ def theme() -> Theme:
     )
 
 
-class ConsoleKwargs(TypedDict, total=False):
-    theme: Theme | None
-    stderr: bool | None
-    file: IO | PathLike | None
-    width: int | None
-
-
+@clone_param_spec(Console)
 @functools.cache
-def get_console(**kwargs: Unpack[ConsoleKwargs]) -> Console:
-    kwargs.setdefault("theme", theme())
-    file: IO | PathLike | None = kwargs.get("file")
-    if _is_stdout(**kwargs):
-        kwargs = _ci(**kwargs)
+def get_console(**kwargs) -> Console:
+    if kwargs.get("theme") is None:
+        kwargs["theme"] = default_theme()
+    file: IO[str] | None = kwargs.get("file")
+    if file is None and env.ci():
+        kwargs.setdefault("width", 128)
+    if not kwargs.get("stderr", False) and file is None:
         rich.reconfigure(**kwargs)
         return rich.get_console()
-    if _is_stderr(**kwargs):
-        kwargs = _ci(**kwargs)
-        kwargs.pop("file", None)
-        kwargs["stderr"] = True
-        return Console(**kwargs)  # pyright: ignore[reportArgumentType]
-    if path.is_path_like(file):
-        kwargs["file"] = path.as_path(file).open("w")
-    return Console(**kwargs)  # pyright: ignore[reportArgumentType]
-
-
-def _is_stdout(**kwargs: Unpack[ConsoleKwargs]) -> bool:
-    file: IO | PathLike | None = kwargs.get("file")
-    return (
-        (file is None and not kwargs.get("stderr", False))
-        or (file in ("stdout", "<stdout>", sys.stdout))
-        or getattr(file, "name", None) in ("stdout", "<stdout>")
-    )
-
-
-def _is_stderr(**kwargs: Unpack[ConsoleKwargs]) -> bool:
-    file: IO | PathLike | None = kwargs.get("file")
-    return (
-        (file is None and kwargs.get("stderr", False))
-        or (file in ("stderr", "<stderr>", sys.stderr))
-        or getattr(file, "name", None) in ("stderr", "<stderr>")
-    )
-
-
-def _ci(**kwargs: Unpack[ConsoleKwargs]) -> ConsoleKwargs:
-    if not env.bool("GITHUB_ACTIONS", False):
-        return kwargs
-    kwargs.setdefault("width", 128)
-    return kwargs
-
-
-def force_terminal(file: Literal["stdout", "stderr"] | IO | PathLike) -> bool | None:
-    """...
-
-    References:
-        1. <https://force-color.org/>
-        2. <https://no-color.org/>
-    """
-    if file not in ("stdout", "stderr"):
-        return None
-    if env.bool("FORCE_COLOR", None):
-        return True
-    if env.bool("NO_COLOR", None):
-        return False
-    if env.bool("GITHUB_ACTIONS", None):
-        return True
-    return None
+    return Console(**kwargs)

@@ -1,7 +1,7 @@
 from . import (
     conf,
     enum,
-    environ,
+    env,
     error,
     functools,
     git,
@@ -21,9 +21,9 @@ from ._version import __version__, __version_tuple__, version, version_tuple
 from .conf import Config, LogLevel, Paths, config, paths
 from .deps import has_module, optional_imports
 from .enum import CaseInsensitiveEnum
-from .environ import init_env
+from .env import init_env
 from .error import MatchError
-from .functools import ConditionalDispatcher, MemorizedFunc, cache, clone_signature
+from .functools import ConditionalDispatcher, MemorizedFunc, cache
 from .human import (
     human_count,
     human_duration,
@@ -54,7 +54,7 @@ from .timing import (
     timer,
 )
 from .tqdm import Progress, RateColumn, len_safe, parallel, track
-from .typed import ClassInfo, PathLike
+from .typed import ClassInfo, PathLike, clone_param_spec, clone_signature
 
 __all__ = [
     "MISSING",
@@ -84,11 +84,12 @@ __all__ = [
     "cache",
     "caller_location",
     "clock",
+    "clone_param_spec",
     "clone_signature",
     "conf",
     "config",
     "enum",
-    "environ",
+    "env",
     "error",
     "first_not_none",
     "functools",

@@ -185,3 +185,5 @@ _version.py
 *.log.*
 junit.xml
 playground/
+
+!env

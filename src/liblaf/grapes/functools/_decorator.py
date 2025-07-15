@@ -41,7 +41,7 @@ def function_wrapper(
 @overload
 def decorator(
     wrapper: Wrapper,
-    enabled: bool | Callable[[], None] | None = None,  # noqa: FBT001
+    enabled: bool | Callable[[], None] | None = None,
     adapter: Any = None,
     proxy: type | None = None,
     *,
@@ -50,7 +50,7 @@ def decorator(
 @overload
 def decorator(
     wrapper: None = None,
-    enabled: bool | Callable[[], None] | None = None,  # noqa: FBT001
+    enabled: bool | Callable[[], None] | None = None,
     adapter: Any = None,
     proxy: type | None = None,
     *,
@@ -58,7 +58,7 @@ def decorator(
 ) -> Callable[[Wrapper], Decorator]: ...
 def decorator[T](
     wrapper: Callable | None = None,
-    enabled: bool | Callable[[], None] | None = None,  # noqa: FBT001
+    enabled: bool | Callable[[], None] | None = None,
     adapter: Any = None,
     proxy: type[T] | None = None,
     *,

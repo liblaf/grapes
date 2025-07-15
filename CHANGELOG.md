@@ -1,5 +1,52 @@
 # Changelog
 
+## [0.5.0](https://github.com/liblaf/grapes/compare/v0.4.1...v0.5.0) (2025-07-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* **human:** Removed human_duration_series, human_duration_unit_precision, and human_duration_with_variance functions. Renamed human_throughout to human_throughput. Changed behavior of remaining duration formatting functions.
+* **logging:** Renamed `handler` module to `handlers` - update imports accordingly
+* **pretty:** Removes WadlerLindigMixin and caller_location(). Renames location() to rich_location(). Update any code using these functions.
+* **core:** 
+* **logging:** 
+* **timing:** 
+* **logging:** Environment variable prefix changed from PLAYGROUND_ to LIBLAF_GRAPES_. Update your environment variables accordingly.
+
+### ✨ Features
+
+* **conf:** add Paths utility for file system operations ([6de6210](https://github.com/liblaf/grapes/commit/6de621001cd3fefacb3707db1e60da37e7f8ace9))
+* **enum:** reorganize LogLevel and add CaseInsensitiveEnum ([c2fa802](https://github.com/liblaf/grapes/commit/c2fa802ea016f5e63ccad4c81f3bfc78ff609ad7))
+* **logging:** add cherries profile and improve config ([b3db225](https://github.com/liblaf/grapes/commit/b3db225647e37b69fa5596875d2d24d6c489430f))
+* **logging:** add CompositeFilter and standardize config ([728d2e8](https://github.com/liblaf/grapes/commit/728d2e854f129eae060a904a7c2506f76cc6d858))
+* **logging:** add profile system with mixins ([dd23c9f](https://github.com/liblaf/grapes/commit/dd23c9fceef1946fefa3035f01b0d1e764ac5743))
+
+
+### 🐛 Bug Fixes
+
+* **functools:** improve type hints for ConditionalDispatcher ([2543294](https://github.com/liblaf/grapes/commit/25432945d8812efa40dff67fe1b1a27cf619e129))
+
+
+### 💄 Styles
+
+* **serde:** improve code clarity ([8d15329](https://github.com/liblaf/grapes/commit/8d153290dc291be894857901f0624e441eeccdf9))
+
+
+### ♻ Code Refactoring
+
+* **core:** reorganize modules and utilities ([59330d1](https://github.com/liblaf/grapes/commit/59330d12399034847074f047e46517d7dbfd7ee2))
+* **human:** simplify duration formatting API ([5bef4fb](https://github.com/liblaf/grapes/commit/5bef4fb9971374639b385b567668a4d9e0e37159))
+* **logging:** restructure logging system using profiles ([64bc5ea](https://github.com/liblaf/grapes/commit/64bc5ea0ac96674bb53a7cbc41f0813023452104))
+* **logging:** simplify initialization and improve tracebacks ([05c6424](https://github.com/liblaf/grapes/commit/05c64245fc5289516815f60d25a6b8b2293c5487))
+* **pretty:** consolidate pretty printing utilities ([bd5ca64](https://github.com/liblaf/grapes/commit/bd5ca64d994d9c0291a81901a9665fcc6005ebf8))
+* **timing:** restructure timing module and move sentinels ([648eb9d](https://github.com/liblaf/grapes/commit/648eb9d947ee92607ace3c082a9e147748feb3a0))
+* **types:** clean up unused type definitions ([9bc1ccd](https://github.com/liblaf/grapes/commit/9bc1ccda6ca91d113a940499dd073da110dd36da))
+
+
+### ✅ Tests
+
+* remove pytest-benchmark and adjust configurations ([1c05ef9](https://github.com/liblaf/grapes/commit/1c05ef9bf583ce0fc692f76242dd44efff026483))
+
 ## [0.4.1](https://github.com/liblaf/grapes/compare/v0.4.0..v0.4.1) - 2025-07-13
 
 ### ✨ Features

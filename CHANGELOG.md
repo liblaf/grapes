@@ -1,11 +1,14 @@
 # Changelog
 
-## [0.5.1](https://github.com/liblaf/grapes/compare/v0.5.0...v0.5.1) (2025-07-15)
-
+## [0.5.1](https://github.com/liblaf/grapes/compare/v0.5.0..v0.5.1) - 2025-07-15
 
 ### ✨ Features
 
-* **functools:** add decorator utility and refactor implementations ([ae892c5](https://github.com/liblaf/grapes/commit/ae892c517a602cd5aa4573d5b2df89bd6b85164c))
+- **functools:** add decorator utility and refactor implementations - ([ae892c5](https://github.com/liblaf/grapes/commit/ae892c517a602cd5aa4573d5b2df89bd6b85164c))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [0.5.0](https://github.com/liblaf/grapes/compare/v0.4.1..v0.5.0) - 2025-07-15
 
@@ -41,11 +44,6 @@
 ### ✅ Tests
 
 - remove pytest-benchmark and adjust configurations - ([1c05ef9](https://github.com/liblaf/grapes/commit/1c05ef9bf583ce0fc692f76242dd44efff026483))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
-- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
 
 ## [0.4.1](https://github.com/liblaf/grapes/compare/v0.4.0..v0.4.1) - 2025-07-14
 

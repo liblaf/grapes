@@ -23,7 +23,14 @@ from .deps import has_module, optional_imports
 from .enum import CaseInsensitiveEnum
 from .env import init_env
 from .error import MatchError
-from .functools import ConditionalDispatcher, MemorizedFunc, cache
+from .functools import (
+    ConditionalDispatcher,
+    Decorator,
+    MemorizedFunc,
+    cache,
+    decorator,
+    function_wrapper,
+)
 from .human import (
     human_count,
     human_duration,
@@ -73,6 +80,7 @@ __all__ = [
     "ClockName",
     "ConditionalDispatcher",
     "Config",
+    "Decorator",
     "IterableWrapper",
     "LogLevel",
     "MatchError",
@@ -94,10 +102,12 @@ __all__ = [
     "clone_signature",
     "conf",
     "config",
+    "decorator",
     "enum",
     "env",
     "error",
     "first_not_none",
+    "function_wrapper",
     "functools",
     "generator_to_list",
     "get_console",

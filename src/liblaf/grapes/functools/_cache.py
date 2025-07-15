@@ -4,9 +4,10 @@ from collections.abc import Callable
 from typing import Any, Protocol, TypedDict, overload
 
 import joblib
-import wrapt
 
 from liblaf.grapes.conf import config
+
+from ._decorator import decorator
 
 
 class ReduceSizeKwargs(TypedDict, total=False):
@@ -55,7 +56,7 @@ def cache(
         reduce_size = {"bytes_limit": config.joblib_memory_bytes_limit}
     func = memory.cache(func, **kwargs)  # pyright: ignore[reportAssignmentType]
 
-    @wrapt.decorator
+    @decorator(attrs={"_self_memory": memory})
     def wrapper(
         wrapped: Callable, _instance: Any, args: tuple, kwargs: dict[str, Any]
     ) -> Any:
@@ -63,6 +64,4 @@ def cache(
         memory.reduce_size(**reduce_size)
         return ret
 
-    func = wrapper(func)  # pyright: ignore[reportCallIssue]
-    func._self_memory = memory  # pyright: ignore[reportOptionalMemberAccess, reportFunctionMemberAccess] # noqa: SLF001
-    return wrapper
+    return wrapper(func)

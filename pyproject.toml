@@ -30,13 +30,7 @@ docs = [
   "pymdown-extensions",
   "ruff",
 ]
-test = [
-  "pytest",
-  "pytest-benchmark",
-  "pytest-codspeed",
-  "pytest-cov",
-  "pytest-xdist",
-]
+test = ["pytest", "pytest-codspeed", "pytest-cov", "pytest-xdist"]
 
 [project]
 authors = [
@@ -77,7 +71,7 @@ dependencies = [
   "gitpython>=3.0.0,<4",
   "giturlparse>=0.12.0,<0.13",
   "joblib>=1.0.0,<2",
-  "lazy-loader>=0.4.0,<0.5",
+  "lazy-loader>=0.4,<0.5",
   "loguru>=0.7.0,<0.8",
   "msgspec[toml,yaml]>=0.19.0,<0.20",
   "platformdirs>=4.0.0,<5",

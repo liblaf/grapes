@@ -15,7 +15,7 @@ def joblib_memory_location() -> Path:
 class Config(ps.BaseSettings):
     model_config = ps.SettingsConfigDict(env_prefix="LIBLAF_GRAPES_")
 
-    joblib_memory_bytes_limit: int | str | None = pydantic.Field(default="1G")
+    joblib_memory_bytes_limit: int | str | None = pydantic.Field(default="4G")
 
     joblib_memory_location: Path = pydantic.Field(
         default_factory=joblib_memory_location

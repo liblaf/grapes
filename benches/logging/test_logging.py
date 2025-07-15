@@ -7,14 +7,14 @@ from rich.console import Console
 from rich.logging import RichHandler
 
 
-@pytest.mark.benchmark(group="logging", warmup=True)
+@pytest.mark.benchmark(group="logging")
 def test_logging(benchmark: BenchmarkFixture) -> None:
     logging.basicConfig(stream=sys.stderr, force=True)
     logger: logging.Logger = logging.getLogger(__name__)
     benchmark(logger.info, "Hello, world!")
 
 
-@pytest.mark.benchmark(group="logging", warmup=True)
+@pytest.mark.benchmark(group="logging")
 def test_logging_rich(benchmark: BenchmarkFixture) -> None:
     logging.basicConfig(
         format="%(message)s",
@@ -31,7 +31,7 @@ def test_logging_rich(benchmark: BenchmarkFixture) -> None:
     benchmark(logger.info, "Hello, world!")
 
 
-@pytest.mark.benchmark(group="logging", warmup=True)
+@pytest.mark.benchmark(group="logging")
 def test_logging_rich_record(benchmark: BenchmarkFixture) -> None:
     logging.basicConfig(
         format="%(message)s",

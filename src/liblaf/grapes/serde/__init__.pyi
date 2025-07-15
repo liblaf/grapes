@@ -17,7 +17,6 @@ __all__ = [
     "load_pydantic",
     "save",
     "save_pydantic",
-    "save_pydantic",
     "toml",
     "yaml",
 ]

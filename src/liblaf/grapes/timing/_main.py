@@ -3,14 +3,12 @@ import types
 from collections.abc import Callable, Iterable
 from typing import Any
 
-from liblaf.grapes import error
-
 from ._timer import Timer
 
 
 @functools.singledispatch
 def _timer_dispatch(*args, **kwargs) -> Any:
-    raise error.DispatchLookupError(_timer_dispatch, args, kwargs)
+    return Timer(*args, **kwargs)
 
 
 @_timer_dispatch.register(str)

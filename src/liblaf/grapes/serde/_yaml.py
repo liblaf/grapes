@@ -7,11 +7,11 @@ from ._abc import Serde
 
 
 class YAML(Serde):
-    @override
+    @override  # impl Serde
     def decode(self, buf: Buffer | str, **kwargs) -> Any:
         return msgspec.yaml.decode(buf, **kwargs)
 
-    @override
+    @override  # impl Serde
     def encode(self, obj: Any, **kwargs) -> bytes:
         return msgspec.yaml.encode(obj, **kwargs)
 

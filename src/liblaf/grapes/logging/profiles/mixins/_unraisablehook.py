@@ -5,7 +5,7 @@ from loguru import logger
 
 
 @attrs.define(slots=False)
-class LoggingProfileMixinUnraisableHook:
+class MixinUnraisableHook:
     unraisablehook_level: int | str = attrs.field(default="ERROR")
 
     def configure_unraisablehook(self, level: int | str | None = None) -> None:

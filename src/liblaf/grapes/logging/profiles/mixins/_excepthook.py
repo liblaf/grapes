@@ -7,7 +7,7 @@ from loguru import logger
 
 
 @attrs.define(slots=False)
-class LoggingProfileMixinExceptHook:
+class MixinExceptHook:
     excepthook_level: int | str = attrs.field(default="CRITICAL")
     excepthook_message: Any = attrs.field(default="")
 

@@ -7,7 +7,7 @@ import loguru
 from liblaf.grapes.logging import handlers
 
 from . import mixins
-from ._abc import LoggingProfile
+from ._abc import Profile
 
 
 def default_handlers() -> Sequence["loguru.HandlerConfig"]:
@@ -19,13 +19,13 @@ def default_levels() -> Sequence["loguru.LevelConfig"]:
 
 
 @attrs.define
-class LoggingProfileDefault(
-    mixins.LoggingProfileMixinLoguru,
-    mixins.LoggingProfileMixinStdlib,
-    mixins.LoggingProfileMixinIcecream,
-    mixins.LoggingProfileMixinExceptHook,
-    mixins.LoggingProfileMixinUnraisableHook,
-    LoggingProfile,
+class ProfileDefault(
+    mixins.MixinLoguru,
+    mixins.MixinStdlib,
+    mixins.MixinIcecream,
+    mixins.MixinExceptHook,
+    mixins.MixinUnraisableHook,
+    Profile,
 ):
     # overrides mixins.LoggingProfileMixinLoguru
     handlers: Sequence["loguru.HandlerConfig"] | None = attrs.field(

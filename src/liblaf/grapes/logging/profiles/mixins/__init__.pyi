@@ -1,14 +1,14 @@
-from ._excepthook import LoggingProfileMixinExceptHook
-from ._icecream import LoggingProfileMixinIcecream, ic_arg_to_string_function
-from ._loguru import LoggingProfileMixinLoguru
-from ._stdlib import LoggingProfileMixinStdlib
-from ._unraisablehook import LoggingProfileMixinUnraisableHook
+from ._excepthook import MixinExceptHook
+from ._icecream import MixinIcecream, ic_arg_to_string_function
+from ._loguru import MixinLoguru
+from ._stdlib import MixinStdlib
+from ._unraisablehook import MixinUnraisableHook
 
 __all__ = [
-    "LoggingProfileMixinExceptHook",
-    "LoggingProfileMixinIcecream",
-    "LoggingProfileMixinLoguru",
-    "LoggingProfileMixinStdlib",
-    "LoggingProfileMixinUnraisableHook",
+    "MixinExceptHook",
+    "MixinIcecream",
+    "MixinLoguru",
+    "MixinStdlib",
+    "MixinUnraisableHook",
     "ic_arg_to_string_function",
 ]

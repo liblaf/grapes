@@ -5,6 +5,6 @@ import autoregistry
 
 
 @attrs.define
-class LoggingProfile(abc.ABC, autoregistry.Registry, prefix="LoggingProfile"):
+class Profile(abc.ABC, autoregistry.Registry, prefix="Profile"):
     @abc.abstractmethod
     def init(self) -> None: ...

@@ -11,7 +11,7 @@ from loguru import logger
 
 
 @attrs.define(slots=False)
-class LoggingProfileMixinLoguru:
+class MixinLoguru:
     handlers: Sequence["loguru.HandlerConfig"] | None = attrs.field(default=None)
     levels: Sequence["loguru.LevelConfig"] | None = attrs.field(default=None)
     level: int | str | None = attrs.field(default=None)

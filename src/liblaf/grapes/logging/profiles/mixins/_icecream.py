@@ -8,7 +8,7 @@ from liblaf.grapes import pretty
 
 
 @attrs.define(slots=False)
-class LoggingProfileMixinIcecream:
+class MixinIcecream:
     ic_prefix: str = attrs.field(default="")
 
     def configure_icecream(self, prefix: str | None = None) -> None:

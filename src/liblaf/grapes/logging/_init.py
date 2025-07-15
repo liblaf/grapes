@@ -1,7 +1,7 @@
-from .profiles import LoggingProfile, ProfileName, make_profile
+from .profiles import Profile, ProfileName, factory
 
 
-def init(profile: ProfileName | LoggingProfile = "default") -> None:
+def init(profile: ProfileName | Profile = "default") -> None:
     if isinstance(profile, str):
-        profile = make_profile(profile)
+        profile = factory(profile)
     profile.init()

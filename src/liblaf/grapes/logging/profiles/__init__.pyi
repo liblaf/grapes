@@ -1,24 +1,25 @@
 from . import mixins
-from ._abc import LoggingProfile
-from ._cherries import LoggingProfileCherries
-from ._default import LoggingProfileDefault
-from ._factory import ProfileName, make_profile
+from ._abc import Profile
+from ._cherries import ProfileCherries
+from ._default import ProfileDefault
+from ._factory import ProfileLike, ProfileName, factory
 from .mixins import (
-    LoggingProfileMixinExceptHook,
-    LoggingProfileMixinLoguru,
-    LoggingProfileMixinUnraisableHook,
+    MixinExceptHook,
+    MixinLoguru,
+    MixinUnraisableHook,
     ic_arg_to_string_function,
 )
 
 __all__ = [
-    "LoggingProfile",
-    "LoggingProfileCherries",
-    "LoggingProfileDefault",
-    "LoggingProfileMixinExceptHook",
-    "LoggingProfileMixinLoguru",
-    "LoggingProfileMixinUnraisableHook",
+    "MixinExceptHook",
+    "MixinLoguru",
+    "MixinUnraisableHook",
+    "Profile",
+    "ProfileCherries",
+    "ProfileDefault",
+    "ProfileLike",
     "ProfileName",
+    "factory",
     "ic_arg_to_string_function",
-    "make_profile",
     "mixins",
 ]

@@ -4,7 +4,7 @@ from liblaf import grapes
 
 
 def main() -> None:
-    grapes.logging.LoggingProfileDefault().init()
+    grapes.logging.init()
     logger.success("Hello, {}!", "world")
     logger.info("super long message" * 100)
 

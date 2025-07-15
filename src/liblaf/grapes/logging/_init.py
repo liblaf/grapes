@@ -1,7 +1,7 @@
-from .profiles import LoggingProfile, LoggingProfileDefault
+from .profiles import LoggingProfile, ProfileName, make_profile
 
 
-def init(profile: LoggingProfile | None = None) -> None:
-    if profile is None:
-        profile = LoggingProfileDefault()
+def init(profile: ProfileName | LoggingProfile = "default") -> None:
+    if isinstance(profile, str):
+        profile = make_profile(profile)
     profile.init()

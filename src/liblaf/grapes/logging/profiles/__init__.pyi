@@ -1,6 +1,7 @@
 from . import mixins
 from ._abc import LoggingProfile
 from ._default import LoggingProfileDefault
+from ._factory import ProfileName, make_profile
 from .mixins import (
     LoggingProfileMixinExceptHook,
     LoggingProfileMixinLoguru,
@@ -13,5 +14,7 @@ __all__ = [
     "LoggingProfileMixinExceptHook",
     "LoggingProfileMixinLoguru",
     "LoggingProfileMixinUnraisableHook",
+    "ProfileName",
+    "make_profile",
     "mixins",
 ]

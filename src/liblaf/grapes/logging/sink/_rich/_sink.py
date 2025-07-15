@@ -36,9 +36,18 @@ def default_console() -> Console:
 
 @attrs.define
 class RichSink:
-    columns: Sequence[RichSinkColumn] = attrs.field(factory=default_columns)
-    console: Console = attrs.field(factory=default_console)
-    traceback: RichTracebackConfig = attrs.field(factory=RichTracebackConfig)
+    columns: Sequence[RichSinkColumn] = attrs.field(
+        converter=attrs.converters.default_if_none(factory=default_columns),
+        factory=default_columns,
+    )
+    console: Console = attrs.field(
+        converter=attrs.converters.default_if_none(factory=default_console),
+        factory=default_console,
+    )
+    traceback: RichTracebackConfig = attrs.field(
+        converter=attrs.converters.default_if_none(factory=RichTracebackConfig),
+        factory=RichTracebackConfig,
+    )
 
     def __call__(self, message: "loguru.Message", /) -> None:
         record: loguru.Record = message.record

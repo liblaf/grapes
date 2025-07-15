@@ -72,8 +72,8 @@ class Progress(RichProgress):
         self.timer = timer
         super().__init__(*columns, console=console)
 
-    @classmethod
     @override
+    @classmethod
     def get_default_columns(cls) -> tuple[str | ProgressColumn, ...]:  # pyright: ignore[reportIncompatibleMethodOverride]
         return (
             SpinnerColumn(),

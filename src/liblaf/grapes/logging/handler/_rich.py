@@ -8,8 +8,8 @@ from liblaf.grapes.logging.filters import make_filter
 from liblaf.grapes.logging.sink import (
     RichSink,
     RichSinkColumn,
+    RichTracebackConfig,
     default_columns,
-    default_console,
 )
 
 
@@ -18,13 +18,12 @@ def rich_handler(
     console: Console | None = None,
     *,
     enable_link: bool = True,
+    traceback: RichTracebackConfig | None = None,
     **kwargs: Unpack["loguru.BasicHandlerConfig"],
 ) -> "loguru.BasicHandlerConfig":
-    if console is None:
-        console = default_console()
     if columns is None:
         columns = default_columns(enable_link=enable_link)
-    kwargs["sink"] = RichSink(console=console, columns=columns)
+    kwargs["sink"] = RichSink(console=console, columns=columns, traceback=traceback)
     kwargs["format"] = ""
     kwargs["filter"] = make_filter(kwargs.get("filter"))
     return kwargs

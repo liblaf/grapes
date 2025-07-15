@@ -9,7 +9,7 @@ from rich.traceback import LOCALS_MAX_LENGTH, LOCALS_MAX_STRING, Traceback
 class RichTracebackConfig:
     width: int | None = attrs.field(default=None)
     code_width: int | None = attrs.field(default=None)
-    extra_lines: int = attrs.field(default=0)
+    extra_lines: int = attrs.field(default=3)
     theme: str | None = attrs.field(default=None)
     word_wrap: bool = attrs.field(default=False)
     show_locals: bool = attrs.field(default=True)
@@ -35,8 +35,9 @@ class RichTracebackConfig:
             width=self.width,
             code_width=self.code_width,
             extra_lines=self.extra_lines,
-            word_wrap=self.word_wrap,
             theme=self.theme,
+            word_wrap=self.word_wrap,
+            show_locals=self.show_locals,
             locals_max_length=self.locals_max_length,
             locals_max_string=self.locals_max_string,
             locals_hide_dunder=self.locals_hide_dunder,

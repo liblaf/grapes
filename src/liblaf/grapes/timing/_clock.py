@@ -1,9 +1,25 @@
 import os
 import time
+from typing import Literal
 
 import autoregistry
 
-type ClockName = str
+# ruff: noqa: PYI051
+type ClockName = (
+    Literal[
+        "monotonic",
+        "perf",
+        "process",
+        "thread",
+        "time",
+        "children-system",
+        "children-user",
+        "elapsed",
+        "system",
+        "user",
+    ]
+    | str
+)
 
 CLOCK_REGISTRY = autoregistry.Registry()
 

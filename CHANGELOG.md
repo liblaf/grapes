@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/liblaf/grapes/compare/v0.5.0...v0.5.1) (2025-07-15)
+
+
+### ✨ Features
+
+* **functools:** add decorator utility and refactor implementations ([ae892c5](https://github.com/liblaf/grapes/commit/ae892c517a602cd5aa4573d5b2df89bd6b85164c))
+
 ## [0.5.0](https://github.com/liblaf/grapes/compare/v0.4.1..v0.5.0) - 2025-07-15
 
 ### 💥 BREAKING CHANGES

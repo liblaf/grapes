@@ -9,7 +9,7 @@ def func() -> None:
 
 
 def main() -> None:
-    grapes.init_logging()
+    grapes.logging.LoggingProfileDefault().init()
 
     for _ in range(10):
         func()

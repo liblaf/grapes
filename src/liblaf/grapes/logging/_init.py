@@ -16,3 +16,7 @@ def init_logging(
 ) -> None:
     init_loguru(handlers=handlers, levels=levels, enable_link=enable_link, **kwargs)
     init_icecream()
+
+
+def init() -> None:
+    pass

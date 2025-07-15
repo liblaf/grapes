@@ -1,6 +1,6 @@
 from . import columns
 from ._sink import RichSink, default_columns, default_console
-from ._traceback import RichTracebackConfig
+from ._traceback import RichTracebackConfig, default_suppress
 from .columns import (
     RichSinkColumn,
     RichSinkColumnElapsed,
@@ -20,4 +20,5 @@ __all__ = [
     "columns",
     "default_columns",
     "default_console",
+    "default_suppress",
 ]

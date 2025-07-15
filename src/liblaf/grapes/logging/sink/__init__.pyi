@@ -8,6 +8,7 @@ from ._rich import (
     RichTracebackConfig,
     default_columns,
     default_console,
+    default_suppress,
 )
 
 __all__ = [
@@ -20,4 +21,5 @@ __all__ = [
     "RichTracebackConfig",
     "default_columns",
     "default_console",
+    "default_suppress",
 ]

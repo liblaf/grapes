@@ -1,8 +1,49 @@
+import os
 import types
 from collections.abc import Iterable
 
 import attrs
 from rich.traceback import LOCALS_MAX_LENGTH, LOCALS_MAX_STRING, Traceback
+
+from liblaf.grapes import deps
+
+
+def default_suppress() -> Iterable[str | types.ModuleType]:
+    return suppress_converter(
+        (deps.try_import("liblaf.cherries"), deps.try_import("pydantic")),
+    )
+
+
+def suppress_converter(
+    value: str
+    | os.PathLike
+    | types.ModuleType
+    | Iterable[str | os.PathLike | types.ModuleType | None]
+    | None,
+) -> Iterable[str | types.ModuleType]:
+    if value is None:
+        return ()
+    if not isinstance(value, Iterable) or isinstance(
+        value, (str, os.PathLike, types.ModuleType)
+    ):
+        value = (value,)
+    return [
+        val for item in value if (val := _suppress_converter_single(item)) is not None
+    ]
+
+
+def _suppress_converter_single(
+    value: str | os.PathLike | types.ModuleType | None,
+) -> str | types.ModuleType | None:
+    if value is None:
+        return None
+    if isinstance(value, types.ModuleType):
+        return value
+    if isinstance(value, str):
+        module: types.ModuleType | None = deps.try_import(value)
+        if module is not None:
+            return module
+    return str(value)
 
 
 @attrs.define
@@ -18,7 +59,9 @@ class RichTracebackConfig:
     locals_hide_dunder: bool = attrs.field(default=True)
     locals_hide_sunder: bool = attrs.field(default=False)
     indent_guides: bool = attrs.field(default=True)
-    suppress: Iterable[str | types.ModuleType] = attrs.field(default=())
+    suppress: Iterable[str | types.ModuleType] = attrs.field(
+        converter=suppress_converter, factory=default_suppress
+    )
     max_frames: int = attrs.field(default=100)
 
     def from_exception(

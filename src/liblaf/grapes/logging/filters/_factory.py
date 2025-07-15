@@ -15,7 +15,7 @@ def make_filter(f: FilterLike, /) -> FilterLike:
 
 @make_filter.register(types.NoneType)
 def _make_filter_none(_: None, /) -> "loguru.FilterFunction":
-    return CompositeFilter(by_level=None)
+    return CompositeFilter()
 
 
 @make_filter.register(Mapping)

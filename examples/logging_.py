@@ -4,9 +4,9 @@ from liblaf import grapes
 
 
 def main() -> None:
-    grapes.logging.init()
+    grapes.logging.init(profile="cherries")
     logger.success("Hello, {}!", "world")
-    logger.info(" ".join(["long"] * 100) + "message")
+    logger.info("long " * 100 + "message")
 
     try:
         msg: str = "Test Error!"

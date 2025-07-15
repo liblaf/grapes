@@ -15,6 +15,7 @@ from .defaults import (
     LOG_RECORD_DEFAULT_INDEX,
     LOG_RECORD_DEFAULT_LEVEL,
     LOG_RECORD_DEFAULT_THRESHOLD_SEC,
+    LOG_SUMMARY_DEFAULT_LEVEL,
     LOG_SUMMARY_DEFAULT_STATISTICS,
 )
 
@@ -96,7 +97,7 @@ class Timings:
     def log_summary(
         self,
         *,
-        level: int | str = "INFO",
+        level: int | str = LOG_SUMMARY_DEFAULT_LEVEL,
         stats: Iterable[StatisticName] = LOG_SUMMARY_DEFAULT_STATISTICS,
     ) -> None:
         logger.opt(depth=depth_tracker.depth).log(

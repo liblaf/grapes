@@ -5,6 +5,7 @@ import pydantic
 import pydantic_settings as ps
 
 from ._log_level import LogLevel
+from ._paths import paths
 
 
 def joblib_memory_location() -> Path:
@@ -20,7 +21,7 @@ class Config(ps.BaseSettings):
         default_factory=joblib_memory_location
     )
 
-    log_file: Path | None = pydantic.Field(default=None)
+    log_file: Path = pydantic.Field(default=paths.log_file)
 
     log_level: LogLevel = pydantic.Field(default=LogLevel.INFO)
 

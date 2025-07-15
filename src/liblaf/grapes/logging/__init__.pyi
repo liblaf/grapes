@@ -1,8 +1,8 @@
-from . import filters, handler, sink
+from . import filters, handlers, sink
 from ._depth_tracker import depth_tracker
 from ._init import init
 from .filters import CompositeFilter, make_filter
-from .handler import file_handler, jsonl_handler, rich_handler
+from .handlers import file_handler, jsonl_handler, rich_handler
 from .profiles import (
     LoggingProfile,
     LoggingProfileDefault,
@@ -42,7 +42,7 @@ __all__ = [
     "depth_tracker",
     "file_handler",
     "filters",
-    "handler",
+    "handlers",
     "ic_arg_to_string_function",
     "init",
     "jsonl_handler",

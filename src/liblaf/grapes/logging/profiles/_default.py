@@ -4,14 +4,14 @@ from typing import override
 import attrs
 import loguru
 
-from liblaf.grapes.logging import handler
+from liblaf.grapes.logging import handlers
 
 from . import mixins
 from ._abc import LoggingProfile
 
 
 def default_handlers() -> Sequence["loguru.HandlerConfig"]:
-    return [handler.rich_handler()]
+    return [handlers.rich_handler()]
 
 
 def default_levels() -> Sequence["loguru.LevelConfig"]:

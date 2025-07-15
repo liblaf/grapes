@@ -13,7 +13,7 @@ def fun(x: float, exp: float) -> float:
 
 
 def main() -> None:
-    grapes.init_logging()
+    grapes.logging.LoggingProfileDefault().init()
     joblib.parallel_config(n_jobs=-2, prefer="processes")
     for y in grapes.parallel(
         fun, range(20), itertools.repeat(2), return_as="generator"

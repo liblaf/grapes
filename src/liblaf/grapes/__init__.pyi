@@ -39,7 +39,6 @@ from .itertools import (
     first_not_none,
     generator_to_list,
 )
-from .logging import file_handler, init_logging, jsonl_handler, rich_handler
 from .path import as_path, is_path_like, project_root, resolve_project_path
 from .pretty import WadlerLindigMixin, caller_location, get_console, pdoc_attrs
 from .sentinel import MISSING, NOP, nop
@@ -91,7 +90,6 @@ __all__ = [
     "enum",
     "environ",
     "error",
-    "file_handler",
     "first_not_none",
     "functools",
     "generator_to_list",
@@ -107,11 +105,9 @@ __all__ = [
     "human_duration_with_variance",
     "human_throughout",
     "init_env",
-    "init_logging",
     "is_path_like",
     "itertools",
     "json",
-    "jsonl_handler",
     "len_safe",
     "load",
     "load_pydantic",
@@ -125,7 +121,6 @@ __all__ = [
     "pretty",
     "project_root",
     "resolve_project_path",
-    "rich_handler",
     "save",
     "save_pydantic",
     "sentinel",

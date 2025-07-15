@@ -4,35 +4,27 @@ from typing import Unpack
 import loguru
 from rich.console import Console
 
-from liblaf.grapes import pretty
 from liblaf.grapes.logging.filters import make_filter
 from liblaf.grapes.logging.sink import (
-    LevelColumn,
-    LocationColumn,
-    LoguruRichHandler,
-    MessageColumn,
-    RichLoggingColumn,
-    TimeColumn,
+    RichSink,
+    RichSinkColumn,
+    default_columns,
+    default_console,
 )
 
 
 def rich_handler(
+    columns: Sequence[RichSinkColumn] | None = None,
     console: Console | None = None,
-    columns: Sequence[RichLoggingColumn] | None = None,
     *,
     enable_link: bool = True,
     **kwargs: Unpack["loguru.BasicHandlerConfig"],
 ) -> "loguru.BasicHandlerConfig":
     if console is None:
-        console = pretty.get_console(stderr=True)
+        console = default_console()
     if columns is None:
-        columns = [
-            TimeColumn(),
-            LevelColumn(),
-            LocationColumn(enable_link=enable_link),
-            MessageColumn(),
-        ]
-    kwargs["sink"] = LoguruRichHandler(console=console, columns=columns)
+        columns = default_columns(enable_link=enable_link)
+    kwargs["sink"] = RichSink(console=console, columns=columns)
     kwargs["format"] = ""
     kwargs["filter"] = make_filter(kwargs.get("filter"))
     return kwargs

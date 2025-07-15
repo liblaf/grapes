@@ -1,3 +1,3 @@
 import loguru
 
-type Filter = "str | loguru.FilterDict | loguru.FilterFunction"
+type FilterLike = "str | loguru.FilterDict | loguru.FilterFunction | None"

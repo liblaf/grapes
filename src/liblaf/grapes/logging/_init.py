@@ -1,22 +1,7 @@
-from collections.abc import Sequence
-from typing import Unpack
-
-import loguru
-
-from ._icecream import init_icecream
-from ._init_loguru import init_loguru
+from .profiles import LoggingProfile, LoggingProfileDefault
 
 
-def init_logging(
-    handlers: Sequence["loguru.HandlerConfig"] | None = None,
-    levels: Sequence["loguru.LevelConfig"] | None = None,
-    *,
-    enable_link: bool = True,
-    **kwargs: Unpack["loguru.BasicHandlerConfig"],
-) -> None:
-    init_loguru(handlers=handlers, levels=levels, enable_link=enable_link, **kwargs)
-    init_icecream()
-
-
-def init() -> None:
-    pass
+def init(profile: LoggingProfile | None = None) -> None:
+    if profile is None:
+        profile = LoggingProfileDefault()
+    profile.init()

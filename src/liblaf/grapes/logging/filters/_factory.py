@@ -1,28 +1,23 @@
+import functools
+import types
 from collections.abc import Mapping
 
 import loguru
 
-from ._as_filter_func import as_filter_func
-from ._composite import filter_all
-from ._once import filter_once
-from .typed import Filter
-
-DEFAULT_FILTER: "loguru.FilterDict" = {
-    "": "INFO",
-    "__main__": "TRACE",
-    "liblaf": "DEBUG",
-}
+from ._composite import CompositeFilter
+from .typed import FilterLike
 
 
-def make_filter(
-    filter_: Filter | None = None, *, inherit: bool = True
-) -> "loguru.FilterFunction | None":
-    if inherit:
-        if filter_ is None:
-            filter_ = DEFAULT_FILTER
-        elif isinstance(filter_, Mapping):
-            filter_ = {**DEFAULT_FILTER, **filter_}
-    filter_ = as_filter_func(filter_)  # pyright: ignore[reportArgumentType]
-    if inherit:
-        filter_ = filter_all(filter_, filter_once())
-    return filter_
+@functools.singledispatch
+def make_filter(f: FilterLike, /) -> FilterLike:
+    return f
+
+
+@make_filter.register(types.NoneType)
+def _make_filter_none(_: None, /) -> "loguru.FilterFunction":
+    return CompositeFilter(by_level=None)
+
+
+@make_filter.register(Mapping)
+def _make_filter_mapping(by_level: "loguru.FilterDict", /) -> "loguru.FilterFunction":
+    return CompositeFilter(by_level=by_level)

@@ -17,12 +17,12 @@ class DepthTrackerDecorator(contextlib.AbstractContextManager):
     _depth_inc: int | None = attrs.field(default=None, alias="depth_inc")
     _token: contextvars.Token[int] = attrs.field(default=None, init=False)
 
-    @override  # contextlib.AbstractContextManager
+    @override  # impl contextlib.AbstractContextManager
     def __enter__(self) -> Self:
         self._token = _depth.set(_depth.get() + _it.first_not_none(self._depth_inc, 1))
         return self
 
-    @override  # contextlib.AbstractContextManager
+    @override  # impl contextlib.AbstractContextManager
     def __exit__(
         self,
         exc_type: type[BaseException] | None,

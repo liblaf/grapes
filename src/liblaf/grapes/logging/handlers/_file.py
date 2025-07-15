@@ -11,7 +11,6 @@ def file_handler(
 ) -> "loguru.FileHandlerConfig":
     if "sink" not in kwargs:
         kwargs["sink"] = config.log_file
-    ic(kwargs)
     kwargs["filter"] = make_filter(kwargs.get("filter"))
     kwargs.setdefault("mode", "w")
     return kwargs

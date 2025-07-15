@@ -14,14 +14,11 @@ from rich.progress import (
     TimeElapsedColumn,
     TimeRemainingColumn,
 )
-from rich.progress import (
-    Progress as RichProgress,
-)
+from rich.progress import Progress as RichProgress
 from rich.table import Column
 from rich.text import Text
 
-from liblaf.grapes import human as _human
-from liblaf.grapes import pretty, timing
+from liblaf.grapes import human, pretty, timing
 from liblaf.grapes.logging import depth_tracker
 
 
@@ -52,8 +49,8 @@ class RateColumn(ProgressColumn):
         """
         if not task.speed:
             return Text(f"?{self.unit}/s", style="progress.data.speed")
-        human: str = _human.human_throughout(task.speed, self.unit)
-        return Text(human, style="progress.data.speed")
+        throughput: str = human.human_throughput(task.speed, self.unit)
+        return Text(throughput, style="progress.data.speed")
 
 
 class Progress(RichProgress):

@@ -1,19 +1,10 @@
 from ._count import human_count
-from ._duration import (
-    get_unit_seconds,
-    human_duration,
-    human_duration_series,
-    human_duration_unit_precision,
-    human_duration_with_variance,
-)
-from ._throughout import human_throughout
+from ._duration import human_duration, human_duration_with_stdev
+from ._throughout import human_throughput
 
 __all__ = [
-    "get_unit_seconds",
     "human_count",
     "human_duration",
-    "human_duration_series",
-    "human_duration_unit_precision",
-    "human_duration_with_variance",
-    "human_throughout",
+    "human_duration_with_stdev",
+    "human_throughput",
 ]

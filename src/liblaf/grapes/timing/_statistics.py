@@ -31,6 +31,6 @@ def pretty_statistic(series: Sequence[float], stat_name: StatisticName) -> str:
     if stat_name == "mean+stdev":
         mean: float = compute_statistic(series, "mean")
         stdev: float = compute_statistic(series, "stdev")
-        return human.human_duration_with_variance(mean, stdev)
+        return human.human_duration_with_stdev(mean, stdev)
     value: float = compute_statistic(series, stat_name)
     return human.human_duration(value)

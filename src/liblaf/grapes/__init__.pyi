@@ -27,10 +27,8 @@ from .functools import ConditionalDispatcher, MemorizedFunc, cache
 from .human import (
     human_count,
     human_duration,
-    human_duration_series,
-    human_duration_unit_precision,
-    human_duration_with_variance,
-    human_throughout,
+    human_duration_with_stdev,
+    human_throughput,
 )
 from .itertools import (
     IterableWrapper,
@@ -110,10 +108,8 @@ __all__ = [
     "human",
     "human_count",
     "human_duration",
-    "human_duration_series",
-    "human_duration_unit_precision",
-    "human_duration_with_variance",
-    "human_throughout",
+    "human_duration_with_stdev",
+    "human_throughput",
     "init_env",
     "is_path_like",
     "itertools",

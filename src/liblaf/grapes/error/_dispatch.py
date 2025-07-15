@@ -12,7 +12,7 @@ class DispatchLookupError(LookupError):
     call_kwargs: Mapping = attrs.field(factory=dict)
 
     def __str__(self) -> str:
-        pretty_func_call: str = pretty.call(
+        pretty_call: str = pretty.pretty_call(
             self.func, self.call_args, self.call_kwargs
-        ).plain
-        return f"`{pretty_func_call}` could not be resolved."
+        )
+        return f"`{pretty_call}` could not be resolved."

@@ -2,8 +2,9 @@ import functools
 from typing import Any
 
 import attrs
-import wadler_lindig as wl
 from loguru import logger
+
+from liblaf.grapes import pretty
 
 
 @attrs.define(slots=False)
@@ -33,4 +34,4 @@ class LoggingProfileMixinIcecream:
 
 @functools.singledispatch
 def ic_arg_to_string_function(obj: Any) -> str:
-    return wl.pformat(obj)
+    return pretty.pformat(obj)

@@ -6,10 +6,10 @@ from liblaf import grapes
 def main() -> None:
     grapes.logging.init()
     logger.success("Hello, {}!", "world")
-    logger.info("super long message" * 100)
+    logger.info(" ".join(["long"] * 100) + "message")
 
     try:
-        msg: str = "TEST ERROR!"
+        msg: str = "Test Error!"
         raise ValueError(msg)  # noqa: TRY301
     except ValueError:
         logger.exception("Exception:")

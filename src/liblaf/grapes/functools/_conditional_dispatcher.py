@@ -4,7 +4,6 @@ from typing import Any, NoReturn, overload
 
 import attrs
 import sortedcontainers
-from rich.text import Text
 
 from liblaf.grapes import pretty
 
@@ -27,11 +26,8 @@ class NotFoundLookupError(LookupError):
         self.kwargs = kwargs
 
     def __str__(self) -> str:
-        return f"{self.pretty_call.plain} could not be resolved."
-
-    @property
-    def pretty_call(self) -> Text:
-        return pretty.call(self.func, self.args, self.kwargs)
+        pretty_call: str = pretty.pretty_call(self.func, self.args, self.kwargs)
+        return f"{pretty_call} could not be resolved."
 
 
 def _fallback(func: Callable) -> Callable[..., NoReturn]:

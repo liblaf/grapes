@@ -6,6 +6,7 @@ from .mixins import (
     LoggingProfileMixinExceptHook,
     LoggingProfileMixinLoguru,
     LoggingProfileMixinUnraisableHook,
+    ic_arg_to_string_function,
 )
 
 __all__ = [
@@ -15,6 +16,7 @@ __all__ = [
     "LoggingProfileMixinLoguru",
     "LoggingProfileMixinUnraisableHook",
     "ProfileName",
+    "ic_arg_to_string_function",
     "make_profile",
     "mixins",
 ]

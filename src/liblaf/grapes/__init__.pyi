@@ -40,7 +40,17 @@ from .itertools import (
     generator_to_list,
 )
 from .path import as_path, is_path_like, project_root, resolve_project_path
-from .pretty import WadlerLindigMixin, caller_location, get_console, pdoc_attrs
+from .pretty import (
+    get_console,
+    has_ansi,
+    pdoc_attrs,
+    pformat,
+    pformat_attrs,
+    pretty_call,
+    pretty_func,
+    rich_location,
+    wadler_lindig,
+)
 from .sentinel import MISSING, NOP, nop
 from .serde import json, load, load_pydantic, save, save_pydantic, toml, yaml
 from .text import strip_comments
@@ -75,14 +85,12 @@ __all__ = [
     "RateColumn",
     "Timer",
     "Timings",
-    "WadlerLindigMixin",
     "__version__",
     "__version_tuple__",
     "as_iterable",
     "as_path",
     "as_sequence",
     "cache",
-    "caller_location",
     "clock",
     "clone_param_spec",
     "clone_signature",
@@ -97,6 +105,7 @@ __all__ = [
     "get_console",
     "get_timer",
     "git",
+    "has_ansi",
     "has_module",
     "human",
     "human_count",
@@ -119,9 +128,14 @@ __all__ = [
     "path",
     "paths",
     "pdoc_attrs",
+    "pformat",
+    "pformat_attrs",
     "pretty",
+    "pretty_call",
+    "pretty_func",
     "project_root",
     "resolve_project_path",
+    "rich_location",
     "save",
     "save_pydantic",
     "sentinel",
@@ -136,5 +150,6 @@ __all__ = [
     "typed",
     "version",
     "version_tuple",
+    "wadler_lindig",
     "yaml",
 ]

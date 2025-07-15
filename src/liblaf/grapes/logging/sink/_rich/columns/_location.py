@@ -16,7 +16,7 @@ class RichSinkColumnLocation(RichSinkColumn):
 
     @override  # impl RichSinkColumn
     def render(self, record: "loguru.Record", /) -> RenderableType:
-        location: Text = pretty.location(
+        location: Text = pretty.rich_location(
             name=record["name"],
             function=record["function"],
             line=record["line"],

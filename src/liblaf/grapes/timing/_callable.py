@@ -21,6 +21,6 @@ def timed_callable[C: Callable](func: C, timer: BaseTimer) -> C:
 
     func = wrapper(func)  # pyright: ignore[reportCallIssue]
     if timer.name is None:
-        timer.name = pretty.func(func).plain
+        timer.name = pretty.pretty_func(func)
     func._self_timer = timer  # pyright: ignore[reportFunctionMemberAccess]  # noqa: SLF001
     return func

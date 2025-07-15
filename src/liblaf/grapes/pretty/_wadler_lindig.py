@@ -1,35 +1,16 @@
-from typing import Any, TypedDict, Unpack
+import functools
+from typing import Any
 
 import attrs
 import cytoolz as toolz
 import wadler_lindig as wl
 
+from ._console import get_console
 
-class PdocKwargs(TypedDict, total=True):
-    """.
-
-    References:
-        1. <https://docs.kidger.site/wadler_lindig/api/#wadler_lindig.pdoc>
-    """
-
-    indent: int
-    hide_defaults: bool
-    show_type_module: bool
-    show_dataclass_module: bool
+UNINITIALIZED = wl.TextDoc("<uninitialized>")
 
 
-@attrs.frozen
-class WithRepr:
-    string: str = attrs.field()
-
-    def __repr__(self) -> str:
-        return self.string
-
-
-UNINITIALIZED = WithRepr("<uninitialized>")
-
-
-def pdoc_attrs(self: Any, **kwargs: Unpack[PdocKwargs]) -> wl.AbstractDoc:
+def pdoc_attrs(self: Any, **kwargs) -> wl.AbstractDoc:
     """.
 
     References:
@@ -45,7 +26,7 @@ def pdoc_attrs(self: Any, **kwargs: Unpack[PdocKwargs]) -> wl.AbstractDoc:
         if kwargs["hide_defaults"] and value is field.default:
             continue
         objs.append((field.name, value))
-    name_kwargs: PdocKwargs = toolz.assoc(
+    name_kwargs: dict[str, Any] = toolz.assoc(
         kwargs, "show_type_module", kwargs["show_dataclass_module"]
     )  # pyright: ignore[reportAssignmentType]
     return wl.bracketed(
@@ -57,9 +38,25 @@ def pdoc_attrs(self: Any, **kwargs: Unpack[PdocKwargs]) -> wl.AbstractDoc:
     )
 
 
-class WadlerLindigMixin:
-    def __repr__(self) -> str:
-        return wl.pformat(self)
+@functools.singledispatch
+def pformat(obj: Any, **kwargs) -> str:
+    if "width" not in kwargs:
+        kwargs["width"] = get_console(stderr=True).width
+    if not hasattr(obj, "__pdoc__") and attrs.has(type(obj)):
+        return pformat_attrs(obj, **kwargs)
+    return wl.pformat(obj, **kwargs)
 
-    def __pdoc__(self, **kwargs) -> wl.AbstractDoc:
-        return pdoc_attrs(self, **kwargs)
+
+def pformat_attrs(obj: Any, **kwargs) -> str:
+    return wl.pformat(pdoc_attrs(obj, **kwargs), **kwargs)
+
+
+def wadler_lindig[T](cls: type[T]) -> type[T]:
+    cls.__repr__ = _repr
+    if not hasattr(cls, "__pdoc__") and attrs.has(cls):
+        cls.__pdoc__ = pdoc_attrs  # pyright: ignore[reportAttributeAccessIssue]
+    return cls
+
+
+def _repr(self: Any) -> str:
+    return pformat(self)

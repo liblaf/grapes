@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/liblaf/grapes/compare/v0.6.0...v1.0.0) (2025-07-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **functools:** Removes function_wrapper from public API. Use unbind and unbind_getattr instead for attribute access.
+
+### ♻ Code Refactoring
+
+* **functools:** replace function_wrapper with unbind utilities ([e019891](https://github.com/liblaf/grapes/commit/e01989186c052b56d38847b30678cfbb42e93002))
+
 ## [0.6.0](https://github.com/liblaf/grapes/compare/v0.5.1..v0.6.0) - 2025-07-15
 
 ### 💥 BREAKING CHANGES

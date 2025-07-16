@@ -7,7 +7,7 @@ import joblib
 
 from liblaf.grapes.conf import config
 
-from ._decorator import decorator
+from ._wrapt import decorator
 
 
 class ReduceSizeKwargs(TypedDict, total=False):
@@ -18,8 +18,6 @@ class ReduceSizeKwargs(TypedDict, total=False):
 
 class MemorizedFunc[**P, T](Protocol):
     def __call__(self, *args: P.args, **kwargs: P.kwargs) -> T: ...
-    @property
-    def _self_memory(self) -> joblib.Memory: ...
 
 
 @overload
@@ -54,9 +52,9 @@ def cache(
         memory = joblib.Memory(config.joblib_memory_location)
     if reduce_size is None:
         reduce_size = {"bytes_limit": config.joblib_memory_bytes_limit}
-    func = memory.cache(func, **kwargs)  # pyright: ignore[reportAssignmentType]
+    func: MemorizedFunc = memory.cache(func, **kwargs)  # pyright: ignore[reportAssignmentType]
 
-    @decorator(attrs={"_self_memory": memory})
+    @decorator
     def wrapper(
         wrapped: Callable, _instance: Any, args: tuple, kwargs: dict[str, Any]
     ) -> Any:
@@ -64,4 +62,6 @@ def cache(
         memory.reduce_size(**reduce_size)
         return ret
 
-    return wrapper(func)
+    proxy: MemorizedFunc = wrapper(func)
+    proxy._self_memory = memory  # pyright: ignore[reportAttributeAccessIssue] # noqa: SLF001
+    return proxy

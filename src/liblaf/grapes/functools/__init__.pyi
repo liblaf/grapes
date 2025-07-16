@@ -1,6 +1,6 @@
 from ._cache import MemorizedFunc, cache
 from ._conditional_dispatcher import ConditionalDispatcher
-from ._decorator import Decorator, Wrapper, decorator, function_wrapper
+from ._wrapt import Decorator, Wrapper, decorator, unbind, unbind_getattr
 
 __all__ = [
     "ConditionalDispatcher",
@@ -9,5 +9,6 @@ __all__ = [
     "Wrapper",
     "cache",
     "decorator",
-    "function_wrapper",
+    "unbind",
+    "unbind_getattr",
 ]

@@ -29,7 +29,8 @@ from .functools import (
     MemorizedFunc,
     cache,
     decorator,
-    function_wrapper,
+    unbind,
+    unbind_getattr,
 )
 from .human import (
     human_count,
@@ -99,7 +100,6 @@ __all__ = [
     "env",
     "error",
     "first_not_none",
-    "function_wrapper",
     "functools",
     "generator_to_list",
     "get_console",
@@ -147,6 +147,8 @@ __all__ = [
     "track",
     "try_import",
     "typed",
+    "unbind",
+    "unbind_getattr",
     "version",
     "version_tuple",
     "wadler_lindig",

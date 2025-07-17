@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.0.0](https://github.com/liblaf/grapes/compare/v0.6.0..v1.0.0) - 2025-07-16
+
+### 💥 BREAKING CHANGES
+
+- **functools:** replace function_wrapper with unbind utilities - ([e019891](https://github.com/liblaf/grapes/commit/e01989186c052b56d38847b30678cfbb42e93002))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [0.6.0](https://github.com/liblaf/grapes/compare/v0.5.1..v0.6.0) - 2025-07-15
 
 ### 💥 BREAKING CHANGES
@@ -10,10 +20,6 @@
 
 - **deps:** add try_import utility function - ([966a196](https://github.com/liblaf/grapes/commit/966a1961a4c77425501eb9407bea4dd63f7c65ff))
 - **logging:** add default traceback suppression - ([4efb931](https://github.com/liblaf/grapes/commit/4efb9312214c5d5398ad44761e44d740263cb3ba))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [0.5.1](https://github.com/liblaf/grapes/compare/v0.5.0..v0.5.1) - 2025-07-15
 

@@ -1,21 +1,20 @@
 # Changelog
 
-## [1.0.1](https://github.com/liblaf/grapes/compare/v1.0.0...v1.0.1) (2025-07-17)
-
+## [1.0.1](https://github.com/liblaf/grapes/compare/v1.0.0..v1.0.1) - 2025-07-17
 
 ### 🐛 Bug Fixes
 
-* **pretty:** standardize default formatting in wadler_lindig ([489b2d5](https://github.com/liblaf/grapes/commit/489b2d572f5206f967630ce829c003a36a3c299e))
-
-## [1.0.0](https://github.com/liblaf/grapes/compare/v0.6.0..v1.0.0) - 2025-07-16
-
-### 💥 BREAKING CHANGES
-
-- **functools:** replace function_wrapper with unbind utilities - ([e019891](https://github.com/liblaf/grapes/commit/e01989186c052b56d38847b30678cfbb42e93002))
+- **pretty:** standardize default formatting in wadler_lindig - ([489b2d5](https://github.com/liblaf/grapes/commit/489b2d572f5206f967630ce829c003a36a3c299e))
 
 ### ❤️ New Contributors
 
 - [@liblaf](https://github.com/liblaf) made their first contribution
+
+## [1.0.0](https://github.com/liblaf/grapes/compare/v0.6.0..v1.0.0) - 2025-07-17
+
+### 💥 BREAKING CHANGES
+
+- **functools:** replace function_wrapper with unbind utilities - ([e019891](https://github.com/liblaf/grapes/commit/e01989186c052b56d38847b30678cfbb42e93002))
 
 ## [0.6.0](https://github.com/liblaf/grapes/compare/v0.5.1..v0.6.0) - 2025-07-15
 

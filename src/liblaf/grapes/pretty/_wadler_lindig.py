@@ -5,18 +5,11 @@ import attrs
 import cytoolz as toolz
 import wadler_lindig as wl
 
+from liblaf.grapes._config import config
+
 from ._console import get_console
 
 UNINITIALIZED = wl.TextDoc("<uninitialized>")
-
-DEFAULT_PDOC_KWARGS = {
-    "indent": 2,
-    "short_arrays": True,
-    "hide_defaults": False,
-    "show_dataclass_module": False,
-    "show_function_module": False,
-    "respect_pdoc": True,
-}
 
 
 def pdoc_attrs(self: Any, **kwargs) -> wl.AbstractDoc:
@@ -25,7 +18,7 @@ def pdoc_attrs(self: Any, **kwargs) -> wl.AbstractDoc:
     References:
         1. <https://github.com/patrick-kidger/wadler_lindig/blob/0226340d56f0c18e10cd4d375cf7ea25818359b8/wadler_lindig/_definitions.py#L308-L326>
     """
-    kwargs: dict[str, Any] = toolz.merge(DEFAULT_PDOC_KWARGS, kwargs)
+    kwargs: dict[str, Any] = toolz.merge(config.pretty.kwargs, kwargs)
     cls: type = type(self)
     objs: list[tuple[str, Any]] = []
     for field in attrs.fields(cls):
@@ -50,6 +43,7 @@ def pdoc_attrs(self: Any, **kwargs) -> wl.AbstractDoc:
 
 @functools.singledispatch
 def pformat(obj: Any, **kwargs) -> str:
+    kwargs: dict[str, Any] = toolz.merge(config.pretty.kwargs, kwargs)
     if "width" not in kwargs:
         kwargs["width"] = get_console(stderr=True).width
     if not hasattr(obj, "__pdoc__") and attrs.has(type(obj)):
@@ -58,6 +52,7 @@ def pformat(obj: Any, **kwargs) -> str:
 
 
 def pformat_attrs(obj: Any, **kwargs) -> str:
+    kwargs: dict[str, Any] = toolz.merge(config.pretty.kwargs, kwargs)
     return wl.pformat(pdoc_attrs(obj, **kwargs), **kwargs)
 
 

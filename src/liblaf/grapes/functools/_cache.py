@@ -5,7 +5,7 @@ from typing import Any, Protocol, TypedDict, overload
 
 import joblib
 
-from liblaf.grapes.conf import config
+from liblaf.grapes._config import config
 
 from ._wrapt import decorator
 
@@ -49,9 +49,9 @@ def cache(
             cache, memory=memory, reduce_size=reduce_size, **kwargs
         )
     if memory is None:
-        memory = joblib.Memory(config.joblib_memory_location)
+        memory = joblib.Memory(config.joblib.memory.location)
     if reduce_size is None:
-        reduce_size = {"bytes_limit": config.joblib_memory_bytes_limit}
+        reduce_size = {"bytes_limit": config.joblib.memory.bytes_limit}
     func: MemorizedFunc = memory.cache(func, **kwargs)  # pyright: ignore[reportAssignmentType]
 
     @decorator

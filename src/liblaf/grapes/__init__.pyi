@@ -1,5 +1,4 @@
 from . import (
-    conf,
     enum,
     env,
     error,
@@ -16,8 +15,8 @@ from . import (
     tqdm,
     typed,
 )
+from ._config import BaseConfig, BaseModel, Config, LogLevel, Paths, config, paths
 from ._version import __version__, __version_tuple__, version, version_tuple
-from .conf import Config, LogLevel, Paths, config, paths
 from .deps import has_module, optional_imports, try_import
 from .enum import CaseInsensitiveEnum
 from .env import init_env
@@ -66,6 +65,8 @@ from .typed import ClassInfo, PathLike, clone_param_spec, clone_signature
 __all__ = [
     "MISSING",
     "NOP",
+    "BaseConfig",
+    "BaseModel",
     "BaseTimer",
     "CaseInsensitiveEnum",
     "ClassInfo",
@@ -92,7 +93,6 @@ __all__ = [
     "clock",
     "clone_param_spec",
     "clone_signature",
-    "conf",
     "config",
     "decorator",
     "enum",

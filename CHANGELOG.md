@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/liblaf/grapes/compare/v1.0.1...v1.1.0) (2025-08-02)
+
+
+### ✨ Features
+
+* **itertools:** add deep merge functionality ([9fcc5b3](https://github.com/liblaf/grapes/commit/9fcc5b31090de5e84a6e4e63ccecd8bde76f7e4c))
+
+
+### ♻ Code Refactoring
+
+* **config:** reorganize configuration module structure ([2eeca0d](https://github.com/liblaf/grapes/commit/2eeca0d6b2a10a883c5d748f1816231238e147c3))
+
 ## [1.0.1](https://github.com/liblaf/grapes/compare/v1.0.0..v1.0.1) - 2025-07-17
 
 ### 🐛 Bug Fixes

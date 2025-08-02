@@ -4,7 +4,6 @@ from collections.abc import Generator, Sequence
 
 import attrs
 import loguru
-import wadler_lindig as wl
 from rich.console import Console, RenderableType
 from rich.text import Text
 from rich.traceback import Traceback
@@ -75,7 +74,7 @@ class RichSink:
 
         # ? dirty hack to avoid long `repr()` output
         # ref: <https://github.com/Textualize/rich/discussions/3774>
-        with unittest.mock.patch("rich.pretty.repr", new=wl.pformat):
+        with unittest.mock.patch("rich.pretty.repr", new=pretty.pformat):
             rich_tb: Traceback = self.traceback.from_exception(
                 exc_type, exc_value, traceback
             )

@@ -12,7 +12,6 @@ from . import (
     pretty,
     sentinel,
     serde,
-    text,
     timing,
     tqdm,
     typed,
@@ -44,6 +43,7 @@ from .itertools import (
     as_sequence,
     first_not_none,
     generator_to_list,
+    merge,
 )
 from .path import as_path, is_path_like, project_root, resolve_project_path
 from .pretty import (
@@ -59,7 +59,6 @@ from .pretty import (
 )
 from .sentinel import MISSING, NOP, nop
 from .serde import json, load, load_pydantic, save, save_pydantic, toml, yaml
-from .text import strip_comments
 from .timing import BaseTimer, ClockName, Timer, Timings, clock, get_timer, timer
 from .tqdm import Progress, RateColumn, len_safe, parallel, track
 from .typed import ClassInfo, PathLike, clone_param_spec, clone_signature
@@ -120,6 +119,7 @@ __all__ = [
     "load",
     "load_pydantic",
     "logging",
+    "merge",
     "nop",
     "optional_imports",
     "parallel",
@@ -138,8 +138,6 @@ __all__ = [
     "save_pydantic",
     "sentinel",
     "serde",
-    "strip_comments",
-    "text",
     "timer",
     "timing",
     "toml",

@@ -5,8 +5,8 @@ from collections.abc import Callable
 from typing import Any, Self, overload, override
 
 import attrs
-import wrapt
 
+from liblaf.grapes import functools as _ft
 from liblaf.grapes import itertools as _it
 
 _depth: contextvars.ContextVar[int] = contextvars.ContextVar("depth", default=0)
@@ -34,7 +34,7 @@ class DepthTrackerDecorator(contextlib.AbstractContextManager):
         del self._token
 
     def __call__[C: Callable](self, func: C, /) -> C:
-        @wrapt.decorator
+        @_ft.decorator
         def wrapper(
             wrapped: Callable, _instance: Any, args: tuple, kwargs: dict[str, Any]
         ) -> Any:
@@ -46,7 +46,7 @@ class DepthTrackerDecorator(contextlib.AbstractContextManager):
             finally:
                 _depth.reset(token)
 
-        return wrapper(func)  # pyright: ignore[reportCallIssue]
+        return wrapper(func)
 
 
 @attrs.define

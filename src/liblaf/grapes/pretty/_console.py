@@ -11,6 +11,11 @@ from liblaf.grapes.typed import clone_param_spec
 
 
 def default_theme() -> Theme:
+    """.
+
+    References:
+        1. <https://github.com/Delgan/loguru/blob/master/loguru/_defaults.py>
+    """
     return Theme(
         {
             "logging.level.notset": Style(dim=True),

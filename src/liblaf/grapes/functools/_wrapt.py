@@ -19,14 +19,14 @@ class Wrapper(Protocol):
 @overload
 def decorator(
     wrapper: Wrapper,
-    enabled: bool | Callable[[], None] | None = None,  # noqa: FBT001
+    enabled: bool | Callable[[], None] | None = None,
     adapter: Any = None,
     proxy: Callable = ...,
 ) -> Decorator: ...
 @overload
 def decorator(
     wrapper: None = None,
-    enabled: bool | Callable[[], None] | None = None,  # noqa: FBT001
+    enabled: bool | Callable[[], None] | None = None,
     adapter: Any = None,
     proxy: Callable = ...,
 ) -> Callable[[Wrapper], Decorator]: ...

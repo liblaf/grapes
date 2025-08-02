@@ -1,26 +1,25 @@
 # Changelog
 
-## [1.1.0](https://github.com/liblaf/grapes/compare/v1.0.1...v1.1.0) (2025-08-02)
-
+## [1.1.0](https://github.com/liblaf/grapes/compare/v1.0.1..v1.1.0) - 2025-08-02
 
 ### ✨ Features
 
-* **itertools:** add deep merge functionality ([9fcc5b3](https://github.com/liblaf/grapes/commit/9fcc5b31090de5e84a6e4e63ccecd8bde76f7e4c))
-
+- **itertools:** add deep merge functionality - ([9fcc5b3](https://github.com/liblaf/grapes/commit/9fcc5b31090de5e84a6e4e63ccecd8bde76f7e4c))
 
 ### ♻ Code Refactoring
 
-* **config:** reorganize configuration module structure ([2eeca0d](https://github.com/liblaf/grapes/commit/2eeca0d6b2a10a883c5d748f1816231238e147c3))
-
-## [1.0.1](https://github.com/liblaf/grapes/compare/v1.0.0..v1.0.1) - 2025-07-17
-
-### 🐛 Bug Fixes
-
-- **pretty:** standardize default formatting in wadler_lindig - ([489b2d5](https://github.com/liblaf/grapes/commit/489b2d572f5206f967630ce829c003a36a3c299e))
+- **config:** reorganize configuration module structure - ([2eeca0d](https://github.com/liblaf/grapes/commit/2eeca0d6b2a10a883c5d748f1816231238e147c3))
 
 ### ❤️ New Contributors
 
 - [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
+
+## [1.0.1](https://github.com/liblaf/grapes/compare/v1.0.0..v1.0.1) - 2025-07-18
+
+### 🐛 Bug Fixes
+
+- **pretty:** standardize default formatting in wadler_lindig - ([489b2d5](https://github.com/liblaf/grapes/commit/489b2d572f5206f967630ce829c003a36a3c299e))
 
 ## [1.0.0](https://github.com/liblaf/grapes/compare/v0.6.0..v1.0.0) - 2025-07-17
 

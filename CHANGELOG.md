@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.0](https://github.com/liblaf/grapes/compare/v1.1.0..v2.0.0) - 2025-08-20
+
+### 💥 BREAKING CHANGES
+
+- restructure modules and rename functions for clarity and consistency - ([0ed1ec4](https://github.com/liblaf/grapes/commit/0ed1ec453ecf533f6e3d5d009375d92c02f93afa))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@renovate[bot]](https://github.com/apps/renovate) made their first contribution in [#77](https://github.com/liblaf/grapes/pull/77)
+- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
+
 ## [1.1.0](https://github.com/liblaf/grapes/compare/v1.0.1..v1.1.0) - 2025-08-02
 
 ### ✨ Features
@@ -9,11 +21,6 @@
 ### ♻ Code Refactoring
 
 - **config:** reorganize configuration module structure - ([2eeca0d](https://github.com/liblaf/grapes/commit/2eeca0d6b2a10a883c5d748f1816231238e147c3))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
-- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
 
 ## [1.0.1](https://github.com/liblaf/grapes/compare/v1.0.0..v1.0.1) - 2025-07-18
 

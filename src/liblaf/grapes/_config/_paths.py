@@ -30,7 +30,10 @@ class Paths:
 
     @functools.cached_property
     def working_dir(self) -> Path:
-        return self.entrypoint.parent
+        working_dir: Path = self.entrypoint.resolve().parent
+        while working_dir.parts[-1] in {"src"}:
+            working_dir = working_dir.parent
+        return working_dir
 
 
 paths: Paths = Paths()

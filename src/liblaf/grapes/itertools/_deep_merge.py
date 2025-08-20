@@ -1,7 +1,7 @@
 from collections.abc import Mapping, Sequence
 
 
-def merge[KT, VT](
+def deep_merge[KT, VT](
     *mappings: Mapping[KT, VT], append_arrays: bool = False
 ) -> dict[KT, VT]:
     result: dict[KT, VT] = {}
@@ -9,7 +9,7 @@ def merge[KT, VT](
         for key, value in mapping.items():
             if key in result:
                 if isinstance(result[key], Mapping):
-                    result[key] = merge(  # pyright: ignore[reportArgumentType]
+                    result[key] = deep_merge(  # pyright: ignore[reportArgumentType]
                         result[key],  # pyright: ignore[reportArgumentType]
                         value,  # pyright: ignore[reportArgumentType]
                         append_arrays=append_arrays,

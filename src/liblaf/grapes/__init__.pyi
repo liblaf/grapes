@@ -1,5 +1,4 @@
 from . import (
-    enum,
     env,
     error,
     functools,
@@ -7,7 +6,6 @@ from . import (
     human,
     itertools,
     logging,
-    path,
     pretty,
     sentinel,
     serde,
@@ -18,9 +16,7 @@ from . import (
 from ._config import BaseConfig, BaseModel, Config, LogLevel, Paths, config, paths
 from ._version import __version__, __version_tuple__, version, version_tuple
 from .deps import has_module, optional_imports, try_import
-from .enum import CaseInsensitiveEnum
-from .env import init_env
-from .error import MatchError
+from .error import DispatchLookupError, MatchError
 from .functools import (
     ConditionalDispatcher,
     Decorator,
@@ -36,15 +32,7 @@ from .human import (
     human_duration_with_stdev,
     human_throughput,
 )
-from .itertools import (
-    IterableWrapper,
-    as_iterable,
-    as_sequence,
-    first_not_none,
-    generator_to_list,
-    merge,
-)
-from .path import as_path, is_path_like, project_root, resolve_project_path
+from .itertools import as_iterable, as_sequence, deep_merge, first_not_none
 from .pretty import (
     get_console,
     has_ansi,
@@ -68,13 +56,12 @@ __all__ = [
     "BaseConfig",
     "BaseModel",
     "BaseTimer",
-    "CaseInsensitiveEnum",
     "ClassInfo",
     "ClockName",
     "ConditionalDispatcher",
     "Config",
     "Decorator",
-    "IterableWrapper",
+    "DispatchLookupError",
     "LogLevel",
     "MatchError",
     "MemorizedFunc",
@@ -87,7 +74,6 @@ __all__ = [
     "__version__",
     "__version_tuple__",
     "as_iterable",
-    "as_path",
     "as_sequence",
     "cache",
     "clock",
@@ -95,12 +81,11 @@ __all__ = [
     "clone_signature",
     "config",
     "decorator",
-    "enum",
+    "deep_merge",
     "env",
     "error",
     "first_not_none",
     "functools",
-    "generator_to_list",
     "get_console",
     "get_timer",
     "git",
@@ -111,19 +96,15 @@ __all__ = [
     "human_duration",
     "human_duration_with_stdev",
     "human_throughput",
-    "init_env",
-    "is_path_like",
     "itertools",
     "json",
     "len_safe",
     "load",
     "load_pydantic",
     "logging",
-    "merge",
     "nop",
     "optional_imports",
     "parallel",
-    "path",
     "paths",
     "pdoc_attrs",
     "pformat",
@@ -131,8 +112,6 @@ __all__ = [
     "pretty",
     "pretty_call",
     "pretty_func",
-    "project_root",
-    "resolve_project_path",
     "rich_location",
     "save",
     "save_pydantic",

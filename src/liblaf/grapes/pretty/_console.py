@@ -38,7 +38,7 @@ def get_console(**kwargs) -> Console:
     if kwargs.get("theme") is None:
         kwargs["theme"] = default_theme()
     file: IO[str] | None = kwargs.get("file")
-    if file is None and env.ci():
+    if file is None and env.in_ci():
         kwargs.setdefault("width", 128)
     if not kwargs.get("stderr", False) and file is None:
         rich.reconfigure(**kwargs)

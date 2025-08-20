@@ -56,9 +56,15 @@ def pformat_attrs(obj: Any, **kwargs) -> str:
     return wl.pformat(pdoc_attrs(obj, **kwargs), **kwargs)
 
 
-def wadler_lindig[T](cls: type[T]) -> type[T]:
-    cls.__repr__ = _repr
-    if not hasattr(cls, "__pdoc__") and attrs.has(cls):
+def wadler_lindig[T](
+    cls: type[T],
+    *,
+    repr: bool | None = None,  # noqa: A002
+    pdoc: bool | None = None,
+) -> type[T]:
+    if repr or (repr is None and "__repr__" not in cls.__dict__):
+        cls.__repr__ = _repr
+    if (pdoc or (pdoc is None and "__pdoc__" not in cls.__dict__)) and attrs.has(cls):
         cls.__pdoc__ = pdoc_attrs  # pyright: ignore[reportAttributeAccessIssue]
     return cls
 

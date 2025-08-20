@@ -1,4 +1,3 @@
-from ._ci import ci
-from ._env import init_env
+from ._ci import in_ci
 
-__all__ = ["ci", "init_env"]
+__all__ = ["in_ci"]

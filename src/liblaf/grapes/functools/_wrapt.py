@@ -19,14 +19,14 @@ class Wrapper(Protocol):
 @overload
 def decorator(
     wrapper: Wrapper,
-    enabled: bool | Callable[[], None] | None = None,
+    enabled: bool | Callable[[], None] | None = None,  # noqa: FBT001
     adapter: Any = None,
     proxy: Callable = ...,
 ) -> Decorator: ...
 @overload
 def decorator(
     wrapper: None = None,
-    enabled: bool | Callable[[], None] | None = None,
+    enabled: bool | Callable[[], None] | None = None,  # noqa: FBT001
     adapter: Any = None,
     proxy: Callable = ...,
 ) -> Callable[[Wrapper], Decorator]: ...
@@ -50,15 +50,15 @@ def unbind_getattr(o: object, name: str, default: Any = MISSING, /) -> Any:
         if parent is MISSING:
             # `o` is not a wrapt.BoundFunctionWrapper
             # further inspection is not applicable
-            if default is not MISSING:
-                return default
-            raise  # default is MISSING
+            if default is MISSING:
+                raise
+            return default
         # `o` is a wrapt.BoundFunctionWrapper
         # `parent` is a wrapt.FunctionWrapper
         # further inspection is applicable
         attr: Any = getattr(parent, name, MISSING)
         if attr is not MISSING:
             return attr
-        if default is not MISSING:
-            return default
-        raise  # default is MISSING
+        if default is MISSING:
+            raise
+        return default

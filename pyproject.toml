@@ -71,7 +71,7 @@ dynamic = ["version"]
 
 [dependency-groups]
 build = ["check-wheel-contents", "hatch", "twine"]
-dev = ["icecream", "numpy>=2.3.2"]
+dev = ["icecream"]
 docs = [
   "docstring-inheritance",
   "griffe-fieldz",

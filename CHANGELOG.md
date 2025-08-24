@@ -1,16 +1,21 @@
 # Changelog
 
+## [2.0.1](https://github.com/liblaf/grapes/compare/v2.0.0..v2.0.1) - 2025-08-24
+
+### 🔧 Continuous Integration
+
+- **pre-commit:** add configuration for pre-commit hooks - ([8588c0e](https://github.com/liblaf/grapes/commit/8588c0e54d31be0782f0f8261738bf5faffb0368))
+
+### ❤️ New Contributors
+
+- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [2.0.0](https://github.com/liblaf/grapes/compare/v1.1.0..v2.0.0) - 2025-08-20
 
 ### 💥 BREAKING CHANGES
 
 - restructure modules and rename functions for clarity and consistency - ([0ed1ec4](https://github.com/liblaf/grapes/commit/0ed1ec453ecf533f6e3d5d009375d92c02f93afa))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
-- [@renovate[bot]](https://github.com/apps/renovate) made their first contribution in [#77](https://github.com/liblaf/grapes/pull/77)
-- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
 
 ## [1.1.0](https://github.com/liblaf/grapes/compare/v1.0.1..v1.1.0) - 2025-08-02
 

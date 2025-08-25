@@ -1,17 +1,3 @@
 INHERIT: .config/copier/mkdocs.yaml
 site_name: Grapes
 site_description: TODO
-
-plugins:
-  privacy:
-    enabled: false
-  mkdocstrings:
-    handlers:
-      python:
-        inventories:
-          - https://docs.python.org/3/objects.inv
-          - https://etils.readthedocs.io/en/stable/objects.inv
-          - https://loguru.readthedocs.io/en/stable/objects.inv
-          - https://numpy.org/doc/stable/objects.inv
-          - https://rich.readthedocs.io/en/stable/objects.inv
-          - https://tomlkit.readthedocs.io/en/stable/objects.inv

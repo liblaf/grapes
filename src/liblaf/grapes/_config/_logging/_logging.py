@@ -1,34 +1,11 @@
-import enum
+import types
+from collections.abc import Iterable
 from pathlib import Path
-from typing import override
 
 import pydantic
 
-from ._base import BaseModel
-from ._paths import paths
-
-
-class LogLevel(enum.StrEnum):
-    """.
-
-    References:
-        1. <https://github.com/Delgan/loguru/blob/master/loguru/_defaults.py>
-    """
-
-    @override
-    @staticmethod
-    def _generate_next_value_(
-        name: str, start: int, count: int, last_values: list[str]
-    ) -> str:
-        return name.upper()
-
-    TRACE = enum.auto()
-    DEBUG = enum.auto()
-    INFO = enum.auto()
-    SUCCESS = enum.auto()
-    WARNING = enum.auto()
-    ERROR = enum.auto()
-    CRITICAL = enum.auto()
+from liblaf.grapes._config._base import BaseModel
+from liblaf.grapes._config._paths import paths
 
 
 class ConfigLoggingTraceback(BaseModel):
@@ -49,6 +26,9 @@ class ConfigLoggingTraceback(BaseModel):
 
     show_locals: int = pydantic.Field(default=True)
     """Enable display of local variables."""
+
+    suppress: Iterable[str | types.ModuleType] = pydantic.Field(default_factory=list)
+    """Optional sequence of modules or paths to exclude from traceback."""
 
 
 class ConfigLogging(BaseModel):

@@ -1,6 +1,3 @@
-from collections.abc import Mapping
-from typing import Any
-
 import pydantic
 
 from ._base import BaseModel
@@ -35,7 +32,3 @@ class ConfigPretty(BaseModel):
     """whether to show the name of the module for a function: `<function some_fn>` versus `<function somelib.some_fn>`."""
 
     respect_pdoc: bool = pydantic.Field(default=True)
-
-    @property
-    def kwargs(self) -> Mapping[str, Any]:
-        return self.model_dump(mode="python", exclude_none=True)

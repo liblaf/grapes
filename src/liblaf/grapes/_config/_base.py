@@ -1,5 +1,5 @@
 import contextlib
-from collections.abc import Generator
+from collections.abc import Generator, Mapping
 from typing import Any, Self
 
 import pydantic
@@ -23,8 +23,12 @@ class MixinOverrides:
 class BaseModel(MixinOverrides, pydantic.BaseModel):
     model_config = pydantic.ConfigDict(validate_assignment=True, validate_default=True)
 
+    def to_dict(self, **kwargs) -> Mapping[str, Any]:
+        kwargs.setdefault("exclude_none", True)
+        return self.model_dump(**kwargs)
+
 
 class BaseConfig(MixinOverrides, pydantic_settings.BaseSettings):
     model_config = pydantic_settings.SettingsConfigDict(
-        env_nested_delimiter="_", validate_assignment=True, validate_default=True
+        env_nested_delimiter="__", validate_assignment=True, validate_default=True
     )

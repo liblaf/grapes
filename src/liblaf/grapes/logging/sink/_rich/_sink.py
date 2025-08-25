@@ -9,8 +9,8 @@ from rich.text import Text
 from rich.traceback import Traceback
 
 from liblaf.grapes import pretty
+from liblaf.grapes._config import config
 
-from ._traceback import RichTracebackConfig
 from .columns import (
     RichSinkColumn,
     RichSinkColumnElapsed,
@@ -43,10 +43,6 @@ class RichSink:
         converter=attrs.converters.default_if_none(factory=default_console),
         factory=default_console,
     )
-    traceback: RichTracebackConfig = attrs.field(
-        converter=attrs.converters.default_if_none(factory=RichTracebackConfig),
-        factory=RichTracebackConfig,
-    )
 
     def __call__(self, message: "loguru.Message", /) -> None:
         record: loguru.Record = message.record
@@ -75,8 +71,8 @@ class RichSink:
         # ? dirty hack to avoid long `repr()` output
         # ref: <https://github.com/Textualize/rich/discussions/3774>
         with unittest.mock.patch("rich.pretty.repr", new=pretty.pformat):
-            rich_tb: Traceback = self.traceback.from_exception(
-                exc_type, exc_value, traceback
+            rich_tb: Traceback = Traceback.from_exception(
+                exc_type, exc_value, traceback, **config.logging.traceback.to_dict()
             )
 
         # ? dirty hack to support ANSI in exception messages

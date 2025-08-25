@@ -21,7 +21,9 @@ class MixinOverrides:
 
 
 class BaseModel(MixinOverrides, pydantic.BaseModel):
-    model_config = pydantic.ConfigDict(validate_assignment=True, validate_default=True)
+    model_config = pydantic.ConfigDict(
+        validate_assignment=True, arbitrary_types_allowed=True, validate_default=True
+    )
 
     def to_dict(self, **kwargs) -> Mapping[str, Any]:
         kwargs.setdefault("exclude_none", True)
@@ -30,5 +32,8 @@ class BaseModel(MixinOverrides, pydantic.BaseModel):
 
 class BaseConfig(MixinOverrides, pydantic_settings.BaseSettings):
     model_config = pydantic_settings.SettingsConfigDict(
-        env_nested_delimiter="__", validate_assignment=True, validate_default=True
+        env_nested_delimiter="__",
+        validate_assignment=True,
+        arbitrary_types_allowed=True,
+        validate_default=True,
     )

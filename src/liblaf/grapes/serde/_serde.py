@@ -3,7 +3,7 @@ from typing import Any, override
 
 import autoregistry
 
-from liblaf.grapes.typed import PathLike
+from liblaf.grapes.typing import PathLike
 
 from ._abc import Serde
 from ._json import json

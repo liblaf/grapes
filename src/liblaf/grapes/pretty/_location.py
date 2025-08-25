@@ -3,7 +3,7 @@ from pathlib import Path
 from rich.style import Style
 from rich.text import Text
 
-from liblaf.grapes.typed import PathLike
+from liblaf.grapes.typing import PathLike
 
 
 def rich_location(

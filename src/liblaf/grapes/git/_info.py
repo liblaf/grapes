@@ -1,11 +1,9 @@
 from typing import Protocol
 
-from liblaf.grapes import deps
-from liblaf.grapes.typed import PathLike
+import git
+import giturlparse
 
-with deps.optional_imports(extra="git"):
-    import git
-    import giturlparse
+from liblaf.grapes.typing import PathLike
 
 
 class GitInfo(Protocol):

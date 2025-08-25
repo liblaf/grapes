@@ -49,7 +49,7 @@ def cache(
             cache, memory=memory, reduce_size=reduce_size, **kwargs
         )
     if memory is None:
-        memory = joblib.Memory(config.joblib.memory.location)
+        memory = _get_memory()
     if reduce_size is None:
         reduce_size = {"bytes_limit": config.joblib.memory.bytes_limit}
     func: MemorizedFunc = memory.cache(func, **kwargs)  # pyright: ignore[reportAssignmentType]
@@ -65,3 +65,8 @@ def cache(
     proxy: MemorizedFunc = wrapper(func)
     proxy._self_memory = memory  # pyright: ignore[reportAttributeAccessIssue] # noqa: SLF001
     return proxy
+
+
+@functools.cache
+def _get_memory() -> joblib.Memory:
+    return joblib.Memory(config.joblib.memory.location)

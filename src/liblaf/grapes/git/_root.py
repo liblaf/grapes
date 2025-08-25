@@ -1,11 +1,9 @@
 from pathlib import Path
 
-from liblaf.grapes import deps
-from liblaf.grapes.typed import PathLike
+import git
+import git.exc
 
-with deps.optional_imports(extra="git"):
-    import git
-    import git.exc
+from liblaf.grapes.typing import PathLike
 
 
 def root(

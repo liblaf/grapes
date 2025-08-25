@@ -10,4 +10,4 @@ class MatchError(ValueError):
 
     def __str__(self) -> str:
         cls: str = self.cls if isinstance(self.cls, str) else self.cls.__qualname__
-        return f"{self.value!r} is not a valid {cls}"
+        return f"{self.value!r} is not a valid {cls}."

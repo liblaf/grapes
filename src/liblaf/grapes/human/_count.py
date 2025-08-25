@@ -1,7 +1,4 @@
-from liblaf.grapes import deps
-
-with deps.optional_imports(extra="duration"):
-    import about_time
+import about_time
 
 
 def human_count(count: int, unit: str = "", prec: int | None = None) -> str:

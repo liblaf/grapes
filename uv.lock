@@ -1,6 +1,10 @@
 version = 1
 revision = 3
 requires-python = ">=3.12"
+resolution-markers = [
+    "python_full_version >= '3.13'",
+    "python_full_version < '3.13'",
+]
 
 [[package]]
 name = "about-time"
@@ -894,26 +898,8 @@ dev = [
     { name = "icecream" },
 ]
 docs = [
-    { name = "docstring-inheritance" },
-    { name = "griffe-fieldz" },
-    { name = "griffe-generics" },
-    { name = "griffe-inherited-docstrings" },
-    { name = "griffe-modernized-annotations" },
-    { name = "griffe-pydantic" },
-    { name = "griffe-warnings-deprecated" },
-    { name = "mdx-truly-sane-lists" },
+    { name = "liblaf-mkdocs-preset" },
     { name = "mkdocs" },
-    { name = "mkdocs-api-autonav" },
-    { name = "mkdocs-autorefs" },
-    { name = "mkdocs-git-committers-plugin-2" },
-    { name = "mkdocs-git-revision-date-localized-plugin" },
-    { name = "mkdocs-include-markdown-plugin" },
-    { name = "mkdocs-material", extra = ["imaging"] },
-    { name = "mkdocs-section-index" },
-    { name = "mkdocstrings" },
-    { name = "mkdocstrings-python" },
-    { name = "pymdown-extensions" },
-    { name = "ruff" },
 ]
 test = [
     { name = "hypothesis" },
@@ -956,6 +942,22 @@ build = [
 ]
 dev = [{ name = "icecream" }]
 docs = [
+    { name = "liblaf-mkdocs-preset", specifier = ">=0.2,<0.3" },
+    { name = "mkdocs", specifier = ">=1,<2" },
+]
+test = [
+    { name = "hypothesis" },
+    { name = "pytest" },
+    { name = "pytest-codspeed" },
+    { name = "pytest-cov" },
+    { name = "pytest-xdist" },
+]
+
+[[package]]
+name = "liblaf-mkdocs-preset"
+version = "0.2.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
     { name = "docstring-inheritance" },
     { name = "griffe-fieldz" },
     { name = "griffe-generics" },
@@ -967,22 +969,18 @@ docs = [
     { name = "mkdocs" },
     { name = "mkdocs-api-autonav" },
     { name = "mkdocs-autorefs" },
+    { name = "mkdocs-awesome-nav" },
     { name = "mkdocs-git-committers-plugin-2" },
     { name = "mkdocs-git-revision-date-localized-plugin" },
-    { name = "mkdocs-include-markdown-plugin" },
-    { name = "mkdocs-material", extras = ["imaging"] },
-    { name = "mkdocs-section-index" },
-    { name = "mkdocstrings" },
-    { name = "mkdocstrings-python" },
+    { name = "mkdocs-include-markdown-plugin", extra = ["cache"] },
+    { name = "mkdocs-material", extra = ["imaging"] },
+    { name = "mkdocstrings", extra = ["python"] },
     { name = "pymdown-extensions" },
     { name = "ruff" },
 ]
-test = [
-    { name = "hypothesis" },
-    { name = "pytest" },
-    { name = "pytest-codspeed" },
-    { name = "pytest-cov" },
-    { name = "pytest-xdist" },
+sdist = { url = "https://files.pythonhosted.org/packages/f8/5f/7300d09705ef35ce6dd11c4ce31aeae5e6933ce516a5bac4e6cb95a213a5/liblaf_mkdocs_preset-0.2.0.tar.gz", hash = "sha256:6f6c34470b4fc00bfc0fa4de3ac3b3ed97ed3ada7347fa3e75c27bec08fa9dd5", size = 4527, upload-time = "2025-08-25T07:26:33.054Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/39/da/29c52294a26053a898f2c1c61cf216d595bb3098f1c13ba5e16b97b0918e/liblaf_mkdocs_preset-0.2.0-py3-none-any.whl", hash = "sha256:55688f773b34164fd2b1983ee9857cdcce5e121f74542f94504024313d3b7bf1", size = 3890, upload-time = "2025-08-25T07:26:31.827Z" },
 ]
 
 [[package]]
@@ -1149,6 +1147,21 @@ wheels = [
 ]
 
 [[package]]
+name = "mkdocs-awesome-nav"
+version = "3.1.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "mkdocs" },
+    { name = "natsort" },
+    { name = "pydantic" },
+    { name = "wcmatch" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/6c/18/21f1e8e72b5e2133fba743741f7f0b9eb0b6f2def9e5c141c189a52a62ca/mkdocs_awesome_nav-3.1.2.tar.gz", hash = "sha256:98c5300330ad8e9b665b3f0b38e0116ddc14ce26ac7f3f8c31af5e0faa685a37", size = 8752, upload-time = "2025-05-18T19:12:38.451Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d7/23/2ae189f4bbb5d35bf6dbd202a534b3f7f929c404d056fb0b20e826b9b643/mkdocs_awesome_nav-3.1.2-py3-none-any.whl", hash = "sha256:2ae0e0bd8494c38277a88cb11b70a0e7e2731c1a3bf9c9c3cfcfd2e1b51a4b87", size = 12470, upload-time = "2025-05-18T19:12:36.96Z" },
+]
+
+[[package]]
 name = "mkdocs-get-deps"
 version = "0.2.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1204,6 +1217,11 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/e2/a1/6cf1667a05e5f468e1263fcf848772bca8cc9e358cd57ae19a01f92c9f6f/mkdocs_include_markdown_plugin-7.1.6-py3-none-any.whl", hash = "sha256:7975a593514887c18ecb68e11e35c074c5499cfa3e51b18cd16323862e1f7345", size = 27161, upload-time = "2025-06-13T18:25:49.847Z" },
 ]
 
+[package.optional-dependencies]
+cache = [
+    { name = "platformdirs" },
+]
+
 [[package]]
 name = "mkdocs-material"
 version = "9.6.17"
@@ -1243,18 +1261,6 @@ wheels = [
 ]
 
 [[package]]
-name = "mkdocs-section-index"
-version = "0.3.10"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "mkdocs" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/93/40/4aa9d3cfa2ac6528b91048847a35f005b97ec293204c02b179762a85b7f2/mkdocs_section_index-0.3.10.tar.gz", hash = "sha256:a82afbda633c82c5568f0e3b008176b9b365bf4bd8b6f919d6eff09ee146b9f8", size = 14446, upload-time = "2025-04-05T20:56:45.387Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/01/53/76c109e6f822a6d19befb0450c87330b9a6ce52353de6a9dda7892060a1f/mkdocs_section_index-0.3.10-py3-none-any.whl", hash = "sha256:bc27c0d0dc497c0ebaee1fc72839362aed77be7318b5ec0c30628f65918e4776", size = 8796, upload-time = "2025-04-05T20:56:43.975Z" },
-]
-
-[[package]]
 name = "mkdocstrings"
 version = "0.30.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1269,6 +1275,11 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/e2/0a/7e4776217d4802009c8238c75c5345e23014a4706a8414a62c0498858183/mkdocstrings-0.30.0.tar.gz", hash = "sha256:5d8019b9c31ddacd780b6784ffcdd6f21c408f34c0bd1103b5351d609d5b4444", size = 106597, upload-time = "2025-07-22T23:48:45.998Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/de/b4/3c5eac68f31e124a55d255d318c7445840fa1be55e013f507556d6481913/mkdocstrings-0.30.0-py3-none-any.whl", hash = "sha256:ae9e4a0d8c1789697ac776f2e034e2ddd71054ae1cf2c2bb1433ccfd07c226f2", size = 36579, upload-time = "2025-07-22T23:48:44.152Z" },
+]
+
+[package.optional-dependencies]
+python = [
+    { name = "mkdocstrings-python" },
 ]
 
 [[package]]
@@ -1322,6 +1333,15 @@ toml = [
 ]
 yaml = [
     { name = "pyyaml" },
+]
+
+[[package]]
+name = "natsort"
+version = "8.4.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/e2/a9/a0c57aee75f77794adaf35322f8b6404cbd0f89ad45c87197a937764b7d0/natsort-8.4.0.tar.gz", hash = "sha256:45312c4a0e5507593da193dedd04abb1469253b601ecaf63445ad80f0a1ea581" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ef/82/7a9d0550484a62c6da82858ee9419f3dd1ccc9aa1c26a1e43da3ecd20b0d/natsort-8.4.0-py3-none-any.whl", hash = "sha256:4732914fb471f56b5cce04d7bae6f164a592c7712e1c85f9ef585e197299521c" },
 ]
 
 [[package]]

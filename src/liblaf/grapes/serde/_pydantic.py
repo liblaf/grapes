@@ -2,7 +2,7 @@ from typing import Any
 
 import pydantic
 
-from liblaf.grapes.typed import PathLike
+from liblaf.grapes.typing import PathLike
 
 from ._serde import load, save
 

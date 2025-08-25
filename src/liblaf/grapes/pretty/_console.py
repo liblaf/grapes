@@ -7,7 +7,7 @@ from rich.style import Style
 from rich.theme import Theme
 
 from liblaf.grapes import env
-from liblaf.grapes.typed import clone_param_spec
+from liblaf.grapes.typing import clone_param_spec
 
 
 def default_theme() -> Theme:

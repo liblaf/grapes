@@ -11,7 +11,7 @@ from . import (
     serde,
     timing,
     tqdm,
-    typed,
+    typing,
 )
 from ._config import BaseConfig, BaseModel, Config, LogLevel, Paths, config, paths
 from ._version import __version__, __version_tuple__, version, version_tuple
@@ -48,7 +48,7 @@ from .sentinel import MISSING, NOP, nop
 from .serde import json, load, load_pydantic, save, save_pydantic, toml, yaml
 from .timing import BaseTimer, ClockName, Timer, Timings, clock, get_timer, timer
 from .tqdm import Progress, RateColumn, len_safe, parallel, track
-from .typed import ClassInfo, PathLike, clone_param_spec, clone_signature
+from .typing import ClassInfo, PathLike, clone_param_spec, clone_signature
 
 __all__ = [
     "MISSING",
@@ -123,7 +123,7 @@ __all__ = [
     "tqdm",
     "track",
     "try_import",
-    "typed",
+    "typing",
     "unbind",
     "unbind_getattr",
     "version",

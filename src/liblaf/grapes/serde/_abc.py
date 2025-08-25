@@ -2,7 +2,7 @@ from collections.abc import Buffer
 from pathlib import Path
 from typing import Any
 
-from liblaf.grapes.typed import PathLike
+from liblaf.grapes.typing import PathLike
 
 
 class Serde:

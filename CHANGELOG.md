@@ -1,15 +1,38 @@
 # Changelog
 
+## [2.0.2](https://github.com/liblaf/grapes/compare/v2.0.1..v2.0.2) - 2025-08-25
+
+### 🐛 Bug Fixes
+
+- **config:** Allow arbitrary types in BaseModel and BaseConfig - ([f67bd9e](https://github.com/liblaf/grapes/commit/f67bd9e243780caff1d9be51df2245cbc016aaf1))
+
+### ♻ Code Refactoring
+
+- **config:** centralize logging configuration and improve traceback handling - ([c752c6c](https://github.com/liblaf/grapes/commit/c752c6ccf95866faf813c7a2d686617f77556810))
+- refactor!(serde): Replace auto-detection based serde with explicit Serde class
+
+Replace the previous auto-detection based serialization system with a more explicit and flexible Serde class structure. The new implementation:
+
+- Introduces DecHook and EncHook for better Pydantic model support
+- Adds typed options for Pydantic model validation and serialization
+- Uses msgspec for JSON/TOML/YAML handling instead of multiple libraries
+- Provides clearer extension-based routing with .load() and .save() functions
+
+This change improves type safety and maintainability while providing better support for Pydantic models. The API changes are breaking - previous load_pydantic/save_pydantic functions are now integrated into the main load/save functions via hook parameters.
+
+Also includes dependency version relaxation and configuration updates for improved development workflow. - ([c52d5bc](https://github.com/liblaf/grapes/commit/c52d5bc257c3bc4f3a57fe09f739892f269a53ee))
+
+- restructure logging configuration and improve documentation - ([a33de7a](https://github.com/liblaf/grapes/commit/a33de7a11f5acfd9c1dc90358f1ec65350cd1c61))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [2.0.1](https://github.com/liblaf/grapes/compare/v2.0.0..v2.0.1) - 2025-08-24
 
 ### 🔧 Continuous Integration
 
 - **pre-commit:** add configuration for pre-commit hooks - ([8588c0e](https://github.com/liblaf/grapes/commit/8588c0e54d31be0782f0f8261738bf5faffb0368))
-
-### ❤️ New Contributors
-
-- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [2.0.0](https://github.com/liblaf/grapes/compare/v1.1.0..v2.0.0) - 2025-08-20
 

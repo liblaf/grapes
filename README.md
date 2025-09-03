@@ -51,7 +51,7 @@ Grapes is a comprehensive Python utility library offering robust tools for envir
 To install `liblaf-grapes`, run the following command:
 
 ```bash
-$ uv add liblaf-grapes
+uv add liblaf-grapes
 ```
 
 <div align="right" markdown>
@@ -69,9 +69,9 @@ You can use Github Codespaces for online development:
 Or clone it for local development:
 
 ```bash
-$ gh repo clone liblaf/grapes
-$ cd grapes
-$ just test
+gh repo clone liblaf/grapes
+cd grapes
+just test
 ```
 
 <div align="right" markdown>

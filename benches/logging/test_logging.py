@@ -11,7 +11,7 @@ from rich.logging import RichHandler
 def test_logging(benchmark: BenchmarkFixture) -> None:
     logging.basicConfig(stream=sys.stderr, force=True)
     logger: logging.Logger = logging.getLogger(__name__)
-    benchmark(logger.info, "Hello, world!")
+    benchmark(logger.info, "Hello, world!")  # pyright: ignore[reportArgumentType]
 
 
 @pytest.mark.benchmark(group="logging")
@@ -28,7 +28,7 @@ def test_logging_rich(benchmark: BenchmarkFixture) -> None:
         force=True,
     )
     logger: logging.Logger = logging.getLogger(__name__)
-    benchmark(logger.info, "Hello, world!")
+    benchmark(logger.info, "Hello, world!")  # pyright: ignore[reportArgumentType]
 
 
 @pytest.mark.benchmark(group="logging")
@@ -45,4 +45,4 @@ def test_logging_rich_record(benchmark: BenchmarkFixture) -> None:
         force=True,
     )
     logger: logging.Logger = logging.getLogger(__name__)
-    benchmark(logger.info, "Hello, world!")
+    benchmark(logger.info, "Hello, world!")  # pyright: ignore[reportArgumentType]

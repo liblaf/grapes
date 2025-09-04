@@ -1,25 +1,21 @@
 <div align="center" markdown><a name="readme-top"></a>
 
-<img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Grapes/3D/grapes_3d.png" style="height: 120px" />
-<img src="https://gw.alipayobjects.com/zos/kitchen/qJ3l3EPsdW/split.svg" style="height: 120px" />
-<img src="https://api.iconify.design/logos/python.svg" style="height: 120px; padding: 12px" />
+[![grapes](https://socialify.git.ci/liblaf/grapes/image?description=1&forks=1&issues=1&language=1&logo=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fmicrosoft%2Ffluentui-emoji%2Fassets%2FGrapes%2F3D%2Fgrapes_3d.png&name=1&owner=1&pattern=Transparent&pulls=1&stargazers=1&theme=Auto)](https://github.com/liblaf/grapes)
 
-# Grapes
+[**Explore the docs »**](https://liblaf-grapes.readthedocs.io/)
 
-Grapes is a comprehensive Python utility library offering robust tools for environment configuration, human-readable formatting, logging, progress tracking, serialization, and timing. Built with extensibility and performance in mind, it integrates seamlessly with popular libraries like Pydantic, Loguru, and Rich, providing developers with a powerful toolkit for building efficient and maintainable applications. <br />
-[**Explore the docs »**](https://liblaf.github.io/grapes/)
+<!-- tangerine-start: badges/python.md -->
 
+[![Codecov](https://img.shields.io/codecov/c/github/liblaf/grapes?logo=Codecov&label=Coverage)](https://codecov.io/gh/liblaf/grapes)
+[![CodSpeed Badge](https://img.shields.io/endpoint?url=https://codspeed.io/badge.json)](https://codspeed.io/liblaf/grapes)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/liblaf/grapes/test.yaml?logo=GitHub%20Actions&label=Test)](https://github.com/liblaf/grapes/actions/workflows/test.yaml)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/liblaf/apple/main.svg)](https://results.pre-commit.ci/latest/github/liblaf/apple/main)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/liblaf-grapes?logo=PyPI&label=Downloads)](https://pypi.org/project/liblaf-grapes)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/liblaf-grapes?logo=Python&label=Python)](https://pypi.org/project/liblaf-grapes)
 [![PyPI - Version](https://img.shields.io/pypi/v/liblaf-grapes?logo=PyPI&label=PyPI)](https://pypi.org/project/liblaf-grapes)
-[![Codecov](https://img.shields.io/codecov/c/github/liblaf/grapes?logo=Codecov&label=Coverage)](https://codecov.io/gh/liblaf/grapes)
-[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/liblaf/grapes/test.yaml?logo=GitHub%20Actions&label=Test)](https://github.com/liblaf/grapes/actions/workflows/test.yaml)
-<br />
-[![GitHub Contributors](https://img.shields.io/github/contributors/liblaf/grapes?logo=GitHub&label=Contributors)](https://github.com/liblaf/grapes/graphs/contributors)
-[![GitHub Forks](https://img.shields.io/github/forks/liblaf/grapes)](https://github.com/liblaf/grapes/forks)
-[![GitHub Repo Stars](https://img.shields.io/github/stars/liblaf/grapes)](https://github.com/liblaf/grapes/stargazers)
-[![GitHub Issues](https://img.shields.io/github/issues/liblaf/grapes?logo=GitHub&label=Issues)](https://github.com/liblaf/grapes/issues)
-[![GitHub License](https://img.shields.io/github/license/liblaf/grapes?label=License)](https://github.com/liblaf/grapes/blob/main/LICENSE)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+
+<!-- tangerine-end -->
 
 [Changelog](https://github.com/liblaf/grapes/blob/main/CHANGELOG.md) · [Report Bug](https://github.com/liblaf/grapes/issues) · [Request Feature](https://github.com/liblaf/grapes/issues)
 
@@ -42,7 +38,7 @@ Grapes is a comprehensive Python utility library offering robust tools for envir
 
 <div align="right" markdown>
 
-[![](https://img.shields.io/badge/-BACK_TO_TOP-black?style=flat-square)](#readme-top)
+[![Back to Top](https://img.shields.io/badge/-BACK_TO_TOP-black?style=flat-square)](#readme-top)
 
 </div>
 
@@ -56,7 +52,7 @@ uv add liblaf-grapes
 
 <div align="right" markdown>
 
-[![](https://img.shields.io/badge/-BACK_TO_TOP-black?style=flat-square)](#readme-top)
+[![Back to Top](https://img.shields.io/badge/-BACK_TO_TOP-black?style=flat-square)](#readme-top)
 
 </div>
 
@@ -64,19 +60,20 @@ uv add liblaf-grapes
 
 You can use Github Codespaces for online development:
 
-[![](https://github.com/codespaces/badge.svg)](https://codespaces.new/liblaf/grapes)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/liblaf/grapes)
 
 Or clone it for local development:
 
 ```bash
 gh repo clone liblaf/grapes
 cd grapes
-just test
+mise run install
+mise run test
 ```
 
 <div align="right" markdown>
 
-[![](https://img.shields.io/badge/-BACK_TO_TOP-black?style=flat-square)](#readme-top)
+[![Back to Top](https://img.shields.io/badge/-BACK_TO_TOP-black?style=flat-square)](#readme-top)
 
 </div>
 
@@ -84,13 +81,13 @@ just test
 
 Contributions of all types are more than welcome, if you are interested in contributing code, feel free to check out our GitHub [Issues](https://github.com/liblaf/grapes/issues) to get stuck in to show us what you're made of.
 
-[![](https://img.shields.io/badge/%F0%9F%A4%AF%20PR%20WELCOME-%E2%86%92-ffcb47?labelColor=black&style=for-the-badge)](https://github.com/liblaf/grapes/pulls)
+[![PR Welcome](https://img.shields.io/badge/%F0%9F%A4%AF%20PR%20WELCOME-%E2%86%92-ffcb47?labelColor=black&style=for-the-badge)](https://github.com/liblaf/grapes/pulls)
 
-[![](https://contrib.rocks/image?repo=liblaf%2Fgrapes)](https://github.com/liblaf/grapes/graphs/contributors)
+[![Contributors](https://contrib.nn.ci/api?repo=liblaf/grapes)](https://github.com/liblaf/grapes/graphs/contributors)
 
 <div align="right" markdown>
 
-[![](https://img.shields.io/badge/-BACK_TO_TOP-black?style=flat-square)](#readme-top)
+[![Back to Top](https://img.shields.io/badge/-BACK_TO_TOP-black?style=flat-square)](#readme-top)
 
 </div>
 
@@ -98,15 +95,15 @@ Contributions of all types are more than welcome, if you are interested in contr
 
 ### More Projects
 
+<!-- tangerine-start: projects/python.md -->
+
 - **[🍇 grapes](https://github.com/liblaf/grapes)** - Powerful Python utilities for logging, timing, and more, making development smoother!
 
-### Credits
-
-- **Python** - <https://www.python.org/>
+<!-- tangerine-end -->
 
 <div align="right" markdown>
 
-[![](https://img.shields.io/badge/-BACK_TO_TOP-black?style=flat-square)](#readme-top)
+[![Back to Top](https://img.shields.io/badge/-BACK_TO_TOP-black?style=flat-square)](#readme-top)
 
 </div>
 

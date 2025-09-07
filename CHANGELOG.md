@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.3](https://github.com/liblaf/grapes/compare/v2.0.2..v2.0.3) - 2025-09-07
+
+### 📝 Documentation
+
+- **README:** Update README badges and documentation links - ([a586915](https://github.com/liblaf/grapes/commit/a586915c6a4a1907cca680d7ec7ca4eb69bbb7ad))
+
+### ❤️ New Contributors
+
+- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [2.0.2](https://github.com/liblaf/grapes/compare/v2.0.1..v2.0.2) - 2025-08-25
 
 ### 🐛 Bug Fixes
@@ -23,10 +34,6 @@ This change improves type safety and maintainability while providing better supp
 Also includes dependency version relaxation and configuration updates for improved development workflow. - ([c52d5bc](https://github.com/liblaf/grapes/commit/c52d5bc257c3bc4f3a57fe09f739892f269a53ee))
 
 - restructure logging configuration and improve documentation - ([a33de7a](https://github.com/liblaf/grapes/commit/a33de7a11f5acfd9c1dc90358f1ec65350cd1c61))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [2.0.1](https://github.com/liblaf/grapes/compare/v2.0.0..v2.0.1) - 2025-08-24
 

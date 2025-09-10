@@ -26,7 +26,6 @@ class BaseModel(MixinOverrides, pydantic.BaseModel):
     )
 
     def to_dict(self, **kwargs) -> Mapping[str, Any]:
-        kwargs.setdefault("exclude_none", True)
         return self.model_dump(**kwargs)
 
 

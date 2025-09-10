@@ -72,7 +72,10 @@ class RichSink:
         # ref: <https://github.com/Textualize/rich/discussions/3774>
         with unittest.mock.patch("rich.pretty.repr", new=pretty.pformat):
             rich_tb: Traceback = Traceback.from_exception(
-                exc_type, exc_value, traceback, **config.logging.traceback.to_dict()
+                exc_type,
+                exc_value,
+                traceback,
+                **config.logging.traceback.to_dict(exclude_none=False),
             )
 
         # ? dirty hack to support ANSI in exception messages

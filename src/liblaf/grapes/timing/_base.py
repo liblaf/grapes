@@ -10,9 +10,9 @@ from ._timings import Callback, Timings
 
 @attrs.define
 class BaseTimer(Timings):
-    cb_start: Callback | None = attrs.field(default=None)
-    cb_stop: Callback | None = attrs.field(default=callback.log_record)
-    cb_finish: Callback | None = attrs.field(default=callback.log_summary)
+    cb_start: Callback | None = None
+    cb_stop: Callback | None = callback.log_record
+    cb_finish: Callback | None = callback.log_summary
 
     def __bool__(self) -> bool:
         return True

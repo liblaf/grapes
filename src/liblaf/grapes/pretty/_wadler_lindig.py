@@ -76,9 +76,9 @@ def pdoc_custom(
 @functools.singledispatch
 def pformat(obj: Any, **kwargs: Unpack[WadlerLindigOptions]) -> str:
     kwargs: WadlerLindigOptions = _make_kwargs(kwargs)
-    if not kwargs.get("width"):
+    if kwargs.get("width") is None:
         kwargs["width"] = get_console(stderr=True).width
-    if not kwargs.get("custom"):
+    if kwargs.get("custom") is None:
         kwargs["custom"] = functools.partial(pdoc_custom, **kwargs)
     return wl.pformat(obj, **kwargs)  # pyright: ignore[reportArgumentType]
 

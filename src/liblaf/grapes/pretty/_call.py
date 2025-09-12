@@ -12,8 +12,8 @@ from ._wadler_lindig import pformat
 @attrs.define
 class PrettyCall:
     func: Callable
-    args: Sequence[Any] = attrs.field(default=())
-    kwargs: Mapping[str, Any] = attrs.field(default={})
+    args: Sequence[Any] = ()
+    kwargs: Mapping[str, Any] = {}
 
     def __repr__(self) -> str:
         return pformat(self)

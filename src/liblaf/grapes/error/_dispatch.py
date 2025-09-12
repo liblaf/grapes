@@ -1,5 +1,4 @@
 from collections.abc import Callable, Mapping, Sequence
-from typing import Self
 
 import attrs
 
@@ -17,9 +16,11 @@ class DispatchLookupError(LookupError):
     func: Callable
     params: Params
 
-    @classmethod
-    def new(cls, func: Callable, args: Sequence, kwargs: Mapping) -> Self:
-        return cls(func=func, params=Params(args=args, kwargs=kwargs))
+    def __init__(
+        self, func: Callable, args: Sequence = (), kwargs: Mapping = {}
+    ) -> None:
+        params = Params(args=args, kwargs=kwargs)
+        self.__attrs_init__(func=func, params=params)  # pyright: ignore[reportAttributeAccessIssue]
 
     def __str__(self) -> str:
         pretty_call: str = pretty.pretty_call(

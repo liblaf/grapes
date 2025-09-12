@@ -13,15 +13,16 @@ def rich_location(
     file: PathLike | None = None,
     *,
     enable_link: bool = True,
+    width: int | None = None,
 ) -> Text:
-    text = Text()
+    if width:
+        # TODO: truncate long name
+        raise NotImplementedError
     file: Path | None = Path(file) if file is not None else None
     function = function or "<unknown>"
     line = line or 0
     if enable_link and file is not None and file.exists():
-        text.append(
+        return Text(
             f"{name}:{function}:{line}", style=Style(link=f"{file.as_uri()}#{line}")
         )
-    else:
-        text.append(f"{name}:{function}:{line}")
-    return text
+    return Text(f"{name}:{function}:{line}")

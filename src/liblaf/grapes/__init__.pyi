@@ -44,12 +44,11 @@ from .pretty import (
     get_console,
     has_ansi,
     pdoc_attrs,
+    pdoc_custom,
     pformat,
-    pformat_attrs,
     pretty_call,
     pretty_func,
     rich_location,
-    wadler_lindig,
 )
 from .sentinel import MISSING, NOP, nop
 from .serde import (
@@ -68,19 +67,16 @@ from .serde import (
 )
 from .timing import BaseTimer, ClockName, Timer, Timings, clock, get_timer, timer
 from .tqdm import Progress, RateColumn, len_safe, parallel, track
-from .typing import ClassInfo, PathLike, clone_param_spec, clone_signature
+from .typing import ClassInfo, PathLike, array_kind, clone_param_spec, clone_signature
 
 __all__ = [
     "MISSING",
     "NOP",
     "BaseConfig",
-    "BaseConfig",
-    "BaseModel",
     "BaseModel",
     "BaseTimer",
     "ClassInfo",
     "ClockName",
-    "Config",
     "Config",
     "ConfigJoblib",
     "ConfigJoblibMemory",
@@ -100,6 +96,7 @@ __all__ = [
     "Timings",
     "__version__",
     "__version_tuple__",
+    "array_kind",
     "as_iterable",
     "as_sequence",
     "cache",
@@ -107,7 +104,6 @@ __all__ = [
     "clone_param_spec",
     "clone_signature",
     "conf",
-    "config",
     "config",
     "dec_hook",
     "decorator",
@@ -136,8 +132,8 @@ __all__ = [
     "optional_imports",
     "parallel",
     "pdoc_attrs",
+    "pdoc_custom",
     "pformat",
-    "pformat_attrs",
     "pretty",
     "pretty_call",
     "pretty_func",
@@ -156,6 +152,5 @@ __all__ = [
     "unbind_getattr",
     "version",
     "version_tuple",
-    "wadler_lindig",
     "yaml",
 ]

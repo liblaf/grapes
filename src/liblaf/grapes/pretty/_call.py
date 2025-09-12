@@ -5,7 +5,7 @@ from typing import Any
 import attrs
 import wadler_lindig as wl
 
-from ._func import _get_name
+from ._utils import get_name
 from ._wadler_lindig import pformat
 
 
@@ -19,12 +19,12 @@ class PrettyCall:
         return pformat(self)
 
     def __pdoc__(self, **kwargs) -> wl.AbstractDoc:
-        func_name: str = _get_name(self.func)
-        docs: list[wl.AbstractDoc] = [wl.pdoc(arg, **kwargs) for arg in self.args]
-        docs += wl.named_objs(self.kwargs.items(), **kwargs)
+        name: str = get_name(self.func)
+        params: list[wl.AbstractDoc] = [wl.pdoc(arg, **kwargs) for arg in self.args]
+        params += wl.named_objs(self.kwargs.items(), **kwargs)
         return wl.bracketed(
-            begin=wl.TextDoc(func_name) + wl.TextDoc("("),
-            docs=docs,
+            begin=wl.TextDoc(name) + wl.TextDoc("("),
+            docs=params,
             sep=wl.comma,
             end=wl.TextDoc(")"),
             indent=kwargs["indent"],

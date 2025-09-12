@@ -3,16 +3,16 @@ from ._call import pretty_call
 from ._console import get_console
 from ._func import pretty_func
 from ._location import rich_location
-from ._wadler_lindig import pdoc_attrs, pformat, pformat_attrs, wadler_lindig
+from ._wadler_lindig import WadlerLindigOptions, pdoc_attrs, pdoc_custom, pformat
 
 __all__ = [
+    "WadlerLindigOptions",
     "get_console",
     "has_ansi",
     "pdoc_attrs",
+    "pdoc_custom",
     "pformat",
-    "pformat_attrs",
     "pretty_call",
     "pretty_func",
     "rich_location",
-    "wadler_lindig",
 ]

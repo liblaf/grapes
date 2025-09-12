@@ -1,23 +1,23 @@
 import datetime
 import functools
-from collections.abc import Callable
-from typing import Any, Protocol, TypedDict, overload
+from collections.abc import Callable, Iterable, Mapping
+from typing import Any, Literal, Protocol, TypedDict, overload
 
+import cytoolz as toolz
 import joblib
 
-from liblaf.grapes._config import config
+from liblaf.grapes.conf import config
 
 from ._wrapt import decorator
 
 
-class ReduceSizeKwargs(TypedDict, total=False):
-    bytes_limit: int | str | None
-    items_limit: int | None
-    age_limit: datetime.timedelta | None
-
-
 class MemorizedFunc[**P, T](Protocol):
+    @property
+    def _self_memory(self) -> joblib.Memory: ...
     def __call__(self, *args: P.args, **kwargs: P.kwargs) -> T: ...
+
+
+class Metadata(TypedDict): ...
 
 
 @overload
@@ -25,48 +25,63 @@ def cache[**P, T](
     func: Callable[P, T],
     /,
     *,
-    memory: joblib.Memory | None = None,
-    reduce_size: ReduceSizeKwargs | None = None,
-    **kwargs: Any,
+    memory: joblib.Memory | None = ...,
+    # memory.cache() params
+    ignore: list[str] | None = ...,
+    verbose: int | None = ...,
+    mmap_mode: Literal["r+", "r", "w+", "c"] | None = ...,
+    cache_validation_callback: Callable[[Metadata], bool] | None = ...,
+    # memory.reduce_size() params
+    bytes_limit: int | str | None = ...,
+    items_limit: int | None = ...,
+    age_limit: datetime.timedelta | None = ...,
 ) -> MemorizedFunc[P, T]: ...
 @overload
 def cache[**P, T](
     *,
     memory: joblib.Memory | None = None,
-    reduce_size: ReduceSizeKwargs | None = None,
-    **kwargs: Any,
+    # memory.cache() params
+    ignore: list[str] | None = ...,
+    verbose: int | None = ...,
+    mmap_mode: Literal["r+", "r", "w+", "c"] | None = ...,
+    cache_validation_callback: Callable[[Metadata], bool] | None = ...,
+    # memory.reduce_size() params
+    bytes_limit: int | str | None = ...,
+    items_limit: int | None = ...,
+    age_limit: datetime.timedelta | None = ...,
 ) -> Callable[[Callable[P, T]], MemorizedFunc[P, T]]: ...
-def cache(
-    func: Callable | None = None,
-    /,
-    *,
-    memory: joblib.Memory | None = None,
-    reduce_size: ReduceSizeKwargs | None = None,
-    **kwargs: Any,
-) -> Any:
+def cache(func: Callable | None = None, /, **kwargs: Any) -> Any:
     if func is None:
-        return functools.partial(
-            cache, memory=memory, reduce_size=reduce_size, **kwargs
-        )
+        return functools.partial(cache, **kwargs)
+    memory: joblib.Memory | None = kwargs.pop("memory", None)
     if memory is None:
-        memory = _get_memory()
-    if reduce_size is None:
-        reduce_size = {"bytes_limit": config.joblib.memory.bytes_limit}
-    func: MemorizedFunc = memory.cache(func, **kwargs)  # pyright: ignore[reportAssignmentType]
+        memory = new_memory()
+    cache_kwargs: dict[str, Any] = _filter_keys(
+        kwargs, ("ignore", "verbose", "mmap_mode", "cache_validation_callback")
+    )
+    reduce_size_kwargs: dict[str, Any] = _filter_keys(
+        kwargs, ("bytes_limit", "items_limit", "age_limit")
+    )
+    reduce_size_kwargs.setdefault("bytes_limit", config.joblib.memory.bytes_limit)
 
     @decorator
     def wrapper(
         wrapped: Callable, _instance: Any, args: tuple, kwargs: dict[str, Any]
     ) -> Any:
-        ret: Any = wrapped(*args, **kwargs)
-        memory.reduce_size(**reduce_size)
-        return ret
+        result: Any = wrapped(*args, **kwargs)
+        memory.reduce_size(**reduce_size_kwargs)
+        return result
 
-    proxy: MemorizedFunc = wrapper(func)
-    proxy._self_memory = memory  # pyright: ignore[reportAttributeAccessIssue] # noqa: SLF001
-    return proxy
+    func = memory.cache(func, **cache_kwargs)
+    func = wrapper(func)
+    func._self_memory = memory  # pyright: ignore[reportAttributeAccessIssue] # noqa: SLF001
+    return func
 
 
 @functools.cache
-def _get_memory() -> joblib.Memory:
-    return joblib.Memory(config.joblib.memory.location)
+def new_memory() -> joblib.Memory:
+    return joblib.Memory(location=config.joblib.memory.location)
+
+
+def _filter_keys[KT, VT](mapping: Mapping[KT, VT], keys: Iterable[KT]) -> dict[KT, VT]:
+    return toolz.keyfilter(lambda k: k in keys, mapping)

@@ -3,15 +3,11 @@ import functools
 from collections.abc import Callable, Generator, Iterable
 from typing import Literal, overload
 
+import joblib
 from rich.progress import Progress as RichProgress
 from rich.progress import TaskID
 
-from liblaf.grapes import deps
-
 from ._progress import Progress, len_safe
-
-with deps.optional_imports():
-    import joblib
 
 
 @overload

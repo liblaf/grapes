@@ -1,4 +1,5 @@
 from . import (
+    conf,
     env,
     error,
     functools,
@@ -13,12 +14,18 @@ from . import (
     tqdm,
     typing,
 )
-from ._config import BaseConfig, BaseModel, Config, LogLevel, Paths, config, paths
 from ._version import __version__, __version_tuple__, version, version_tuple
+from .conf import (
+    BaseConfig,
+    BaseModel,
+    Config,
+    ConfigJoblib,
+    ConfigJoblibMemory,
+    config,
+)
 from .deps import has_module, optional_imports, try_import
 from .error import DispatchLookupError, MatchError
 from .functools import (
-    ConditionalDispatcher,
     Decorator,
     MemorizedFunc,
     cache,
@@ -67,21 +74,23 @@ __all__ = [
     "MISSING",
     "NOP",
     "BaseConfig",
+    "BaseConfig",
+    "BaseModel",
     "BaseModel",
     "BaseTimer",
     "ClassInfo",
     "ClockName",
-    "ConditionalDispatcher",
     "Config",
+    "Config",
+    "ConfigJoblib",
+    "ConfigJoblibMemory",
     "DecHook",
     "Decorator",
     "DispatchLookupError",
     "EncHook",
-    "LogLevel",
     "MatchError",
     "MemorizedFunc",
     "PathLike",
-    "Paths",
     "Progress",
     "PydanticModelDumpOptions",
     "PydanticModelValidateOptions",
@@ -97,6 +106,8 @@ __all__ = [
     "clock",
     "clone_param_spec",
     "clone_signature",
+    "conf",
+    "config",
     "config",
     "dec_hook",
     "decorator",
@@ -124,7 +135,6 @@ __all__ = [
     "nop",
     "optional_imports",
     "parallel",
-    "paths",
     "pdoc_attrs",
     "pformat",
     "pformat_attrs",

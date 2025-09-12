@@ -17,8 +17,8 @@ type Encoder = Callable
 
 @attrs.define
 class Serde:
-    decoder: Decoder = attrs.field()
-    encoder: Encoder = attrs.field()
+    decoder: Decoder
+    encoder: Encoder
 
     @overload
     def decode(

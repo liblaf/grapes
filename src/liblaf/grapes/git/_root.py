@@ -13,7 +13,7 @@ def root(
     return Path(repo.working_dir)
 
 
-def root_safe(
+def root_or_cwd(
     path: PathLike | None = None, *, search_parent_directories: bool = True
 ) -> Path:
     try:

@@ -16,8 +16,10 @@ useGitignore: true
 words:
   - arithmatex
   - assembla
+  - confz
   - cytoolz
   - direnv
+  - dulwich
   - etils
   - fieldz
   - functools
@@ -53,6 +55,7 @@ words:
   - ruamel
   - sdist
   - serde
+  - stdev
   - tombi
   - tqdm
   - trimesh

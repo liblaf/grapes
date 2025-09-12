@@ -40,6 +40,7 @@ dependencies = [
   "about-time>=4,<5",
   "attrs>=25,<26",
   "autoregistry>=1,<2",
+  "confz>=2,<3",
   "cytoolz>=1,<2",
   "environs>=14,<15",
   "etils>=1,<2",

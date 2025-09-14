@@ -1,5 +1,34 @@
 # Changelog
 
+## [3.0.0](https://github.com/liblaf/grapes/compare/v2.0.3...v3.0.0) (2025-09-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* The `root_safe` function has been renamed to `root_or_cwd` in the git module
+
+### ✨ Features
+
+* **pretty:** enhance pretty-printing with array support and configuration ([bc640f6](https://github.com/liblaf/grapes/commit/bc640f6cdfbab1e01889d8ef4fbd1309e8f37f42))
+
+
+### 🐛 Bug Fixes
+
+* Ensure None values are included in configuration serialization ([991a0f2](https://github.com/liblaf/grapes/commit/991a0f21576ae42fbb3dda111a226a7db64355ab))
+* **error:** simplify DispatchLookupError initialization ([fcd9eca](https://github.com/liblaf/grapes/commit/fcd9eca1ae9ac90dbb650981fa645039fc779b86))
+
+
+### 📝 Documentation
+
+* update README and project metadata for better clarity and consistency ([046226a](https://github.com/liblaf/grapes/commit/046226a5f7fe6ec8da38ca61d44c74238fa8be39))
+
+
+### ♻️ Code Refactoring
+
+* **pretty, timing:** Simplify attribute definitions and fix condition checks ([717dc08](https://github.com/liblaf/grapes/commit/717dc08575d6360f83ed0026452fbba748c968ed))
+* remove unused dependencies and rename git root function ([f9e5b6c](https://github.com/liblaf/grapes/commit/f9e5b6c9ab9f4eb043f660a8ace64d7f506c8138))
+* reorganize configuration system and clean up dependency handling ([4514d79](https://github.com/liblaf/grapes/commit/4514d7944c96587a5a31caa6c637e0b44d140001))
+
 ## [2.0.3](https://github.com/liblaf/grapes/compare/v2.0.2..v2.0.3) - 2025-09-07
 
 ### 📝 Documentation

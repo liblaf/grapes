@@ -41,12 +41,14 @@ from .human import (
 )
 from .itertools import as_iterable, as_sequence, deep_merge, first_not_none
 from .pretty import (
+    choose_duration_format,
     get_console,
     has_ansi,
     pdoc_attrs,
     pdoc_custom,
     pformat,
     pretty_call,
+    pretty_duration,
     pretty_func,
     rich_location,
 )
@@ -100,6 +102,7 @@ __all__ = [
     "as_iterable",
     "as_sequence",
     "cache",
+    "choose_duration_format",
     "clock",
     "clone_param_spec",
     "clone_signature",
@@ -136,6 +139,7 @@ __all__ = [
     "pformat",
     "pretty",
     "pretty_call",
+    "pretty_duration",
     "pretty_func",
     "rich_location",
     "save",

@@ -4,23 +4,19 @@ from typing import Literal
 
 import autoregistry
 
-# ruff: noqa: PYI051
 # for code-completion
-type ClockName = (
-    Literal[
-        "monotonic",
-        "perf",
-        "process",
-        "thread",
-        "time",
-        "children-system",
-        "children-user",
-        "elapsed",
-        "system",
-        "user",
-    ]
-    | str
-)
+type ClockName = Literal[
+    "monotonic",
+    "perf",
+    "process",
+    "thread",
+    "time",
+    "children-system",
+    "children-user",
+    "elapsed",
+    "system",
+    "user",
+]
 
 CLOCK_REGISTRY = autoregistry.Registry()
 

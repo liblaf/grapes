@@ -1,4 +1,5 @@
 from ._ansi import has_ansi
+from ._auto_repr import auto_repr
 from ._call import pretty_call
 from ._console import get_console
 from ._duration import choose_duration_format, pretty_duration
@@ -9,6 +10,7 @@ from ._wadler_lindig import WadlerLindigOptions, pdoc_attrs, pdoc_custom, pforma
 
 __all__ = [
     "WadlerLindigOptions",
+    "auto_repr",
     "choose_duration_format",
     "get_console",
     "has_ansi",

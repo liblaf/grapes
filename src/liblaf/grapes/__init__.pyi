@@ -28,6 +28,7 @@ from .functools import (
 from .itertools import as_iterable, as_sequence, deep_merge, first_not_none, len_or_none
 from .pretty import (
     WadlerLindigOptions,
+    auto_repr,
     choose_duration_format,
     get_console,
     has_ansi,
@@ -88,6 +89,7 @@ __all__ = [
     "array_kind",
     "as_iterable",
     "as_sequence",
+    "auto_repr",
     "cache",
     "choose_duration_format",
     "clock",

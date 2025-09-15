@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/liblaf/grapes/compare/v4.0.0...v4.1.0) (2025-09-15)
+
+
+### ✨ Features
+
+* **pretty:** Add auto_repr decorator for automatic pretty-printing of classes ([22834cd](https://github.com/liblaf/grapes/commit/22834cd5359817a7798c6a5a3576ee7947a9f857))
+
 ## [4.0.0](https://github.com/liblaf/grapes/compare/v3.0.0..v4.0.0) - 2025-09-15
 
 ### 💥 BREAKING CHANGES

@@ -1,29 +1,44 @@
-import functools
-import types
-from collections.abc import Callable, Iterable
-from typing import Any
+from collections.abc import Callable, Iterable, Sequence
+from typing import Any, overload
 
+from ._clock import ClockName
 from ._timer import Timer
+from ._timings import Callback
 
 
-@functools.singledispatch
-def _timer_dispatch(*args, **kwargs) -> Any:
-    return Timer(*args, **kwargs)
-
-
-@_timer_dispatch.register(str)
-@_timer_dispatch.register(types.NoneType)
-def _timer_name(name: str | None, /, **kwargs) -> Timer:
-    return Timer(name=name, **kwargs)
-
-
-@_timer_dispatch.register(Callable)
-@_timer_dispatch.register(Iterable)
-def _timer_wrapper[T: Callable | Iterable](wrapped: T, /, **kwargs) -> T:
-    return Timer(**kwargs)(wrapped)
-
-
-def timer(*args, **kwargs) -> Any:
-    if len(args) > 0:
-        return _timer_dispatch(*args, **kwargs)
-    return Timer(*args, **kwargs)
+@overload
+def timer(
+    *,
+    name: str | None = ...,
+    clocks: Sequence[ClockName] = ...,
+    cb_finish: Callback | None = ...,
+    cb_start: Callback | None = ...,
+    cb_stop: Callback | None = ...,
+) -> Timer: ...
+@overload
+def timer[C: Callable](
+    callable: C,
+    /,
+    *,
+    name: str | None = ...,
+    clocks: Sequence[ClockName] = ...,
+    cb_start: Callback | None = ...,
+    cb_stop: Callback | None = ...,
+    cb_finish: Callback | None = ...,
+) -> C: ...
+@overload
+def timer[I: Iterable](
+    iterable: I,
+    /,
+    *,
+    name: str | None = ...,
+    clocks: Sequence[ClockName] = ...,
+    cb_start: Callback | None = ...,
+    cb_stop: Callback | None = ...,
+    cb_finish: Callback | None = ...,
+) -> I: ...
+def timer(func_or_iterable: Callable | Iterable | None = None, /, **kwargs) -> Any:
+    timer = Timer(**kwargs)
+    if func_or_iterable is None:
+        return timer
+    return timer(func_or_iterable)

@@ -22,9 +22,9 @@ class TimedIterable[T](wrapt.ObjectProxy):
             self._self_timer.start()
             try:
                 for item in self.__wrapped__:
-                    self._self_timer.start()
                     yield item
                     self._self_timer.stop()
+                    self._self_timer.start()
             finally:
                 # When the `for` loop is exhausted, it does not re-enter the loop
                 # body. Therefore, the `start()` call after the *last* item is

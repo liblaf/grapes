@@ -15,5 +15,6 @@ LOG_SUMMARY_DEFAULT_LEVEL: int | str = "INFO"
 LOG_SUMMARY_DEFAULT_STATISTICS: Iterable[StatisticName] = (
     "total",
     "mean+stdev",
+    "range",
     "median",
 )

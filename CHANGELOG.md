@@ -1,5 +1,24 @@
 # Changelog
 
+## [4.0.0](https://github.com/liblaf/grapes/compare/v3.0.0...v4.0.0) (2025-09-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* **timing:** The timer function now requires keyword arguments for configuration. The pretty_statistic function now returns a tuple instead of a string.
+
+### ✨ Features
+
+* **logging:** add width parameter to location column and truncate long names ([4e0dfc1](https://github.com/liblaf/grapes/commit/4e0dfc1af3f7e50b60b8f50e3d1b502c68d6d0c6))
+* **pretty:** add human-readable duration formatting functions ([5b7012d](https://github.com/liblaf/grapes/commit/5b7012db592ddb1db4fdf87badcdf94f130f7755))
+
+
+### ♻️ Code Refactoring
+
+* **logging:** remove profile-based configuration and simplify logging setup ([d77060d](https://github.com/liblaf/grapes/commit/d77060d06363befeeb8c6261ae526ecf3330c37e))
+* Move human-readable formatting to pretty module and add len_or_none utility ([157dfba](https://github.com/liblaf/grapes/commit/157dfba3d2b9eddf276defaf26cd2265d14076a3))
+* **timing:** improve timer API and fix measurement logic ([5f0a119](https://github.com/liblaf/grapes/commit/5f0a1193ba48afcb380addf33277d48140cd03ad))
+
 ## [3.0.0](https://github.com/liblaf/grapes/compare/v2.0.3..v3.0.0) - 2025-09-14
 
 ### 💥 BREAKING CHANGES

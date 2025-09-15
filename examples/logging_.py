@@ -14,8 +14,6 @@ def main() -> None:
     except ValueError:
         logger.exception("Exception:")
 
-    raise NotImplementedError
-
 
 if __name__ == "__main__":
     main()

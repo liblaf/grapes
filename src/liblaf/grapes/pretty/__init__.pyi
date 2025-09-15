@@ -4,6 +4,7 @@ from ._console import get_console
 from ._duration import choose_duration_format, pretty_duration
 from ._func import pretty_func
 from ._location import rich_location
+from ._throughput import pretty_throughput
 from ._wadler_lindig import WadlerLindigOptions, pdoc_attrs, pdoc_custom, pformat
 
 __all__ = [
@@ -17,5 +18,6 @@ __all__ = [
     "pretty_call",
     "pretty_duration",
     "pretty_func",
+    "pretty_throughput",
     "rich_location",
 ]

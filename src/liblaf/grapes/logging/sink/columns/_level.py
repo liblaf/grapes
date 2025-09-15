@@ -8,9 +8,9 @@ from ._abc import RichSinkColumn
 
 
 class RichSinkColumnLevel(RichSinkColumn):
-    # TODO: custom width
+    width: int = 1
 
     @override  # impl RichSinkColumn
     def render(self, record: "loguru.Record", /) -> RenderableType:
         level: str = record["level"].name
-        return Text(f"{level:<8}", style=f"logging.level.{level.lower()}")
+        return Text(f"{level:<.{self.width}}", style=f"logging.level.{level.lower()}")

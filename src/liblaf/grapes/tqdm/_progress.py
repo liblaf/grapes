@@ -18,38 +18,22 @@ from rich.progress import Progress as RichProgress
 from rich.table import Column
 from rich.text import Text
 
-from liblaf.grapes import human, pretty, timing
+from liblaf.grapes import itertools as _it
+from liblaf.grapes import pretty, timing
 from liblaf.grapes.logging import depth_tracker
 
 
 class RateColumn(ProgressColumn):
-    """RateColumn is a subclass of ProgressColumn that represents the rate of progress for a given task."""
-
     unit: str = "it"
-    """The unit of measurement for the progress bar."""
 
     def __init__(self, unit: str = "it", table_column: Column | None = None) -> None:
-        """.
-
-        Args:
-            unit: The unit of measurement for the progress bar.
-            table_column: The table column associated with the progress bar.
-        """
         super().__init__(table_column)
         self.unit = unit
 
     def render(self, task: Task) -> RenderableType:
-        """Render the progress speed of a given task.
-
-        Args:
-            task: The task for which the speed is to be rendered.
-
-        Returns:
-            A text object representing the speed of the task.
-        """
         if not task.speed:
             return Text(f"?{self.unit}/s", style="progress.data.speed")
-        throughput: str = human.human_throughput(task.speed, self.unit)
+        throughput: str = pretty.pretty_throughput(task.speed, self.unit)
         return Text(throughput, style="progress.data.speed")
 
 
@@ -64,10 +48,10 @@ class Progress(RichProgress):
     ) -> None:
         if console is None:
             console = pretty.get_console(stderr=True)
+        super().__init__(*columns, console=console)
         if timer is None:
             timer = timing.timer()
         self.timer = timer
-        super().__init__(*columns, console=console)
 
     @override
     @classmethod
@@ -101,7 +85,7 @@ class Progress(RichProgress):
         timer: timing.Timer | Literal[False] | None = None,
     ) -> Iterable[T]:
         if total is None:
-            total = len_safe(sequence)
+            total = _it.len_or_none(sequence)
         if timer := (timer or self.timer):
             sequence = timer(sequence)
             timing.get_timer(sequence).name = description
@@ -114,10 +98,3 @@ class Progress(RichProgress):
                 description=description,
                 update_period=update_period,
             )
-
-
-def len_safe(iterable: Iterable) -> int | None:
-    try:
-        return len(iterable)  # pyright: ignore[reportArgumentType]
-    except TypeError:
-        return None

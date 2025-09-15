@@ -15,7 +15,7 @@ def main() -> None:
     for sec in sec_list:
         table.add_row(
             f"{sec:#.3g}",
-            grapes.human_duration(sec),
+            grapes.pretty_duration(sec),
             about_time.HumanDuration(sec).as_human(),
         )
     rich.print(table)

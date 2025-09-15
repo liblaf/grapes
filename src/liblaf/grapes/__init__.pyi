@@ -4,7 +4,6 @@ from . import (
     error,
     functools,
     git,
-    human,
     itertools,
     logging,
     pretty,
@@ -15,14 +14,7 @@ from . import (
     typing,
 )
 from ._version import __version__, __version_tuple__, version, version_tuple
-from .conf import (
-    BaseConfig,
-    BaseModel,
-    Config,
-    ConfigJoblib,
-    ConfigJoblibMemory,
-    config,
-)
+from .conf import BaseConfig, BaseModel, Config, config
 from .deps import has_module, optional_imports, try_import
 from .error import DispatchLookupError, MatchError
 from .functools import (
@@ -33,14 +25,9 @@ from .functools import (
     unbind,
     unbind_getattr,
 )
-from .human import (
-    human_count,
-    human_duration,
-    human_duration_with_stdev,
-    human_throughput,
-)
-from .itertools import as_iterable, as_sequence, deep_merge, first_not_none
+from .itertools import as_iterable, as_sequence, deep_merge, first_not_none, len_or_none
 from .pretty import (
+    WadlerLindigOptions,
     choose_duration_format,
     get_console,
     has_ansi,
@@ -50,6 +37,7 @@ from .pretty import (
     pretty_call,
     pretty_duration,
     pretty_func,
+    pretty_throughput,
     rich_location,
 )
 from .sentinel import MISSING, NOP, nop
@@ -68,7 +56,7 @@ from .serde import (
     yaml,
 )
 from .timing import BaseTimer, ClockName, Timer, Timings, clock, get_timer, timer
-from .tqdm import Progress, RateColumn, len_safe, parallel, track
+from .tqdm import Progress, RateColumn, parallel, track
 from .typing import ClassInfo, PathLike, array_kind, clone_param_spec, clone_signature
 
 __all__ = [
@@ -80,8 +68,6 @@ __all__ = [
     "ClassInfo",
     "ClockName",
     "Config",
-    "ConfigJoblib",
-    "ConfigJoblibMemory",
     "DecHook",
     "Decorator",
     "DispatchLookupError",
@@ -96,6 +82,7 @@ __all__ = [
     "Serde",
     "Timer",
     "Timings",
+    "WadlerLindigOptions",
     "__version__",
     "__version_tuple__",
     "array_kind",
@@ -121,14 +108,9 @@ __all__ = [
     "git",
     "has_ansi",
     "has_module",
-    "human",
-    "human_count",
-    "human_duration",
-    "human_duration_with_stdev",
-    "human_throughput",
     "itertools",
     "json",
-    "len_safe",
+    "len_or_none",
     "load",
     "logging",
     "nop",
@@ -141,6 +123,7 @@ __all__ = [
     "pretty_call",
     "pretty_duration",
     "pretty_func",
+    "pretty_throughput",
     "rich_location",
     "save",
     "sentinel",

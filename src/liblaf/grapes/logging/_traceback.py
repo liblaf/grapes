@@ -4,7 +4,7 @@ import re
 import types
 import unittest.mock
 from collections.abc import Generator, Iterable
-from typing import TypedDict, Unpack
+from typing import TypedDict, Unpack, cast
 
 import cytoolz as toolz
 from rich.text import Text
@@ -28,6 +28,7 @@ def rich_traceback(
     **kwargs: Unpack[TracebackOptions],
 ) -> Traceback:
     kwargs = toolz.merge(config.traceback.model_dump(), kwargs)
+    kwargs = cast("TracebackOptions", kwargs)
     if kwargs.get("width") is None:
         kwargs["width"] = pretty.get_console(stderr=True).width
     if suppress := kwargs.get("suppress"):

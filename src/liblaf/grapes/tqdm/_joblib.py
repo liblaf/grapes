@@ -7,7 +7,9 @@ import joblib
 from rich.progress import Progress as RichProgress
 from rich.progress import TaskID
 
-from ._progress import Progress, len_safe
+from liblaf.grapes import itertools as _it
+
+from ._progress import Progress
 
 
 @overload
@@ -39,7 +41,7 @@ def parallel[T](
     for iterable in iterables:
         if total is not None:
             break
-        total = len_safe(iterable)
+        total = _it.len_or_none(iterable)
 
     parallel = joblib.Parallel(return_as=return_as)
 

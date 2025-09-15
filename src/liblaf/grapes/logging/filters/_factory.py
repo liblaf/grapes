@@ -5,19 +5,19 @@ from collections.abc import Mapping
 import loguru
 
 from ._composite import CompositeFilter
-from .typed import FilterLike
+from .typing import FilterLike
 
 
 @functools.singledispatch
-def make_filter(f: FilterLike, /) -> FilterLike:
+def new_filter(f: FilterLike, /) -> FilterLike:
     return f
 
 
-@make_filter.register(types.NoneType)
-def _make_filter_none(_: None, /) -> "loguru.FilterFunction":
+@new_filter.register(types.NoneType)
+def _new_filter_none(_: None, /) -> "loguru.FilterFunction":
     return CompositeFilter()
 
 
-@make_filter.register(Mapping)
-def _make_filter_mapping(by_level: "loguru.FilterDict", /) -> "loguru.FilterFunction":
+@new_filter.register(Mapping)
+def _new_filter_mapping(by_level: "loguru.FilterDict", /) -> "loguru.FilterFunction":
     return CompositeFilter(by_level=by_level)

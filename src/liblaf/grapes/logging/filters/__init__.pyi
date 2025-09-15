@@ -1,6 +1,6 @@
-from . import typed
+from . import typing
 from ._composite import CompositeFilter
-from ._factory import make_filter
-from .typed import FilterLike
+from ._factory import new_filter
+from .typing import FilterLike
 
-__all__ = ["CompositeFilter", "FilterLike", "make_filter", "typed"]
+__all__ = ["CompositeFilter", "FilterLike", "new_filter", "typing"]

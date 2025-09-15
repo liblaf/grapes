@@ -16,10 +16,8 @@ useGitignore: true
 words:
   - arithmatex
   - assembla
-  - confz
   - cytoolz
   - direnv
-  - dulwich
   - etils
   - fieldz
   - functools
@@ -31,6 +29,7 @@ words:
   - liblaf
   - mkdocs
   - mkdocstrings
+  - ndarray
   - nephila
   - numprocesses
   - numpy

@@ -4,8 +4,8 @@ from typing import Unpack
 import loguru
 from rich.console import Console
 
-from liblaf.grapes.logging.filters import make_filter
-from liblaf.grapes.logging.sink import RichSink, RichSinkColumn, default_columns
+from liblaf.grapes.logging.filters import new_filter
+from liblaf.grapes.logging.sink import RichSink, RichSinkColumn
 
 
 def rich_handler(
@@ -15,9 +15,7 @@ def rich_handler(
     enable_link: bool = True,
     **kwargs: Unpack["loguru.BasicHandlerConfig"],
 ) -> "loguru.BasicHandlerConfig":
-    if columns is None:
-        columns = default_columns(enable_link=enable_link)
-    kwargs["sink"] = RichSink(console=console, columns=columns)
+    kwargs["sink"] = RichSink(console=console, columns=columns, enable_link=enable_link)
     kwargs["format"] = ""
-    kwargs["filter"] = make_filter(kwargs.get("filter"))
+    kwargs["filter"] = new_filter(kwargs.get("filter"))
     return kwargs

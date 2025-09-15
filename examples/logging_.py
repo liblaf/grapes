@@ -4,7 +4,7 @@ from liblaf import grapes
 
 
 def main() -> None:
-    grapes.logging.init(profile="cherries")
+    grapes.logging.init()
     logger.success("Hello, {}!", "world")
     logger.info("long " * 100 + "message")
 
@@ -13,6 +13,8 @@ def main() -> None:
         raise ValueError(msg)  # noqa: TRY301
     except ValueError:
         logger.exception("Exception:")
+
+    raise NotImplementedError
 
 
 if __name__ == "__main__":

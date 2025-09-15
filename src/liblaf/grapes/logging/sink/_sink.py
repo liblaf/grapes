@@ -1,15 +1,12 @@
 import types
-import unittest.mock
 from collections.abc import Generator, Sequence
 
 import attrs
 import loguru
 from rich.console import Console, RenderableType
-from rich.text import Text
-from rich.traceback import Traceback
 
 from liblaf.grapes import pretty
-from liblaf.grapes._config import config
+from liblaf.grapes.logging._traceback import rich_traceback
 
 from .columns import (
     RichSinkColumn,
@@ -44,6 +41,17 @@ class RichSink:
         factory=default_console,
     )
 
+    def __init__(
+        self,
+        columns: Sequence[RichSinkColumn] | None = None,
+        console: Console | None = None,
+        *,
+        enable_link: bool = True,
+    ) -> None:
+        if columns is None:
+            columns = default_columns(enable_link=enable_link)
+        self.__attrs_init__(columns=columns, console=console)  # pyright: ignore[reportAttributeAccessIssue]
+
     def __call__(self, message: "loguru.Message", /) -> None:
         record: loguru.Record = message.record
         # TODO: `console.print()` is slow
@@ -67,19 +75,4 @@ class RichSink:
         exc_type, exc_value, traceback = exception
         if exc_type is None or exc_value is None:
             return None
-
-        # ? dirty hack to avoid long `repr()` output
-        # ref: <https://github.com/Textualize/rich/discussions/3774>
-        with unittest.mock.patch("rich.pretty.repr", new=pretty.pformat):
-            rich_tb: Traceback = Traceback.from_exception(
-                exc_type,
-                exc_value,
-                traceback,
-                **config.logging.traceback.to_dict(exclude_none=False),
-            )
-
-        # ? dirty hack to support ANSI in exception messages
-        for stack in rich_tb.trace.stacks:
-            if pretty.has_ansi(stack.exc_value):
-                stack.exc_value = Text.from_ansi(stack.exc_value)  # pyright: ignore[reportAttributeAccessIssue]
-        return rich_tb
+        return rich_traceback(exc_type, exc_value, traceback)

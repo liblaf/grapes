@@ -1,14 +1,11 @@
-from ._rich import (
-    RichSink,
+from . import columns
+from ._sink import RichSink, default_columns, default_console
+from .columns import (
     RichSinkColumn,
     RichSinkColumnElapsed,
     RichSinkColumnLevel,
     RichSinkColumnLocation,
     RichSinkColumnMessage,
-    RichTracebackConfig,
-    default_columns,
-    default_console,
-    default_suppress,
 )
 
 __all__ = [
@@ -18,8 +15,7 @@ __all__ = [
     "RichSinkColumnLevel",
     "RichSinkColumnLocation",
     "RichSinkColumnMessage",
-    "RichTracebackConfig",
+    "columns",
     "default_columns",
     "default_console",
-    "default_suppress",
 ]

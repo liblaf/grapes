@@ -2,8 +2,6 @@ from collections.abc import Callable, Mapping, Sequence
 
 import attrs
 
-from liblaf.grapes import pretty
-
 
 @attrs.define
 class Params:
@@ -23,6 +21,8 @@ class DispatchLookupError(LookupError):
         self.__attrs_init__(func=func, params=params)  # pyright: ignore[reportAttributeAccessIssue]
 
     def __str__(self) -> str:
+        from liblaf.grapes import pretty
+
         pretty_call: str = pretty.pretty_call(
             self.func, self.params.args, self.params.kwargs
         )

@@ -1,5 +1,15 @@
 # Changelog
 
+## [4.1.0](https://github.com/liblaf/grapes/compare/v4.0.0..v4.1.0) - 2025-09-15
+
+### ✨ Features
+
+- **pretty:** Add auto_repr decorator for automatic pretty-printing of classes - ([22834cd](https://github.com/liblaf/grapes/commit/22834cd5359817a7798c6a5a3576ee7947a9f857))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [4.0.0](https://github.com/liblaf/grapes/compare/v3.0.0..v4.0.0) - 2025-09-15
 
 ### 💥 BREAKING CHANGES
@@ -15,10 +25,6 @@
 
 - **logging:** remove profile-based configuration and simplify logging setup - ([d77060d](https://github.com/liblaf/grapes/commit/d77060d06363befeeb8c6261ae526ecf3330c37e))
 - Move human-readable formatting to pretty module and add len_or_none utility - ([157dfba](https://github.com/liblaf/grapes/commit/157dfba3d2b9eddf276defaf26cd2265d14076a3))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [3.0.0](https://github.com/liblaf/grapes/compare/v2.0.3..v3.0.0) - 2025-09-14
 

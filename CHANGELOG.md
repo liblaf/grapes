@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.2.0](https://github.com/liblaf/grapes/compare/v4.1.0...v4.2.0) (2025-09-22)
+
+
+### ✨ Features
+
+* **logging:** add time column and improve formatting reusability ([5d1bf17](https://github.com/liblaf/grapes/commit/5d1bf17854b0b7f9fbad043d06b73490d42a2eb5))
+
 ## [4.1.0](https://github.com/liblaf/grapes/compare/v4.0.0..v4.1.0) - 2025-09-15
 
 ### ✨ Features

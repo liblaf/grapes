@@ -6,6 +6,7 @@ from .columns import (
     RichSinkColumnLevel,
     RichSinkColumnLocation,
     RichSinkColumnMessage,
+    RichSinkColumnTime,
 )
 
 __all__ = [
@@ -15,6 +16,7 @@ __all__ = [
     "RichSinkColumnLevel",
     "RichSinkColumnLocation",
     "RichSinkColumnMessage",
+    "RichSinkColumnTime",
     "columns",
     "default_columns",
     "default_console",

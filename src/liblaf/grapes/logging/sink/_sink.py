@@ -6,7 +6,7 @@ import loguru
 from rich.console import Console, RenderableType
 
 from liblaf.grapes import pretty
-from liblaf.grapes.logging._traceback import rich_traceback
+from liblaf.grapes.logging.helpers import rich_traceback
 
 from .columns import (
     RichSinkColumn,

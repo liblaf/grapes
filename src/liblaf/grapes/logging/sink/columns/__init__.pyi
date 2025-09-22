@@ -3,6 +3,7 @@ from ._elapsed import RichSinkColumnElapsed
 from ._level import RichSinkColumnLevel
 from ._location import RichSinkColumnLocation
 from ._message import RichSinkColumnMessage
+from ._time import RichSinkColumnTime
 
 __all__ = [
     "RichSinkColumn",
@@ -10,4 +11,5 @@ __all__ = [
     "RichSinkColumnLevel",
     "RichSinkColumnLocation",
     "RichSinkColumnMessage",
+    "RichSinkColumnTime",
 ]

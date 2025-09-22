@@ -1,7 +1,8 @@
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from typing import Any
 
 import loguru
+import toolz
 from loguru import logger
 
 from liblaf.grapes.conf import config
@@ -22,6 +23,7 @@ def init(
     enable_link: bool = True,
     file: PathLike | None = None,
     filter: FilterLike = None,  # noqa: A002
+    handlers: Sequence["loguru.HandlerConfig"] | None = None,
     intercept: bool = True,
     level: int | str | None = None,
 ) -> None:
@@ -30,14 +32,15 @@ def init(
     if level is None:
         level = config.logging.level
 
-    handler_config: Mapping[str, Any] = {"filter": filter}
-    if level is not None:
-        handler_config["level"] = level
-    handlers: list[loguru.HandlerConfig] = [
-        rich_handler(**handler_config, enable_link=enable_link)
-    ]
-    if file:
-        handlers.append(file_handler(sink=file, **handler_config))
+    if handlers is None:
+        handler_config: Mapping[str, Any] = toolz.valfilter(
+            lambda v: v is not None, {"filter": filter, "level": level}
+        )
+        handlers: list[loguru.HandlerConfig] = [
+            rich_handler(**handler_config, enable_link=enable_link)
+        ]
+        if file:
+            handlers.append(file_handler(sink=file, **handler_config))
     logger.configure(handlers=handlers)
 
     setup_excepthook()

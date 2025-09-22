@@ -22,7 +22,7 @@ def save(  # pyright: ignore[reportInconsistentOverload]
     *,
     enc_hook: EncHook | None = ...,
     force_ext: str | None = None,
-    order: Literal[None, "deterministic", "sorted"] = None,
+    order: Literal["deterministic", "sorted"] | None = None,
     pydantic: PydanticModelDumpOptions | None = None,
 ) -> None: ...
 def save(path: PathLike, obj: Any, /, force_ext: str | None = None, **kwargs) -> None:

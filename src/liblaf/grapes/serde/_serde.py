@@ -66,7 +66,7 @@ class Serde:
         /,
         *,
         enc_hook: EncHook | None = ...,
-        order: Literal[None, "deterministic", "sorted"] = None,
+        order: Literal["deterministic", "sorted"] | None = None,
         pydantic: PydanticModelDumpOptions | None = None,
     ) -> bytes: ...
     def encode(self, obj: Any, /, **kwargs) -> bytes:
@@ -120,7 +120,7 @@ class Serde:
         /,
         *,
         enc_hook: EncHook | None = ...,
-        order: Literal[None, "deterministic", "sorted"] = None,
+        order: Literal["deterministic", "sorted"] | None = None,
         pydantic: PydanticModelDumpOptions | None = None,
     ) -> None: ...
     def save(self, path: PathLike, obj: Any, /, **kwargs) -> None:

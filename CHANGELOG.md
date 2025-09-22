@@ -1,21 +1,21 @@
 # Changelog
 
-## [4.2.0](https://github.com/liblaf/grapes/compare/v4.1.0...v4.2.0) (2025-09-22)
-
-
-### ✨ Features
-
-* **logging:** add time column and improve formatting reusability ([5d1bf17](https://github.com/liblaf/grapes/commit/5d1bf17854b0b7f9fbad043d06b73490d42a2eb5))
-
-## [4.1.0](https://github.com/liblaf/grapes/compare/v4.0.0..v4.1.0) - 2025-09-15
+## [4.2.0](https://github.com/liblaf/grapes/compare/v4.1.0..v4.2.0) - 2025-09-22
 
 ### ✨ Features
 
-- **pretty:** Add auto_repr decorator for automatic pretty-printing of classes - ([22834cd](https://github.com/liblaf/grapes/commit/22834cd5359817a7798c6a5a3576ee7947a9f857))
+- **logging:** add time column and improve formatting reusability - ([5d1bf17](https://github.com/liblaf/grapes/commit/5d1bf17854b0b7f9fbad043d06b73490d42a2eb5))
 
 ### ❤️ New Contributors
 
 - [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
+
+## [4.1.0](https://github.com/liblaf/grapes/compare/v4.0.0..v4.1.0) - 2025-09-16
+
+### ✨ Features
+
+- **pretty:** Add auto_repr decorator for automatic pretty-printing of classes - ([22834cd](https://github.com/liblaf/grapes/commit/22834cd5359817a7798c6a5a3576ee7947a9f857))
 
 ## [4.0.0](https://github.com/liblaf/grapes/compare/v3.0.0..v4.0.0) - 2025-09-15
 

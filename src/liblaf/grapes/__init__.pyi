@@ -16,7 +16,14 @@ from . import (
 from ._version import __version__, __version_tuple__, version, version_tuple
 from .conf import BaseConfig, BaseModel, Config, config
 from .deps import has_module, optional_imports, try_import
-from .error import DispatchLookupError, MatchError
+from .error import (
+    DispatchLookupError,
+    MatchError,
+    TodoError,
+    UnreachableError,
+    todo,
+    unreachable,
+)
 from .functools import (
     Decorator,
     MemorizedFunc,
@@ -83,6 +90,8 @@ __all__ = [
     "Serde",
     "Timer",
     "Timings",
+    "TodoError",
+    "UnreachableError",
     "WadlerLindigOptions",
     "__version__",
     "__version_tuple__",
@@ -132,6 +141,7 @@ __all__ = [
     "serde",
     "timer",
     "timing",
+    "todo",
     "toml",
     "tqdm",
     "track",
@@ -139,6 +149,7 @@ __all__ = [
     "typing",
     "unbind",
     "unbind_getattr",
+    "unreachable",
     "version",
     "version_tuple",
     "yaml",

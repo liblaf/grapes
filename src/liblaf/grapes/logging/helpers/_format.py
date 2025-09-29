@@ -19,7 +19,7 @@ DEFAULT_FORMAT = (
 def new_format(template: str = DEFAULT_FORMAT) -> "loguru.FormatFunction":
     def format_(record: "loguru.Record", /) -> str:
         if record["exception"] is None:
-            return template
+            return template + "\n"
         exc_type: type[BaseException] | None
         exc_value: BaseException | None
         traceback: types.TracebackType | None

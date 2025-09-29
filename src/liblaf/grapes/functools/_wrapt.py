@@ -19,14 +19,15 @@ class Wrapper(Protocol):
 @overload
 def decorator(
     wrapper: Wrapper,
-    enabled: bool | Callable[[], None] | None = None,  # noqa: FBT001
+    *,
+    enabled: bool | Callable[[], None] | None = None,
     adapter: Any = None,
     proxy: Callable = ...,
 ) -> Decorator: ...
 @overload
 def decorator(
-    wrapper: None = None,
-    enabled: bool | Callable[[], None] | None = None,  # noqa: FBT001
+    *,
+    enabled: bool | Callable[[], None] | None = None,
     adapter: Any = None,
     proxy: Callable = ...,
 ) -> Callable[[Wrapper], Decorator]: ...
@@ -34,31 +35,27 @@ def decorator(*args, **kwargs) -> Any:
     return wrapt.decorator(*args, **kwargs)
 
 
-def unbind[T](o: T) -> T:
-    return getattr(o, "_self_parent", o)
+def wrapt_setattr(obj: Any, name: str, value: Any, /) -> None:
+    name = f"_self_{name}"
+    setattr(obj, name, value)
 
 
 @overload
-def unbind_getattr(o: object, name: str, /) -> Any: ...
+def wrapt_getattr(obj: Any, name: str, /) -> Any: ...
 @overload
-def unbind_getattr[T](o: object, name: str, default: T, /) -> Any | T: ...
-def unbind_getattr(o: object, name: str, default: Any = MISSING, /) -> Any:
+def wrapt_getattr[T](obj: Any, name: str, default: T, /) -> Any | T: ...
+def wrapt_getattr(obj: Any, name: str, default: Any = MISSING, /) -> Any:
+    name = f"_self_{name}"
     try:
-        return getattr(o, name)
+        return getattr(obj, name)
     except AttributeError:
-        parent: Any = getattr(o, "_self_parent", MISSING)
-        if parent is MISSING:
-            # `o` is not a wrapt.BoundFunctionWrapper
-            # further inspection is not applicable
+        parent: Any = getattr(obj, "_self_parent", None)
+        if parent is None:
             if default is MISSING:
                 raise
             return default
-        # `o` is a wrapt.BoundFunctionWrapper
-        # `parent` is a wrapt.FunctionWrapper
-        # further inspection is applicable
-        attr: Any = getattr(parent, name, MISSING)
-        if attr is not MISSING:
-            return attr
+        if hasattr(parent, name):
+            return getattr(parent, name)
         if default is MISSING:
             raise
         return default

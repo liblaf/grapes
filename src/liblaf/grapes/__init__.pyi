@@ -29,8 +29,8 @@ from .functools import (
     MemorizedFunc,
     cache,
     decorator,
-    unbind,
-    unbind_getattr,
+    wrapt_getattr,
+    wrapt_setattr,
 )
 from .itertools import as_iterable, as_sequence, deep_merge, first_not_none, len_or_none
 from .pretty import (
@@ -147,10 +147,10 @@ __all__ = [
     "track",
     "try_import",
     "typing",
-    "unbind",
-    "unbind_getattr",
     "unreachable",
     "version",
     "version_tuple",
+    "wrapt_getattr",
+    "wrapt_setattr",
     "yaml",
 ]

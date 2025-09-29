@@ -1,5 +1,5 @@
 from ._cache import MemorizedFunc, cache
-from ._wrapt import Decorator, Wrapper, decorator, unbind, unbind_getattr
+from ._wrapt import Decorator, Wrapper, decorator, wrapt_getattr, wrapt_setattr
 
 __all__ = [
     "Decorator",
@@ -7,6 +7,6 @@ __all__ = [
     "Wrapper",
     "cache",
     "decorator",
-    "unbind",
-    "unbind_getattr",
+    "wrapt_getattr",
+    "wrapt_setattr",
 ]

@@ -1,27 +1,24 @@
 # Changelog
 
-## [4.3.0](https://github.com/liblaf/grapes/compare/v4.2.0...v4.3.0) (2025-09-29)
-
+## [4.3.0](https://github.com/liblaf/grapes/compare/v4.2.0..v4.3.0) - 2025-09-29
 
 ### ✨ Features
 
-* **error:** Add todo and unreachable error helpers ([09567fb](https://github.com/liblaf/grapes/commit/09567fbc4efeafaced230df6f93f769f64902a01))
+- **error:** Add todo and unreachable error helpers - ([09567fb](https://github.com/liblaf/grapes/commit/09567fbc4efeafaced230df6f93f769f64902a01))
 
+### ♻ Code Refactoring
 
-### ♻️ Code Refactoring
+- **functools:** Improve wrapt attribute handling with `wrapt_getattr` and `wrapt_setattr` - ([ab20962](https://github.com/liblaf/grapes/commit/ab2096221d50392f6aabc648bc9323c171d83840))
 
-* **functools:** Improve wrapt attribute handling with `wrapt_getattr` and `wrapt_setattr` ([ab20962](https://github.com/liblaf/grapes/commit/ab2096221d50392f6aabc648bc9323c171d83840))
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [4.2.0](https://github.com/liblaf/grapes/compare/v4.1.0..v4.2.0) - 2025-09-22
 
 ### ✨ Features
 
 - **logging:** add time column and improve formatting reusability - ([5d1bf17](https://github.com/liblaf/grapes/commit/5d1bf17854b0b7f9fbad043d06b73490d42a2eb5))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
-- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
 
 ## [4.1.0](https://github.com/liblaf/grapes/compare/v4.0.0..v4.1.0) - 2025-09-16
 

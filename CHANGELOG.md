@@ -1,5 +1,22 @@
 # Changelog
 
+## [5.0.0](https://github.com/liblaf/grapes/compare/v4.3.0...v5.0.0) (2025-09-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* **serde:** The `enc_hook` function no longer passes through unsupported object types. It now raises a `NotImplementedError`, requiring explicit registration for any custom types that need to be serialized. This makes the serialization process more explicit and prevents unexpected objects from being passed through.
+
+### 🐛 Bug Fixes
+
+* **logging:** add missing newline to formatted log messages ([0556585](https://github.com/liblaf/grapes/commit/05565859ca1218fb9d9bdb582a1294dd2b3487c5))
+
+
+### ♻️ Code Refactoring
+
+* **functools:** Standardize attribute access on wrapped objects ([e09fa3a](https://github.com/liblaf/grapes/commit/e09fa3a3845def65b36eceb43b5b51abbaa3889a))
+* **serde:** Use singledispatch for enc_hook and add PathLike support ([e8b890c](https://github.com/liblaf/grapes/commit/e8b890c1c52cb2b9e2e0f31efb02b70ffe847c20))
+
 ## [4.3.0](https://github.com/liblaf/grapes/compare/v4.2.0..v4.3.0) - 2025-09-29
 
 ### ✨ Features

@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.3.0](https://github.com/liblaf/grapes/compare/v4.2.0...v4.3.0) (2025-09-29)
+
+
+### ✨ Features
+
+* **error:** Add todo and unreachable error helpers ([09567fb](https://github.com/liblaf/grapes/commit/09567fbc4efeafaced230df6f93f769f64902a01))
+
+
+### ♻️ Code Refactoring
+
+* **functools:** Improve wrapt attribute handling with `wrapt_getattr` and `wrapt_setattr` ([ab20962](https://github.com/liblaf/grapes/commit/ab2096221d50392f6aabc648bc9323c171d83840))
+
 ## [4.2.0](https://github.com/liblaf/grapes/compare/v4.1.0..v4.2.0) - 2025-09-22
 
 ### ✨ Features

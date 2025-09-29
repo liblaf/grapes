@@ -1,3 +1,5 @@
+import functools
+import os
 from collections.abc import Callable, Mapping
 from typing import Any, Literal, TypedDict
 
@@ -26,10 +28,24 @@ class PydanticModelDumpOptions(TypedDict, total=False):
     serialize_as_any: bool
 
 
-def enc_hook(
-    obj: Any, /, *, pydantic_options: PydanticModelDumpOptions | None = None
+@functools.singledispatch
+def enc_hook(obj: Any, /, **_kwargs) -> Any:
+    msg: str = f"Objects of type {type(obj)} are not supported"
+    raise NotImplementedError(msg)
+
+
+@enc_hook.register(pydantic.BaseModel)
+def _(
+    obj: pydantic.BaseModel,
+    /,
+    *,
+    pydantic_options: PydanticModelDumpOptions | None = None,
+    **_kwargs,
 ) -> Any:
-    if isinstance(obj, pydantic.BaseModel):
-        pydantic_options = pydantic_options or {}
-        return obj.model_dump(**pydantic_options)
-    return obj
+    pydantic_options = pydantic_options or {}
+    return obj.model_dump(**pydantic_options)
+
+
+@enc_hook.register(os.PathLike)
+def _(obj: os.PathLike, /, **_kwargs) -> str:
+    return str(obj)

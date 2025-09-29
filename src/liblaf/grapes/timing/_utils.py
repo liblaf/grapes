@@ -1,9 +1,13 @@
 from typing import Any
 
-from liblaf.grapes import functools as _ft
+import liblaf.grapes.functools as ft
 
 from ._base import BaseTimer
 
 
 def get_timer(wrapper: Any) -> BaseTimer:
-    return _ft.wrapt_getattr(wrapper, "_self_timer")
+    return ft.wrapt_getattr(wrapper, "timer")
+
+
+def set_timer(wrapper: Any, timer: BaseTimer) -> None:
+    ft.wrapt_setattr(wrapper, "timer", timer)

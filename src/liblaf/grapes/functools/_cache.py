@@ -8,12 +8,10 @@ import joblib
 
 from liblaf.grapes.conf import config
 
-from ._wrapt import decorator
+from ._wrapt import decorator, wrapt_getattr, wrapt_setattr
 
 
 class MemorizedFunc[**P, T](Protocol):
-    @property
-    def _self_memory(self) -> joblib.Memory: ...
     def __call__(self, *args: P.args, **kwargs: P.kwargs) -> T: ...
 
 
@@ -65,16 +63,17 @@ def cache(func: Callable | None = None, /, **kwargs: Any) -> Any:
     reduce_size_kwargs.setdefault("bytes_limit", config.joblib.memory.bytes_limit)
 
     @decorator
-    def wrapper(
-        wrapped: Callable, _instance: Any, args: tuple, kwargs: dict[str, Any]
-    ) -> Any:
+    def wrapper[**P, T](
+        wrapped: Callable[P, T], _instance: Any, args: tuple, kwargs: dict[str, Any]
+    ) -> T:
         result: Any = wrapped(*args, **kwargs)
+        memory: joblib.Memory = wrapt_getattr(wrapped, "memory")
         memory.reduce_size(**reduce_size_kwargs)
         return result
 
     func = memory.cache(func, **cache_kwargs)
     func = wrapper(func)
-    func._self_memory = memory  # pyright: ignore[reportAttributeAccessIssue] # noqa: SLF001
+    wrapt_setattr(func, "memory", memory)
     return func
 
 

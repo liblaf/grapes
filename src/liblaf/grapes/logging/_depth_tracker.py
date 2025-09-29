@@ -6,8 +6,8 @@ from typing import Any, Self, overload, override
 
 import attrs
 
-from liblaf.grapes import functools as _ft
-from liblaf.grapes import itertools as _it
+import liblaf.grapes.functools as ft
+import liblaf.grapes.itertools as it
 
 _depth: contextvars.ContextVar[int] = contextvars.ContextVar("depth", default=0)
 
@@ -19,7 +19,7 @@ class DepthTrackerDecorator(contextlib.AbstractContextManager):
 
     @override  # impl contextlib.AbstractContextManager
     def __enter__(self) -> Self:
-        self._token = _depth.set(_depth.get() + _it.first_not_none(self._depth_inc, 1))
+        self._token = _depth.set(_depth.get() + it.first_not_none(self._depth_inc, 1))
         return self
 
     @override  # impl contextlib.AbstractContextManager
@@ -34,12 +34,12 @@ class DepthTrackerDecorator(contextlib.AbstractContextManager):
         del self._token
 
     def __call__[C: Callable](self, func: C, /) -> C:
-        @_ft.decorator
+        @ft.decorator
         def wrapper(
             wrapped: Callable, _instance: Any, args: tuple, kwargs: dict[str, Any]
         ) -> Any:
             token: contextvars.Token[int] = _depth.set(
-                _depth.get() + _it.first_not_none(self._depth_inc, 2)
+                _depth.get() + it.first_not_none(self._depth_inc, 2)
             )
             try:
                 return wrapped(*args, **kwargs)

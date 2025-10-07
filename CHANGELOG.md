@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.2](https://github.com/liblaf/grapes/compare/v5.0.1...v5.0.2) (2025-10-07)
+
+
+### 🐛 Bug Fixes
+
+* **timing:** Allow providing a default value to get_timer ([a3b26b7](https://github.com/liblaf/grapes/commit/a3b26b77b939730ce9c1907f74f9752874f8a803))
+
 ## [5.0.1](https://github.com/liblaf/grapes/compare/v5.0.0..v5.0.1) - 2025-10-07
 
 ### 🐛 Bug Fixes

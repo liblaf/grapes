@@ -11,4 +11,6 @@ class ConfigTraceback(BaseConfig):
     width: int | None = None
     show_locals: bool = True
     locals_hide_sunder: bool = True
-    suppress: Iterable[str] = pydantic.Field(default=("liblaf.grapes", "pydantic"))
+    suppress: Iterable[str] = pydantic.Field(
+        default=["liblaf.cherries", "liblaf.grapes", "pydantic"]
+    )

@@ -8,7 +8,7 @@ import joblib
 
 from liblaf.grapes.conf import config
 
-from ._wrapt import decorator, wrapt_getattr, wrapt_setattr
+from ._wrapt import decorator, wrapt_setattr
 
 
 class MemorizedFunc[**P, T](Protocol):
@@ -67,7 +67,6 @@ def cache(func: Callable | None = None, /, **kwargs: Any) -> Any:
         wrapped: Callable[P, T], _instance: Any, args: tuple, kwargs: dict[str, Any]
     ) -> T:
         result: Any = wrapped(*args, **kwargs)
-        memory: joblib.Memory = wrapt_getattr(wrapped, "memory")
         memory.reduce_size(**reduce_size_kwargs)
         return result
 

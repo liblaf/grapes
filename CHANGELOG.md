@@ -1,11 +1,15 @@
 # Changelog
 
-## [5.0.1](https://github.com/liblaf/grapes/compare/v5.0.0...v5.0.1) (2025-10-07)
-
+## [5.0.1](https://github.com/liblaf/grapes/compare/v5.0.0..v5.0.1) - 2025-10-07
 
 ### 🐛 Bug Fixes
 
-* **functools:** Use memory object from closure in cache decorator ([42b5600](https://github.com/liblaf/grapes/commit/42b560030678c52e69c2361278d8699632c1116a))
+- **functools:** Use memory object from closure in cache decorator - ([42b5600](https://github.com/liblaf/grapes/commit/42b560030678c52e69c2361278d8699632c1116a))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
 
 ## [5.0.0](https://github.com/liblaf/grapes/compare/v4.3.0..v5.0.0) - 2025-09-29
 
@@ -20,10 +24,6 @@
 ### ♻ Code Refactoring
 
 - **functools:** Standardize attribute access on wrapped objects - ([e09fa3a](https://github.com/liblaf/grapes/commit/e09fa3a3845def65b36eceb43b5b51abbaa3889a))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [4.3.0](https://github.com/liblaf/grapes/compare/v4.2.0..v4.3.0) - 2025-09-29
 

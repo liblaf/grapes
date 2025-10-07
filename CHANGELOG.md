@@ -1,15 +1,20 @@
 # Changelog
 
+## [5.0.2](https://github.com/liblaf/grapes/compare/v5.0.1..v5.0.2) - 2025-10-07
+
+### 🐛 Bug Fixes
+
+- **timing:** Allow providing a default value to get_timer - ([a3b26b7](https://github.com/liblaf/grapes/commit/a3b26b77b939730ce9c1907f74f9752874f8a803))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [5.0.1](https://github.com/liblaf/grapes/compare/v5.0.0..v5.0.1) - 2025-10-07
 
 ### 🐛 Bug Fixes
 
 - **functools:** Use memory object from closure in cache decorator - ([42b5600](https://github.com/liblaf/grapes/commit/42b560030678c52e69c2361278d8699632c1116a))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
-- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
 
 ## [5.0.0](https://github.com/liblaf/grapes/compare/v4.3.0..v5.0.0) - 2025-09-29
 

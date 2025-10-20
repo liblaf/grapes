@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.0.0](https://github.com/liblaf/grapes/compare/v5.0.2...v6.0.0) (2025-10-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* 
+
+### ♻️ Code Refactoring
+
+* overhaul logging filters and simplify functools abstractions ([f512d9b](https://github.com/liblaf/grapes/commit/f512d9b6d8170dd977cf4715d0390ce4f9b69816))
+
 ## [5.0.2](https://github.com/liblaf/grapes/compare/v5.0.1..v5.0.2) - 2025-10-07
 
 ### 🐛 Bug Fixes

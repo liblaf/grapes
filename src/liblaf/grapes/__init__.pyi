@@ -24,14 +24,7 @@ from .error import (
     todo,
     unreachable,
 )
-from .functools import (
-    Decorator,
-    MemorizedFunc,
-    cache,
-    decorator,
-    wrapt_getattr,
-    wrapt_setattr,
-)
+from .functools import MemorizedFunc, cache, wrapt_getattr, wrapt_setattr
 from .itertools import as_iterable, as_sequence, deep_merge, first_not_none, len_or_none
 from .pretty import (
     WadlerLindigOptions,
@@ -77,7 +70,6 @@ __all__ = [
     "ClockName",
     "Config",
     "DecHook",
-    "Decorator",
     "DispatchLookupError",
     "EncHook",
     "MatchError",
@@ -107,7 +99,6 @@ __all__ = [
     "conf",
     "config",
     "dec_hook",
-    "decorator",
     "deep_merge",
     "enc_hook",
     "env",

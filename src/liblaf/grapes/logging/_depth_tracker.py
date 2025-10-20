@@ -5,8 +5,8 @@ from collections.abc import Callable
 from typing import Any, Self, overload, override
 
 import attrs
+import wrapt
 
-import liblaf.grapes.functools as ft
 import liblaf.grapes.itertools as it
 
 _depth: contextvars.ContextVar[int] = contextvars.ContextVar("depth", default=0)
@@ -15,11 +15,12 @@ _depth: contextvars.ContextVar[int] = contextvars.ContextVar("depth", default=0)
 @attrs.define
 class DepthTrackerDecorator(contextlib.AbstractContextManager):
     _depth_inc: int | None = attrs.field(default=None, alias="depth_inc")
-    _token: contextvars.Token[int] = attrs.field(default=None, init=False)
+    _token: contextvars.Token[int] | None = attrs.field(default=None, init=False)
 
     @override  # impl contextlib.AbstractContextManager
     def __enter__(self) -> Self:
-        self._token = _depth.set(_depth.get() + it.first_not_none(self._depth_inc, 1))
+        depth_inc: int = it.first_not_none(self._depth_inc, 1)
+        self._token = _depth.set(_depth.get() + depth_inc)
         return self
 
     @override  # impl contextlib.AbstractContextManager
@@ -30,17 +31,20 @@ class DepthTrackerDecorator(contextlib.AbstractContextManager):
         traceback: types.TracebackType | None,
         /,
     ) -> None:
+        assert self._token is not None
         _depth.reset(self._token)
         del self._token
 
-    def __call__[C: Callable](self, func: C, /) -> C:
-        @ft.decorator
+    def __call__[**P, T](self, func: Callable[P, T], /) -> Callable[P, T]:
+        @wrapt.decorator
         def wrapper(
-            wrapped: Callable, _instance: Any, args: tuple, kwargs: dict[str, Any]
-        ) -> Any:
-            token: contextvars.Token[int] = _depth.set(
-                _depth.get() + it.first_not_none(self._depth_inc, 2)
-            )
+            wrapped: Callable[P, T],
+            _instance: Any,
+            args: tuple[Any, ...],
+            kwargs: dict[str, Any],
+        ) -> T:
+            depth_inc: int = it.first_not_none(self._depth_inc, 2)
+            token: contextvars.Token[int] = _depth.set(_depth.get() + depth_inc)
             try:
                 return wrapped(*args, **kwargs)
             finally:
@@ -68,4 +72,4 @@ class DepthTracker:
         return _depth.get()
 
 
-depth_tracker: DepthTracker = DepthTracker()
+helper: DepthTracker = DepthTracker()

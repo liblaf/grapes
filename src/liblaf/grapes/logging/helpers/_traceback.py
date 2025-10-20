@@ -1,6 +1,4 @@
-import functools
-import importlib
-import re
+import sys
 import types
 import unittest.mock
 from collections.abc import Generator, Iterable
@@ -58,16 +56,4 @@ def _validate_suppress_single(
 ) -> str | types.ModuleType:
     if isinstance(suppress, types.ModuleType):
         return suppress
-    if re.fullmatch(r"([a-zA-Z_]\w*)(\.[a-zA-Z_]\w*)*", suppress):
-        return _try_import_module(suppress) or suppress
-    return suppress
-
-
-@functools.lru_cache
-def _try_import_module(
-    name: str, package: str | None = None
-) -> types.ModuleType | None:
-    try:
-        return importlib.import_module(name, package)
-    except ImportError:
-        return None
+    return sys.modules.get(suppress, suppress)

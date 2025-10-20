@@ -1,4 +1,6 @@
 import functools
+import os
+import sys
 from typing import IO
 
 import rich
@@ -6,7 +8,6 @@ from rich.console import Console
 from rich.style import Style
 from rich.theme import Theme
 
-from liblaf.grapes import env
 from liblaf.grapes.typing import clone_param_spec
 
 
@@ -38,9 +39,15 @@ def get_console(**kwargs) -> Console:
     if kwargs.get("theme") is None:
         kwargs["theme"] = default_theme()
     file: IO[str] | None = kwargs.get("file")
-    if file is None and env.in_ci():
+    stderr: bool = file is None and kwargs.get("stderr", False)
+    stdout: bool = file is None and not stderr
+    if (
+        (stdout and not sys.stdout.isatty())
+        or (stderr and not sys.stderr.isatty())
+        or (file is not None and not os.isatty(file.fileno()))
+    ):
         kwargs.setdefault("width", 128)
-    if not kwargs.get("stderr", False) and file is None:
+    if stdout:
         rich.reconfigure(**kwargs)
         return rich.get_console()
     return Console(**kwargs)

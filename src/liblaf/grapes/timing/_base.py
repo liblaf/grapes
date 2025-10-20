@@ -1,6 +1,6 @@
 import attrs
 
-from liblaf.grapes.logging import depth_tracker
+from liblaf.grapes.logging import helper
 from liblaf.grapes.sentinel import NOP
 
 from . import callback
@@ -17,7 +17,7 @@ class BaseTimer(Timings):
     def __bool__(self) -> bool:
         return True
 
-    @depth_tracker
+    @helper
     def start(self) -> None:
         for clock_name in self.clocks:
             self._start_time[clock_name] = clock(clock_name)
@@ -25,7 +25,7 @@ class BaseTimer(Timings):
         if self.cb_start is not None and self.cb_start is not NOP:
             self.cb_start(self)
 
-    @depth_tracker
+    @helper
     def stop(self) -> None:
         for clock_name in self.clocks:
             stop_time: float = clock(clock_name)
@@ -34,7 +34,7 @@ class BaseTimer(Timings):
         if self.cb_stop is not None and self.cb_stop is not NOP:
             self.cb_stop(self)
 
-    @depth_tracker
+    @helper
     def finish(self) -> None:
         if self.cb_finish is not None and self.cb_finish is not NOP:
             self.cb_finish(self)

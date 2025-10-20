@@ -5,10 +5,11 @@ from typing import Any, Literal, Protocol, TypedDict, overload
 
 import cytoolz as toolz
 import joblib
+import wrapt
 
 from liblaf.grapes.conf import config
 
-from ._wrapt import decorator, wrapt_setattr
+from ._wrapt import wrapt_setattr
 
 
 class MemorizedFunc[**P, T](Protocol):
@@ -62,7 +63,7 @@ def cache(func: Callable | None = None, /, **kwargs: Any) -> Any:
     )
     reduce_size_kwargs.setdefault("bytes_limit", config.joblib.memory.bytes_limit)
 
-    @decorator
+    @wrapt.function_wrapper
     def wrapper[**P, T](
         wrapped: Callable[P, T], _instance: Any, args: tuple, kwargs: dict[str, Any]
     ) -> T:

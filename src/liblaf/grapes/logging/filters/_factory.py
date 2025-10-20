@@ -1,23 +1,14 @@
-import functools
-import types
-from collections.abc import Mapping
+from __future__ import annotations
 
-import loguru
+from collections.abc import Mapping
 
 from ._composite import CompositeFilter
 from .typing import FilterLike
 
 
-@functools.singledispatch
-def new_filter(f: FilterLike, /) -> FilterLike:
+def new_filter(f: FilterLike | None = None, /) -> FilterLike:
+    if f is None:
+        return CompositeFilter()
+    if isinstance(f, Mapping):
+        return CompositeFilter(f)  # pyright: ignore[reportArgumentType]
     return f
-
-
-@new_filter.register(types.NoneType)
-def _new_filter_none(_: None, /) -> "loguru.FilterFunction":
-    return CompositeFilter()
-
-
-@new_filter.register(Mapping)
-def _new_filter_mapping(by_level: "loguru.FilterDict", /) -> "loguru.FilterFunction":
-    return CompositeFilter(by_level=by_level)

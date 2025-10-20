@@ -1,5 +1,3 @@
-from collections.abc import Iterable
-
 import pydantic
 import pydantic_settings as ps
 
@@ -11,6 +9,6 @@ class ConfigTraceback(BaseConfig):
     width: int | None = None
     show_locals: bool = True
     locals_hide_sunder: bool = True
-    suppress: Iterable[str] = pydantic.Field(
-        default=["liblaf.cherries", "liblaf.grapes", "pydantic"]
+    suppress: list[str] = pydantic.Field(
+        default=["comet_ml", "liblaf.cherries", "liblaf.grapes", "pydantic"]
     )

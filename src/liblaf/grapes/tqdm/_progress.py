@@ -20,7 +20,7 @@ from rich.text import Text
 
 from liblaf.grapes import itertools as _it
 from liblaf.grapes import pretty, timing
-from liblaf.grapes.logging import depth_tracker
+from liblaf.grapes.logging import helper
 
 
 class RateColumn(ProgressColumn):
@@ -72,7 +72,7 @@ class Progress(RichProgress):
         )
 
     @override
-    @depth_tracker
+    @helper
     def track[T](
         self,
         sequence: Iterable[T],
@@ -89,7 +89,7 @@ class Progress(RichProgress):
         if timer := (timer or self.timer):
             sequence = timer(sequence)
             timing.get_timer(sequence).name = description
-        with depth_tracker(depth=2):
+        with helper(depth=2):
             yield from super().track(
                 sequence,
                 total=total,

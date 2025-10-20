@@ -5,7 +5,7 @@ from typing import Any, Self, overload, override
 
 import attrs
 
-from liblaf.grapes.logging import depth_tracker
+from liblaf.grapes.logging import helper
 
 from ._base import BaseTimer
 from ._callable import timed_callable
@@ -15,13 +15,13 @@ from ._iterable import TimedIterable
 @attrs.define
 class Timer(BaseTimer, contextlib.AbstractContextManager):
     @override  # contextlib.AbstractContextManager
-    @depth_tracker
+    @helper
     def __enter__(self) -> Self:
         self.start()
         return self
 
     @override  # contextlib.AbstractContextManager
-    @depth_tracker
+    @helper
     def __exit__(
         self,
         exc_type: type[BaseException] | None,

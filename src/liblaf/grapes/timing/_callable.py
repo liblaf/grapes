@@ -1,27 +1,33 @@
 from collections.abc import Callable
 from typing import Any
 
-import liblaf.grapes.functools as ft
+import wrapt
+
 from liblaf.grapes import pretty
-from liblaf.grapes.logging import depth_tracker
+from liblaf.grapes.logging import helper
 
 from ._base import BaseTimer
 from ._utils import set_timer
 
 
-def timed_callable[C: Callable](func: C, timer: BaseTimer) -> C:
+def timed_callable[**P, T](func: Callable[P, T], timer: BaseTimer) -> Callable[P, T]:
     if timer.name is None:
         timer.name = pretty.pretty_func(func)
 
-    @ft.decorator
-    @depth_tracker
-    def wrapper(wrapped: C, _instance: Any, args: tuple, kwargs: dict[str, Any]) -> Any:
+    @wrapt.decorator
+    @helper
+    def wrapper(
+        wrapped: Callable[P, T],
+        _instance: Any,
+        args: tuple[Any, ...],
+        kwargs: dict[str, Any],
+    ) -> T:
         timer.start()
         try:
             return wrapped(*args, **kwargs)
         finally:
             timer.stop()
 
-    func: C = wrapper(func)
+    func: Callable[P, T] = wrapper(func)
     set_timer(func, timer)
     return func

@@ -1,5 +1,5 @@
 from . import filters, handlers, helpers, sink
-from ._depth_tracker import depth_tracker
+from ._depth_tracker import helper
 from ._init import init
 from .filters import CompositeFilter, new_filter
 from .handlers import file_handler, rich_handler
@@ -40,10 +40,10 @@ __all__ = [
     "clear_stdlib_handlers",
     "default_columns",
     "default_console",
-    "depth_tracker",
     "file_handler",
     "filters",
     "handlers",
+    "helper",
     "helpers",
     "init",
     "new_filter",

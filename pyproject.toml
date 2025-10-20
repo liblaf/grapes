@@ -8,7 +8,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 license = "MIT"
 authors = [
-  { name = "liblaf", email = "30631553+liblaf@users.noreply.github.com" },
+  { name = "liblaf", email = "30631553+liblaf@users.noreply.github.com" }
 ]
 keywords = []
 classifiers = [
@@ -34,12 +34,13 @@ classifiers = [
   "Topic :: Text Processing",
   "Topic :: Text Processing :: Filters",
   "Topic :: Utilities",
-  "Typing :: Typed",
+  "Typing :: Typed"
 ]
 dependencies = [
   "about-time>=4,<5",
   "attrs>=25,<26",
   "autoregistry>=1,<2",
+  "cachetools>=6,<7",
   "cytoolz>=1,<2",
   "environs>=14,<15",
   "etils>=1,<2",
@@ -49,13 +50,14 @@ dependencies = [
   "lazy-loader>=0.4,<0.5",
   "loguru>=0.7,<0.8",
   "msgspec[toml,yaml]>=0.19,<0.20",
+  "packaging>=25,<26",
   "platformdirs>=4,<5",
   "pydantic>=2,<3",
   "pydantic-settings>=2,<3",
   "rich>=14,<15",
   "typing-extensions>=4,<5",
   "wadler-lindig>=0.1,<0.2",
-  "wrapt>=1,<2",
+  "wrapt>=2,<3"
 ]
 dynamic = ["version"]
 
@@ -69,7 +71,7 @@ dynamic = ["version"]
 
 [dependency-groups]
 build = ["check-wheel-contents>=0.6,<0.7", "hatch>=1,<2", "twine>=6,<7"]
-dev = ["icecream>=2,<3"]
+dev = ["icecream>=2,<3", "types-cachetools>=6,<7"]
 docs = ["liblaf-mkdocs-preset>=0.2,<0.3", "mkdocs>=1,<2"]
 test = ["liblaf-pytest-preset>=0.1,<0.2", "pytest>=8,<9"]
 
@@ -106,7 +108,7 @@ addopts = [
   "--import-mode=importlib",
   "--showlocals",
   "--strict-config",
-  "--strict-markers",
+  "--strict-markers"
 ]
 testpaths = ["benches", "src", "tests"]
 

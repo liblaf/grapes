@@ -2,18 +2,22 @@ from collections.abc import Callable
 from typing import Any
 
 import pytest
+import wrapt
 
 import liblaf.grapes.functools as ft
 
 
-def decorator[C](func: C) -> C:
-    @ft.decorator
+def decorator[**P, T](func: Callable[P, T]) -> Callable[P, T]:
+    @wrapt.decorator
     def wrapper(
-        wrapped: Callable, _instance: Any, args: tuple, kwargs: dict[str, Any]
-    ) -> Any:
+        wrapped: Callable[P, T],
+        _instance: Any,
+        args: tuple[Any, ...],
+        kwargs: dict[str, Any],
+    ) -> T:
         return wrapped(*args, **kwargs)
 
-    proxy: C = wrapper(func)
+    proxy: Callable[P, T] = wrapper(func)
     ft.wrapt_setattr(proxy, "exists", True)  # noqa: FBT003
     return proxy
 

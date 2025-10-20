@@ -2,7 +2,7 @@ import functools
 from collections.abc import Iterable
 from typing import Any, overload
 
-from liblaf.grapes.logging import depth_tracker
+from liblaf.grapes.logging import helper
 
 from ._statistics import StatisticName
 from ._timings import Callback, Timings
@@ -31,7 +31,7 @@ def log_record(
     level: int | str = LOG_RECORD_DEFAULT_LEVEL,
     threshold_sec: float | None = LOG_RECORD_DEFAULT_THRESHOLD_SEC,
 ) -> Callback: ...
-@depth_tracker
+@helper
 def log_record(timer: Timings | None = None, /, **kwargs) -> Any:
     if timer is None:
         return functools.partial(log_record, **kwargs)
@@ -52,7 +52,7 @@ def log_summary(
     level: int | str = LOG_SUMMARY_DEFAULT_LEVEL,
     stats: Iterable[StatisticName] = LOG_SUMMARY_DEFAULT_STATISTICS,
 ) -> Callback: ...
-@depth_tracker
+@helper
 def log_summary(timer: Timings | None = None, /, **kwargs) -> Any:
     if timer is None:
         return functools.partial(log_summary, **kwargs)

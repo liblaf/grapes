@@ -1,38 +1,6 @@
-from collections.abc import Callable
-from typing import Any, Protocol, overload
-
-import wrapt
+from typing import Any, overload
 
 from liblaf.grapes.sentinel import MISSING
-
-
-class Decorator(Protocol):
-    def __call__[T](self, wrapped: T, /) -> T: ...
-
-
-class Wrapper(Protocol):
-    def __call__(
-        self, wrapped: Any, instance: Any, args: tuple, kwargs: dict[str, Any], /
-    ) -> Any: ...
-
-
-@overload
-def decorator(
-    wrapper: Wrapper,
-    *,
-    enabled: bool | Callable[[], None] | None = None,
-    adapter: Any = None,
-    proxy: Callable = ...,
-) -> Decorator: ...
-@overload
-def decorator(
-    *,
-    enabled: bool | Callable[[], None] | None = None,
-    adapter: Any = None,
-    proxy: Callable = ...,
-) -> Callable[[Wrapper], Decorator]: ...
-def decorator(*args, **kwargs) -> Any:
-    return wrapt.decorator(*args, **kwargs)
 
 
 def wrapt_setattr(obj: Any, name: str, value: Any, /) -> None:

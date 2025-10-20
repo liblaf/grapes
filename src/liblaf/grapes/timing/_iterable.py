@@ -2,7 +2,7 @@ from collections.abc import Generator, Iterable
 
 import wrapt
 
-from liblaf.grapes.logging import depth_tracker
+from liblaf.grapes.logging import helper
 
 from ._base import BaseTimer
 from ._utils import get_timer, set_timer
@@ -16,7 +16,7 @@ class TimedIterable[T](wrapt.ObjectProxy):
         set_timer(self, timer)
 
     def __iter__(self) -> Generator[T]:
-        with depth_tracker():
+        with helper():
             timer: BaseTimer = get_timer(self)
             timer.start()
             try:

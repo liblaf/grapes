@@ -1,14 +1,20 @@
 # Changelog
 
+## [6.1.1](https://github.com/liblaf/grapes/compare/v6.1.0..v6.1.1) - 2025-10-21
+
+### 🐛 Bug Fixes
+
+- **logging:** Handle tuple versions in FilterByVersion and update type stubs - ([351b43b](https://github.com/liblaf/grapes/commit/351b43bf504d5b04a20843c4fc685475d6f1060c))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [6.1.0](https://github.com/liblaf/grapes/compare/v6.0.1..v6.1.0) - 2025-10-21
 
 ### ✨ Features
 
 - **logging/sink/columns:** Add module name abbreviation to log location - ([75c758e](https://github.com/liblaf/grapes/commit/75c758e557d1aab4b0fa9907dc472c399c98fb07))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [6.0.1](https://github.com/liblaf/grapes/compare/v6.0.0..v6.0.1) - 2025-10-21
 

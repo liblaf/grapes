@@ -51,5 +51,5 @@ def patch_loguru_get_frame(
     new: Callable[[int], types.FrameType | None] = _get_frame,
 ) -> None:
     # ! dirty hack
-    patcher = unittest.mock.patch("loguru._logger.get_frame", new=new)
+    patcher = unittest.mock.patch("loguru._logger.get_frame", new)
     patcher.start()

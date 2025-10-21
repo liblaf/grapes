@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import contextlib
 import sys
 import types
 from collections.abc import Hashable
+from typing import Any
 
 import attrs
 import cachetools
@@ -41,10 +43,13 @@ class FilterByVersion:
             return None
         module: types.ModuleType | None = sys.modules.get(name)
         if module is not None:
-            version_str: str | None = getattr(module, "__version__", None)
-            if version_str is not None:
+            version: Any = getattr(module, "__version__", None)
+            if isinstance(version, tuple):
+                with contextlib.suppress(TypeError):
+                    version = ".".join(str(part) for part in version)
+            if isinstance(version, str):
                 try:
-                    version = packaging.version.Version(version_str)
+                    version = packaging.version.parse(version)
                 except packaging.version.InvalidVersion:
                     pass
                 else:

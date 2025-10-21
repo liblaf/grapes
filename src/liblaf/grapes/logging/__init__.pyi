@@ -1,13 +1,23 @@
 from . import filters, handlers, helpers, sink
 from ._depth_tracker import helper
 from ._init import init
-from .filters import CompositeFilter, new_filter
+from .filters import (
+    CompositeFilter,
+    FilterByName,
+    FilterByVersion,
+    FilterLike,
+    FilterOnce,
+    as_level_no_dict,
+    get_level_no,
+    new_filter,
+)
 from .handlers import file_handler, rich_handler
 from .helpers import (
     InterceptHandler,
     add_level,
     clear_stdlib_handlers,
     new_format,
+    patch_loguru_get_frame,
     rich_traceback,
     setup_excepthook,
     setup_icecream,
@@ -28,6 +38,10 @@ from .sink import (
 
 __all__ = [
     "CompositeFilter",
+    "FilterByName",
+    "FilterByVersion",
+    "FilterLike",
+    "FilterOnce",
     "InterceptHandler",
     "RichSink",
     "RichSinkColumn",
@@ -37,17 +51,20 @@ __all__ = [
     "RichSinkColumnMessage",
     "RichSinkColumnTime",
     "add_level",
+    "as_level_no_dict",
     "clear_stdlib_handlers",
     "default_columns",
     "default_console",
     "file_handler",
     "filters",
+    "get_level_no",
     "handlers",
     "helper",
     "helpers",
     "init",
     "new_filter",
     "new_format",
+    "patch_loguru_get_frame",
     "rich_handler",
     "rich_traceback",
     "setup_excepthook",

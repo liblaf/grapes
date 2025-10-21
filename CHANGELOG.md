@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.1](https://github.com/liblaf/grapes/compare/v6.1.0...v6.1.1) (2025-10-21)
+
+
+### 🐛 Bug Fixes
+
+* **logging:** Handle tuple versions in FilterByVersion and update type stubs ([351b43b](https://github.com/liblaf/grapes/commit/351b43bf504d5b04a20843c4fc685475d6f1060c))
+
 ## [6.1.0](https://github.com/liblaf/grapes/compare/v6.0.1..v6.1.0) - 2025-10-21
 
 ### ✨ Features

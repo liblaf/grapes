@@ -1,14 +1,20 @@
 # Changelog
 
+## [6.1.0](https://github.com/liblaf/grapes/compare/v6.0.1..v6.1.0) - 2025-10-21
+
+### ✨ Features
+
+- **logging/sink/columns:** Add module name abbreviation to log location - ([75c758e](https://github.com/liblaf/grapes/commit/75c758e557d1aab4b0fa9907dc472c399c98fb07))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [6.0.1](https://github.com/liblaf/grapes/compare/v6.0.0..v6.0.1) - 2025-10-21
 
 ### ♻ Code Refactoring
 
 - **logging:** streamline traceback hiding and logging depth - ([1a02b3b](https://github.com/liblaf/grapes/commit/1a02b3b0ec16a039d1c28436b0e31d22c9546c33))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [6.0.0](https://github.com/liblaf/grapes/compare/v5.0.2..v6.0.0) - 2025-10-20
 
@@ -708,7 +714,7 @@ Also includes dependency version relaxation and configuration updates for improv
 
 ### ❤️ New Contributors
 
-- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf) made their first contribution
 
 ## [0.0.0] - 2025-01-16
 

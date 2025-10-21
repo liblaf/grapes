@@ -4,7 +4,6 @@ from typing import Any
 import wrapt
 
 from liblaf.grapes import pretty
-from liblaf.grapes.logging import helper
 
 from ._base import BaseTimer
 from ._utils import set_timer
@@ -15,13 +14,13 @@ def timed_callable[**P, T](func: Callable[P, T], timer: BaseTimer) -> Callable[P
         timer.name = pretty.pretty_func(func)
 
     @wrapt.decorator
-    @helper
     def wrapper(
         wrapped: Callable[P, T],
         _instance: Any,
         args: tuple[Any, ...],
         kwargs: dict[str, Any],
     ) -> T:
+        __tracebackhide__ = True
         timer.start()
         try:
             return wrapped(*args, **kwargs)

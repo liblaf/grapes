@@ -2,12 +2,10 @@ from collections.abc import Iterable
 from typing import Literal
 
 from liblaf.grapes import timing
-from liblaf.grapes.logging import helper
 
 from ._progress import Progress
 
 
-@helper
 def track[T](
     sequence: Iterable[T],
     total: float | None = None,
@@ -18,11 +16,12 @@ def track[T](
     progress: Progress | None = None,
     timer: timing.Timer | Literal[False] | None = None,
 ) -> Iterable[T]:
+    __tracebackhide__ = True
     if timer is None:
         timer = timing.timer(name=description)
     if progress is None:
         progress = Progress(timer=timer)
-    with progress, helper():
+    with progress:
         yield from progress.track(
             sequence,
             total=total,

@@ -1,6 +1,5 @@
 import attrs
 
-from liblaf.grapes.logging import helper
 from liblaf.grapes.sentinel import NOP
 
 from . import callback
@@ -17,16 +16,16 @@ class BaseTimer(Timings):
     def __bool__(self) -> bool:
         return True
 
-    @helper
     def start(self) -> None:
+        __tracebackhide__ = True
         for clock_name in self.clocks:
             self._start_time[clock_name] = clock(clock_name)
         self._stop_time.clear()
         if self.cb_start is not None and self.cb_start is not NOP:
             self.cb_start(self)
 
-    @helper
     def stop(self) -> None:
+        __tracebackhide__ = True
         for clock_name in self.clocks:
             stop_time: float = clock(clock_name)
             self._stop_time[clock_name] = stop_time
@@ -34,7 +33,7 @@ class BaseTimer(Timings):
         if self.cb_stop is not None and self.cb_stop is not NOP:
             self.cb_stop(self)
 
-    @helper
     def finish(self) -> None:
+        __tracebackhide__ = True
         if self.cb_finish is not None and self.cb_finish is not NOP:
             self.cb_finish(self)

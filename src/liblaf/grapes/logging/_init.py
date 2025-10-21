@@ -11,6 +11,7 @@ from liblaf.grapes.typing import PathLike
 from .filters import FilterLike
 from .handlers import file_handler, rich_handler
 from .helpers import (
+    patch_loguru_get_frame,
     setup_excepthook,
     setup_icecream,
     setup_loguru_intercept,
@@ -41,8 +42,9 @@ def init(
         ]
         if file:
             handlers.append(file_handler(sink=file, **handler_config))
-    logger.configure(handlers=handlers)
 
+    patch_loguru_get_frame()
+    logger.configure(handlers=handlers)
     setup_excepthook()
     setup_icecream()
     setup_unraisablehook()

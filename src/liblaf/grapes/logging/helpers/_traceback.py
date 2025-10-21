@@ -30,7 +30,8 @@ def rich_traceback(
     if kwargs.get("width") is None:
         kwargs["width"] = pretty.get_console(stderr=True).width
     if suppress := kwargs.get("suppress"):
-        kwargs["suppress"] = _validate_suppress(suppress=suppress)
+        kwargs["suppress"] = _validate_suppress(suppress)
+    traceback = _filter_traceback(traceback)
     # ? dirty hack to avoid long `repr()` output
     # ref: <https://github.com/Textualize/rich/discussions/3774>
     with unittest.mock.patch("rich.pretty.repr", new=pretty.pformat):
@@ -42,6 +43,17 @@ def rich_traceback(
         if pretty.has_ansi(stack.exc_value):
             stack.exc_value = Text.from_ansi(stack.exc_value)  # pyright: ignore[reportAttributeAccessIssue]
     return rich_tb
+
+
+def _filter_traceback(
+    traceback: types.TracebackType | None,
+) -> types.TracebackType | None:
+    if traceback is None:
+        return None
+    if traceback.tb_frame.f_locals.get("__tracebackhide__"):
+        return _filter_traceback(traceback.tb_next)
+    traceback.tb_next = _filter_traceback(traceback.tb_next)
+    return traceback
 
 
 def _validate_suppress(

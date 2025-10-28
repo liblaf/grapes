@@ -1,4 +1,5 @@
 import functools
+import sys
 from collections.abc import Callable
 from typing import Any, TypedDict, Unpack
 
@@ -7,7 +8,6 @@ import cytoolz as toolz
 import wadler_lindig as wl
 
 from liblaf.grapes.conf import config
-from liblaf.grapes.typing import array_kind
 
 from ._console import get_console
 
@@ -64,11 +64,14 @@ def pdoc_custom(
         return None
     if attrs.has(type(obj)):
         return pdoc_attrs(obj, **kwargs)
-    if array_kind(obj):
+    if (size := _array_size(obj)) is not None:
         if kwargs.get("short_arrays") is None:
-            kwargs["short_arrays"] = obj.size > kwargs.get(
-                "short_arrays_threshold", 100
-            )
+            try:
+                kwargs["short_arrays"] = size > kwargs.get(
+                    "short_arrays_threshold", 100
+                )
+            except TypeError:
+                kwargs["short_arrays"] = True
         return wl.pdoc(obj, **kwargs)
     return None
 
@@ -86,3 +89,23 @@ def pformat(obj: Any, **kwargs: Unpack[WadlerLindigOptions]) -> str:
 def _make_kwargs(kwargs: WadlerLindigOptions) -> WadlerLindigOptions:
     kwargs: WadlerLindigOptions = toolz.merge(config.pretty.model_dump(), kwargs)
     return kwargs
+
+
+def _array_size(obj: Any) -> int | None:
+    for module, type_name in [
+        ("jax", "Array"),
+        ("mlx.core", "array"),
+        ("numpy", "ndarray"),
+    ]:
+        if module not in sys.modules:
+            continue
+        typ: type = getattr(sys.modules[module], type_name)
+        if isinstance(obj, typ):
+            return obj.size
+    for module, type_name in [("torch", "Tensor")]:
+        if module not in sys.modules:
+            continue
+        typ: type = getattr(sys.modules[module], type_name)
+        if isinstance(obj, typ):
+            return obj.numel()
+    return None

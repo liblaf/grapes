@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.1.2](https://github.com/liblaf/grapes/compare/v6.1.1...v6.1.2) (2025-10-28)
+
+
+### 🐛 Bug Fixes
+
+* **deps:** update dependency giturlparse to &gt;=0.14,&lt;0.15 ([#97](https://github.com/liblaf/grapes/issues/97)) ([3dd7e74](https://github.com/liblaf/grapes/commit/3dd7e74cf7d79b23bbc544d29e5fb05781aa32a7))
+* **pretty:** Improve array size detection for pretty printing ([288e3ef](https://github.com/liblaf/grapes/commit/288e3ef4008be6d1d36004e6f66d16fe30a94b8b))
+
 ## [6.1.1](https://github.com/liblaf/grapes/compare/v6.1.0..v6.1.1) - 2025-10-21
 
 ### 🐛 Bug Fixes

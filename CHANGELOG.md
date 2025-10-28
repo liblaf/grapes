@@ -1,22 +1,26 @@
 # Changelog
 
-## [6.1.2](https://github.com/liblaf/grapes/compare/v6.1.1...v6.1.2) (2025-10-28)
-
+## [6.1.2](https://github.com/liblaf/grapes/compare/v6.1.1..v6.1.2) - 2025-10-28
 
 ### 🐛 Bug Fixes
 
-* **deps:** update dependency giturlparse to &gt;=0.14,&lt;0.15 ([#97](https://github.com/liblaf/grapes/issues/97)) ([3dd7e74](https://github.com/liblaf/grapes/commit/3dd7e74cf7d79b23bbc544d29e5fb05781aa32a7))
-* **pretty:** Improve array size detection for pretty printing ([288e3ef](https://github.com/liblaf/grapes/commit/288e3ef4008be6d1d36004e6f66d16fe30a94b8b))
+- **pretty:** Improve array size detection for pretty printing - ([288e3ef](https://github.com/liblaf/grapes/commit/288e3ef4008be6d1d36004e6f66d16fe30a94b8b))
+
+### ⬆️ Dependencies
+
+- **deps:** update dependency giturlparse to >=0.14,<0.15 (#97) - ([3dd7e74](https://github.com/liblaf/grapes/commit/3dd7e74cf7d79b23bbc544d29e5fb05781aa32a7))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@renovate[bot]](https://github.com/apps/renovate) made their first contribution in [#100](https://github.com/liblaf/grapes/pull/100)
+- [@liblaf[bot]](https://github.com/apps/liblaf) made their first contribution
 
 ## [6.1.1](https://github.com/liblaf/grapes/compare/v6.1.0..v6.1.1) - 2025-10-21
 
 ### 🐛 Bug Fixes
 
 - **logging:** Handle tuple versions in FilterByVersion and update type stubs - ([351b43b](https://github.com/liblaf/grapes/commit/351b43bf504d5b04a20843c4fc685475d6f1060c))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [6.1.0](https://github.com/liblaf/grapes/compare/v6.0.1..v6.1.0) - 2025-10-21
 

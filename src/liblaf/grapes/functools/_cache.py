@@ -56,10 +56,10 @@ def cache(func: Callable | None = None, /, **kwargs: Any) -> Any:
     if memory is None:
         memory = new_memory()
     cache_kwargs: dict[str, Any] = _filter_keys(
-        kwargs, ("ignore", "verbose", "mmap_mode", "cache_validation_callback")
+        kwargs, {"ignore", "verbose", "mmap_mode", "cache_validation_callback"}
     )
     reduce_size_kwargs: dict[str, Any] = _filter_keys(
-        kwargs, ("bytes_limit", "items_limit", "age_limit")
+        kwargs, {"bytes_limit", "items_limit", "age_limit"}
     )
     reduce_size_kwargs.setdefault("bytes_limit", config.joblib.memory.bytes_limit)
 

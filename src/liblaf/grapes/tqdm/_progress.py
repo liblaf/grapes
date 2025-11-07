@@ -57,7 +57,7 @@ class Progress(RichProgress):
     def get_default_columns(cls) -> tuple[str | ProgressColumn, ...]:  # pyright: ignore[reportIncompatibleMethodOverride]
         return (
             SpinnerColumn(),
-            TextColumn("[progress.description]{task.description}"),
+            TextColumn("{task.description}", style="progress.description"),
             BarColumn(),
             TaskProgressColumn(),
             MofNCompleteColumn(),

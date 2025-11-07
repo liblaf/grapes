@@ -16,6 +16,7 @@ useGitignore: true
 words:
   - arithmatex
   - assembla
+  - asttokens
   - cytoolz
   - direnv
   - etils
@@ -51,6 +52,7 @@ words:
   - pytest
   - pyvenv
   - pyvista
+  - repr
   - ruamel
   - sdist
   - serde
@@ -61,6 +63,7 @@ words:
   - unraisable
   - unraisablehook
   - unshallow
+  - uuidgen
   - venv
   - virtualenv
   - wadler

@@ -27,14 +27,17 @@ words:
   - hynek
   - inlinehilite
   - itertools
+  - lasti
   - levelno
   - liblaf
   - mkdocs
   - mkdocstrings
+  - ndarray
   - nephila
   - numprocesses
   - numpy
   - pdoc
+  - pixi
   - platformdirs
   - prec
   - pycache
@@ -46,12 +49,11 @@ words:
   - pypi
   - pyplot
   - pyproject
+  - pyright
   - pyrightconfig
   - pytest
   - pyvenv
   - pyvista
-  - repomix
-  - repomix's
   - repr
   - ruamel
   - sdist

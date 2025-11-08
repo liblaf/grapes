@@ -2,6 +2,8 @@ from typing import Any, dataclass_transform
 
 import attrs
 
+from ._define import define
+
 
 @dataclass_transform(field_specifiers=(attrs.field,))
 class AttrsMeta(type):
@@ -16,7 +18,7 @@ class AttrsMeta(type):
         cls: T = super().__new__(mcs, name, bases, namespace)
         if "__attrs_attrs__" in namespace:
             return cls
-        cls = attrs.define(cls, **kwargs)
+        cls = define(cls, **kwargs)
         return cls
 
 

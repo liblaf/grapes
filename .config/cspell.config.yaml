@@ -14,6 +14,7 @@ ignorePaths:
 ignoreRandomStrings: true
 useGitignore: true
 words:
+  - amet
   - arithmatex
   - assembla
   - asttokens
@@ -30,12 +31,10 @@ words:
   - liblaf
   - mkdocs
   - mkdocstrings
-  - ndarray
   - nephila
   - numprocesses
   - numpy
   - pdoc
-  - pixi
   - platformdirs
   - prec
   - pycache
@@ -47,11 +46,12 @@ words:
   - pypi
   - pyplot
   - pyproject
-  - pyright
   - pyrightconfig
   - pytest
   - pyvenv
   - pyvista
+  - repomix
+  - repomix's
   - repr
   - ruamel
   - sdist

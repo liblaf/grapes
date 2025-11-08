@@ -12,7 +12,7 @@ from rich.text import Text
 from rich.traceback import LOCALS_MAX_LENGTH, LOCALS_MAX_STRING, _iter_syntax_lines
 from rich.traceback import Traceback as RichTraceback
 
-from ._frame import Frame
+from ._frame import Frame, _exists
 from ._stack import Stack
 from ._trace import Trace
 
@@ -53,13 +53,21 @@ class Traceback(RichTraceback):
         return Trace(stacks=stacks)
 
     def _render_frame(self, frame: Frame) -> RenderResult:
-        location: Text = Text.assemble(
-            (frame.name, "pygments.string"),
-            (":", "pygments.text"),
-            (str(frame.lineno), "pygments.number"),
-            (" in ", "pygments.text"),
-            (frame.function, "pygments.function"),
-        )
+        location: Text
+        if _exists(frame.filename):
+            location = Text.assemble(
+                (frame.name, "repr.filename"),
+                ":",
+                (str(frame.lineno), "repr.number"),
+                " in ",
+                (frame.function, "repr.call"),
+            )
+        else:
+            location = Text.assemble(
+                ("<unknown>", "repr.filename"),
+                " in ",
+                (frame.function, "repr.call"),
+            )
         if frame.hide:
             location.append(" (hidden)")
             location.stylize("dim")
@@ -73,11 +81,10 @@ class Traceback(RichTraceback):
                 raise
             yield Text(f"{err}", "traceback.error")
         else:
-            yield ""
             if syntax is None:
                 yield from self._render_locals(frame)
             else:
-                yield Columns([syntax, *self._render_locals(frame)], padding=1)
+                yield Columns([syntax, *self._render_locals(frame)])
 
     def _render_locals(self, frame: Frame) -> Iterable[ConsoleRenderable]:
         if not frame.locals:
@@ -110,11 +117,11 @@ class Traceback(RichTraceback):
                         justify="center",
                     )
                 continue
-            if frame_idx > 0:
-                yield ""
             yield from self._render_frame(frame)
 
     def _render_syntax(self, frame: Frame) -> Syntax | None:
+        if not _exists(frame.filename):
+            return None
         code_lines: list[str] = linecache.getlines(frame.filename)
         code: str = "".join(code_lines)
         if not code:

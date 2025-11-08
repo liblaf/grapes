@@ -9,6 +9,8 @@ from rich.pretty import Node
 from rich.traceback import LOCALS_MAX_LENGTH, LOCALS_MAX_STRING
 from rich.traceback import Frame as RichFrame
 
+from liblaf.grapes import dep
+
 
 @dataclasses.dataclass
 class Frame(RichFrame):
@@ -101,5 +103,12 @@ class Frame(RichFrame):
         for name in ("__traceback_hide__", "__tracebackhide__"):
             if frame.f_locals.get(name, False):
                 return True
-        ic(frame.f_globals.get("__name__", "<unknown>"))
-        return False
+        if not _exists(frame.f_code.co_filename):
+            return True
+        return not dep.is_pre_release(
+            file=frame.f_code.co_filename, name=frame.f_globals.get("__name__", None)
+        )
+
+
+def _exists(filename: str) -> bool:
+    return not filename.startswith("<")

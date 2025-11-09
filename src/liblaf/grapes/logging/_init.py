@@ -1,8 +1,9 @@
-from collections.abc import Mapping, Sequence
+from __future__ import annotations
+
+from collections.abc import Iterable, Sequence
 from typing import Any
 
 import loguru
-import toolz
 from loguru import logger
 
 from liblaf.grapes._config import config
@@ -24,8 +25,8 @@ def init(
     enable_link: bool = True,
     file: PathLike | None = None,
     filter: FilterLike = None,  # noqa: A002
-    handlers: Sequence["loguru.HandlerConfig"] | None = None,
-    intercept: bool = True,
+    handlers: Sequence[loguru.HandlerConfig] | None = None,
+    intercept: Iterable[str] = (),
     level: int | str | None = None,
 ) -> None:
     if file is None:
@@ -34,9 +35,11 @@ def init(
         level = config.logging.level.get()
 
     if handlers is None:
-        handler_config: Mapping[str, Any] = toolz.valfilter(
-            lambda v: v is not None, {"filter": filter, "level": level}
-        )
+        handler_config: dict[str, Any] = {}
+        if filter is not None:
+            handler_config["filter"] = filter
+        if level is not None:
+            handler_config["level"] = level
         handlers: list[loguru.HandlerConfig] = [
             rich_handler(**handler_config, enable_link=enable_link)
         ]
@@ -47,6 +50,5 @@ def init(
     logger.configure(handlers=handlers)
     setup_excepthook()
     setup_icecream()
+    setup_loguru_intercept(intercept)
     setup_unraisablehook()
-    if intercept:
-        setup_loguru_intercept(level=level)

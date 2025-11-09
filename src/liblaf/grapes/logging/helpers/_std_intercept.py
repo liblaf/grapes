@@ -1,5 +1,4 @@
 import inspect
-import itertools
 import logging
 import types
 from collections.abc import Iterable
@@ -16,9 +15,7 @@ def clear_stdlib_handlers() -> None:
         std_logger.propagate = True
 
 
-def setup_loguru_intercept(
-    level: int | str = logging.NOTSET, modules: Iterable[str] = ()
-) -> None:
+def setup_loguru_intercept(modules: Iterable[str] = (), *, clear: bool = True) -> None:
     """Logs to loguru from Python logging module.
 
     References:
@@ -28,11 +25,9 @@ def setup_loguru_intercept(
     core: loguru._logger.Core = logger._core  # pyright: ignore[reportAttributeAccessIssue] # noqa: SLF001
     for loguru_level in core.levels.values():
         logging.addLevelName(loguru_level.no, loguru_level.name)
-    if isinstance(level, str):
-        level = logger.level(level).no
-    logging.basicConfig(handlers=[InterceptHandler()], level=level)
-    clear_stdlib_handlers()
-    for logger_name in itertools.chain(("",), modules):
+    if clear:
+        clear_stdlib_handlers()
+    for logger_name in modules:
         mod_logger: logging.Logger = logging.getLogger(logger_name)
         mod_logger.handlers = [InterceptHandler()]
         mod_logger.propagate = False

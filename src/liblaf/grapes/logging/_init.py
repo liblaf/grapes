@@ -5,7 +5,7 @@ import loguru
 import toolz
 from loguru import logger
 
-from liblaf.grapes.conf import config
+from liblaf.grapes._config import config
 from liblaf.grapes.typing import PathLike
 
 from .filters import FilterLike
@@ -29,9 +29,9 @@ def init(
     level: int | str | None = None,
 ) -> None:
     if file is None:
-        file = config.logging.file
+        file = config.logging.file.get()
     if level is None:
-        level = config.logging.level
+        level = config.logging.level.get()
 
     if handlers is None:
         handler_config: Mapping[str, Any] = toolz.valfilter(

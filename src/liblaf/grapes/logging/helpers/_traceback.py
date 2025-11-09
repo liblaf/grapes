@@ -9,7 +9,7 @@ from rich.text import Text
 from rich.traceback import Traceback
 
 from liblaf.grapes import pretty
-from liblaf.grapes.conf import config
+from liblaf.grapes._config import config
 
 
 class TracebackOptions(TypedDict, total=False):
@@ -25,7 +25,7 @@ def rich_traceback(
     /,
     **kwargs: Unpack[TracebackOptions],
 ) -> Traceback:
-    kwargs = toolz.merge(config.traceback.model_dump(), kwargs)
+    kwargs = toolz.merge(config.traceback.get(), kwargs)
     kwargs = cast("TracebackOptions", kwargs)
     if kwargs.get("width") is None:
         kwargs["width"] = pretty.get_console(stderr=True).width

@@ -3,7 +3,6 @@ from . import (
     env,
     error,
     functools,
-    git,
     itertools,
     logging,
     pretty,
@@ -13,8 +12,8 @@ from . import (
     tqdm,
     typing,
 )
+from ._config import config
 from ._version import __version__, __version_tuple__, version, version_tuple
-from .conf import BaseConfig, BaseModel, Config, config
 from .deps import has_module, optional_imports, try_import
 from .error import (
     DispatchLookupError,
@@ -24,7 +23,7 @@ from .error import (
     todo,
     unreachable,
 )
-from .functools import MemorizedFunc, cache, wrapt_getattr, wrapt_setattr
+from .functools import MemorizedFunc, memorize, wrapt_getattr, wrapt_setattr
 from .itertools import as_iterable, as_sequence, deep_merge, first_not_none, len_or_none
 from .pretty import (
     WadlerLindigOptions,
@@ -63,12 +62,9 @@ from .typing import ClassInfo, PathLike, array_kind, clone_param_spec, clone_sig
 __all__ = [
     "MISSING",
     "NOP",
-    "BaseConfig",
-    "BaseModel",
     "BaseTimer",
     "ClassInfo",
     "ClockName",
-    "Config",
     "DecHook",
     "DispatchLookupError",
     "EncHook",
@@ -91,7 +87,6 @@ __all__ = [
     "as_iterable",
     "as_sequence",
     "auto_repr",
-    "cache",
     "choose_duration_format",
     "clock",
     "clone_param_spec",
@@ -107,7 +102,6 @@ __all__ = [
     "functools",
     "get_console",
     "get_timer",
-    "git",
     "has_ansi",
     "has_module",
     "itertools",
@@ -115,6 +109,7 @@ __all__ = [
     "len_or_none",
     "load",
     "logging",
+    "memorize",
     "nop",
     "optional_imports",
     "parallel",

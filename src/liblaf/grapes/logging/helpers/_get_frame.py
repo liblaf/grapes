@@ -5,10 +5,6 @@ from pathlib import Path
 
 from loguru._get_frame import load_get_frame_function
 
-from liblaf.grapes.conf import config
-
-from ._traceback import _validate_suppress
-
 _get_frame_original: Callable[[int], types.FrameType | None] = load_get_frame_function()
 
 
@@ -36,7 +32,7 @@ def _should_hide(frame: types.FrameType) -> bool:
 
 
 def _get_suppress_paths() -> Generator[Path]:
-    suppress = _validate_suppress(config.traceback.suppress)
+    suppress = []
     for item in suppress:
         if isinstance(item, str):
             yield Path(item)

@@ -7,7 +7,7 @@ import attrs
 import cytoolz as toolz
 import wadler_lindig as wl
 
-from liblaf.grapes.conf import config
+from liblaf.grapes._config import config
 
 from ._console import get_console
 
@@ -87,7 +87,7 @@ def pformat(obj: Any, **kwargs: Unpack[WadlerLindigOptions]) -> str:
 
 
 def _make_kwargs(kwargs: WadlerLindigOptions) -> WadlerLindigOptions:
-    kwargs: WadlerLindigOptions = toolz.merge(config.pretty.model_dump(), kwargs)
+    kwargs: WadlerLindigOptions = toolz.merge(config.pretty.get(), kwargs)
     return kwargs
 
 

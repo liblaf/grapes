@@ -11,5 +11,6 @@ class WadlerLindigOptions(TypedDict, total=False):
     hide_defaults: bool
     indent: int
     respect_pdoc: bool
+    short_arrays: bool
     show_dataclass_module: bool
     show_type_module: bool

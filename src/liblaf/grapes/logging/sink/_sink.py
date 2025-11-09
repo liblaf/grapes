@@ -17,7 +17,7 @@ from .columns import (
 )
 
 
-def default_columns(*, enable_link: bool = True) -> Sequence[RichSinkColumn]:
+def default_columns(*, enable_link: bool = False) -> Sequence[RichSinkColumn]:
     return [
         RichSinkColumnElapsed(),
         RichSinkColumnLevel(),
@@ -46,7 +46,7 @@ class RichSink:
         columns: Sequence[RichSinkColumn] | None = None,
         console: Console | None = None,
         *,
-        enable_link: bool = True,
+        enable_link: bool = False,
     ) -> None:
         if columns is None:
             columns = default_columns(enable_link=enable_link)

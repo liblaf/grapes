@@ -16,8 +16,8 @@ from ._abc import RichSinkColumn
 
 @attrs.define
 class RichSinkColumnLocation(RichSinkColumn):
-    abbr_name: bool = True
-    enable_link: bool = True
+    abbr_name: bool = False
+    enable_link: bool = False
     width: int | None = None
 
     @override  # impl RichSinkColumn

@@ -22,7 +22,7 @@ from .helpers import (
 
 def init(
     *,
-    enable_link: bool = True,
+    enable_link: bool = False,
     file: PathLike | None = None,
     filter: FilterLike = None,  # noqa: A002
     handlers: Sequence[loguru.HandlerConfig] | None = None,

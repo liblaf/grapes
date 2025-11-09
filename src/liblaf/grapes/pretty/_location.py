@@ -24,6 +24,7 @@ def rich_location(
         name = name[: width - len(func_line) - 1] + "…"
     if enable_link and file is not None and file.exists():
         return Text(
-            f"{name}:{function}:{line}", style=Style(link=f"{file.as_uri()}#{line}")
+            f"{name}:{function}:{line}",
+            style=Style(link=f"{file.resolve().as_uri()}#{line}"),
         )
     return Text(f"{name}:{function}:{line}")

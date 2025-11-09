@@ -1,6 +1,7 @@
 import functools
 import importlib.metadata
 import os
+from collections.abc import Hashable
 from importlib.metadata import Distribution, PackagePath
 from pathlib import Path
 
@@ -9,12 +10,12 @@ import cachetools
 import packaging.version
 from packaging.version import InvalidVersion, Version
 
-from liblaf.grapes.functools import cachedmethod
 
-
-@attrs.define(slots=False)
+@attrs.define
 class FilesIndex:
-    _distributions: list[Distribution] = attrs.field(factory=list)
+    _distributions: list[Distribution] = attrs.field(
+        repr=False, init=False, factory=list
+    )
 
     def add(self, distributuion: Distribution) -> None:
         self._distributions.append(distributuion)
@@ -23,7 +24,11 @@ class FilesIndex:
         file = Path(file).resolve()
         return self._has(str(file))
 
-    @cachedmethod(factory=lambda: cachetools.LRUCache(maxsize=1024))
+    _has_cache: cachetools.Cache[Hashable, bool] = attrs.field(
+        repr=False, init=False, factory=lambda: cachetools.LRUCache(maxsize=1024)
+    )
+
+    @cachetools.cachedmethod(lambda self: self._has_cache)
     def _has(self, file: str) -> bool:
         if file in self._files:
             return True
@@ -32,15 +37,18 @@ class FilesIndex:
 
     @functools.cached_property
     def _files(self) -> set[str]:
-        self._init()
-        return self._files
+        files: set[str]
+        files, _ = self._files_pth
+        return files
 
     @functools.cached_property
     def _pth(self) -> set[str]:
-        self._init()
-        return self._pth
+        pth: set[str]
+        _, pth = self._files_pth
+        return pth
 
-    def _init(self) -> None:
+    @functools.cached_property
+    def _files_pth(self) -> tuple[set[str], set[str]]:
         files: set[str] = set()
         pth: set[str] = set()
         for distribution in self._distributions:
@@ -55,8 +63,7 @@ class FilesIndex:
                             pth.add(line)
                 else:
                     files.add(str(dist_file.locate()))
-        self._files = files
-        self._pth = pth
+        return files, pth
 
 
 @attrs.define
@@ -68,7 +75,7 @@ class ReleaseTypeIndex:
             return True
         return file is not None and self._dev_index.has(file)
 
-    def is_prerelease(
+    def is_pre(
         self, file: str | os.PathLike[str] | None = None, name: str | None = None
     ) -> bool | None:
         if name is not None and name == "__main__":
@@ -77,15 +84,18 @@ class ReleaseTypeIndex:
 
     @functools.cached_property
     def _dev_index(self) -> FilesIndex:
-        self._init()
-        return self._dev_index
+        dev_index: FilesIndex
+        dev_index, _ = self._index
+        return dev_index
 
     @functools.cached_property
     def _pre_index(self) -> FilesIndex:
-        self._init()
-        return self._pre_index
+        pre_index: FilesIndex
+        _, pre_index = self._index
+        return pre_index
 
-    def _init(self) -> None:
+    @functools.cached_property
+    def _index(self) -> tuple[FilesIndex, FilesIndex]:
         dev_index: FilesIndex = FilesIndex()
         pre_index: FilesIndex = FilesIndex()
         for distribution in importlib.metadata.distributions():
@@ -97,20 +107,19 @@ class ReleaseTypeIndex:
                 dev_index.add(distribution)
             if version.is_prerelease:
                 pre_index.add(distribution)
-        self._dev_index = dev_index
-        self._pre_index = pre_index
+        return dev_index, pre_index
 
 
 def is_dev_release(
     file: str | os.PathLike[str] | None = None, name: str | None = None
 ) -> bool:
-    return _release_type_index.is_dev(file=file, name=name)
+    return _release_type_index.is_dev(file, name)
 
 
 def is_pre_release(
     file: str | os.PathLike[str] | None = None, name: str | None = None
 ) -> bool | None:
-    return _release_type_index.is_prerelease(file=file, name=name)
+    return _release_type_index.is_pre(file, name)
 
 
 _release_type_index = ReleaseTypeIndex()

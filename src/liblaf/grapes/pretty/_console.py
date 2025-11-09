@@ -8,7 +8,7 @@ from rich.console import Console
 from rich.style import Style
 from rich.theme import Theme
 
-from liblaf.grapes.typing import clone_param_spec
+from liblaf.grapes.functools import wraps
 
 
 def default_theme() -> Theme:
@@ -33,7 +33,7 @@ def default_theme() -> Theme:
     )
 
 
-@clone_param_spec(Console)
+@wraps(Console)
 @functools.cache
 def get_console(**kwargs) -> Console:
     if kwargs.get("theme") is None:
@@ -41,12 +41,12 @@ def get_console(**kwargs) -> Console:
     file: IO[str] | None = kwargs.get("file")
     stderr: bool = file is None and kwargs.get("stderr", False)
     stdout: bool = file is None and not stderr
-    if (
+    if "width" not in kwargs and (
         (stdout and not sys.stdout.isatty())
         or (stderr and not sys.stderr.isatty())
         or (file is not None and not os.isatty(file.fileno()))
     ):
-        kwargs.setdefault("width", 128)
+        kwargs["width"] = 128
     if stdout:
         rich.reconfigure(**kwargs)
         return rich.get_console()

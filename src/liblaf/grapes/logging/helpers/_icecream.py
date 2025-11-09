@@ -1,6 +1,6 @@
 from loguru import logger
 
-from liblaf.grapes import pretty
+from liblaf.grapes.ext.wadler_lindig import pformat
 
 from ._add_level import add_level
 
@@ -17,7 +17,5 @@ def setup_icecream(prefix: str = "") -> None:
         logger.opt(depth=2).log("ICECREAM", s)
 
     ic.configureOutput(
-        prefix=prefix,
-        argToStringFunction=pretty.pformat,
-        outputFunction=output_function,
+        prefix=prefix, argToStringFunction=pformat, outputFunction=output_function
     )

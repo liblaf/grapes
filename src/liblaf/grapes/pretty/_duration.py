@@ -1,6 +1,6 @@
 import math
 
-from liblaf.grapes.error import MatchError
+from liblaf.grapes.errors import MatchError
 
 FORMATS: list[tuple[int, float, str]] = [
     (11, 1e-8, "9.99 ns"),

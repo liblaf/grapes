@@ -1,7 +1,7 @@
 from . import (
     conf,
     env,
-    error,
+    errors,
     ext,
     functools,
     itertools,
@@ -16,7 +16,7 @@ from . import (
 )
 from ._config import config
 from ._version import __version__, __version_tuple__, version, version_tuple
-from .error import (
+from .errors import (
     DispatchLookupError,
     MatchError,
     TodoError,
@@ -28,14 +28,8 @@ from .ext import attrs, icecream, loguru, rich, wadler_lindig
 from .functools import MemorizedFunc, memorize, wraps, wrapt_getattr, wrapt_setattr
 from .itertools import as_iterable, as_sequence, first_not_none, len_or_none
 from .pretty import (
-    WadlerLindigOptions,
-    auto_repr,
-    choose_duration_format,
     get_console,
     has_ansi,
-    pdoc_attrs,
-    pdoc_custom,
-    pformat,
     pretty_call,
     pretty_duration,
     pretty_func,
@@ -59,8 +53,8 @@ from .serde import (
     yaml,
 )
 from .timing import BaseTimer, ClockName, Timer, Timings, clock, get_timer, timer
-from .tqdm import Progress, RateColumn, parallel, track
-from .typing import ClassInfo, PathLike, array_kind, clone_param_spec, clone_signature
+from .tqdm import Progress, RateColumn, track
+from .typing import ClassInfo, PathLike, array_kind
 
 __all__ = [
     "MISSING",
@@ -83,25 +77,20 @@ __all__ = [
     "Timings",
     "TodoError",
     "UnreachableError",
-    "WadlerLindigOptions",
     "__version__",
     "__version_tuple__",
     "array_kind",
     "as_iterable",
     "as_sequence",
     "attrs",
-    "auto_repr",
-    "choose_duration_format",
     "clock",
-    "clone_param_spec",
-    "clone_signature",
     "conf",
     "config",
     "dec_hook",
     "enc_hook",
     "entrypoint",
     "env",
-    "error",
+    "errors",
     "ext",
     "first_not_none",
     "functools",
@@ -119,10 +108,6 @@ __all__ = [
     "memorize",
     "nop",
     "not_implemented",
-    "parallel",
-    "pdoc_attrs",
-    "pdoc_custom",
-    "pformat",
     "pretty",
     "pretty_call",
     "pretty_duration",

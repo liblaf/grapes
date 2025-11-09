@@ -14,3 +14,4 @@ class WadlerLindigOptions(TypedDict, total=False):
     short_arrays: bool
     show_dataclass_module: bool
     show_type_module: bool
+    width: int

@@ -24,7 +24,7 @@ from .error import (
     unreachable,
 )
 from .functools import MemorizedFunc, memorize, wrapt_getattr, wrapt_setattr
-from .itertools import as_iterable, as_sequence, deep_merge, first_not_none, len_or_none
+from .itertools import as_iterable, as_sequence, first_not_none, len_or_none
 from .pretty import (
     WadlerLindigOptions,
     auto_repr,
@@ -94,7 +94,6 @@ __all__ = [
     "conf",
     "config",
     "dec_hook",
-    "deep_merge",
     "enc_hook",
     "env",
     "error",

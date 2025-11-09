@@ -3,7 +3,7 @@ from __future__ import annotations
 import attrs
 import loguru
 
-from liblaf.grapes import dep
+from liblaf.grapes import rt
 
 from ._utils import get_level_no
 
@@ -22,8 +22,8 @@ class FilterByVersion:
     def get_level(self, record: loguru.Record) -> int | None:
         file: str = record["file"].path
         name: str | None = record["name"]
-        if dep.is_dev_release(file, name):
+        if rt.is_dev_release(file, name):
             return self.level_dev
-        if dep.is_pre_release(file, name):
+        if rt.is_pre_release(file, name):
             return self.level_pre
         return None

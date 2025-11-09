@@ -2,6 +2,7 @@ import attrs
 import numpy as np
 import pydantic
 
+from liblaf.grapes._config import config
 from liblaf.grapes.ext.wadler_lindig import pformat
 
 
@@ -13,9 +14,10 @@ class MyDataclassAttrs:
 
 def test_pformat_attrs() -> None:
     obj = MyDataclassAttrs(x=["lorem", "ipsum", "dolor sit amet"], y=np.zeros((2, 3)))
-    assert (
-        pformat(obj, width=30, indent=4)
-        == """\
+    with config.pretty.short_arrays.overrides(True):  # noqa: FBT003
+        assert (
+            pformat(obj, width=30, indent=4)
+            == """\
 MyDataclassAttrs(
     x=[
         'lorem',
@@ -24,7 +26,7 @@ MyDataclassAttrs(
     ],
     y=f64[2,3](numpy)
 )"""
-    )
+        )
 
 
 class MyDataclassPydantic(pydantic.BaseModel):
@@ -37,9 +39,10 @@ def test_pformat_pydantic() -> None:
     obj = MyDataclassPydantic(
         x=["lorem", "ipsum", "dolor sit amet"], y=np.zeros((2, 3))
     )
-    assert (
-        pformat(obj, width=30, indent=4)
-        == """\
+    with config.pretty.short_arrays.overrides(True):  # noqa: FBT003
+        assert (
+            pformat(obj, width=30, indent=4)
+            == """\
 MyDataclassPydantic(
     x=[
         'lorem',
@@ -48,4 +51,4 @@ MyDataclassPydantic(
     ],
     y=f64[2,3](numpy)
 )"""
-    )
+        )

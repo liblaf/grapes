@@ -1,5 +1,5 @@
-from ._decode import DecHook, PydanticModelValidateOptions, dec_hook
-from ._encode import EncHook, PydanticModelDumpOptions, enc_hook
+from ._decode import DecHook, PydanticValidateOptions, dec_hook
+from ._encode import EncHook, PydanticDumpOptions, enc_hook
 from ._load import load
 from ._save import save
 from ._serde import Serde, json, toml, yaml
@@ -7,8 +7,8 @@ from ._serde import Serde, json, toml, yaml
 __all__ = [
     "DecHook",
     "EncHook",
-    "PydanticModelDumpOptions",
-    "PydanticModelValidateOptions",
+    "PydanticDumpOptions",
+    "PydanticValidateOptions",
     "Serde",
     "dec_hook",
     "enc_hook",

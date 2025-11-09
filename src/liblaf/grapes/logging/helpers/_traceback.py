@@ -1,7 +1,4 @@
-import sys
 import types
-import unittest.mock
-from collections.abc import Generator, Iterable
 from typing import TypedDict, Unpack, cast
 
 import cytoolz as toolz
@@ -14,8 +11,6 @@ from liblaf.grapes.ext.rich.traceback import Traceback
 
 class TracebackOptions(TypedDict, total=False):
     width: int | None
-    show_locals: bool
-    suppress: Iterable[str | types.ModuleType]
 
 
 def rich_traceback(
@@ -29,38 +24,12 @@ def rich_traceback(
     kwargs = cast("TracebackOptions", kwargs)
     # ? dirty hack to avoid long `repr()` output
     # ref: <https://github.com/Textualize/rich/discussions/3774>
-    with unittest.mock.patch("rich.pretty.repr", new=pretty.pformat):
-        rich_tb: Traceback = Traceback.from_exception(
-            exc_type, exc_value, traceback, **kwargs
-        )
+    # with unittest.mock.patch("rich.pretty.repr", new=pretty.pformat):
+    rich_tb: Traceback = Traceback.from_exception(
+        exc_type, exc_value, traceback, **kwargs
+    )
     # ? dirty hack to support ANSI in exception messages
     for stack in rich_tb.trace.stacks:
         if pretty.has_ansi(stack.exc_value):
             stack.exc_value = Text.from_ansi(stack.exc_value)  # pyright: ignore[reportAttributeAccessIssue]
     return rich_tb
-
-
-def _filter_traceback(
-    traceback: types.TracebackType | None,
-) -> types.TracebackType | None:
-    if traceback is None:
-        return None
-    if traceback.tb_frame.f_locals.get("__tracebackhide__"):
-        return _filter_traceback(traceback.tb_next)
-    traceback.tb_next = _filter_traceback(traceback.tb_next)
-    return traceback
-
-
-def _validate_suppress(
-    suppress: Iterable[str | types.ModuleType],
-) -> Generator[str | types.ModuleType]:
-    for item in suppress:
-        yield _validate_suppress_single(item)
-
-
-def _validate_suppress_single(
-    suppress: str | types.ModuleType,
-) -> str | types.ModuleType:
-    if isinstance(suppress, types.ModuleType):
-        return suppress
-    return sys.modules.get(suppress, suppress)

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import functools
 import os
 from collections.abc import Callable, Mapping
@@ -9,11 +11,11 @@ type EncHook = Callable[[Any], Any]
 
 
 type IncEx = (
-    set[int] | set[str] | Mapping[int, "IncEx | bool"] | Mapping[str, "IncEx | bool"]
+    set[int] | set[str] | Mapping[int, IncEx | bool] | Mapping[str, IncEx | bool]
 )
 
 
-class PydanticModelDumpOptions(TypedDict, total=False):
+class PydanticDumpOptions(TypedDict, total=False):
     mode: Literal["json", "python"]
     include: IncEx | None
     exclude: IncEx | None
@@ -39,10 +41,11 @@ def _(
     obj: pydantic.BaseModel,
     /,
     *,
-    pydantic_options: PydanticModelDumpOptions | None = None,
+    pydantic_options: PydanticDumpOptions | None = None,
     **_kwargs,
 ) -> Any:
     pydantic_options = pydantic_options or {}
+    pydantic_options.setdefault("mode", "json")
     return obj.model_dump(**pydantic_options)
 
 

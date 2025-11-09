@@ -2,10 +2,12 @@ from . import (
     conf,
     env,
     error,
+    ext,
     functools,
     itertools,
     logging,
     pretty,
+    rt,
     sentinel,
     serde,
     timing,
@@ -14,7 +16,6 @@ from . import (
 )
 from ._config import config
 from ._version import __version__, __version_tuple__, version, version_tuple
-from .deps import has_module, optional_imports, try_import
 from .error import (
     DispatchLookupError,
     MatchError,
@@ -23,7 +24,8 @@ from .error import (
     todo,
     unreachable,
 )
-from .functools import MemorizedFunc, memorize, wrapt_getattr, wrapt_setattr
+from .ext import attrs, icecream, loguru, rich, wadler_lindig
+from .functools import MemorizedFunc, memorize, wraps, wrapt_getattr, wrapt_setattr
 from .itertools import as_iterable, as_sequence, first_not_none, len_or_none
 from .pretty import (
     WadlerLindigOptions,
@@ -40,12 +42,13 @@ from .pretty import (
     pretty_throughput,
     rich_location,
 )
-from .sentinel import MISSING, NOP, nop
+from .rt import entrypoint, in_ci
+from .sentinel import MISSING, NOP, nop, not_implemented
 from .serde import (
     DecHook,
     EncHook,
-    PydanticModelDumpOptions,
-    PydanticModelValidateOptions,
+    PydanticDumpOptions,
+    PydanticValidateOptions,
     Serde,
     dec_hook,
     enc_hook,
@@ -72,8 +75,8 @@ __all__ = [
     "MemorizedFunc",
     "PathLike",
     "Progress",
-    "PydanticModelDumpOptions",
-    "PydanticModelValidateOptions",
+    "PydanticDumpOptions",
+    "PydanticValidateOptions",
     "RateColumn",
     "Serde",
     "Timer",
@@ -86,6 +89,7 @@ __all__ = [
     "array_kind",
     "as_iterable",
     "as_sequence",
+    "attrs",
     "auto_repr",
     "choose_duration_format",
     "clock",
@@ -95,22 +99,26 @@ __all__ = [
     "config",
     "dec_hook",
     "enc_hook",
+    "entrypoint",
     "env",
     "error",
+    "ext",
     "first_not_none",
     "functools",
     "get_console",
     "get_timer",
     "has_ansi",
-    "has_module",
+    "icecream",
+    "in_ci",
     "itertools",
     "json",
     "len_or_none",
     "load",
     "logging",
+    "loguru",
     "memorize",
     "nop",
-    "optional_imports",
+    "not_implemented",
     "parallel",
     "pdoc_attrs",
     "pdoc_custom",
@@ -120,7 +128,9 @@ __all__ = [
     "pretty_duration",
     "pretty_func",
     "pretty_throughput",
+    "rich",
     "rich_location",
+    "rt",
     "save",
     "sentinel",
     "serde",
@@ -130,11 +140,12 @@ __all__ = [
     "toml",
     "tqdm",
     "track",
-    "try_import",
     "typing",
     "unreachable",
     "version",
     "version_tuple",
+    "wadler_lindig",
+    "wraps",
     "wrapt_getattr",
     "wrapt_setattr",
     "yaml",

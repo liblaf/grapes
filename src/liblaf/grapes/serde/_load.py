@@ -4,7 +4,7 @@ from typing import Any, overload
 
 from liblaf.grapes.typing import PathLike
 
-from ._decode import DecHook, PydanticModelValidateOptions
+from ._decode import DecHook, PydanticValidateOptions
 from ._serde import json, toml, yaml
 
 readers: dict[str, Callable] = {}
@@ -21,7 +21,7 @@ def load(
     *,
     dec_hook: DecHook | None = ...,
     force_ext: str | None = None,
-    pydantic: PydanticModelValidateOptions | None = None,
+    pydantic: PydanticValidateOptions | None = None,
     strict: bool = True,
 ) -> Any: ...
 @overload
@@ -31,7 +31,7 @@ def load[T](
     *,
     dec_hook: DecHook | None = ...,
     force_ext: str | None = None,
-    pydantic: PydanticModelValidateOptions | None = None,
+    pydantic: PydanticValidateOptions | None = None,
     strict: bool = True,
     type: type[T],
 ) -> T: ...
@@ -42,7 +42,7 @@ def load[T](
     *,
     dec_hook: DecHook | None = ...,
     force_ext: str | None = None,
-    pydantic: PydanticModelValidateOptions | None = None,
+    pydantic: PydanticValidateOptions | None = None,
     strict: bool = True,
     type: Any,
 ) -> Any: ...

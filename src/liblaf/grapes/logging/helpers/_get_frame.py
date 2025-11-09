@@ -1,7 +1,8 @@
+import functools
 import sys
 import types
 import unittest.mock
-from collections.abc import Callable, Generator
+from collections.abc import Callable, Iterable
 from pathlib import Path
 
 from loguru._get_frame import load_get_frame_function
@@ -29,12 +30,22 @@ def _should_hide(frame: types.FrameType) -> bool:
         if frame.f_locals.get(name, False):
             return True
     file: Path = Path(frame.f_code.co_filename)
-    hide: bool = any(file.is_relative_to(path) for path in _get_hide_paths())
+    hide: bool = any(
+        file.is_relative_to(path)
+        for path in _get_hide_prefixes(tuple(config.logging.hide_frame.get()))
+    )
     return hide
 
 
-def _get_hide_paths() -> Generator[Path]:
-    modules: list[str] = config.logging.hide_frame.get()
+def _get_hide_prefixes(modules: Iterable[str] | None) -> list[Path]:
+    if modules is None:
+        modules = config.logging.hide_frame.get()
+    return _get_hide_prefixes_cached(tuple(modules))
+
+
+@functools.lru_cache
+def _get_hide_prefixes_cached(modules: tuple[str]) -> list[Path]:
+    paths: list[Path] = []
     for name in modules:
         module: types.ModuleType | None = sys.modules.get(name)
         if module is None:
@@ -42,7 +53,8 @@ def _get_hide_paths() -> Generator[Path]:
         file: str | None = getattr(module, "__file__", None)
         if file is None:
             continue
-        yield Path(file).parent
+        paths.append(Path(file).parent)
+    return paths
 
 
 def patch_loguru_get_frame(

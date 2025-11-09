@@ -6,7 +6,7 @@ import pydantic
 type DecHook = Callable[[type, Any], Any]
 
 
-class PydanticModelValidateOptions(TypedDict, total=False):
+class PydanticValidateOptions(TypedDict, total=False):
     strict: bool | None
     """Whether to enforce types strictly."""
 
@@ -28,7 +28,7 @@ def dec_hook(
     obj: Any,
     /,
     *,
-    pydantic_options: PydanticModelValidateOptions | None = None,
+    pydantic_options: PydanticValidateOptions | None = None,
 ) -> Any:
     if issubclass(typ, pydantic.BaseModel):
         pydantic_options = pydantic_options or {}

@@ -8,8 +8,8 @@ import msgspec
 
 from liblaf.grapes.typing import PathLike
 
-from ._decode import DecHook, PydanticModelValidateOptions, dec_hook
-from ._encode import EncHook, PydanticModelDumpOptions, enc_hook
+from ._decode import DecHook, PydanticValidateOptions, dec_hook
+from ._encode import EncHook, PydanticDumpOptions, enc_hook
 
 type Decoder = Callable
 type Encoder = Callable
@@ -27,7 +27,7 @@ class Serde:
         /,
         *,
         dec_hook: DecHook | None = ...,
-        pydantic: PydanticModelValidateOptions | None = None,
+        pydantic: PydanticValidateOptions | None = None,
         strict: bool = True,
     ) -> Any: ...
     @overload
@@ -37,7 +37,7 @@ class Serde:
         /,
         *,
         dec_hook: DecHook | None = ...,
-        pydantic: PydanticModelValidateOptions | None = None,
+        pydantic: PydanticValidateOptions | None = None,
         strict: bool = True,
         type: type[T],
     ) -> T: ...
@@ -48,7 +48,7 @@ class Serde:
         /,
         *,
         dec_hook: DecHook | None = ...,
-        pydantic: PydanticModelValidateOptions | None = None,
+        pydantic: PydanticValidateOptions | None = None,
         strict: bool = True,
         type: Any,
     ) -> Any: ...
@@ -67,7 +67,7 @@ class Serde:
         *,
         enc_hook: EncHook | None = ...,
         order: Literal["deterministic", "sorted"] | None = None,
-        pydantic: PydanticModelDumpOptions | None = None,
+        pydantic: PydanticDumpOptions | None = None,
     ) -> bytes: ...
     def encode(self, obj: Any, /, **kwargs) -> bytes:
         if "enc_hook" not in kwargs:
@@ -83,7 +83,7 @@ class Serde:
         /,
         *,
         dec_hook: DecHook | None = ...,
-        pydantic: PydanticModelValidateOptions | None = None,
+        pydantic: PydanticValidateOptions | None = None,
         strict: bool = True,
     ) -> Any: ...
     @overload
@@ -93,7 +93,7 @@ class Serde:
         /,
         *,
         dec_hook: DecHook | None = ...,
-        pydantic: PydanticModelValidateOptions | None = None,
+        pydantic: PydanticValidateOptions | None = None,
         strict: bool = True,
         type: type[T],
     ) -> T: ...
@@ -104,7 +104,7 @@ class Serde:
         /,
         *,
         dec_hook: DecHook | None = ...,
-        pydantic: PydanticModelValidateOptions | None = None,
+        pydantic: PydanticValidateOptions | None = None,
         strict: bool = True,
         type: Any,
     ) -> Any: ...
@@ -121,7 +121,7 @@ class Serde:
         *,
         enc_hook: EncHook | None = ...,
         order: Literal["deterministic", "sorted"] | None = None,
-        pydantic: PydanticModelDumpOptions | None = None,
+        pydantic: PydanticDumpOptions | None = None,
     ) -> None: ...
     def save(self, path: PathLike, obj: Any, /, **kwargs) -> None:
         path = Path(path)

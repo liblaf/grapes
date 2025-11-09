@@ -1,24 +1,26 @@
 from typing import Any, Unpack
 
-import attrs
 import cytoolz as toolz
+import fieldz
 import wadler_lindig as wl
 
 from liblaf.grapes.ext.wadler_lindig._typing import WadlerLindigOptions
+from liblaf.grapes.sentinel import MISSING
 
 
-def pdoc_attrs(
+def pdoc_fieldz(
     obj: object, **kwargs: Unpack[WadlerLindigOptions]
 ) -> wl.AbstractDoc | None:
     cls: type = type(obj)
-    if not attrs.has(cls):
-        return None
     pairs: list[tuple[str, Any]] = []
-    for field in attrs.fields(cls):
-        field: attrs.Attribute
+    try:
+        fields: tuple[fieldz.Field, ...] = fieldz.fields(obj)
+    except TypeError:
+        return None
+    for field in fields:
         if not field.repr:
             continue
-        value: Any = getattr(obj, field.name, attrs.NOTHING)
+        value: Any = getattr(obj, field.name, MISSING)
         if kwargs.get("hide_defaults", True) and value is field.default:
             continue
         pairs.append((field.name, value))

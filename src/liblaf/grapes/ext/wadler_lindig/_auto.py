@@ -6,7 +6,7 @@ import attrs
 import pydantic
 
 from ._pformat import pformat
-from .custom import pdoc_attrs, pdoc_pydantic
+from .custom import pdoc_fieldz, pdoc_rich_repr
 
 
 @overload
@@ -30,10 +30,10 @@ def auto_pdoc(
     if repr is None:
         repr = "__repr__" not in cls.__dict__  # noqa: A001
     if pdoc:
-        if attrs.has(cls):
-            cls.__pdoc__ = pdoc_attrs  # pyright: ignore[reportAttributeAccessIssue]
-        elif issubclass(cls, pydantic.BaseModel):
-            cls.__pdoc__ = pdoc_pydantic  # pyright: ignore[reportAttributeAccessIssue]
+        if attrs.has(cls) or issubclass(cls, pydantic.BaseModel):
+            cls.__pdoc__ = pdoc_fieldz  # pyright: ignore[reportAttributeAccessIssue]
+        elif "__rich_repr__" in cls.__dict__:
+            cls.__pdoc__ = pdoc_rich_repr
     if repr:
         cls.__repr__ = pformat  # pyright: ignore[reportAttributeAccessIssue]
     return cls

@@ -5,7 +5,7 @@ from ._pdoc import pdoc
 from ._pformat import pformat
 from ._pprint import pprint
 from ._typing import CustomCallable, WadlerLindigOptions
-from .custom import PdocCustomDispatcher, pdoc_attrs, pdoc_custom, pdoc_pydantic
+from .custom import PdocCustomDispatcher, pdoc_custom, pdoc_fieldz, pdoc_rich_repr
 
 __all__ = [
     "CustomCallable",
@@ -15,9 +15,9 @@ __all__ = [
     "custom",
     "make_kwargs",
     "pdoc",
-    "pdoc_attrs",
     "pdoc_custom",
-    "pdoc_pydantic",
+    "pdoc_fieldz",
+    "pdoc_rich_repr",
     "pformat",
     "pprint",
 ]

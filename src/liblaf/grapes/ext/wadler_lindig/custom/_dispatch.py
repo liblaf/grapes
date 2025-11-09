@@ -8,16 +8,13 @@ from typing import TYPE_CHECKING, Any, Unpack, overload
 import pydantic
 import wadler_lindig as wl
 
-from ._attrs import pdoc_attrs
-from ._pydantic import pdoc_pydantic
+from liblaf.grapes.ext.wadler_lindig._typing import CustomCallable, WadlerLindigOptions
+
+from ._fieldz import pdoc_fieldz
+from ._rich_repr import pdoc_rich_repr
 
 if TYPE_CHECKING:
     from functools import _RegType, _SingleDispatchCallable
-
-    from liblaf.grapes.ext.wadler_lindig._typing import (
-        CustomCallable,
-        WadlerLindigOptions,
-    )
 
 
 class PdocCustomDispatcher:
@@ -34,8 +31,9 @@ class PdocCustomDispatcher:
         self._registry = []
         self._single_dispatcher = single_dispatcher
 
-        self.register(pdoc_attrs)
-        self.register(pydantic.BaseModel)(pdoc_pydantic)
+        self.register(pdoc_fieldz)
+        self.register(pdoc_rich_repr)
+        self.register(pydantic.BaseModel)(pdoc_fieldz)
 
     def __call__(
         self, obj: Any, **kwargs: Unpack[WadlerLindigOptions]

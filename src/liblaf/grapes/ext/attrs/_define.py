@@ -3,8 +3,8 @@ from typing import Any
 
 import attrs
 
-from liblaf.grapes.ext.rich.repr import rich_repr_attrs
-from liblaf.grapes.ext.wadler_lindig import pdoc_attrs, pformat
+from liblaf.grapes.ext.rich.repr import rich_repr_fieldz
+from liblaf.grapes.ext.wadler_lindig import pdoc_fieldz, pformat
 from liblaf.grapes.functools import wraps
 
 
@@ -20,7 +20,7 @@ def define(maybe_cls: type | None = None, **kwargs) -> Any:
         maybe_cls.__repr__ = pformat  # pyright: ignore[reportAttributeAccessIssue]
         kwargs["repr"] = False
     if "__pdoc__" not in maybe_cls.__dict__:
-        maybe_cls.__pdoc__ = pdoc_attrs
+        maybe_cls.__pdoc__ = pdoc_fieldz
     if "__rich_repr__" not in maybe_cls.__dict__:
-        maybe_cls.__rich_repr__ = rich_repr_attrs
+        maybe_cls.__rich_repr__ = rich_repr_fieldz
     return attrs.define(maybe_cls, **kwargs)

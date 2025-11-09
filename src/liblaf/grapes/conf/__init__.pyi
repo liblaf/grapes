@@ -1,5 +1,7 @@
-from ._base import BaseConfig, BaseModel
+from ._base import BaseModel
+from ._base_config import BaseConfig
 from ._config import Config, config
+from ._field import Field, field
 from ._joblib import ConfigJoblib, ConfigJoblibMemory
 from ._logging import ConfigLogging
 from ._pretty import ConfigPretty
@@ -14,5 +16,7 @@ __all__ = [
     "ConfigLogging",
     "ConfigPretty",
     "ConfigTraceback",
+    "Field",
     "config",
+    "field",
 ]

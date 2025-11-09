@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import override
 
 import attrs
@@ -14,7 +16,7 @@ class RichSinkColumnMessage(RichSinkColumn):
     highlighter: Highlighter = attrs.field(factory=ReprHighlighter)
 
     @override  # impl RichSinkColumn
-    def render(self, record: "loguru.Record") -> RenderableType:
+    def render(self, record: loguru.Record) -> RenderableType:
         if (rich := record["extra"].get("rich")) is not None:
             return rich
         message: RenderableType = record["message"].strip()

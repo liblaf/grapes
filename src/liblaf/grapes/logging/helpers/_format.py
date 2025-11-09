@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import types
 
 import loguru
@@ -16,10 +18,10 @@ DEFAULT_FORMAT = (
 )
 
 
-def new_format(template: str = DEFAULT_FORMAT) -> "loguru.FormatFunction":
+def new_format(template: str = DEFAULT_FORMAT) -> loguru.FormatFunction:
     template = template.strip() + "\n"
 
-    def format_(record: "loguru.Record", /) -> str:
+    def format_(record: loguru.Record, /) -> str:
         if record["exception"] is None:
             return template
         exc_type: type[BaseException] | None

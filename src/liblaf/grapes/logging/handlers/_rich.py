@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from collections.abc import Sequence
 from typing import Unpack
 
@@ -13,9 +15,12 @@ def rich_handler(
     console: Console | None = None,
     *,
     enable_link: bool = True,
-    **kwargs: Unpack["loguru.BasicHandlerConfig"],
-) -> "loguru.BasicHandlerConfig":
-    kwargs["sink"] = RichSink(console=console, columns=columns, enable_link=enable_link)
+    time: bool | None = None,
+    **kwargs: Unpack[loguru.BasicHandlerConfig],
+) -> loguru.BasicHandlerConfig:
+    kwargs["sink"] = RichSink(
+        console=console, columns=columns, link=enable_link, time=time
+    )
     kwargs["format"] = ""
     kwargs["filter"] = new_filter(kwargs.get("filter"))
     return kwargs

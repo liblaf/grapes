@@ -16,8 +16,8 @@ from ._abc import RichSinkColumn
 
 @attrs.define
 class RichSinkColumnLocation(RichSinkColumn):
-    abbr_name: bool = False
-    enable_link: bool = False
+    abbr: bool = False
+    link: bool = False
     width: int | None = None
 
     @override  # impl RichSinkColumn
@@ -28,7 +28,7 @@ class RichSinkColumnLocation(RichSinkColumn):
             function=record["function"],
             line=record["line"],
             file=record["file"].path,
-            enable_link=self.enable_link,
+            enable_link=self.link,
             width=self.width,
         )
         location.style = "log.path"
@@ -38,7 +38,7 @@ class RichSinkColumnLocation(RichSinkColumn):
         name: str | None = record["name"]
         if name is None:
             return None
-        if not self.abbr_name:
+        if not self.abbr:
             return name
         function: str = record["function"]
         start: int = 0

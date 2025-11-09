@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import datetime
 
 import attrs
@@ -12,6 +14,6 @@ from ._abc import RichSinkColumn
 class RichSinkColumnTime(RichSinkColumn):
     fmt: str = "%Y-%m-%dT%H:%M:%S.%f"
 
-    def render(self, record: "loguru.Record", /) -> RenderableType:
+    def render(self, record: loguru.Record, /) -> RenderableType:
         time: datetime.datetime = record["time"]
         return Text(f"{time:{self.fmt}}", style="log.time")

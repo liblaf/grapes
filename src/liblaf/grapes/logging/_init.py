@@ -22,12 +22,13 @@ from .helpers import (
 
 def init(
     *,
-    enable_link: bool = False,
     file: PathLike | None = None,
     filter: FilterLike = None,  # noqa: A002
     handlers: Sequence[loguru.HandlerConfig] | None = None,
     intercept: Iterable[str] = (),
     level: int | str | None = None,
+    link: bool = False,
+    time: bool | None = None,
 ) -> None:
     if file is None:
         file = config.logging.file.get()
@@ -41,7 +42,7 @@ def init(
         if level is not None:
             handler_config["level"] = level
         handlers: list[loguru.HandlerConfig] = [
-            rich_handler(**handler_config, enable_link=enable_link)
+            rich_handler(**handler_config, enable_link=link, time=time)
         ]
         if file:
             handlers.append(file_handler(sink=file, **handler_config))

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import types
 from collections.abc import Generator, Sequence
 
@@ -6,6 +8,7 @@ import loguru
 from rich.console import Console, RenderableType
 
 from liblaf.grapes import pretty
+from liblaf.grapes._config import config
 from liblaf.grapes.logging.helpers import rich_traceback
 
 from .columns import (
@@ -14,16 +17,28 @@ from .columns import (
     RichSinkColumnLevel,
     RichSinkColumnLocation,
     RichSinkColumnMessage,
+    RichSinkColumnTime,
 )
 
 
-def default_columns(*, enable_link: bool = False) -> Sequence[RichSinkColumn]:
-    return [
-        RichSinkColumnElapsed(),
-        RichSinkColumnLevel(),
-        RichSinkColumnLocation(enable_link=enable_link),
-        RichSinkColumnMessage(),
-    ]
+def default_columns(
+    *, link: bool = False, time: bool | None = None
+) -> Sequence[RichSinkColumn]:
+    if time is None:
+        time = config.logging.time.get()
+    columns: list[RichSinkColumn] = []
+    if time:
+        columns.append(RichSinkColumnTime())
+    else:
+        columns.append(RichSinkColumnElapsed())
+    columns.extend(
+        [
+            RichSinkColumnLevel(),
+            RichSinkColumnLocation(link=link),
+            RichSinkColumnMessage(),
+        ]
+    )
+    return columns
 
 
 def default_console() -> Console:
@@ -46,13 +61,14 @@ class RichSink:
         columns: Sequence[RichSinkColumn] | None = None,
         console: Console | None = None,
         *,
-        enable_link: bool = False,
+        link: bool = False,
+        time: bool | None = None,
     ) -> None:
         if columns is None:
-            columns = default_columns(enable_link=enable_link)
+            columns = default_columns(link=link, time=time)
         self.__attrs_init__(columns=columns, console=console)  # pyright: ignore[reportAttributeAccessIssue]
 
-    def __call__(self, message: "loguru.Message", /) -> None:
+    def __call__(self, message: loguru.Message, /) -> None:
         record: loguru.Record = message.record
         # TODO: `console.print()` is slow
         self.console.print(
@@ -61,11 +77,11 @@ class RichSink:
         if (excpetion := self.render_exception(record)) is not None:
             self.console.print(excpetion)
 
-    def render(self, record: "loguru.Record", /) -> Generator[RenderableType]:
+    def render(self, record: loguru.Record, /) -> Generator[RenderableType]:
         for column in self.columns:
             yield column.render(record)
 
-    def render_exception(self, record: "loguru.Record", /) -> RenderableType | None:
+    def render_exception(self, record: loguru.Record, /) -> RenderableType | None:
         exception: loguru.RecordException | None = record["exception"]
         if exception is None:
             return None

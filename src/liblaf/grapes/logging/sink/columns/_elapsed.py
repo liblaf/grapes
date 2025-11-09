@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import datetime
 from typing import override
 
@@ -10,7 +12,7 @@ from ._abc import RichSinkColumn
 
 class RichSinkColumnElapsed(RichSinkColumn):
     @override  # impl RichSinkColumn
-    def render(self, record: "loguru.Record", /) -> RenderableType:
+    def render(self, record: loguru.Record, /) -> RenderableType:
         elapsed: datetime.timedelta = record["elapsed"]
         hh: int
         mm: int

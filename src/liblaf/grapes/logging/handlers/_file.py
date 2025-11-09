@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import Unpack
 
 import loguru
@@ -9,8 +11,8 @@ from liblaf.grapes.logging.helpers import new_format
 
 
 def file_handler(
-    **kwargs: Unpack["loguru.FileHandlerConfig"],
-) -> "loguru.FileHandlerConfig":
+    **kwargs: Unpack[loguru.FileHandlerConfig],
+) -> loguru.FileHandlerConfig:
     if "sink" not in kwargs:
         kwargs["sink"] = config.logging.file.get() or rt.entrypoint().with_suffix(
             ".log"

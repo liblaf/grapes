@@ -16,8 +16,3 @@ def get_level_no(level: bool | int | str) -> int:  # noqa: FBT001
     if isinstance(level, int):
         return level
     return logger.level(level).no
-
-
-def get_parent(name: str) -> str:
-    index: int = name.rfind(".")
-    return "" if index < 0 else name[:index]

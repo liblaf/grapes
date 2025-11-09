@@ -6,10 +6,10 @@ from typing import TypedDict, Unpack, cast
 
 import cytoolz as toolz
 from rich.text import Text
-from rich.traceback import Traceback
 
 from liblaf.grapes import pretty
 from liblaf.grapes._config import config
+from liblaf.grapes.ext.rich.traceback import Traceback
 
 
 class TracebackOptions(TypedDict, total=False):
@@ -27,11 +27,6 @@ def rich_traceback(
 ) -> Traceback:
     kwargs = toolz.merge(config.traceback.get(), kwargs)
     kwargs = cast("TracebackOptions", kwargs)
-    if kwargs.get("width") is None:
-        kwargs["width"] = pretty.get_console(stderr=True).width
-    if suppress := kwargs.get("suppress"):
-        kwargs["suppress"] = _validate_suppress(suppress)
-    traceback = _filter_traceback(traceback)
     # ? dirty hack to avoid long `repr()` output
     # ref: <https://github.com/Textualize/rich/discussions/3774>
     with unittest.mock.patch("rich.pretty.repr", new=pretty.pformat):

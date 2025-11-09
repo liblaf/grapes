@@ -20,10 +20,12 @@ class FilterOnce:
         return True
 
     def _hash_record(self, record: loguru.Record) -> Hashable:
-        return (
-            record["function"],
-            record["level"].no,
-            record["line"],
-            record["message"],
-            record["name"],
+        return hash(
+            (
+                record["function"],
+                record["level"].no,
+                record["line"],
+                record["message"],
+                record["name"],
+            )
         )

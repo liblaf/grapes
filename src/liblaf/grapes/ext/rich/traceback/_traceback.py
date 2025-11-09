@@ -1,7 +1,7 @@
 import linecache
 import types
 from collections.abc import Iterable
-from typing import override
+from typing import Self, override
 
 import rich.console
 from rich.console import ConsoleRenderable, RenderResult
@@ -52,6 +52,47 @@ class Traceback(RichTraceback):
             )
         )
         return Trace(stacks=stacks)
+
+    @override
+    @classmethod
+    def from_exception(
+        cls,
+        exc_type: type[BaseException],
+        exc_value: BaseException,
+        traceback: types.TracebackType | None,
+        *,
+        width: int | None = None,
+        code_width: int | None = 88,
+        extra_lines: int = 1,
+        theme: str | None = None,
+        word_wrap: bool = False,
+        show_locals: bool = True,
+        locals_max_length: int = LOCALS_MAX_LENGTH,
+        locals_max_string: int = LOCALS_MAX_STRING,
+        locals_hide_dunder: bool = True,
+        locals_hide_sunder: bool = True,
+        indent_guides: bool = True,
+        suppress: Iterable[str | types.ModuleType] = (),
+        max_frames: int = 100,
+    ) -> Self:
+        return super().from_exception(
+            exc_type,
+            exc_value,
+            traceback,
+            width=width,
+            code_width=code_width,
+            extra_lines=extra_lines,
+            theme=theme,
+            word_wrap=word_wrap,
+            show_locals=show_locals,
+            locals_max_length=locals_max_length,
+            locals_max_string=locals_max_string,
+            locals_hide_dunder=locals_hide_dunder,
+            locals_hide_sunder=locals_hide_sunder,
+            indent_guides=indent_guides,
+            suppress=suppress,
+            max_frames=max_frames,
+        )  # pyright: ignore[reportReturnType]
 
     def _render_frame(self, frame: Frame) -> RenderResult:
         location: Text = Text.assemble(

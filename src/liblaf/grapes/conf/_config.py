@@ -5,8 +5,6 @@ from typing import Any, Self
 import attrs
 import cytoolz as toolz
 
-from liblaf.grapes.ext.attrs._define import define
-
 from ._field import Field
 
 
@@ -24,7 +22,7 @@ class BaseConfigMeta(type):
             return cls
         kwargs.setdefault("frozen", True)
         kwargs.setdefault("init", False)
-        cls = define(cls, **kwargs)
+        cls = attrs.define(cls, **kwargs)
         return cls
 
 

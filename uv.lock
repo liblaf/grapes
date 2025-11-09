@@ -592,15 +592,6 @@ wheels = [
 ]
 
 [[package]]
-name = "etils"
-version = "1.13.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/9b/a0/522bbff0f3cdd37968f90dd7f26c7aa801ed87f5ba335f156de7f2b88a48/etils-1.13.0.tar.gz", hash = "sha256:a5b60c71f95bcd2d43d4e9fb3dc3879120c1f60472bb5ce19f7a860b1d44f607", size = 106368, upload-time = "2025-07-15T10:29:10.563Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/e7/98/87b5946356095738cb90a6df7b35ff69ac5750f6e783d5fbcc5cb3b6cbd7/etils-1.13.0-py3-none-any.whl", hash = "sha256:d9cd4f40fbe77ad6613b7348a18132cc511237b6c076dbb89105c0b520a4c6bb", size = 170603, upload-time = "2025-07-15T10:29:09.076Z" },
-]
-
-[[package]]
 name = "execnet"
 version = "2.1.1"
 source = { registry = "https://pypi.org/simple" }
@@ -673,15 +664,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/9a/c8/dd58967d119baab745caec2f9d853297cec1989ec1d63f677d3880632b88/gitpython-3.1.45.tar.gz", hash = "sha256:85b0ee964ceddf211c41b9f27a49086010a190fd8132a24e21f362a4b36a791c", size = 215076, upload-time = "2025-07-24T03:45:54.871Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/01/61/d4b89fec821f72385526e1b9d9a3a0385dda4a72b206d28049e2c7cd39b8/gitpython-3.1.45-py3-none-any.whl", hash = "sha256:8908cb2e02fb3b93b7eb0f2827125cb699869470432cc885f019b8fd0fccff77", size = 208168, upload-time = "2025-07-24T03:45:52.517Z" },
-]
-
-[[package]]
-name = "giturlparse"
-version = "0.14.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/09/35/7f25a604a406be7d7d0f849bfcbc1603df084e9e58fe6170980c231138e4/giturlparse-0.14.0.tar.gz", hash = "sha256:0a13208cb3f60e067ee3d09d28e01f9c936065986004fa2d5cd6db7758e9f6e6", size = 15637, upload-time = "2025-10-22T09:21:11.674Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/c4/f9/9ff5a301459f804a885f237453ba81564bc6ee54740e9f2676c2642043f6/giturlparse-0.14.0-py2.py3-none-any.whl", hash = "sha256:04fd9c262ca9a4db86043d2ef32b2b90bfcbcdefc4f6a260fd9402127880931d", size = 16299, upload-time = "2025-10-22T09:21:10.818Z" },
 ]
 
 [[package]]
@@ -1016,17 +998,12 @@ name = "liblaf-grapes"
 source = { editable = "." }
 dependencies = [
     { name = "about-time" },
-    { name = "asttokens" },
     { name = "attrs" },
     { name = "autoregistry" },
     { name = "cachetools" },
     { name = "cytoolz" },
     { name = "environs" },
-    { name = "etils" },
-    { name = "executing" },
     { name = "fieldz" },
-    { name = "gitpython" },
-    { name = "giturlparse" },
     { name = "joblib" },
     { name = "lazy-loader" },
     { name = "loguru" },
@@ -1034,7 +1011,6 @@ dependencies = [
     { name = "packaging" },
     { name = "platformdirs" },
     { name = "pydantic" },
-    { name = "pydantic-settings" },
     { name = "rich" },
     { name = "typing-extensions" },
     { name = "wadler-lindig" },
@@ -1064,17 +1040,12 @@ test = [
 [package.metadata]
 requires-dist = [
     { name = "about-time", specifier = ">=4,<5" },
-    { name = "asttokens", specifier = ">=3,<4" },
     { name = "attrs", specifier = ">=25,<26" },
     { name = "autoregistry", specifier = ">=1,<2" },
     { name = "cachetools", specifier = ">=6,<7" },
     { name = "cytoolz", specifier = ">=1,<2" },
     { name = "environs", specifier = ">=14,<15" },
-    { name = "etils", specifier = ">=1,<2" },
-    { name = "executing", specifier = ">=2,<3" },
     { name = "fieldz", specifier = ">=0.1,<0.2" },
-    { name = "gitpython", specifier = ">=3,<4" },
-    { name = "giturlparse", specifier = ">=0.14,<0.15" },
     { name = "joblib", specifier = ">=1,<2" },
     { name = "lazy-loader", specifier = ">=0.4,<0.5" },
     { name = "loguru", specifier = ">=0.7,<0.8" },
@@ -1082,7 +1053,6 @@ requires-dist = [
     { name = "packaging", specifier = ">=25,<26" },
     { name = "platformdirs", specifier = ">=4,<5" },
     { name = "pydantic", specifier = ">=2,<3" },
-    { name = "pydantic-settings", specifier = ">=2,<3" },
     { name = "rich", specifier = ">=14,<15" },
     { name = "typing-extensions", specifier = ">=4,<5" },
     { name = "wadler-lindig", specifier = ">=0.1,<0.2" },
@@ -1862,20 +1832,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/aa/81/05e400037eaf55ad400bcd318c05bb345b57e708887f07ddb2d20e3f0e98/pydantic_core-2.41.5-graalpy312-graalpy250_312_native-macosx_11_0_arm64.whl", hash = "sha256:aabf5777b5c8ca26f7824cb4a120a740c9588ed58df9b2d196ce92fba42ff8dc", size = 1915388, upload-time = "2025-11-04T13:42:52.215Z" },
     { url = "https://files.pythonhosted.org/packages/6e/0d/e3549b2399f71d56476b77dbf3cf8937cec5cd70536bdc0e374a421d0599/pydantic_core-2.41.5-graalpy312-graalpy250_312_native-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:c007fe8a43d43b3969e8469004e9845944f1a80e6acd47c150856bb87f230c56", size = 1942879, upload-time = "2025-11-04T13:42:56.483Z" },
     { url = "https://files.pythonhosted.org/packages/f7/07/34573da085946b6a313d7c42f82f16e8920bfd730665de2d11c0c37a74b5/pydantic_core-2.41.5-graalpy312-graalpy250_312_native-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:76d0819de158cd855d1cbb8fcafdf6f5cf1eb8e470abe056d5d161106e38062b", size = 2139017, upload-time = "2025-11-04T13:42:59.471Z" },
-]
-
-[[package]]
-name = "pydantic-settings"
-version = "2.11.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "pydantic" },
-    { name = "python-dotenv" },
-    { name = "typing-inspection" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/20/c5/dbbc27b814c71676593d1c3f718e6cd7d4f00652cefa24b75f7aa3efb25e/pydantic_settings-2.11.0.tar.gz", hash = "sha256:d0e87a1c7d33593beb7194adb8470fc426e95ba02af83a0f23474a04c9a08180", size = 188394, upload-time = "2025-09-24T14:19:11.764Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/83/d6/887a1ff844e64aa823fb4905978d882a633cfe295c32eacad582b78a7d8b/pydantic_settings-2.11.0-py3-none-any.whl", hash = "sha256:fe2cea3413b9530d10f3a5875adffb17ada5c1e1bab0b2885546d7310415207c", size = 48608, upload-time = "2025-09-24T14:19:10.015Z" },
 ]
 
 [[package]]

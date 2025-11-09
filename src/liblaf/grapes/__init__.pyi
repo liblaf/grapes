@@ -1,6 +1,5 @@
 from . import (
     conf,
-    env,
     errors,
     ext,
     functools,
@@ -89,7 +88,6 @@ __all__ = [
     "dec_hook",
     "enc_hook",
     "entrypoint",
-    "env",
     "errors",
     "ext",
     "first_not_none",

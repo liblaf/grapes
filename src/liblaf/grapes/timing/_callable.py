@@ -10,8 +10,8 @@ from ._utils import set_timer
 
 
 def timed_callable[**P, T](func: Callable[P, T], timer: BaseTimer) -> Callable[P, T]:
-    if timer.name is None:
-        timer.name = pretty.pretty_func(func)
+    if timer.label is None:
+        timer.label = pretty.pretty_func(func)
 
     @wrapt.decorator
     def wrapper(

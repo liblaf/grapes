@@ -34,20 +34,14 @@ def pretty_statistic(
         case "mean+stdev":
             mean: float = compute_statistic(series, "mean")
             stdev: float = compute_statistic(series, "stdev")
-            mean_str: str = pretty.pretty_duration(mean)
-            stdev_str: str = pretty.pretty_duration(stdev)
-            fmt = "{} ± {}"
-            pretty_name: str = fmt.format("mean", "σ")  # noqa: RUF001
-            pretty_value: str = fmt.format(mean_str, stdev_str)
+            pretty_name: str = "mean ± σ"  # noqa: RUF001
+            pretty_value: str = pretty.pretty_durations((mean, stdev), sep=" ± ")
             return pretty_name, pretty_value
         case "range":
             minimum: float = compute_statistic(series, "min")
             maximum: float = compute_statistic(series, "max")
-            min_str: str = pretty.pretty_duration(minimum)
-            max_str: str = pretty.pretty_duration(maximum)
-            fmt = "{} … {}"
-            pretty_name: str = fmt.format("min", "max")
-            pretty_value: str = fmt.format(min_str, max_str)
+            pretty_name: str = "min … max"
+            pretty_value: str = pretty.pretty_durations((minimum, maximum), sep=" … ")
             return pretty_name, pretty_value
         case stat_name:
             value: float = compute_statistic(series, stat_name)

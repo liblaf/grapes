@@ -32,13 +32,13 @@ def main() -> None:
     for _ in grapes.timer(range(N_ITER)):
         time.sleep(TIMEDELTA_SEC)
 
-    t: grapes.Timer = grapes.timer(name="With")
+    t: grapes.Timer = grapes.timer(label="With")
     for _ in range(N_ITER):
         with t:
             time.sleep(TIMEDELTA_SEC)
     t.finish()
 
-    t = grapes.timer(name="Manual")
+    t = grapes.timer(label="Manual")
     for _ in range(N_ITER):
         t.start()
         time.sleep(TIMEDELTA_SEC)

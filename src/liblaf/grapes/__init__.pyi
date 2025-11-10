@@ -24,65 +24,29 @@ from .errors import (
     unreachable,
 )
 from .ext import attrs, icecream, loguru, rich, wadler_lindig
-from .functools import MemorizedFunc, memorize, wraps, wrapt_getattr, wrapt_setattr
+from .ext.wadler_lindig import pdoc, pformat, pprint
+from .functools import memorize, wraps, wrapt_getattr, wrapt_setattr
 from .itertools import as_iterable, as_sequence, first_not_none, len_or_none
-from .pretty import (
-    get_console,
-    has_ansi,
-    pretty_call,
-    pretty_duration,
-    pretty_func,
-    pretty_throughput,
-    rich_location,
-)
+from .pretty import get_console
 from .rt import entrypoint, in_ci
 from .sentinel import MISSING, NOP, nop, not_implemented
-from .serde import (
-    DecHook,
-    EncHook,
-    PydanticDumpOptions,
-    PydanticValidateOptions,
-    Serde,
-    dec_hook,
-    enc_hook,
-    json,
-    load,
-    save,
-    toml,
-    yaml,
-)
-from .timing import BaseTimer, ClockName, Timer, Timings, clock, get_timer, timer
-from .tqdm import Progress, RateColumn, track
-from .typing import ClassInfo, PathLike, array_kind
+from .serde import dec_hook, enc_hook, json, load, save, toml, yaml
+from .timing import BaseTimer, get_timer, timer
+from .tqdm import track
 
 __all__ = [
     "MISSING",
     "NOP",
     "BaseTimer",
-    "ClassInfo",
-    "ClockName",
-    "DecHook",
     "DispatchLookupError",
-    "EncHook",
     "MatchError",
-    "MemorizedFunc",
-    "PathLike",
-    "Progress",
-    "PydanticDumpOptions",
-    "PydanticValidateOptions",
-    "RateColumn",
-    "Serde",
-    "Timer",
-    "Timings",
     "TodoError",
     "UnreachableError",
     "__version__",
     "__version_tuple__",
-    "array_kind",
     "as_iterable",
     "as_sequence",
     "attrs",
-    "clock",
     "conf",
     "config",
     "dec_hook",
@@ -94,7 +58,6 @@ __all__ = [
     "functools",
     "get_console",
     "get_timer",
-    "has_ansi",
     "icecream",
     "in_ci",
     "itertools",
@@ -106,13 +69,11 @@ __all__ = [
     "memorize",
     "nop",
     "not_implemented",
+    "pdoc",
+    "pformat",
+    "pprint",
     "pretty",
-    "pretty_call",
-    "pretty_duration",
-    "pretty_func",
-    "pretty_throughput",
     "rich",
-    "rich_location",
     "rt",
     "save",
     "sentinel",

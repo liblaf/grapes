@@ -87,7 +87,7 @@ class Progress(RichProgress):
             total = _it.len_or_none(sequence)
         if timer := (timer or self.timer):
             sequence = timer(sequence)
-            timing.get_timer(sequence).name = description
+            timing.get_timer(sequence).label = description
         yield from super().track(
             sequence,
             total=total,

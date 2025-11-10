@@ -9,7 +9,7 @@ from ._timings import Callback
 @overload
 def timer(
     *,
-    name: str | None = ...,
+    label: str | None = ...,
     clocks: Sequence[ClockName] = ...,
     cb_finish: Callback | None = ...,
     cb_start: Callback | None = ...,
@@ -20,7 +20,7 @@ def timer[C: Callable](
     callable: C,
     /,
     *,
-    name: str | None = ...,
+    label: str | None = ...,
     clocks: Sequence[ClockName] = ...,
     cb_start: Callback | None = ...,
     cb_stop: Callback | None = ...,
@@ -31,7 +31,7 @@ def timer[I: Iterable](
     iterable: I,
     /,
     *,
-    name: str | None = ...,
+    label: str | None = ...,
     clocks: Sequence[ClockName] = ...,
     cb_start: Callback | None = ...,
     cb_stop: Callback | None = ...,

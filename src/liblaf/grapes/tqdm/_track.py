@@ -18,7 +18,7 @@ def track[T](
 ) -> Iterable[T]:
     __tracebackhide__ = True
     if timer is None:
-        timer = timing.timer(name=description)
+        timer = timing.timer(label=description)
     if progress is None:
         progress = Progress(timer=timer)
     with progress:

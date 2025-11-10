@@ -21,7 +21,7 @@ from .defaults import (
 
 @attrs.define
 class Timings:
-    name: str | None = attrs.field(default=None)
+    label: str | None = attrs.field(default=None)
     clocks: Sequence[ClockName] = attrs.field(default=DEFAULT_CLOCKS)
     timings: dict[ClockName, list[float]] = attrs.field(
         factory=lambda: collections.defaultdict(list), init=False
@@ -73,7 +73,7 @@ class Timings:
         logger.log(level, self.pretty_summary(stats=stats))
 
     def pretty_record(self, index: int = LOG_RECORD_DEFAULT_INDEX) -> str:
-        name: str = self.name or "Timer"
+        name: str = self.label or "Timer"
         items: list[str] = [
             f"{clock_name}: {pretty.pretty_duration(self.timings[clock_name][index])}"
             for clock_name in self.clocks
@@ -84,8 +84,8 @@ class Timings:
     def pretty_summary(
         self, stats: Iterable[StatisticName] = LOG_SUMMARY_DEFAULT_STATISTICS
     ) -> str:
-        name: str = self.name or "Timer"
-        header: str = f"{name} (count: {len(self)})"
+        name: str = self.label or "Timer"
+        header: str = f"{name} (calls: {len(self)})"
         if len(self) == 0:
             return header
         lines: list[str] = []

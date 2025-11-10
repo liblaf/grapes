@@ -1,52 +1,41 @@
 import math
-from collections.abc import Sequence
-from typing import NamedTuple
+from collections.abc import Iterable
+
+from liblaf.grapes.errors import UnreachableError
+
+# multiplier, threshold, unit
+SPECS: list[tuple[float, float, str]] = [
+    (1e9, 1e3, "ns"),
+    (1e6, 1e3, "µs"),
+    (1e3, 1e3, "ms"),
+    (1, 1e2, "s"),
+]
 
 
-class Spec(NamedTuple):
-    multiplier: float
-    threshold: float
-    unit: str
-
-
-SPECS: Sequence[Spec] = (
-    Spec(1e9, 1e3, "ns"),
-    Spec(1e6, 1e3, "µs"),
-    Spec(1e3, 1e3, "ms"),
-    Spec(1, 1e2, "s"),
-)
-
-
-def auto_resolution(seconds: float, *, sig: int = 3) -> int:
-    for resolution in range(10, -3, -1):
-        number: float = seconds * 10**resolution
-        number = round(number, sig)
-        if number < 10:
-            return resolution
+def auto_duration_magnitude(seconds: float, *, significant: int = 3) -> int:
+    number: float = float(f"{seconds:.{significant}e}")
+    if number == 0:
+        return -10
     seconds = round(seconds)
-    days: int
-    days, seconds = divmod(seconds, 24 * 60 * 60)
-    if days > 0:
-        return -4
-    hours: int
-    hours, seconds = divmod(seconds, 60 * 60)
-    if hours > 0:
-        return -3
-    minutes: int
-    minutes, seconds = divmod(seconds, 60)
-    if minutes > 0:
-        return -2
-    return 0
+    if seconds < 100.0:
+        return math.floor(math.log10(abs(number)))
+    if seconds < 60 * 60:
+        return 2
+    if seconds < 24 * 60 * 60:
+        return 3
+    return 4
 
 
 def pretty_duration(
-    seconds: float, *, sig: int = 3, resolution: int | None = None
+    seconds: float, *, magnitude: int | None = None, significant: int = 3
 ) -> str:
     """.
 
     Examples:
         >>> pretty_duration(math.nan)
         '?? s'
+        >>> pretty_duration(0)
+        '.000 ns'
         >>> pretty_duration(1e-13)
         '.000 ns'
         >>> pretty_duration(1e-12)
@@ -88,37 +77,82 @@ def pretty_duration(
         >>> pretty_duration(1e6)
         '11d,13:46:40'
     """
+    number: str
+    unit: str
+    number, unit = pretty_duration_with_unit(
+        seconds, magnitude=magnitude, significant=significant
+    )
+    if unit:
+        return f"{number} {unit}"
+    return number
+
+
+def pretty_durations(
+    seconds: Iterable[float],
+    *,
+    magnitude: int | None = None,
+    sep: str = ", ",
+    significant: int = 3,
+) -> str:
+    seconds = list(seconds)
+    if magnitude is None:
+        magnitude: int = auto_duration_magnitude(max(seconds), significant=significant)
+    numbers: list[str] = []
+    unit: str = ""
+    for val in seconds:
+        number: str
+        number, unit = pretty_duration_with_unit(
+            val, magnitude=magnitude, significant=significant
+        )
+        numbers.append(number)
+    numbers_formatted: str = sep.join(numbers)
+    if unit:
+        return f"{numbers_formatted} {unit}"
+    return numbers_formatted
+
+
+def pretty_duration_with_unit(
+    seconds: float, *, magnitude: int | None = None, significant: int = 3
+) -> tuple[str, str]:
     if not math.isfinite(seconds):
-        return "?? s"
-    if resolution is None:
-        resolution = auto_resolution(seconds, sig=sig)
-    resolution = max(min(resolution, 10), -4)
+        return "??", "s"
+    if seconds < 0:
+        neg: str
+        unit: str
+        neg, unit = pretty_duration_with_unit(-seconds, significant=significant)
+        return "-" + neg, unit
+    if magnitude is None:
+        magnitude = auto_duration_magnitude(seconds, significant=significant)
+    magnitude = max(min(magnitude, 4), -10)
     for multiplier, threshold, unit in SPECS:
-        if 10**-resolution < threshold / multiplier:
-            number: float = seconds * multiplier
-            precision: int = resolution + sig - round(math.log10(multiplier)) - 1
-            width: int = sig + 1
-            number_str: str = f"{number:#0{width}.{precision}f}"
+        number: float = seconds * multiplier
+        precision: int = significant - magnitude - round(math.log10(multiplier)) - 1
+        number = round(number, precision)
+        if abs(number) < threshold:
+            width: int = significant + 1
+            precision = max(0, precision)
+            number_formatted: str = f"{number:#0{width}.{precision}f}"
             if width == precision + 1:
-                number_str = number_str.removeprefix("0")
-            return f"{number_str} {unit}"
+                number_formatted = number_formatted.removeprefix("0")
+            return number_formatted, unit
     seconds = round(seconds)
-    match resolution:
-        case -2:
+    match magnitude:
+        case 2:
             minutes: int
             minutes, seconds = divmod(seconds, 60)
-            return f"{minutes:02d}:{seconds:02d}"
-        case -3:
+            return f"{minutes:02d}:{seconds:02d}", ""
+        case 3:
             hours: int
+            hours, seconds = divmod(seconds, 3600)
             minutes: int
-            hours, seconds = divmod(seconds, 60 * 60)
             minutes, seconds = divmod(seconds, 60)
-            return f"{hours:02d}:{minutes:02d}:{seconds:02d}"
-        case -4:
+            return f"{hours:02d}:{minutes:02d}:{seconds:02d}", ""
+        case 4:
             days: int
+            days, seconds = divmod(seconds, 86400)
             hours: int
-            days, seconds = divmod(seconds, 24 * 60 * 60)
-            hours, seconds = divmod(seconds, 60 * 60)
+            hours, seconds = divmod(seconds, 3600)
+            minutes: int
             minutes, seconds = divmod(seconds, 60)
-            return f"{days}d,{hours:02d}:{minutes:02d}:{seconds:02d}"
-    return f"{seconds} s"
+            return f"{days:d}d,{hours:02d}:{minutes:02d}:{seconds:02d}", ""
+    raise UnreachableError

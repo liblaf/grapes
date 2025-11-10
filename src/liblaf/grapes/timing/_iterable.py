@@ -9,8 +9,8 @@ from ._utils import get_timer, set_timer
 class TimedIterable[T](wrapt.ObjectProxy):
     def __init__(self, wrapped: Iterable[T], timer: BaseTimer) -> None:
         super().__init__(wrapped)
-        if timer.name is None:
-            timer.name = "Iterable"
+        if timer.label is None:
+            timer.label = "Iterable"
         set_timer(self, timer)
 
     def __iter__(self) -> Generator[T]:

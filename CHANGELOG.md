@@ -7,7 +7,41 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [7.0.0](https://github.com/liblaf/grapes/releases/tag/v7.0.0) - 2025-11-08
+## [8.0.0](https://github.com/liblaf/grapes/releases/tag/v8.0.0) - 2025-11-10
+
+### 💥 BREAKING CHANGES
+
+- **(conf, ext)** overhaul configuration system with attrs and fieldz - [80b9b67](https://github.com/liblaf/grapes/commit/80b9b67d6f96f300e99468b9b5ce3a88a5cd08d5) by [@liblaf](https://github.com/liblaf)
+- The configuration system has been refactored from Pydantic BaseModel to a custom attrs-based BaseConfig and Field system. Direct access to configuration attributes is no longer supported; values must now be accessed via the `.get()` method on Field objects (e.g., `config.logging.level.get()` instead of `config.logging.level`). - [f52db00](https://github.com/liblaf/grapes/commit/f52db006949f1b05d321887ce5067df0afd4c1da) by [@liblaf](https://github.com/liblaf)
+- Rename `Timer.name` to `Timer.label` and refactor package API - [b15c21a](https://github.com/liblaf/grapes/commit/b15c21a4c8f2b4ee102ef668248c7b94ab353766) by [@liblaf](https://github.com/liblaf)
+
+### ✨ Features
+
+- **logging:** enhance frame hiding and stdlib interception - [3e037ee](https://github.com/liblaf/grapes/commit/3e037ee061e019af779480aeab00a2d1986117db) by [@liblaf](https://github.com/liblaf)
+- **logging:** add time-based log formatting and improve configuration - [400ca69](https://github.com/liblaf/grapes/commit/400ca699ed2463c42c3897ceba6c5318c9c3ca18) by [@liblaf](https://github.com/liblaf)
+- **pretty:** enhance duration formatting and rich markup support - [072d689](https://github.com/liblaf/grapes/commit/072d68927af11e6fbe6db7fa4cc4994f7aeaedc3) by [@liblaf](https://github.com/liblaf)
+- **traceback:** enhance traceback formatting and path handling - [f85a167](https://github.com/liblaf/grapes/commit/f85a1671d474ecbf1f33975c7c74bf9f00fbca0c) by [@liblaf](https://github.com/liblaf)
+
+### 🐛 Bug Fixes
+
+- **logging:** disable file links and abbreviate module names by default - [4a5ea32](https://github.com/liblaf/grapes/commit/4a5ea32ffae2ec79138bece06293bbe6cdbfabc7) by [@liblaf](https://github.com/liblaf)
+
+### ♻ Code Refactoring
+
+- **conf, ext:** overhaul configuration system with attrs and fieldz - [80b9b67](https://github.com/liblaf/grapes/commit/80b9b67d6f96f300e99468b9b5ce3a88a5cd08d5) by [@liblaf](https://github.com/liblaf)
+- **errors, api:** Centralize error handling and refine public API - [782dd5b](https://github.com/liblaf/grapes/commit/782dd5bf7560d023c78f1695d0b48c45803d1acb) by [@liblaf](https://github.com/liblaf)
+- **logging:** restructure filter system and improve traceback handling - [e730a97](https://github.com/liblaf/grapes/commit/e730a9781940154b705bdf745390d640fa40016c) by [@liblaf](https://github.com/liblaf)
+- **pretty:** redesign duration formatting with auto-resolution - [d0d89c1](https://github.com/liblaf/grapes/commit/d0d89c1b4758338fb9dd3f782e13c9d4dc2ee70d) by [@liblaf](https://github.com/liblaf)
+- **rt, itertools, ext/wadler_lindig:** Consolidate runtime utilities and enhance pretty printing - [72f472c](https://github.com/liblaf/grapes/commit/72f472c0d0f89e55633acf56f9e40e657ad38040) by [@liblaf](https://github.com/liblaf)
+- Overhaul configuration system, introduce `memorize` decorator, and enhance array pretty-printing - [f52db00](https://github.com/liblaf/grapes/commit/f52db006949f1b05d321887ce5067df0afd4c1da) by [@liblaf](https://github.com/liblaf)
+- rename PydanticModel*Options to Pydantic*Options - [7e18a7e](https://github.com/liblaf/grapes/commit/7e18a7e7318a8ee9152f0b6f1fe0e2ff39598f7e) by [@liblaf](https://github.com/liblaf)
+- Rename `Timer.name` to `Timer.label` and refactor package API - [b15c21a](https://github.com/liblaf/grapes/commit/b15c21a4c8f2b4ee102ef668248c7b94ab353766) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
+## [7.0.0](https://github.com/liblaf/grapes/releases/tag/v7.0.0) - 2025-11-09
 
 ### 💥 BREAKING CHANGES
 
@@ -15,16 +49,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(dep)** add release type detection for dependencies - [4df9937](https://github.com/liblaf/grapes/commit/4df99376b67ca28c604728617f6c7cacdbc98272) by [@liblaf](https://github.com/liblaf)
-- **(ext)** introduce external library integrations - [d7fc425](https://github.com/liblaf/grapes/commit/d7fc4256dbe834b20127abf7df12fd10dab763cd) by [@liblaf](https://github.com/liblaf)
-- **(ext)** Integrate automatic rich.repr and wadler_lindig.pformat - [a028b6c](https://github.com/liblaf/grapes/commit/a028b6c7a71183eeb6aea9386fc5629778e9cba5) by [@liblaf](https://github.com/liblaf)
-- **(ext/rich)** add custom traceback implementation with enhanced frame handling - [5619ef9](https://github.com/liblaf/grapes/commit/5619ef9ef42a0e60fd78010c75e777487582d146) by [@liblaf](https://github.com/liblaf)
-- **(logging)** enhance log level display and example messages - [03ee272](https://github.com/liblaf/grapes/commit/03ee2723111c62518d98ec9d16e4c645018d0e9a) by [@liblaf](https://github.com/liblaf)
-- **(traceback)** enhance frame rendering and hiding logic - [99eef14](https://github.com/liblaf/grapes/commit/99eef147fec7b9901b35957535736e168bfef27e) by [@liblaf](https://github.com/liblaf)
+- **dep:** add release type detection for dependencies - [4df9937](https://github.com/liblaf/grapes/commit/4df99376b67ca28c604728617f6c7cacdbc98272) by [@liblaf](https://github.com/liblaf)
+- **ext:** introduce external library integrations - [d7fc425](https://github.com/liblaf/grapes/commit/d7fc4256dbe834b20127abf7df12fd10dab763cd) by [@liblaf](https://github.com/liblaf)
+- **ext:** Integrate automatic rich.repr and wadler_lindig.pformat - [a028b6c](https://github.com/liblaf/grapes/commit/a028b6c7a71183eeb6aea9386fc5629778e9cba5) by [@liblaf](https://github.com/liblaf)
+- **ext/rich:** add custom traceback implementation with enhanced frame handling - [5619ef9](https://github.com/liblaf/grapes/commit/5619ef9ef42a0e60fd78010c75e777487582d146) by [@liblaf](https://github.com/liblaf)
+- **logging:** enhance log level display and example messages - [03ee272](https://github.com/liblaf/grapes/commit/03ee2723111c62518d98ec9d16e4c645018d0e9a) by [@liblaf](https://github.com/liblaf)
+- **traceback:** enhance frame rendering and hiding logic - [99eef14](https://github.com/liblaf/grapes/commit/99eef147fec7b9901b35957535736e168bfef27e) by [@liblaf](https://github.com/liblaf)
 
 ### ✅ Tests
 
-- **(ext/wadler_lindig)** Add test for `pformat` with Pydantic models - [cc41cd8](https://github.com/liblaf/grapes/commit/cc41cd8ed189f25c27fa7a8c114484fa7e302d47) by [@liblaf](https://github.com/liblaf)
+- **ext/wadler_lindig:** Add test for `pformat` with Pydantic models - [cc41cd8](https://github.com/liblaf/grapes/commit/cc41cd8ed189f25c27fa7a8c114484fa7e302d47) by [@liblaf](https://github.com/liblaf)
 
 ### 🛠 Builds
 
@@ -36,16 +70,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
-- [@liblaf[bot]](https://github.com/apps/liblaf) made their first contribution in [#102](https://github.com/liblaf/grapes/pull/102)
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 - [@copier-update[bot]](https://github.com/apps/copier-update) made their first contribution in [#101](https://github.com/liblaf/grapes/pull/101)
 
 ## [6.1.2](https://github.com/liblaf/grapes/releases/tag/v6.1.2) - 2025-10-28
 
 ### 🐛 Bug Fixes
 
-- **(deps)** update dependency giturlparse to >=0.14,<0.15 (#97) - [3dd7e74](https://github.com/liblaf/grapes/commit/3dd7e74cf7d79b23bbc544d29e5fb05781aa32a7) by [@renovate[bot]](https://github.com/apps/renovate) in [#97](https://github.com/liblaf/grapes/pull/97)
-- **(pretty)** Improve array size detection for pretty printing - [288e3ef](https://github.com/liblaf/grapes/commit/288e3ef4008be6d1d36004e6f66d16fe30a94b8b) by [@liblaf](https://github.com/liblaf)
+- **deps:** update dependency giturlparse to >=0.14,<0.15 (#97) - [3dd7e74](https://github.com/liblaf/grapes/commit/3dd7e74cf7d79b23bbc544d29e5fb05781aa32a7) by [@renovate[bot]](https://github.com/apps/renovate) in [#97](https://github.com/liblaf/grapes/pull/97)
+- **pretty:** Improve array size detection for pretty printing - [288e3ef](https://github.com/liblaf/grapes/commit/288e3ef4008be6d1d36004e6f66d16fe30a94b8b) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -57,7 +91,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(logging)** Handle tuple versions in FilterByVersion and update type stubs - [351b43b](https://github.com/liblaf/grapes/commit/351b43bf504d5b04a20843c4fc685475d6f1060c) by [@liblaf](https://github.com/liblaf)
+- **logging:** Handle tuple versions in FilterByVersion and update type stubs - [351b43b](https://github.com/liblaf/grapes/commit/351b43bf504d5b04a20843c4fc685475d6f1060c) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -68,7 +102,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(logging/sink/columns)** Add module name abbreviation to log location - [75c758e](https://github.com/liblaf/grapes/commit/75c758e557d1aab4b0fa9907dc472c399c98fb07) by [@liblaf](https://github.com/liblaf)
+- **logging/sink/columns:** Add module name abbreviation to log location - [75c758e](https://github.com/liblaf/grapes/commit/75c758e557d1aab4b0fa9907dc472c399c98fb07) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -79,7 +113,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ♻ Code Refactoring
 
-- **(logging)** streamline traceback hiding and logging depth - [1a02b3b](https://github.com/liblaf/grapes/commit/1a02b3b0ec16a039d1c28436b0e31d22c9546c33) by [@liblaf](https://github.com/liblaf)
+- **logging:** streamline traceback hiding and logging depth - [1a02b3b](https://github.com/liblaf/grapes/commit/1a02b3b0ec16a039d1c28436b0e31d22c9546c33) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -108,7 +142,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(timing)** Allow providing a default value to get_timer - [a3b26b7](https://github.com/liblaf/grapes/commit/a3b26b77b939730ce9c1907f74f9752874f8a803) by [@liblaf](https://github.com/liblaf)
+- **timing:** Allow providing a default value to get_timer - [a3b26b7](https://github.com/liblaf/grapes/commit/a3b26b77b939730ce9c1907f74f9752874f8a803) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -119,7 +153,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(functools)** Use memory object from closure in cache decorator - [42b5600](https://github.com/liblaf/grapes/commit/42b560030678c52e69c2361278d8699632c1116a) by [@liblaf](https://github.com/liblaf)
+- **functools:** Use memory object from closure in cache decorator - [42b5600](https://github.com/liblaf/grapes/commit/42b560030678c52e69c2361278d8699632c1116a) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -134,12 +168,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(logging)** add missing newline to formatted log messages - [0556585](https://github.com/liblaf/grapes/commit/05565859ca1218fb9d9bdb582a1294dd2b3487c5) by [@liblaf](https://github.com/liblaf)
+- **logging:** add missing newline to formatted log messages - [0556585](https://github.com/liblaf/grapes/commit/05565859ca1218fb9d9bdb582a1294dd2b3487c5) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(functools)** Standardize attribute access on wrapped objects - [e09fa3a](https://github.com/liblaf/grapes/commit/e09fa3a3845def65b36eceb43b5b51abbaa3889a) by [@liblaf](https://github.com/liblaf)
-- **(serde)** Use singledispatch for enc_hook and add PathLike support - [e8b890c](https://github.com/liblaf/grapes/commit/e8b890c1c52cb2b9e2e0f31efb02b70ffe847c20) by [@liblaf](https://github.com/liblaf)
+- **functools:** Standardize attribute access on wrapped objects - [e09fa3a](https://github.com/liblaf/grapes/commit/e09fa3a3845def65b36eceb43b5b51abbaa3889a) by [@liblaf](https://github.com/liblaf)
+- **serde:** Use singledispatch for enc_hook and add PathLike support - [e8b890c](https://github.com/liblaf/grapes/commit/e8b890c1c52cb2b9e2e0f31efb02b70ffe847c20) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -150,11 +184,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(error)** Add todo and unreachable error helpers - [09567fb](https://github.com/liblaf/grapes/commit/09567fbc4efeafaced230df6f93f769f64902a01) by [@liblaf](https://github.com/liblaf)
+- **error:** Add todo and unreachable error helpers - [09567fb](https://github.com/liblaf/grapes/commit/09567fbc4efeafaced230df6f93f769f64902a01) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(functools)** Improve wrapt attribute handling with `wrapt_getattr` and `wrapt_setattr` - [ab20962](https://github.com/liblaf/grapes/commit/ab2096221d50392f6aabc648bc9323c171d83840) by [@liblaf](https://github.com/liblaf)
+- **functools:** Improve wrapt attribute handling with `wrapt_getattr` and `wrapt_setattr` - [ab20962](https://github.com/liblaf/grapes/commit/ab2096221d50392f6aabc648bc9323c171d83840) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -165,7 +199,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(logging)** add time column and improve formatting reusability - [5d1bf17](https://github.com/liblaf/grapes/commit/5d1bf17854b0b7f9fbad043d06b73490d42a2eb5) by [@liblaf](https://github.com/liblaf)
+- **logging:** add time column and improve formatting reusability - [5d1bf17](https://github.com/liblaf/grapes/commit/5d1bf17854b0b7f9fbad043d06b73490d42a2eb5) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -176,7 +210,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(pretty)** Add auto_repr decorator for automatic pretty-printing of classes - [22834cd](https://github.com/liblaf/grapes/commit/22834cd5359817a7798c6a5a3576ee7947a9f857) by [@liblaf](https://github.com/liblaf)
+- **pretty:** Add auto_repr decorator for automatic pretty-printing of classes - [22834cd](https://github.com/liblaf/grapes/commit/22834cd5359817a7798c6a5a3576ee7947a9f857) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -191,13 +225,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(logging)** add width parameter to location column and truncate long names - [4e0dfc1](https://github.com/liblaf/grapes/commit/4e0dfc1af3f7e50b60b8f50e3d1b502c68d6d0c6) by [@liblaf](https://github.com/liblaf)
-- **(pretty)** add human-readable duration formatting functions - [5b7012d](https://github.com/liblaf/grapes/commit/5b7012db592ddb1db4fdf87badcdf94f130f7755) by [@liblaf](https://github.com/liblaf)
+- **logging:** add width parameter to location column and truncate long names - [4e0dfc1](https://github.com/liblaf/grapes/commit/4e0dfc1af3f7e50b60b8f50e3d1b502c68d6d0c6) by [@liblaf](https://github.com/liblaf)
+- **pretty:** add human-readable duration formatting functions - [5b7012d](https://github.com/liblaf/grapes/commit/5b7012db592ddb1db4fdf87badcdf94f130f7755) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(logging)** remove profile-based configuration and simplify logging setup - [d77060d](https://github.com/liblaf/grapes/commit/d77060d06363befeeb8c6261ae526ecf3330c37e) by [@liblaf](https://github.com/liblaf)
-- **(timing)** improve timer API and fix measurement logic - [5f0a119](https://github.com/liblaf/grapes/commit/5f0a1193ba48afcb380addf33277d48140cd03ad) by [@liblaf](https://github.com/liblaf)
+- **logging:** remove profile-based configuration and simplify logging setup - [d77060d](https://github.com/liblaf/grapes/commit/d77060d06363befeeb8c6261ae526ecf3330c37e) by [@liblaf](https://github.com/liblaf)
+- **timing:** improve timer API and fix measurement logic - [5f0a119](https://github.com/liblaf/grapes/commit/5f0a1193ba48afcb380addf33277d48140cd03ad) by [@liblaf](https://github.com/liblaf)
 - Move human-readable formatting to pretty module and add len_or_none utility - [157dfba](https://github.com/liblaf/grapes/commit/157dfba3d2b9eddf276defaf26cd2265d14076a3) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
@@ -213,11 +247,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(pretty)** enhance pretty-printing with array support and configuration - [bc640f6](https://github.com/liblaf/grapes/commit/bc640f6cdfbab1e01889d8ef4fbd1309e8f37f42) by [@liblaf](https://github.com/liblaf)
+- **pretty:** enhance pretty-printing with array support and configuration - [bc640f6](https://github.com/liblaf/grapes/commit/bc640f6cdfbab1e01889d8ef4fbd1309e8f37f42) by [@liblaf](https://github.com/liblaf)
 
 ### 🐛 Bug Fixes
 
-- **(error)** simplify DispatchLookupError initialization - [fcd9eca](https://github.com/liblaf/grapes/commit/fcd9eca1ae9ac90dbb650981fa645039fc779b86) by [@liblaf](https://github.com/liblaf)
+- **error:** simplify DispatchLookupError initialization - [fcd9eca](https://github.com/liblaf/grapes/commit/fcd9eca1ae9ac90dbb650981fa645039fc779b86) by [@liblaf](https://github.com/liblaf)
 - Ensure None values are included in configuration serialization - [991a0f2](https://github.com/liblaf/grapes/commit/991a0f21576ae42fbb3dda111a226a7db64355ab) by [@liblaf](https://github.com/liblaf)
 
 ### 📝 Documentation
@@ -226,7 +260,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ♻ Code Refactoring
 
-- **(pretty, timing)** Simplify attribute definitions and fix condition checks - [717dc08](https://github.com/liblaf/grapes/commit/717dc08575d6360f83ed0026452fbba748c968ed) by [@liblaf](https://github.com/liblaf)
+- **pretty, timing:** Simplify attribute definitions and fix condition checks - [717dc08](https://github.com/liblaf/grapes/commit/717dc08575d6360f83ed0026452fbba748c968ed) by [@liblaf](https://github.com/liblaf)
 - reorganize configuration system and clean up dependency handling - [4514d79](https://github.com/liblaf/grapes/commit/4514d7944c96587a5a31caa6c637e0b44d140001) by [@liblaf](https://github.com/liblaf)
 - remove unused dependencies and rename git root function - [f9e5b6c](https://github.com/liblaf/grapes/commit/f9e5b6c9ab9f4eb043f660a8ace64d7f506c8138) by [@liblaf](https://github.com/liblaf)
 
@@ -239,7 +273,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 📝 Documentation
 
-- **(README)** Update README badges and documentation links - [a586915](https://github.com/liblaf/grapes/commit/a586915c6a4a1907cca680d7ec7ca4eb69bbb7ad) by [@liblaf](https://github.com/liblaf)
+- **README:** Update README badges and documentation links - [a586915](https://github.com/liblaf/grapes/commit/a586915c6a4a1907cca680d7ec7ca4eb69bbb7ad) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -250,11 +284,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(config)** Allow arbitrary types in BaseModel and BaseConfig - [f67bd9e](https://github.com/liblaf/grapes/commit/f67bd9e243780caff1d9be51df2245cbc016aaf1) by [@liblaf](https://github.com/liblaf)
+- **config:** Allow arbitrary types in BaseModel and BaseConfig - [f67bd9e](https://github.com/liblaf/grapes/commit/f67bd9e243780caff1d9be51df2245cbc016aaf1) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(config)** centralize logging configuration and improve traceback handling - [c752c6c](https://github.com/liblaf/grapes/commit/c752c6ccf95866faf813c7a2d686617f77556810) by [@liblaf](https://github.com/liblaf)
+- **config:** centralize logging configuration and improve traceback handling - [c752c6c](https://github.com/liblaf/grapes/commit/c752c6ccf95866faf813c7a2d686617f77556810) by [@liblaf](https://github.com/liblaf)
 - restructure logging configuration and improve documentation - [a33de7a](https://github.com/liblaf/grapes/commit/a33de7a11f5acfd9c1dc90358f1ec65350cd1c61) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
@@ -266,7 +300,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ⚙️ Continuous Integration
 
-- **(pre-commit)** add configuration for pre-commit hooks - [8588c0e](https://github.com/liblaf/grapes/commit/8588c0e54d31be0782f0f8261738bf5faffb0368) by [@liblaf](https://github.com/liblaf)
+- **pre-commit:** add configuration for pre-commit hooks - [8588c0e](https://github.com/liblaf/grapes/commit/8588c0e54d31be0782f0f8261738bf5faffb0368) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -293,11 +327,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(itertools)** add deep merge functionality - [9fcc5b3](https://github.com/liblaf/grapes/commit/9fcc5b31090de5e84a6e4e63ccecd8bde76f7e4c) by [@liblaf](https://github.com/liblaf)
+- **itertools:** add deep merge functionality - [9fcc5b3](https://github.com/liblaf/grapes/commit/9fcc5b31090de5e84a6e4e63ccecd8bde76f7e4c) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(config)** reorganize configuration module structure - [2eeca0d](https://github.com/liblaf/grapes/commit/2eeca0d6b2a10a883c5d748f1816231238e147c3) by [@liblaf](https://github.com/liblaf)
+- **config:** reorganize configuration module structure - [2eeca0d](https://github.com/liblaf/grapes/commit/2eeca0d6b2a10a883c5d748f1816231238e147c3) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -308,7 +342,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(pretty)** standardize default formatting in wadler_lindig - [489b2d5](https://github.com/liblaf/grapes/commit/489b2d572f5206f967630ce829c003a36a3c299e) by [@liblaf](https://github.com/liblaf)
+- **pretty:** standardize default formatting in wadler_lindig - [489b2d5](https://github.com/liblaf/grapes/commit/489b2d572f5206f967630ce829c003a36a3c299e) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -324,7 +358,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ♻ Code Refactoring
 
-- **(functools)** replace function_wrapper with unbind utilities - [e019891](https://github.com/liblaf/grapes/commit/e01989186c052b56d38847b30678cfbb42e93002) by [@liblaf](https://github.com/liblaf)
+- **functools:** replace function_wrapper with unbind utilities - [e019891](https://github.com/liblaf/grapes/commit/e01989186c052b56d38847b30678cfbb42e93002) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -341,12 +375,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(deps)** add try_import utility function - [966a196](https://github.com/liblaf/grapes/commit/966a1961a4c77425501eb9407bea4dd63f7c65ff) by [@liblaf](https://github.com/liblaf)
-- **(logging)** add default traceback suppression - [4efb931](https://github.com/liblaf/grapes/commit/4efb9312214c5d5398ad44761e44d740263cb3ba) by [@liblaf](https://github.com/liblaf)
+- **deps:** add try_import utility function - [966a196](https://github.com/liblaf/grapes/commit/966a1961a4c77425501eb9407bea4dd63f7c65ff) by [@liblaf](https://github.com/liblaf)
+- **logging:** add default traceback suppression - [4efb931](https://github.com/liblaf/grapes/commit/4efb9312214c5d5398ad44761e44d740263cb3ba) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(logging)** simplify profile class names - [ca454b7](https://github.com/liblaf/grapes/commit/ca454b755034fd658ea184cabb215d5610d01039) by [@liblaf](https://github.com/liblaf)
+- **logging:** simplify profile class names - [ca454b7](https://github.com/liblaf/grapes/commit/ca454b755034fd658ea184cabb215d5610d01039) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -357,7 +391,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(functools)** add decorator utility and refactor implementations - [ae892c5](https://github.com/liblaf/grapes/commit/ae892c517a602cd5aa4573d5b2df89bd6b85164c) by [@liblaf](https://github.com/liblaf)
+- **functools:** add decorator utility and refactor implementations - [ae892c5](https://github.com/liblaf/grapes/commit/ae892c517a602cd5aa4573d5b2df89bd6b85164c) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -393,29 +427,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(conf)** add Paths utility for file system operations - [6de6210](https://github.com/liblaf/grapes/commit/6de621001cd3fefacb3707db1e60da37e7f8ace9) by [@liblaf](https://github.com/liblaf)
-- **(enum)** reorganize LogLevel and add CaseInsensitiveEnum - [c2fa802](https://github.com/liblaf/grapes/commit/c2fa802ea016f5e63ccad4c81f3bfc78ff609ad7) by [@liblaf](https://github.com/liblaf)
-- **(logging)** add CompositeFilter and standardize config - [728d2e8](https://github.com/liblaf/grapes/commit/728d2e854f129eae060a904a7c2506f76cc6d858) by [@liblaf](https://github.com/liblaf)
-- **(logging)** add profile system with mixins - [dd23c9f](https://github.com/liblaf/grapes/commit/dd23c9fceef1946fefa3035f01b0d1e764ac5743) by [@liblaf](https://github.com/liblaf)
-- **(logging)** add cherries profile and improve config - [b3db225](https://github.com/liblaf/grapes/commit/b3db225647e37b69fa5596875d2d24d6c489430f) by [@liblaf](https://github.com/liblaf)
+- **conf:** add Paths utility for file system operations - [6de6210](https://github.com/liblaf/grapes/commit/6de621001cd3fefacb3707db1e60da37e7f8ace9) by [@liblaf](https://github.com/liblaf)
+- **enum:** reorganize LogLevel and add CaseInsensitiveEnum - [c2fa802](https://github.com/liblaf/grapes/commit/c2fa802ea016f5e63ccad4c81f3bfc78ff609ad7) by [@liblaf](https://github.com/liblaf)
+- **logging:** add CompositeFilter and standardize config - [728d2e8](https://github.com/liblaf/grapes/commit/728d2e854f129eae060a904a7c2506f76cc6d858) by [@liblaf](https://github.com/liblaf)
+- **logging:** add profile system with mixins - [dd23c9f](https://github.com/liblaf/grapes/commit/dd23c9fceef1946fefa3035f01b0d1e764ac5743) by [@liblaf](https://github.com/liblaf)
+- **logging:** add cherries profile and improve config - [b3db225](https://github.com/liblaf/grapes/commit/b3db225647e37b69fa5596875d2d24d6c489430f) by [@liblaf](https://github.com/liblaf)
 
 ### 🐛 Bug Fixes
 
-- **(functools)** improve type hints for ConditionalDispatcher - [2543294](https://github.com/liblaf/grapes/commit/25432945d8812efa40dff67fe1b1a27cf619e129) by [@liblaf](https://github.com/liblaf)
+- **functools:** improve type hints for ConditionalDispatcher - [2543294](https://github.com/liblaf/grapes/commit/25432945d8812efa40dff67fe1b1a27cf619e129) by [@liblaf](https://github.com/liblaf)
 
 ### 💄 Styles
 
-- **(serde)** improve code clarity - [8d15329](https://github.com/liblaf/grapes/commit/8d153290dc291be894857901f0624e441eeccdf9) by [@liblaf](https://github.com/liblaf)
+- **serde:** improve code clarity - [8d15329](https://github.com/liblaf/grapes/commit/8d153290dc291be894857901f0624e441eeccdf9) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(core)** reorganize modules and utilities - [59330d1](https://github.com/liblaf/grapes/commit/59330d12399034847074f047e46517d7dbfd7ee2) by [@liblaf](https://github.com/liblaf)
-- **(human)** simplify duration formatting API - [5bef4fb](https://github.com/liblaf/grapes/commit/5bef4fb9971374639b385b567668a4d9e0e37159) by [@liblaf](https://github.com/liblaf)
-- **(logging)** restructure logging system using profiles - [64bc5ea](https://github.com/liblaf/grapes/commit/64bc5ea0ac96674bb53a7cbc41f0813023452104) by [@liblaf](https://github.com/liblaf)
-- **(logging)** simplify initialization and improve tracebacks - [05c6424](https://github.com/liblaf/grapes/commit/05c64245fc5289516815f60d25a6b8b2293c5487) by [@liblaf](https://github.com/liblaf)
-- **(pretty)** consolidate pretty printing utilities - [bd5ca64](https://github.com/liblaf/grapes/commit/bd5ca64d994d9c0291a81901a9665fcc6005ebf8) by [@liblaf](https://github.com/liblaf)
-- **(timing)** restructure timing module and move sentinels - [648eb9d](https://github.com/liblaf/grapes/commit/648eb9d947ee92607ace3c082a9e147748feb3a0) by [@liblaf](https://github.com/liblaf)
-- **(types)** clean up unused type definitions - [9bc1ccd](https://github.com/liblaf/grapes/commit/9bc1ccda6ca91d113a940499dd073da110dd36da) by [@liblaf](https://github.com/liblaf)
+- **core:** reorganize modules and utilities - [59330d1](https://github.com/liblaf/grapes/commit/59330d12399034847074f047e46517d7dbfd7ee2) by [@liblaf](https://github.com/liblaf)
+- **human:** simplify duration formatting API - [5bef4fb](https://github.com/liblaf/grapes/commit/5bef4fb9971374639b385b567668a4d9e0e37159) by [@liblaf](https://github.com/liblaf)
+- **logging:** restructure logging system using profiles - [64bc5ea](https://github.com/liblaf/grapes/commit/64bc5ea0ac96674bb53a7cbc41f0813023452104) by [@liblaf](https://github.com/liblaf)
+- **logging:** simplify initialization and improve tracebacks - [05c6424](https://github.com/liblaf/grapes/commit/05c64245fc5289516815f60d25a6b8b2293c5487) by [@liblaf](https://github.com/liblaf)
+- **pretty:** consolidate pretty printing utilities - [bd5ca64](https://github.com/liblaf/grapes/commit/bd5ca64d994d9c0291a81901a9665fcc6005ebf8) by [@liblaf](https://github.com/liblaf)
+- **timing:** restructure timing module and move sentinels - [648eb9d](https://github.com/liblaf/grapes/commit/648eb9d947ee92607ace3c082a9e147748feb3a0) by [@liblaf](https://github.com/liblaf)
+- **types:** clean up unused type definitions - [9bc1ccd](https://github.com/liblaf/grapes/commit/9bc1ccda6ca91d113a940499dd073da110dd36da) by [@liblaf](https://github.com/liblaf)
 
 ### ✅ Tests
 
@@ -430,7 +464,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(pretty)** add WadlerLindigMixin and pdoc_attrs - [52fd6a1](https://github.com/liblaf/grapes/commit/52fd6a1322e221a24f71ac32b02391d40d2f084f) by [@liblaf](https://github.com/liblaf)
+- **pretty:** add WadlerLindigMixin and pdoc_attrs - [52fd6a1](https://github.com/liblaf/grapes/commit/52fd6a1322e221a24f71ac32b02391d40d2f084f) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -448,7 +482,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ♻ Code Refactoring
 
-- **(config)** migrate to pydantic-settings - [ad36566](https://github.com/liblaf/grapes/commit/ad3656656eee2b11d7fbcb4890deb84d68628f3b) by [@liblaf](https://github.com/liblaf)
+- **config:** migrate to pydantic-settings - [ad36566](https://github.com/liblaf/grapes/commit/ad3656656eee2b11d7fbcb4890deb84d68628f3b) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -471,7 +505,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(functools)** add cache utilities and platformdirs integration - [8f73830](https://github.com/liblaf/grapes/commit/8f738306e19e01577dfea8824118e322d17ebea0) by [@liblaf](https://github.com/liblaf)
+- **functools:** add cache utilities and platformdirs integration - [8f73830](https://github.com/liblaf/grapes/commit/8f738306e19e01577dfea8824118e322d17ebea0) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -482,7 +516,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(config)** add centralized configuration system - [7eeae03](https://github.com/liblaf/grapes/commit/7eeae0304ba1fe40eb997353e39df4530179243b) by [@liblaf](https://github.com/liblaf)
+- **config:** add centralized configuration system - [7eeae03](https://github.com/liblaf/grapes/commit/7eeae0304ba1fe40eb997353e39df4530179243b) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -493,9 +527,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(deps)** remove version constraints from dependencies - [5500a05](https://github.com/liblaf/grapes/commit/5500a050976da7f6640334ec932dc29597ae08fb) by [@liblaf](https://github.com/liblaf)
-- **(deps)** pin dependency versions - [514cd3b](https://github.com/liblaf/grapes/commit/514cd3b47c63010e9e5e5f67c258ce97d60700b8) by [@liblaf](https://github.com/liblaf)
-- **(deps)** standardize lazy-loader version pin - [690f814](https://github.com/liblaf/grapes/commit/690f81482ee73543b168f08fa3200ae98792f697) by [@liblaf](https://github.com/liblaf)
+- **deps:** remove version constraints from dependencies - [5500a05](https://github.com/liblaf/grapes/commit/5500a050976da7f6640334ec932dc29597ae08fb) by [@liblaf](https://github.com/liblaf)
+- **deps:** pin dependency versions - [514cd3b](https://github.com/liblaf/grapes/commit/514cd3b47c63010e9e5e5f67c258ce97d60700b8) by [@liblaf](https://github.com/liblaf)
+- **deps:** standardize lazy-loader version pin - [690f814](https://github.com/liblaf/grapes/commit/690f81482ee73543b168f08fa3200ae98792f697) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -512,8 +546,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ♻ Code Refactoring
 
-- **(logging)** split depth tracker into context manager and tracker - [2b77ae0](https://github.com/liblaf/grapes/commit/2b77ae0f4280dfb65be5468c83886fe482c586ae) by [@liblaf](https://github.com/liblaf)
-- **(timing)** restructure timing module and add depth tracking - [1d160d8](https://github.com/liblaf/grapes/commit/1d160d87c5281d4dfa4bef1aff196e35dcc765f7) by [@liblaf](https://github.com/liblaf)
+- **logging:** split depth tracker into context manager and tracker - [2b77ae0](https://github.com/liblaf/grapes/commit/2b77ae0f4280dfb65be5468c83886fe482c586ae) by [@liblaf](https://github.com/liblaf)
+- **timing:** restructure timing module and add depth tracking - [1d160d8](https://github.com/liblaf/grapes/commit/1d160d87c5281d4dfa4bef1aff196e35dcc765f7) by [@liblaf](https://github.com/liblaf)
 - clean up timing module and build config - [3973878](https://github.com/liblaf/grapes/commit/39738789aa1c26d166bb8b84f4caeb220b766197) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
@@ -525,15 +559,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(error)** add DispatchLookupError class - [0efbe4f](https://github.com/liblaf/grapes/commit/0efbe4f68d26e5b0860463415ba6a6db73770fb2) by [@liblaf](https://github.com/liblaf)
+- **error:** add DispatchLookupError class - [0efbe4f](https://github.com/liblaf/grapes/commit/0efbe4f68d26e5b0860463415ba6a6db73770fb2) by [@liblaf](https://github.com/liblaf)
 
 ### 🐛 Bug Fixes
 
-- **(logging)** improve traceback formatting and add ANSI support - [52940fb](https://github.com/liblaf/grapes/commit/52940fbdec25cff392e573d5562d1dd3bb827e7e) by [@liblaf](https://github.com/liblaf)
+- **logging:** improve traceback formatting and add ANSI support - [52940fb](https://github.com/liblaf/grapes/commit/52940fbdec25cff392e573d5562d1dd3bb827e7e) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(logging)** simplify filter dispatch - [fbe4bf6](https://github.com/liblaf/grapes/commit/fbe4bf6921b3f15adb724a14eee37cb6a767a2ac) by [@liblaf](https://github.com/liblaf)
+- **logging:** simplify filter dispatch - [fbe4bf6](https://github.com/liblaf/grapes/commit/fbe4bf6921b3f15adb724a14eee37cb6a767a2ac) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -544,7 +578,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(functools)** add clone_signature utility - [4caccca](https://github.com/liblaf/grapes/commit/4caccca48893ed9beca43386ff1e826615b69fd5) by [@liblaf](https://github.com/liblaf)
+- **functools:** add clone_signature utility - [4caccca](https://github.com/liblaf/grapes/commit/4caccca48893ed9beca43386ff1e826615b69fd5) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -555,11 +589,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(logging)** properly register loguru levels with logging module - [94b008e](https://github.com/liblaf/grapes/commit/94b008e8c561706098e963636b58bd32ea5f3051) by [@liblaf](https://github.com/liblaf)
+- **logging:** properly register loguru levels with logging module - [94b008e](https://github.com/liblaf/grapes/commit/94b008e8c561706098e963636b58bd32ea5f3051) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(logging)** move LogLevel to logging module - [cfb0272](https://github.com/liblaf/grapes/commit/cfb027298b22fd75cc9c943662381f1a12b2d526) by [@liblaf](https://github.com/liblaf)
+- **logging:** move LogLevel to logging module - [cfb0272](https://github.com/liblaf/grapes/commit/cfb027298b22fd75cc9c943662381f1a12b2d526) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -576,7 +610,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ♻ Code Refactoring
 
-- **(functools)** improve ConditionalDispatcher implementation - [6b49bef](https://github.com/liblaf/grapes/commit/6b49beffd6da362598f4f8a74a796b4349ec2aa9) by [@liblaf](https://github.com/liblaf)
+- **functools:** improve ConditionalDispatcher implementation - [6b49bef](https://github.com/liblaf/grapes/commit/6b49beffd6da362598f4f8a74a796b4349ec2aa9) by [@liblaf](https://github.com/liblaf)
 - reorganize utilities and clean up deprecated code - [f9858c2](https://github.com/liblaf/grapes/commit/f9858c2b99deb4822fc996a7ecba19cc0ca704e4) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
@@ -588,7 +622,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(error)** add MatchError class - [cd9319d](https://github.com/liblaf/grapes/commit/cd9319d6db49da32fdc9e14e5b837768b3fbe4bc) by [@liblaf](https://github.com/liblaf)
+- **error:** add MatchError class - [cd9319d](https://github.com/liblaf/grapes/commit/cd9319d6db49da32fdc9e14e5b837768b3fbe4bc) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -599,12 +633,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(tqdm)** add type overloads for parallel function - [9cbd71f](https://github.com/liblaf/grapes/commit/9cbd71f60f6024bed707c67bc2ea4ccb6a14d119) by [@liblaf](https://github.com/liblaf)
+- **tqdm:** add type overloads for parallel function - [9cbd71f](https://github.com/liblaf/grapes/commit/9cbd71f60f6024bed707c67bc2ea4ccb6a14d119) by [@liblaf](https://github.com/liblaf)
 
 ### 🐛 Bug Fixes
 
-- **(logging)** add null checks for logger instances - [146c58f](https://github.com/liblaf/grapes/commit/146c58fe6714897425dc2710671639fe4709d5ee) by [@liblaf](https://github.com/liblaf)
-- **(tqdm)** use direct local imports for joblib utilities - [36f5e07](https://github.com/liblaf/grapes/commit/36f5e07afe0945097ec5f71451d101042ae0b9ba) by [@liblaf](https://github.com/liblaf)
+- **logging:** add null checks for logger instances - [146c58f](https://github.com/liblaf/grapes/commit/146c58fe6714897425dc2710671639fe4709d5ee) by [@liblaf](https://github.com/liblaf)
+- **tqdm:** use direct local imports for joblib utilities - [36f5e07](https://github.com/liblaf/grapes/commit/36f5e07afe0945097ec5f71451d101042ae0b9ba) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -615,7 +649,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(logging)** handle unraisable exceptions - [19b137f](https://github.com/liblaf/grapes/commit/19b137ff6eb1f036874161ac050fcc7c68b5d86c) by [@liblaf](https://github.com/liblaf)
+- **logging:** handle unraisable exceptions - [19b137f](https://github.com/liblaf/grapes/commit/19b137ff6eb1f036874161ac050fcc7c68b5d86c) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -626,7 +660,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(logging)** properly handle ANSI escape sequences in messages - [7b771ed](https://github.com/liblaf/grapes/commit/7b771edd16805aa8db4a927acdafa1655fac52d6) by [@liblaf](https://github.com/liblaf)
+- **logging:** properly handle ANSI escape sequences in messages - [7b771ed](https://github.com/liblaf/grapes/commit/7b771edd16805aa8db4a927acdafa1655fac52d6) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -637,7 +671,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(tqdm)** set timer name from progress description - [f243bea](https://github.com/liblaf/grapes/commit/f243bea321cf612ae32ccd735bfc6d2d9c1fdb05) by [@liblaf](https://github.com/liblaf)
+- **tqdm:** set timer name from progress description - [f243bea](https://github.com/liblaf/grapes/commit/f243bea321cf612ae32ccd735bfc6d2d9c1fdb05) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -648,7 +682,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(serde)** handle file extension stripping consistently - [f75c986](https://github.com/liblaf/grapes/commit/f75c9868b324820337c1447228fcefdedd728408) by [@liblaf](https://github.com/liblaf)
+- **serde:** handle file extension stripping consistently - [f75c986](https://github.com/liblaf/grapes/commit/f75c9868b324820337c1447228fcefdedd728408) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -659,11 +693,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(pretty)** handle wrapped functions in pretty printing - [3e42a50](https://github.com/liblaf/grapes/commit/3e42a502421bfd2ed9a6c85786d93ae7675d6a93) by [@liblaf](https://github.com/liblaf)
+- **pretty:** handle wrapped functions in pretty printing - [3e42a50](https://github.com/liblaf/grapes/commit/3e42a502421bfd2ed9a6c85786d93ae7675d6a93) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(pretty)** improve function pretty printing robustness - [09b6f87](https://github.com/liblaf/grapes/commit/09b6f8731e18b7ac4fc8ee503abca86ae3b4739d) by [@liblaf](https://github.com/liblaf)
+- **pretty:** improve function pretty printing robustness - [09b6f87](https://github.com/liblaf/grapes/commit/09b6f8731e18b7ac4fc8ee503abca86ae3b4739d) by [@liblaf](https://github.com/liblaf)
 
 ### ⚙️ Continuous Integration
 
@@ -679,7 +713,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(timing)** add threshold parameter to skip logging fast operations - [a233683](https://github.com/liblaf/grapes/commit/a233683a98c1cd808b3183d36929d49d7c1a8b54) by [@liblaf](https://github.com/liblaf)
+- **timing:** add threshold parameter to skip logging fast operations - [a233683](https://github.com/liblaf/grapes/commit/a233683a98c1cd808b3183d36929d49d7c1a8b54) by [@liblaf](https://github.com/liblaf)
 
 ### 🛠 Builds
 
@@ -694,7 +728,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(docs)** switch from mike to mkdocs for documentation - [51a836a](https://github.com/liblaf/grapes/commit/51a836a5913b6f53fe460a56967b51bcbc634423) by [@liblaf](https://github.com/liblaf)
+- **docs:** switch from mike to mkdocs for documentation - [51a836a](https://github.com/liblaf/grapes/commit/51a836a5913b6f53fe460a56967b51bcbc634423) by [@liblaf](https://github.com/liblaf)
 
 ### 🐛 Bug Fixes
 
@@ -718,8 +752,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(logging)** add enable_link parameter to control rich handler links - [e6b606a](https://github.com/liblaf/grapes/commit/e6b606abdfeac325d0b433e663f1c004055eb0e3) by [@liblaf](https://github.com/liblaf)
-- **(timing)** refactor timer implementation and add parallel processing - [2a13037](https://github.com/liblaf/grapes/commit/2a1303744a397e5939d714a4a715fe85821815f2) by [@liblaf](https://github.com/liblaf)
+- **logging:** add enable_link parameter to control rich handler links - [e6b606a](https://github.com/liblaf/grapes/commit/e6b606abdfeac325d0b433e663f1c004055eb0e3) by [@liblaf](https://github.com/liblaf)
+- **timing:** refactor timer implementation and add parallel processing - [2a13037](https://github.com/liblaf/grapes/commit/2a1303744a397e5939d714a4a715fe85821815f2) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -730,7 +764,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(logging)** improve rich console output handling - [083778d](https://github.com/liblaf/grapes/commit/083778def714fb9907ea274024beb7f9204cdb8d) by [@liblaf](https://github.com/liblaf)
+- **logging:** improve rich console output handling - [083778d](https://github.com/liblaf/grapes/commit/083778def714fb9907ea274024beb7f9204cdb8d) by [@liblaf](https://github.com/liblaf)
 
 ### 🛠 Builds
 
@@ -746,11 +780,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(serde)** replace tomlkit and ruamel.yaml with msgspec - [5b0c626](https://github.com/liblaf/grapes/commit/5b0c626633401da14588032b72cc4d03f5057c42) by [@liblaf](https://github.com/liblaf)
+- **serde:** replace tomlkit and ruamel.yaml with msgspec - [5b0c626](https://github.com/liblaf/grapes/commit/5b0c626633401da14588032b72cc4d03f5057c42) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(logging)** restructure rich logging handler with column-based approach - [8cdf600](https://github.com/liblaf/grapes/commit/8cdf600387b915f14d7d185a2b525bdf130f9ba4) by [@liblaf](https://github.com/liblaf)
+- **logging:** restructure rich logging handler with column-based approach - [8cdf600](https://github.com/liblaf/grapes/commit/8cdf600387b915f14d7d185a2b525bdf130f9ba4) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -761,12 +795,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(grapes)** reorganize modules and improve logging - [ef28cd1](https://github.com/liblaf/grapes/commit/ef28cd103f43f4423a2884dbb3cf2a358269fc9a) by [@liblaf](https://github.com/liblaf)
-- **(timing)** add timer support and improve logging defaults - [69f55d4](https://github.com/liblaf/grapes/commit/69f55d4fb6987038f2875d5bcdba9152517f77d9) by [@liblaf](https://github.com/liblaf)
+- **grapes:** reorganize modules and improve logging - [ef28cd1](https://github.com/liblaf/grapes/commit/ef28cd103f43f4423a2884dbb3cf2a358269fc9a) by [@liblaf](https://github.com/liblaf)
+- **timing:** add timer support and improve logging defaults - [69f55d4](https://github.com/liblaf/grapes/commit/69f55d4fb6987038f2875d5bcdba9152517f77d9) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(timing)** simplify timer implementation and callback handling - [3eaaa2a](https://github.com/liblaf/grapes/commit/3eaaa2a60079efe99981105a73d72f26441972a2) by [@liblaf](https://github.com/liblaf)
+- **timing:** simplify timer implementation and callback handling - [3eaaa2a](https://github.com/liblaf/grapes/commit/3eaaa2a60079efe99981105a73d72f26441972a2) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -777,7 +811,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(logging)** simplify rich handler and location formatting - [47e46d0](https://github.com/liblaf/grapes/commit/47e46d06e2c06652d9c0cdc5cbdcc78efaf940da) by [@liblaf](https://github.com/liblaf)
+- **logging:** simplify rich handler and location formatting - [47e46d0](https://github.com/liblaf/grapes/commit/47e46d06e2c06652d9c0cdc5cbdcc78efaf940da) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -788,7 +822,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(logging)** replace default_filter with make_filter - [a5d5e5b](https://github.com/liblaf/grapes/commit/a5d5e5b542495b0c9224ecb0e37f4e366b55b540) by [@liblaf](https://github.com/liblaf)
+- **logging:** replace default_filter with make_filter - [a5d5e5b](https://github.com/liblaf/grapes/commit/a5d5e5b542495b0c9224ecb0e37f4e366b55b540) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -810,12 +844,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(path)** replace find_project_dir with project_root and resolve_project_path - [9a3f474](https://github.com/liblaf/grapes/commit/9a3f47451f6b1357fbaef2562c2104a0df0d406a) by [@liblaf](https://github.com/liblaf)
+- **path:** replace find_project_dir with project_root and resolve_project_path - [9a3f474](https://github.com/liblaf/grapes/commit/9a3f47451f6b1357fbaef2562c2104a0df0d406a) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(logging)** reorganize logging module structure and improve functionality - [09c09da](https://github.com/liblaf/grapes/commit/09c09daab6245985701edff50cdcfa03c2294acf) by [@liblaf](https://github.com/liblaf)
-- **(logging)** simplify logging configuration and remove deprecated features - [c7b05bc](https://github.com/liblaf/grapes/commit/c7b05bce014ef623f0bdd002bc44b0c06f4e3543) by [@liblaf](https://github.com/liblaf)
+- **logging:** reorganize logging module structure and improve functionality - [09c09da](https://github.com/liblaf/grapes/commit/09c09daab6245985701edff50cdcfa03c2294acf) by [@liblaf](https://github.com/liblaf)
+- **logging:** simplify logging configuration and remove deprecated features - [c7b05bc](https://github.com/liblaf/grapes/commit/c7b05bce014ef623f0bdd002bc44b0c06f4e3543) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -826,7 +860,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ♻ Code Refactoring
 
-- **(typed)** rename StrPath to PathLike for clarity - [cdb4f96](https://github.com/liblaf/grapes/commit/cdb4f968398db334adf5f3333d129dd494b9415e) by [@liblaf](https://github.com/liblaf)
+- **typed:** rename StrPath to PathLike for clarity - [cdb4f96](https://github.com/liblaf/grapes/commit/cdb4f968398db334adf5f3333d129dd494b9415e) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -837,7 +871,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(path)** correct project directory path resolution - [b808842](https://github.com/liblaf/grapes/commit/b808842ca50e4033ec0d40bac0f2354f26391056) by [@liblaf](https://github.com/liblaf)
+- **path:** correct project directory path resolution - [b808842](https://github.com/liblaf/grapes/commit/b808842ca50e4033ec0d40bac0f2354f26391056) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -848,7 +882,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(timing)** set `slots=False` for `TimedFunction` to support `functools.update_wrapper` - [aebf7e2](https://github.com/liblaf/grapes/commit/aebf7e27637faa7f65ebf7fb78a4482745eb3fce) by [@liblaf](https://github.com/liblaf)
+- **timing:** set `slots=False` for `TimedFunction` to support `functools.update_wrapper` - [aebf7e2](https://github.com/liblaf/grapes/commit/aebf7e27637faa7f65ebf7fb78a4482745eb3fce) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -859,11 +893,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(timing)** make wrapped objects immutable and update function wrapper - [72d6440](https://github.com/liblaf/grapes/commit/72d64404cf6d04d5b71951b989b2dc7627c0663e) by [@liblaf](https://github.com/liblaf)
+- **timing:** make wrapped objects immutable and update function wrapper - [72d6440](https://github.com/liblaf/grapes/commit/72d64404cf6d04d5b71951b989b2dc7627c0663e) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(pretty)** reorganize pretty module and add find_project_dir - [68b67dc](https://github.com/liblaf/grapes/commit/68b67dccf7445e256c6d0684c0c4913b73b36c4f) by [@liblaf](https://github.com/liblaf)
+- **pretty:** reorganize pretty module and add find_project_dir - [68b67dc](https://github.com/liblaf/grapes/commit/68b67dccf7445e256c6d0684c0c4913b73b36c4f) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -874,11 +908,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(functools)** add decorator with optional arguments support - [c0b86a0](https://github.com/liblaf/grapes/commit/c0b86a03bb9ddabaedf3ea82294fe8fd156f15fd) by [@liblaf](https://github.com/liblaf)
+- **functools:** add decorator with optional arguments support - [c0b86a0](https://github.com/liblaf/grapes/commit/c0b86a03bb9ddabaedf3ea82294fe8fd156f15fd) by [@liblaf](https://github.com/liblaf)
 
 ### 🐛 Bug Fixes
 
-- **(deps)** update dependency rich to v14 (#34) - [e3e1e09](https://github.com/liblaf/grapes/commit/e3e1e09bdbd5fce6e9020cbd29ed256058780ea9) by [@renovate[bot]](https://github.com/apps/renovate) in [#34](https://github.com/liblaf/grapes/pull/34)
+- **deps:** update dependency rich to v14 (#34) - [e3e1e09](https://github.com/liblaf/grapes/commit/e3e1e09bdbd5fce6e9020cbd29ed256058780ea9) by [@renovate[bot]](https://github.com/apps/renovate) in [#34](https://github.com/liblaf/grapes/pull/34)
 
 ### ❤️ Contributors
 
@@ -890,11 +924,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(logging)** add default log format to file handler - [257f508](https://github.com/liblaf/grapes/commit/257f508f79e0a85914cef0272421465feb2db66b) by [@liblaf](https://github.com/liblaf)
+- **logging:** add default log format to file handler - [257f508](https://github.com/liblaf/grapes/commit/257f508f79e0a85914cef0272421465feb2db66b) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(logging)** reorganize logging module structure and improve functionality - [a680077](https://github.com/liblaf/grapes/commit/a6800778a4ada4213e9ca2198d7163d589926a97) by [@liblaf](https://github.com/liblaf)
+- **logging:** reorganize logging module structure and improve functionality - [a680077](https://github.com/liblaf/grapes/commit/a6800778a4ada4213e9ca2198d7163d589926a97) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -905,7 +939,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(logging)** add clear_handlers function and integrate with loguru - [a4f2954](https://github.com/liblaf/grapes/commit/a4f2954dde68dd69e6892a4afec7fbb21683609a) by [@liblaf](https://github.com/liblaf)
+- **logging:** add clear_handlers function and integrate with loguru - [a4f2954](https://github.com/liblaf/grapes/commit/a4f2954dde68dd69e6892a4afec7fbb21683609a) by [@liblaf](https://github.com/liblaf)
 - enhance testing and benchmarking capabilities - [c1c4eae](https://github.com/liblaf/grapes/commit/c1c4eae12c43fd6365cc08260a257cbfb484d2dd) by [@liblaf](https://github.com/liblaf)
 
 ### 📝 Documentation
@@ -915,7 +949,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ♻ Code Refactoring
 
-- **(timing)** restructure timer implementation and add protocol support - [34e0b84](https://github.com/liblaf/grapes/commit/34e0b8418bd180cd6444d1badf2f9d16296a5e31) by [@liblaf](https://github.com/liblaf)
+- **timing:** restructure timer implementation and add protocol support - [34e0b84](https://github.com/liblaf/grapes/commit/34e0b8418bd180cd6444d1badf2f9d16296a5e31) by [@liblaf](https://github.com/liblaf)
 
 ### ⚙️ Continuous Integration
 
@@ -936,7 +970,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ♻ Code Refactoring
 
-- **(environ)** modify `init_env` to accept a path parameter - [c35581a](https://github.com/liblaf/grapes/commit/c35581a400d16dfcf25e83d594766b70abb1de30) by [@liblaf](https://github.com/liblaf)
+- **environ:** modify `init_env` to accept a path parameter - [c35581a](https://github.com/liblaf/grapes/commit/c35581a400d16dfcf25e83d594766b70abb1de30) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -947,11 +981,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(serde)** replace `warnings.deprecated` with `typing_extensions.deprecated` - [ad88773](https://github.com/liblaf/grapes/commit/ad8877387f608e3c0382d9006c82054966a81dfe) by [@liblaf](https://github.com/liblaf)
+- **serde:** replace `warnings.deprecated` with `typing_extensions.deprecated` - [ad88773](https://github.com/liblaf/grapes/commit/ad8877387f608e3c0382d9006c82054966a81dfe) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(logging)** replace DEFAULT_FILTER with default_filter function - [33c7ad3](https://github.com/liblaf/grapes/commit/33c7ad3e78432231d8c117c05e2bf747e1ba69f0) by [@liblaf](https://github.com/liblaf)
+- **logging:** replace DEFAULT_FILTER with default_filter function - [33c7ad3](https://github.com/liblaf/grapes/commit/33c7ad3e78432231d8c117c05e2bf747e1ba69f0) by [@liblaf](https://github.com/liblaf)
 
 ### ⚙️ Continuous Integration
 
@@ -977,12 +1011,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(logging)** add conditional dispatcher and enhance loguru filters - [db8f046](https://github.com/liblaf/grapes/commit/db8f046765da4509cc2ee25906ff90c3d5946b65) by [@liblaf](https://github.com/liblaf)
-- **(logging)** enhance loguru configuration with default level and improved filter_once - [1e72e8e](https://github.com/liblaf/grapes/commit/1e72e8e5c242a0d2259dc989fce3f85848801741) by [@liblaf](https://github.com/liblaf)
+- **logging:** add conditional dispatcher and enhance loguru filters - [db8f046](https://github.com/liblaf/grapes/commit/db8f046765da4509cc2ee25906ff90c3d5946b65) by [@liblaf](https://github.com/liblaf)
+- **logging:** enhance loguru configuration with default level and improved filter_once - [1e72e8e](https://github.com/liblaf/grapes/commit/1e72e8e5c242a0d2259dc989fce3f85848801741) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(logging)** reorganize imports and rename filter types module - [9e2aa67](https://github.com/liblaf/grapes/commit/9e2aa6753822f74a5d8c564f34b7494763d5e07d) by [@liblaf](https://github.com/liblaf)
+- **logging:** reorganize imports and rename filter types module - [9e2aa67](https://github.com/liblaf/grapes/commit/9e2aa6753822f74a5d8c564f34b7494763d5e07d) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -994,8 +1028,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(logging)** refactor loguru module and add JSONL logging support - [1bcfc19](https://github.com/liblaf/grapes/commit/1bcfc19a2b47f2fd782ee1ee94a8a8c55d6c460e) by [@liblaf](https://github.com/liblaf)
-- **(serde)** add AutoSerializer to public API - [8152e80](https://github.com/liblaf/grapes/commit/8152e80b0b82df425e1b9798d0bac030961a7c84) by [@liblaf](https://github.com/liblaf)
+- **logging:** refactor loguru module and add JSONL logging support - [1bcfc19](https://github.com/liblaf/grapes/commit/1bcfc19a2b47f2fd782ee1ee94a8a8c55d6c460e) by [@liblaf](https://github.com/liblaf)
+- **serde:** add AutoSerializer to public API - [8152e80](https://github.com/liblaf/grapes/commit/8152e80b0b82df425e1b9798d0bac030961a7c84) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -1007,11 +1041,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(serde)** add dump/load functions and deprecate serialize/deserialize - [0bc118f](https://github.com/liblaf/grapes/commit/0bc118f3415863412f4eff67d1418a44debecd96) by [@liblaf](https://github.com/liblaf)
+- **serde:** add dump/load functions and deprecate serialize/deserialize - [0bc118f](https://github.com/liblaf/grapes/commit/0bc118f3415863412f4eff67d1418a44debecd96) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(serde)** rename dump/dumps methods to save/saves for clarity - [a8feb62](https://github.com/liblaf/grapes/commit/a8feb621087bbb2f734b87950ba05523d0cb4224) by [@liblaf](https://github.com/liblaf)
+- **serde:** rename dump/dumps methods to save/saves for clarity - [a8feb62](https://github.com/liblaf/grapes/commit/a8feb621087bbb2f734b87950ba05523d0cb4224) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -1022,11 +1056,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(git)** add GitInfo and info function for parsing git repository URLs - [7699aab](https://github.com/liblaf/grapes/commit/7699aab9b86dabda009e2888878bf6d328865c3b) by [@liblaf](https://github.com/liblaf)
+- **git:** add GitInfo and info function for parsing git repository URLs - [7699aab](https://github.com/liblaf/grapes/commit/7699aab9b86dabda009e2888878bf6d328865c3b) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(serde)** introduce AbstractSerializer for JSON, TOML, and YAML - [83860b1](https://github.com/liblaf/grapes/commit/83860b1131391d3847f3b040fcefe1013caf924e) by [@liblaf](https://github.com/liblaf)
+- **serde:** introduce AbstractSerializer for JSON, TOML, and YAML - [83860b1](https://github.com/liblaf/grapes/commit/83860b1131391d3847f3b040fcefe1013caf924e) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -1037,7 +1071,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ♻ Code Refactoring
 
-- **(serde)** replace autoregistry with plain dict for READERS and WRITERS - [10a33f2](https://github.com/liblaf/grapes/commit/10a33f25d747e3e988be52815251d4a2c4adb4a4) by [@liblaf](https://github.com/liblaf)
+- **serde:** replace autoregistry with plain dict for READERS and WRITERS - [10a33f2](https://github.com/liblaf/grapes/commit/10a33f25d747e3e988be52815251d4a2c4adb4a4) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -1048,7 +1082,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(git)** add git root detection utilities - [6034ef0](https://github.com/liblaf/grapes/commit/6034ef071776a9acc5ad960158c9c23fa649e3c1) by [@liblaf](https://github.com/liblaf)
+- **git:** add git root detection utilities - [6034ef0](https://github.com/liblaf/grapes/commit/6034ef071776a9acc5ad960158c9c23fa649e3c1) by [@liblaf](https://github.com/liblaf)
 
 ### ✅ Tests
 
@@ -1097,7 +1131,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(logging)** add `warning_once` function to logging utilities - [a7e64ce](https://github.com/liblaf/grapes/commit/a7e64ce033f246837d57b17dd3645aa466eea148) by [@liblaf](https://github.com/liblaf)
+- **logging:** add `warning_once` function to logging utilities - [a7e64ce](https://github.com/liblaf/grapes/commit/a7e64ce033f246837d57b17dd3645aa466eea148) by [@liblaf](https://github.com/liblaf)
 
 ### 🛠 Builds
 
@@ -1117,7 +1151,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(deps)** update dependency boltons to v25 (#11) - [cae7976](https://github.com/liblaf/grapes/commit/cae797647886d4fd8c2a2ae4d469ba4b3910f7fc) by [@renovate[bot]](https://github.com/apps/renovate) in [#11](https://github.com/liblaf/grapes/pull/11)
+- **deps:** update dependency boltons to v25 (#11) - [cae7976](https://github.com/liblaf/grapes/commit/cae797647886d4fd8c2a2ae4d469ba4b3910f7fc) by [@renovate[bot]](https://github.com/apps/renovate) in [#11](https://github.com/liblaf/grapes/pull/11)
 
 ### 📝 Documentation
 
@@ -1129,8 +1163,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ♻ Code Refactoring
 
-- **(docs)** replace Python asset download script with shell script - [4fe1869](https://github.com/liblaf/grapes/commit/4fe1869a0f76ffd45d18f74bfa971c3a1bc7f01c) by [@liblaf](https://github.com/liblaf)
-- **(timer)** simplify time counter logic and improve TimerRecords class - [b40c2c3](https://github.com/liblaf/grapes/commit/b40c2c37fc5dd5c2afdf23727e355db4a8c38800) by [@liblaf](https://github.com/liblaf)
+- **docs:** replace Python asset download script with shell script - [4fe1869](https://github.com/liblaf/grapes/commit/4fe1869a0f76ffd45d18f74bfa971c3a1bc7f01c) by [@liblaf](https://github.com/liblaf)
+- **timer:** simplify time counter logic and improve TimerRecords class - [b40c2c3](https://github.com/liblaf/grapes/commit/b40c2c37fc5dd5c2afdf23727e355db4a8c38800) by [@liblaf](https://github.com/liblaf)
 - reorganize timer and optional imports modules - [a362ce5](https://github.com/liblaf/grapes/commit/a362ce55e4979c94601bb192c75bb5ac2869faa2) by [@liblaf](https://github.com/liblaf)
 - remove unused dependencies and update imports - [69bfcf4](https://github.com/liblaf/grapes/commit/69bfcf45474d3a7dd5dae6abff8ea92c302d1e20) by [@liblaf](https://github.com/liblaf)
 
@@ -1148,7 +1182,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ♻ Code Refactoring
 
-- **(grapes)** rename progress to progress_bar and enhance timer reporting - [870b497](https://github.com/liblaf/grapes/commit/870b497df9f11eb3465d2de5da6bcd29c9f07f59) by [@liblaf](https://github.com/liblaf)
+- **grapes:** rename progress to progress_bar and enhance timer reporting - [870b497](https://github.com/liblaf/grapes/commit/870b497df9f11eb3465d2de5da6bcd29c9f07f59) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -1186,19 +1220,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ✨ Features
 
-- **(human)** add human-readable formatting for counts, durations, and throughput - [7ab9ba7](https://github.com/liblaf/grapes/commit/7ab9ba7c0ca089f187cf32f5e8b82be43961fcfe) by [@liblaf](https://github.com/liblaf)
-- **(human)** add human_duration_series function and numpy dependency - [f896854](https://github.com/liblaf/grapes/commit/f89685440683d5ff49fca0bb04a93cde66411381) by [@liblaf](https://github.com/liblaf)
-- **(serde)** add serialization/deserialization utilities - [ba4cb55](https://github.com/liblaf/grapes/commit/ba4cb5506ff89af6859b635c84eae6b9a0bc61ea) by [@liblaf](https://github.com/liblaf)
-- **(text)** add `strip_comments` utility for text processing - [2144402](https://github.com/liblaf/grapes/commit/2144402c77b7a264e6ed1fbb2c3324b9c02b07a2) by [@liblaf](https://github.com/liblaf)
-- **(timer)** add TimerRecords class for tracking and reporting timing data - [b73560e](https://github.com/liblaf/grapes/commit/b73560e6922eb38f82214932a248ebb4c2c47edb) by [@liblaf](https://github.com/liblaf)
-- **(timer)** enhance timer functionality and improve logging - [7e3bcd3](https://github.com/liblaf/grapes/commit/7e3bcd312bbe657c9faa1184a5d578e5ef1a064f) by [@liblaf](https://github.com/liblaf)
-- **(timer)** enhance timer functionality and integrate with progress tracking - [71c624d](https://github.com/liblaf/grapes/commit/71c624df066e54372251938b595dd1a4fcaa6dee) by [@liblaf](https://github.com/liblaf)
+- **human:** add human-readable formatting for counts, durations, and throughput - [7ab9ba7](https://github.com/liblaf/grapes/commit/7ab9ba7c0ca089f187cf32f5e8b82be43961fcfe) by [@liblaf](https://github.com/liblaf)
+- **human:** add human_duration_series function and numpy dependency - [f896854](https://github.com/liblaf/grapes/commit/f89685440683d5ff49fca0bb04a93cde66411381) by [@liblaf](https://github.com/liblaf)
+- **serde:** add serialization/deserialization utilities - [ba4cb55](https://github.com/liblaf/grapes/commit/ba4cb5506ff89af6859b635c84eae6b9a0bc61ea) by [@liblaf](https://github.com/liblaf)
+- **text:** add `strip_comments` utility for text processing - [2144402](https://github.com/liblaf/grapes/commit/2144402c77b7a264e6ed1fbb2c3324b9c02b07a2) by [@liblaf](https://github.com/liblaf)
+- **timer:** add TimerRecords class for tracking and reporting timing data - [b73560e](https://github.com/liblaf/grapes/commit/b73560e6922eb38f82214932a248ebb4c2c47edb) by [@liblaf](https://github.com/liblaf)
+- **timer:** enhance timer functionality and improve logging - [7e3bcd3](https://github.com/liblaf/grapes/commit/7e3bcd312bbe657c9faa1184a5d578e5ef1a064f) by [@liblaf](https://github.com/liblaf)
+- **timer:** enhance timer functionality and integrate with progress tracking - [71c624d](https://github.com/liblaf/grapes/commit/71c624df066e54372251938b595dd1a4fcaa6dee) by [@liblaf](https://github.com/liblaf)
 - add initial project structure and core functionality - [03b5855](https://github.com/liblaf/grapes/commit/03b5855a860f269a10ebc471206979230fba5a13) by [@liblaf](https://github.com/liblaf)
 - add progress tracking and improve logging initialization - [9a9764f](https://github.com/liblaf/grapes/commit/9a9764f1a15d3dd98db0615d1d9dd8723d65bd1b) by [@liblaf](https://github.com/liblaf)
 
 ### ♻ Code Refactoring
 
-- **(logging)** extract caller location and function name utilities - [a46420e](https://github.com/liblaf/grapes/commit/a46420e8c075282c1fd6577e42f65d92968080b2) by [@liblaf](https://github.com/liblaf)
+- **logging:** extract caller location and function name utilities - [a46420e](https://github.com/liblaf/grapes/commit/a46420e8c075282c1fd6577e42f65d92968080b2) by [@liblaf](https://github.com/liblaf)
 
 ### 🛠 Builds
 

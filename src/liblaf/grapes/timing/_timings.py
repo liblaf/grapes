@@ -1,4 +1,5 @@
 import collections
+import warnings
 from collections.abc import Callable, Iterable, Sequence
 
 import attrs
@@ -21,6 +22,7 @@ from .defaults import (
 @attrs.define
 class Timings:
     label: str | None = attrs.field(default=None)
+    name: str | None = attrs.field(default=None)
     clocks: Sequence[ClockName] = attrs.field(default=DEFAULT_CLOCKS)
     timings: dict[ClockName, list[float]] = attrs.field(
         factory=lambda: collections.defaultdict(list), init=False
@@ -28,6 +30,15 @@ class Timings:
 
     _start_time: dict[ClockName, float] = attrs.field(factory=dict, init=False)
     _stop_time: dict[ClockName, float] = attrs.field(factory=dict, init=False)
+
+    def __attrs_post_init__(self) -> None:
+        if self.label is None and self.name is not None:
+            warnings.warn(
+                "'name' parameter is deprecated (Use 'label' instead)",
+                DeprecationWarning,
+                stacklevel=4,
+            )
+            self.label = self.name
 
     def __len__(self) -> int:
         return len(self.timings[self.default_clock])

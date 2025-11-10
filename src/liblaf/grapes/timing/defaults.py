@@ -6,7 +6,6 @@ from ._statistics import StatisticName
 DEFAULT_CLOCKS: Sequence[ClockName] = ("perf",)
 
 
-LOG_RECORD_DEFAULT_INDEX: int = -1
 LOG_RECORD_DEFAULT_LEVEL: int | str = "DEBUG"
 LOG_RECORD_DEFAULT_THRESHOLD_SEC: float | None = 0.02
 

@@ -79,7 +79,7 @@ def pretty_duration(
     """
     number: str
     unit: str
-    number, unit = pretty_duration_with_unit(
+    number, unit = pretty_duration_unit(
         seconds, magnitude=magnitude, significant=significant
     )
     if unit:
@@ -87,31 +87,7 @@ def pretty_duration(
     return number
 
 
-def pretty_durations(
-    seconds: Iterable[float],
-    *,
-    magnitude: int | None = None,
-    sep: str = ", ",
-    significant: int = 3,
-) -> str:
-    seconds = list(seconds)
-    if magnitude is None:
-        magnitude: int = auto_duration_magnitude(max(seconds), significant=significant)
-    numbers: list[str] = []
-    unit: str = ""
-    for val in seconds:
-        number: str
-        number, unit = pretty_duration_with_unit(
-            val, magnitude=magnitude, significant=significant
-        )
-        numbers.append(number)
-    numbers_formatted: str = sep.join(numbers)
-    if unit:
-        return f"{numbers_formatted} {unit}"
-    return numbers_formatted
-
-
-def pretty_duration_with_unit(
+def pretty_duration_unit(
     seconds: float, *, magnitude: int | None = None, significant: int = 3
 ) -> tuple[str, str]:
     if not math.isfinite(seconds):
@@ -119,7 +95,7 @@ def pretty_duration_with_unit(
     if seconds < 0:
         neg: str
         unit: str
-        neg, unit = pretty_duration_with_unit(-seconds, significant=significant)
+        neg, unit = pretty_duration_unit(-seconds, significant=significant)
         return "-" + neg, unit
     if magnitude is None:
         magnitude = auto_duration_magnitude(seconds, significant=significant)
@@ -131,7 +107,7 @@ def pretty_duration_with_unit(
         if abs(number) < threshold:
             width: int = significant + 1
             precision = max(0, precision)
-            number_formatted: str = f"{number:#0{width}.{precision}f}"
+            number_formatted: str = f"{number:#.{precision}f}"
             if width == precision + 1:
                 number_formatted = number_formatted.removeprefix("0")
             return number_formatted, unit
@@ -156,3 +132,23 @@ def pretty_duration_with_unit(
             minutes, seconds = divmod(seconds, 60)
             return f"{days:d}d,{hours:02d}:{minutes:02d}:{seconds:02d}", ""
     raise UnreachableError
+
+
+def pretty_durations(
+    seconds: Iterable[float],
+    *,
+    magnitude: int | None = None,
+    significant: int = 3,
+) -> tuple[list[str], str]:
+    seconds = list(seconds)
+    if magnitude is None:
+        magnitude: int = auto_duration_magnitude(max(seconds), significant=significant)
+    numbers: list[str] = []
+    unit: str = ""
+    for val in seconds:
+        number: str
+        number, unit = pretty_duration_unit(
+            val, magnitude=magnitude, significant=significant
+        )
+        numbers.append(number)
+    return numbers, unit

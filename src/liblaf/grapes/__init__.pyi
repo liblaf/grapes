@@ -27,12 +27,22 @@ from .ext import attrs, icecream, loguru, rich, wadler_lindig
 from .ext.wadler_lindig import pdoc, pformat, pprint
 from .functools import memorize, wraps, wrapt_getattr, wrapt_setattr
 from .itertools import as_iterable, as_sequence, first_not_none, len_or_none
-from .pretty import get_console
+from .pretty import (
+    get_console,
+    has_ansi,
+    pretty_call,
+    pretty_duration,
+    pretty_duration_unit,
+    pretty_durations,
+    pretty_func,
+    pretty_throughput,
+    rich_location,
+)
 from .rt import entrypoint, in_ci
 from .sentinel import MISSING, NOP, nop, not_implemented
 from .serde import dec_hook, enc_hook, json, load, save, toml, yaml
-from .timing import BaseTimer, get_timer, timer
-from .tqdm import track
+from .timing import BaseTimer, Timer, get_timer, timer
+from .tqdm import Progress, track
 
 __all__ = [
     "MISSING",
@@ -40,6 +50,8 @@ __all__ = [
     "BaseTimer",
     "DispatchLookupError",
     "MatchError",
+    "Progress",
+    "Timer",
     "TodoError",
     "UnreachableError",
     "__version__",
@@ -58,6 +70,7 @@ __all__ = [
     "functools",
     "get_console",
     "get_timer",
+    "has_ansi",
     "icecream",
     "in_ci",
     "itertools",
@@ -73,7 +86,14 @@ __all__ = [
     "pformat",
     "pprint",
     "pretty",
+    "pretty_call",
+    "pretty_duration",
+    "pretty_duration_unit",
+    "pretty_durations",
+    "pretty_func",
+    "pretty_throughput",
     "rich",
+    "rich_location",
     "rt",
     "save",
     "sentinel",

@@ -5,7 +5,6 @@ from typing import Any, overload
 from ._statistics import StatisticName
 from ._timings import Callback, Timings
 from .defaults import (
-    LOG_RECORD_DEFAULT_INDEX,
     LOG_RECORD_DEFAULT_LEVEL,
     LOG_RECORD_DEFAULT_THRESHOLD_SEC,
     LOG_SUMMARY_DEFAULT_LEVEL,
@@ -18,14 +17,14 @@ def log_record(
     timer: Timings,
     /,
     *,
-    index: int = LOG_RECORD_DEFAULT_INDEX,
+    index: int = -1,
     level: int | str = LOG_RECORD_DEFAULT_LEVEL,
     threshold_sec: float | None = LOG_RECORD_DEFAULT_THRESHOLD_SEC,
 ) -> Any: ...
 @overload
 def log_record(
     *,
-    index: int = LOG_RECORD_DEFAULT_INDEX,
+    index: int = -1,
     level: int | str = LOG_RECORD_DEFAULT_LEVEL,
     threshold_sec: float | None = LOG_RECORD_DEFAULT_THRESHOLD_SEC,
 ) -> Callback: ...

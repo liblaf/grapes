@@ -22,8 +22,8 @@ class RichSinkColumnMessage(RichSinkColumn):
         message: RenderableType = record["message"].strip()
         if "\x1b" in message:
             return Text.from_ansi(message)
-        if record["extra"].get("markup", True):
-            message = Text.from_markup(message)
+        if markup := record["extra"].get("markup", False):
+            return Text.from_markup(markup if isinstance(markup, str) else message)
         if highlighter := record["extra"].get("highlighter", self.highlighter):
             message = highlighter(message)
         return message

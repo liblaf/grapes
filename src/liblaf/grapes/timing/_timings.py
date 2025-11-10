@@ -11,7 +11,6 @@ from ._clock import ClockName, clock
 from ._statistics import StatisticName, pretty_statistic
 from .defaults import (
     DEFAULT_CLOCKS,
-    LOG_RECORD_DEFAULT_INDEX,
     LOG_RECORD_DEFAULT_LEVEL,
     LOG_RECORD_DEFAULT_THRESHOLD_SEC,
     LOG_SUMMARY_DEFAULT_LEVEL,
@@ -54,7 +53,7 @@ class Timings:
     def log_record(
         self,
         *,
-        index: int = LOG_RECORD_DEFAULT_INDEX,
+        index: int = -1,
         level: int | str = LOG_RECORD_DEFAULT_LEVEL,
         threshold_sec: float | None = LOG_RECORD_DEFAULT_THRESHOLD_SEC,
     ) -> None:
@@ -70,9 +69,13 @@ class Timings:
         stats: Iterable[StatisticName] = LOG_SUMMARY_DEFAULT_STATISTICS,
     ) -> None:
         __tracebackhide__ = True
-        logger.log(level, self.pretty_summary(stats=stats))
+        logger.log(
+            level,
+            self.pretty_summary(stats=stats),
+            markup=self.pretty_summary(stats=stats, rich_markup=True),
+        )
 
-    def pretty_record(self, index: int = LOG_RECORD_DEFAULT_INDEX) -> str:
+    def pretty_record(self, index: int = -1) -> str:
         name: str = self.label or "Timer"
         items: list[str] = [
             f"{clock_name}: {pretty.pretty_duration(self.timings[clock_name][index])}"
@@ -82,7 +85,10 @@ class Timings:
         return f"{name} > {items_str}"
 
     def pretty_summary(
-        self, stats: Iterable[StatisticName] = LOG_SUMMARY_DEFAULT_STATISTICS
+        self,
+        stats: Iterable[StatisticName] = LOG_SUMMARY_DEFAULT_STATISTICS,
+        *,
+        rich_markup: bool = False,
     ) -> str:
         name: str = self.label or "Timer"
         header: str = f"{name} (calls: {len(self)})"
@@ -94,7 +100,9 @@ class Timings:
             for stat in stats:
                 stat_name: str
                 value: str
-                stat_name, value = pretty_statistic(self.timings[clock_name], stat)
+                stat_name, value = pretty_statistic(
+                    self.timings[clock_name], stat, rich_markup=rich_markup
+                )
                 stats_str.append(f"{stat_name}: {value}")
             line: str = f"{clock_name} > {', '.join(stats_str)}"
             lines.append(line)

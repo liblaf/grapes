@@ -4,7 +4,7 @@ from ._console import get_console
 from ._duration import (
     auto_duration_magnitude,
     pretty_duration,
-    pretty_duration_with_unit,
+    pretty_duration_unit,
     pretty_durations,
 )
 from ._func import pretty_func
@@ -19,7 +19,7 @@ __all__ = [
     "has_ansi",
     "pretty_call",
     "pretty_duration",
-    "pretty_duration_with_unit",
+    "pretty_duration_unit",
     "pretty_durations",
     "pretty_func",
     "pretty_throughput",

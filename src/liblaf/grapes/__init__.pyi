@@ -6,6 +6,7 @@ from . import (
     itertools,
     logging,
     pretty,
+    rich,
     rt,
     sentinel,
     serde,
@@ -23,7 +24,7 @@ from .errors import (
     todo,
     unreachable,
 )
-from .ext import attrs, icecream, loguru, rich, wadler_lindig
+from .ext import attrs, icecream, loguru, wadler_lindig
 from .ext.wadler_lindig import pdoc, pformat, pprint
 from .functools import memorize, wraps, wrapt_getattr, wrapt_setattr
 from .itertools import as_iterable, as_sequence, first_not_none, len_or_none

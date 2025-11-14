@@ -5,9 +5,9 @@ from . import (
     functools,
     itertools,
     logging,
+    magic,
     pretty,
     rich,
-    rt,
     sentinel,
     serde,
     timing,
@@ -28,6 +28,7 @@ from .ext import attrs, icecream, loguru, wadler_lindig
 from .ext.wadler_lindig import pdoc, pformat, pprint
 from .functools import memorize, wraps, wrapt_getattr, wrapt_setattr
 from .itertools import as_iterable, as_sequence, first_not_none, len_or_none
+from .magic import entrypoint, in_ci
 from .pretty import (
     get_console,
     has_ansi,
@@ -39,7 +40,6 @@ from .pretty import (
     pretty_throughput,
     rich_location,
 )
-from .rt import entrypoint, in_ci
 from .sentinel import MISSING, NOP, nop, not_implemented
 from .serde import dec_hook, enc_hook, json, load, save, toml, yaml
 from .timing import BaseTimer, Timer, get_timer, timer
@@ -80,6 +80,7 @@ __all__ = [
     "load",
     "logging",
     "loguru",
+    "magic",
     "memorize",
     "nop",
     "not_implemented",
@@ -95,7 +96,6 @@ __all__ = [
     "pretty_throughput",
     "rich",
     "rich_location",
-    "rt",
     "save",
     "sentinel",
     "serde",

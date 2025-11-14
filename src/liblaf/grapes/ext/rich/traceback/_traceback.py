@@ -11,7 +11,7 @@ from rich.text import Text
 from rich.traceback import LOCALS_MAX_LENGTH, LOCALS_MAX_STRING, _iter_syntax_lines
 from rich.traceback import Traceback as RichTraceback
 
-from liblaf.grapes import rt
+from liblaf.grapes import magic
 
 from ._frame import Frame
 from ._stack import Stack
@@ -96,7 +96,7 @@ class Traceback(RichTraceback):
 
     def _render_frame(self, frame: Frame) -> RenderResult:
         location: Text = Text.assemble(
-            (rt.abbr_path(frame.filename), "pygments.string"),
+            (magic.abbr_path(frame.filename), "pygments.string"),
             (":", "pygments.text"),
             (str(frame.lineno), "pygments.number"),
             (" in ", "pygments.text"),

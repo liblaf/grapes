@@ -4,7 +4,7 @@ from typing import Unpack
 
 import loguru
 
-from liblaf.grapes import rt
+from liblaf.grapes import magic
 from liblaf.grapes._config import config
 from liblaf.grapes.logging.filters import new_filter
 from liblaf.grapes.logging.helpers import new_format
@@ -14,7 +14,7 @@ def file_handler(
     **kwargs: Unpack[loguru.FileHandlerConfig],
 ) -> loguru.FileHandlerConfig:
     if "sink" not in kwargs:
-        kwargs["sink"] = config.logging.file.get() or rt.entrypoint().with_suffix(
+        kwargs["sink"] = config.logging.file.get() or magic.entrypoint().with_suffix(
             ".log"
         )
     if "format" not in kwargs:

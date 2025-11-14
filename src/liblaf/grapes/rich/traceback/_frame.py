@@ -12,7 +12,7 @@ from rich.scope import render_scope
 from rich.syntax import Syntax
 from rich.text import Text
 
-from liblaf.grapes import rt
+from liblaf.grapes import magic
 
 from ._options import RichTracebackOptions
 
@@ -34,7 +34,7 @@ class RichFrameSummary:
 
     @functools.cached_property
     def hidden(self) -> bool:
-        return rt.is_frame_hidden_from_traceback(self.frame)
+        return magic.hidden_from_traceback(self.frame)
 
     @functools.cached_property
     def locals(self) -> dict[str, Any]:
@@ -81,7 +81,7 @@ class RichFrameSummary:
     def _render_location(
         self, _options: RichTracebackOptions
     ) -> Generator[RenderableType]:
-        filename: str = rt.abbr_path(self.filename)
+        filename: str = magic.abbr_path(self.filename)
         if self.hidden:
             # ? I don't know why, but adding "white" looks better on Ghostty.
             text: Text = Text.assemble(

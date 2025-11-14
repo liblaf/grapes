@@ -4,7 +4,8 @@ from liblaf.grapes.conf import BaseConfig, Field, field
 
 
 class ConfigLogging(BaseConfig):
+    datefmt: Field[str] = field(default="%Y-%m-%d %H:%M:%S", env="LOG_DATEFMT")
     file: Field[Path | None] = field(default=None, env="LOG_FILE")
     hide_frame: Field[list[str]] = field(factory=lambda: ["rich.progress"])
     level: Field[int | str] = field(default="TRACE")
-    time: Field[bool] = field(default=False, env="LOG_TIME")
+    time_relative: Field[bool] = field(default=True, env="LOG_TIME_RELATIVE")

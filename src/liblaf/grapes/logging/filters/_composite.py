@@ -1,5 +1,5 @@
 import logging
-from collections.abc import Hashable, Mapping
+from collections.abc import Mapping
 
 import attrs
 import cachetools
@@ -17,7 +17,7 @@ class CompositeFilter:
     level: int = attrs.field(default=logging.INFO)
     once: FilterOnce = attrs.field(factory=FilterOnce)
 
-    _cache: cachetools.LRUCache[Hashable, int] = attrs.field(
+    _cache: cachetools.LRUCache[str, int] = attrs.field(
         repr=False, init=False, factory=lambda: cachetools.LRUCache(maxsize=1024)
     )
 

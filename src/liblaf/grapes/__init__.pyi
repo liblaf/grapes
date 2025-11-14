@@ -29,7 +29,6 @@ from .functools import memorize, wraps, wrapt_getattr, wrapt_setattr
 from .itertools import as_iterable, as_sequence, first_not_none, len_or_none
 from .magic import entrypoint, in_ci
 from .pretty import (
-    get_console,
     has_ansi,
     pretty_call,
     pretty_duration,
@@ -37,8 +36,9 @@ from .pretty import (
     pretty_durations,
     pretty_func,
     pretty_throughput,
-    rich_location,
 )
+from .rich import get_console
+from .rich.repr import auto_rich_repr
 from .sentinel import MISSING, NOP, nop, not_implemented
 from .serde import dec_hook, enc_hook, json, load, save, toml, yaml
 from .timing import BaseTimer, Timer, get_timer, timer
@@ -60,6 +60,7 @@ __all__ = [
     "as_iterable",
     "as_sequence",
     "attrs",
+    "auto_rich_repr",
     "conf",
     "config",
     "dec_hook",
@@ -92,7 +93,6 @@ __all__ = [
     "pretty_func",
     "pretty_throughput",
     "rich",
-    "rich_location",
     "save",
     "sentinel",
     "serde",

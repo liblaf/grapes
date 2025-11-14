@@ -2,10 +2,9 @@ from . import typing
 from ._by_name import FilterByName
 from ._by_version import FilterByVersion
 from ._composite import CompositeFilter
-from ._factory import new_filter
+from ._factory import FilterLike, as_filter
 from ._once import FilterOnce
-from ._utils import as_level_no_dict, get_level_no
-from .typing import FilterLike
+from ._utils import as_levelno, as_levelno_dict
 
 __all__ = [
     "CompositeFilter",
@@ -13,8 +12,8 @@ __all__ = [
     "FilterByVersion",
     "FilterLike",
     "FilterOnce",
-    "as_level_no_dict",
-    "get_level_no",
-    "new_filter",
+    "as_filter",
+    "as_levelno",
+    "as_levelno_dict",
     "typing",
 ]

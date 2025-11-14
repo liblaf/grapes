@@ -1,10 +1,12 @@
 import logging
+import types
 from collections.abc import Generator, Iterable
 
 from rich.console import Console, RenderableType
 from rich.text import Text
 
 from liblaf.grapes.rich._get_console import get_console
+from liblaf.grapes.rich.traceback import RichExceptionSummary
 
 from .columns import (
     RichHandlerColumn,
@@ -53,12 +55,27 @@ class RichHandler(logging.Handler):
             crop=False,
             soft_wrap=False,
         )
+        if (exception := self._render_exception(record)) is not None:
+            self.console.print(exception)
 
     def _render(self, record: logging.LogRecord) -> Generator[RenderableType]:
         columns: list[Text] = [column.render(record) for column in self.columns]
         meta: Text = Text(" ").join(columns) + Text(" ")
         message: str = record.getMessage()
-        for line in message.splitlines():
+        for line in message.splitlines() or [""]:
             yield meta
             yield Text(line, "log.message")
             yield "\n"
+
+    def _render_exception(
+        self, record: logging.LogRecord
+    ) -> RichExceptionSummary | None:
+        if record.exc_info is None:
+            return None
+        exc_type: type[BaseException] | None
+        exc_value: BaseException | None
+        traceback: types.TracebackType | None
+        exc_type, exc_value, traceback = record.exc_info
+        if exc_type is None or exc_value is None:
+            return None
+        return RichExceptionSummary(exc_type, exc_value, traceback)

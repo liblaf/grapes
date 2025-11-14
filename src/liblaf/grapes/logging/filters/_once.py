@@ -1,17 +1,15 @@
-from __future__ import annotations
-
+import logging
 from collections.abc import Hashable
 
 import attrs
-import loguru
 
 
 @attrs.define
 class FilterOnce:
     _history: set[Hashable] = attrs.field(factory=set, init=False)
 
-    def __call__(self, record: loguru.Record) -> bool:
-        if not record["extra"].get("once", False):
+    def __call__(self, record: logging.LogRecord) -> bool:
+        if not getattr(record, "once", False):
             return True
         record_hash: Hashable = self._hash_record(record)
         if record_hash in self._history:
@@ -19,13 +17,13 @@ class FilterOnce:
         self._history.add(record_hash)
         return True
 
-    def _hash_record(self, record: loguru.Record) -> Hashable:
+    def _hash_record(self, record: logging.LogRecord) -> Hashable:
         return hash(
             (
-                record["function"],
-                record["level"].no,
-                record["line"],
-                record["message"],
-                record["name"],
+                record.filename,
+                record.getMessage(),
+                record.levelno,
+                record.lineno,
+                record.name,
             )
         )

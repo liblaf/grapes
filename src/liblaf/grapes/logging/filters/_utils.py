@@ -1,18 +1,19 @@
-from __future__ import annotations
+import logging
+from collections.abc import Mapping
 
-import loguru
-from loguru import logger
-
-
-def as_level_no_dict(levels: loguru.FilterDict) -> dict[str | None, int]:
-    return {key: get_level_no(value) for key, value in levels.items()}
+import toolz
 
 
-def get_level_no(level: bool | int | str) -> int:  # noqa: FBT001
-    if level is True:
-        return 0
-    if level is False:
-        return 100
+def as_levelno_dict(levels: Mapping[str, int | str]) -> dict[str, int]:
+    level_names_mapping: dict[str, int] = logging.getLevelNamesMapping()
+    return toolz.valmap(
+        lambda level: level if isinstance(level, int) else level_names_mapping[level],
+        levels,
+    )
+
+
+def as_levelno(level: int | str) -> int:
     if isinstance(level, int):
         return level
-    return logger.level(level).no
+    level_names_mapping: dict[str, int] = logging.getLevelNamesMapping()
+    return level_names_mapping[level]

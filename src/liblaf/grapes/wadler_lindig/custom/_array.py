@@ -4,7 +4,7 @@ from typing import Any, Unpack
 
 import wadler_lindig as wl
 
-from liblaf.grapes.ext.wadler_lindig._typing import WadlerLindigOptions
+from liblaf.grapes.wadler_lindig._typing import WadlerLindigOptions
 
 
 def pdoc_array(

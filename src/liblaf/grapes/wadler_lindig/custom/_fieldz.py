@@ -4,22 +4,20 @@ import cytoolz as toolz
 import fieldz
 import wadler_lindig as wl
 
-from liblaf.grapes.ext.wadler_lindig._typing import WadlerLindigOptions
 from liblaf.grapes.sentinel import MISSING
+from liblaf.grapes.wadler_lindig._typing import WadlerLindigOptions
 
 
 def pdoc_fieldz(
     obj: object, **kwargs: Unpack[WadlerLindigOptions]
 ) -> wl.AbstractDoc | None:
-    cls: type = type(obj)
-    pairs: list[tuple[str, Any]] = []
     try:
         fields: tuple[fieldz.Field, ...] = fieldz.fields(obj)
     except TypeError:
         return None
+    cls: type = type(obj)
+    pairs: list[tuple[str, Any]] = []
     for field in fields:
-        if not field.repr:
-            continue
         value: Any = getattr(obj, field.name, MISSING)
         if kwargs.get("hide_defaults", True) and value is field.default:
             continue

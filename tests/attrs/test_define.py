@@ -1,8 +1,8 @@
 import attrs
 import wadler_lindig as wl
 
-from liblaf.grapes.ext.attrs import define
-from liblaf.grapes.ext.wadler_lindig import pformat
+from liblaf.grapes.attrs import define
+from liblaf.grapes.wadler_lindig import pformat
 
 
 @define

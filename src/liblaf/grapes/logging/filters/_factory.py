@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from ._composite import CompositeFilter
 
@@ -9,6 +9,8 @@ if TYPE_CHECKING:
     from logging import _FilterType
 
     type FilterLike = _FilterType | Mapping[str, int | str]
+else:
+    type FilterLike = Any
 
 
 def as_filter(f: FilterLike | None = None, /) -> _FilterType:

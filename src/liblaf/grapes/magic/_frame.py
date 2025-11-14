@@ -4,9 +4,14 @@ from collections.abc import Callable
 
 from ._release_type import is_pre_release
 
+_HIDDEN_FROM_LOGGING_NAMES: tuple[str, ...] = ("rich.progress",)
+
 
 def hidden_from_logging(frame: types.FrameType | None) -> bool:
-    return frame is None or frame.f_locals.get("__tracebackhide__", False)
+    if frame is None or frame.f_locals.get("__tracebackhide__", False):
+        return True
+    name: str = frame.f_globals.get("__name__", "")
+    return name.startswith(_HIDDEN_FROM_LOGGING_NAMES)
 
 
 def hidden_from_traceback(frame: types.FrameType | None) -> bool:

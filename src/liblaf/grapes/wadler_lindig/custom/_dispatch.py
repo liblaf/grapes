@@ -5,10 +5,9 @@ import types
 from collections.abc import Callable
 from typing import TYPE_CHECKING, Any, Unpack, overload
 
-import pydantic
 import wadler_lindig as wl
 
-from liblaf.grapes.ext.wadler_lindig._typing import CustomCallable, WadlerLindigOptions
+from liblaf.grapes.wadler_lindig._typing import CustomCallable, WadlerLindigOptions
 
 from ._array import pdoc_array
 from ._fieldz import pdoc_fieldz
@@ -34,7 +33,6 @@ class PdocCustomDispatcher:
         self.register(pdoc_array)
         self.register(pdoc_fieldz)
         self.register(pdoc_rich_repr)
-        self.register(pydantic.BaseModel)(pdoc_fieldz)
 
     def __call__(
         self, obj: Any, **kwargs: Unpack[WadlerLindigOptions]

@@ -3,9 +3,9 @@ from typing import Any
 
 import attrs
 
-from liblaf.grapes.ext.rich.repr import rich_repr_fieldz
-from liblaf.grapes.ext.wadler_lindig import pdoc_fieldz, pformat
 from liblaf.grapes.functools import wraps
+from liblaf.grapes.rich.repr import rich_repr_fieldz
+from liblaf.grapes.wadler_lindig import pdoc_fieldz, pformat
 
 
 @wraps(attrs.define)

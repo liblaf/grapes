@@ -8,7 +8,7 @@ class ConfigPretty(BaseConfig):
         1. [wadler_lindig.pformat](https://docs.kidger.site/wadler_lindig/api/#wadler_lindig.pformat)
     """
 
-    width: Field[int | None] = field(default=None)
+    width: Field[int] = field(default=88)
     """a best-effort maximum width to allow. May be exceeded if there are unbroken pieces of text which are wider than this."""
 
     indent: Field[int] = field(default=2)

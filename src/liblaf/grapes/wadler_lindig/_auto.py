@@ -2,8 +2,7 @@ import functools
 from collections.abc import Callable
 from typing import Any, overload
 
-import attrs
-import pydantic
+from liblaf.grapes.fieldz import has_fields
 
 from ._pformat import pformat
 from .custom import pdoc_fieldz, pdoc_rich_repr
@@ -30,8 +29,8 @@ def auto_pdoc(
     if repr is None:
         repr = "__repr__" not in cls.__dict__  # noqa: A001
     if pdoc:
-        if attrs.has(cls) or issubclass(cls, pydantic.BaseModel):
-            cls.__pdoc__ = pdoc_fieldz  # pyright: ignore[reportAttributeAccessIssue]
+        if has_fields(cls):
+            cls.__pdoc__ = pdoc_fieldz
         elif "__rich_repr__" in cls.__dict__:
             cls.__pdoc__ = pdoc_rich_repr
     if repr:

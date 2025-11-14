@@ -20,6 +20,7 @@ from rich.text import Text
 
 from liblaf.grapes import itertools as _it
 from liblaf.grapes import pretty, timing
+from liblaf.grapes.rich import get_console
 
 
 class RateColumn(ProgressColumn):
@@ -46,7 +47,7 @@ class Progress(RichProgress):
         timer: timing.Timer | Literal[False] | None = None,
     ) -> None:
         if console is None:
-            console = pretty.get_console(stderr=True)
+            console = get_console(stderr=True)
         super().__init__(*columns, console=console)
         if timer is None:
             timer = timing.timer()

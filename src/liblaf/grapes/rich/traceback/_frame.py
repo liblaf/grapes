@@ -76,7 +76,8 @@ class RichFrameSummary:
         yield from self._render_location(options)
         if not self.hidden:
             yield from self._render_syntax(options)
-            yield from self._render_locals(options)
+            if options.show_locals:
+                yield from self._render_locals(options)
 
     def _render_location(
         self, _options: RichTracebackOptions

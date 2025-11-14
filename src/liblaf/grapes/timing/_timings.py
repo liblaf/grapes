@@ -3,9 +3,9 @@ import warnings
 from collections.abc import Callable, Iterable, Sequence
 
 import attrs
-from loguru import logger
 
 from liblaf.grapes import pretty
+from liblaf.grapes.logging import depth_logger
 from liblaf.grapes.sentinel import NOP
 
 from ._clock import ClockName, clock
@@ -65,25 +65,24 @@ class Timings:
         self,
         *,
         index: int = -1,
-        level: int | str = LOG_RECORD_DEFAULT_LEVEL,
+        level: int = LOG_RECORD_DEFAULT_LEVEL,
         threshold_sec: float | None = LOG_RECORD_DEFAULT_THRESHOLD_SEC,
     ) -> None:
-        __tracebackhide__ = True
         if threshold_sec is not None and self.elapsed() < threshold_sec:
             return
-        logger.log(level, self.pretty_record(index=index))
+        depth_logger.log(level, self.pretty_record(index=index), stacklevel=2)
 
     def log_summary(
         self,
         *,
-        level: int | str = LOG_SUMMARY_DEFAULT_LEVEL,
+        level: int = LOG_SUMMARY_DEFAULT_LEVEL,
         stats: Iterable[StatisticName] = LOG_SUMMARY_DEFAULT_STATISTICS,
     ) -> None:
-        __tracebackhide__ = True
-        logger.log(
+        depth_logger.log(
             level,
             self.pretty_summary(stats=stats),
-            markup=self.pretty_summary(stats=stats, rich_markup=True),
+            stacklevel=2,
+            extra={"markup": self.pretty_summary(stats=stats, rich_markup=True)},
         )
 
     def pretty_record(self, index: int = -1) -> str:

@@ -3,6 +3,7 @@ import types
 from collections.abc import Generator, Iterable
 
 from rich.console import Console, RenderableType
+from rich.highlighter import Highlighter, ReprHighlighter
 from rich.text import Text
 
 from liblaf.grapes.rich._get_console import get_console
@@ -28,6 +29,7 @@ class RichHandler(logging.Handler):
     columns: list[RichHandlerColumn]
     console: Console
     time_relative: bool = True
+    highlighter: Highlighter
 
     def __init__(
         self,
@@ -43,6 +45,7 @@ class RichHandler(logging.Handler):
             console = get_console(stderr=True)
         self.columns = columns
         self.console = console
+        self.highlighter = ReprHighlighter()
 
     def emit(self, record: logging.LogRecord) -> None:
         self.console.print(
@@ -61,10 +64,10 @@ class RichHandler(logging.Handler):
     def _render(self, record: logging.LogRecord) -> Generator[RenderableType]:
         columns: list[Text] = [column.render(record) for column in self.columns]
         meta: Text = Text(" ").join(columns) + Text(" ")
-        message: str = record.getMessage()
-        for line in message.splitlines() or [""]:
+        message: Text = self._render_message(record)
+        for line in message.split() or [""]:
             yield meta
-            yield Text(line, "log.message")
+            yield line
             yield "\n"
 
     def _render_exception(
@@ -79,3 +82,10 @@ class RichHandler(logging.Handler):
         if exc_type is None or exc_value is None:
             return None
         return RichExceptionSummary(exc_type, exc_value, traceback)
+
+    def _render_message(self, record: logging.LogRecord) -> Text:
+        if markup := getattr(record, "markup", None):
+            return Text.from_markup(markup, style="log.message")
+        message: str = record.getMessage()
+        text: Text = Text(message, style="log.message")
+        return self.highlighter(text)

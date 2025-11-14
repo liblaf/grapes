@@ -1,4 +1,3 @@
-from . import typing
 from ._by_name import FilterByName
 from ._by_version import FilterByVersion
 from ._composite import CompositeFilter
@@ -15,5 +14,4 @@ __all__ = [
     "as_filter",
     "as_levelno",
     "as_levelno_dict",
-    "typing",
 ]

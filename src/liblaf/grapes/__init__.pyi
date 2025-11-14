@@ -1,7 +1,7 @@
 from . import (
+    attrs,
     conf,
     errors,
-    ext,
     functools,
     itertools,
     logging,
@@ -13,6 +13,7 @@ from . import (
     timing,
     tqdm,
     typing,
+    wadler_lindig,
 )
 from ._config import config
 from ._version import __version__, __version_tuple__, version, version_tuple
@@ -24,8 +25,6 @@ from .errors import (
     todo,
     unreachable,
 )
-from .ext import attrs, icecream, loguru, wadler_lindig
-from .ext.wadler_lindig import pdoc, pformat, pprint
 from .functools import memorize, wraps, wrapt_getattr, wrapt_setattr
 from .itertools import as_iterable, as_sequence, first_not_none, len_or_none
 from .magic import entrypoint, in_ci
@@ -44,6 +43,7 @@ from .sentinel import MISSING, NOP, nop, not_implemented
 from .serde import dec_hook, enc_hook, json, load, save, toml, yaml
 from .timing import BaseTimer, Timer, get_timer, timer
 from .tqdm import Progress, track
+from .wadler_lindig import pdoc, pformat, pprint
 
 __all__ = [
     "MISSING",
@@ -66,20 +66,17 @@ __all__ = [
     "enc_hook",
     "entrypoint",
     "errors",
-    "ext",
     "first_not_none",
     "functools",
     "get_console",
     "get_timer",
     "has_ansi",
-    "icecream",
     "in_ci",
     "itertools",
     "json",
     "len_or_none",
     "load",
     "logging",
-    "loguru",
     "magic",
     "memorize",
     "nop",

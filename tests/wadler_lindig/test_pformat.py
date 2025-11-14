@@ -3,7 +3,7 @@ import numpy as np
 import pydantic
 
 from liblaf.grapes._config import config
-from liblaf.grapes.ext.wadler_lindig import pformat
+from liblaf.grapes.wadler_lindig import pformat
 
 
 @attrs.define

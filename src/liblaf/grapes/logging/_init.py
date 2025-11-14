@@ -1,15 +1,9 @@
-from __future__ import annotations
-
 import logging
-from typing import TYPE_CHECKING
 
 from liblaf.grapes.rich.logging import RichHandler
 
-from .filters import as_filter
+from .filters import FilterLike, as_filter
 from .helpers import init_levels, install_excepthook, install_unraisablehook
-
-if TYPE_CHECKING:
-    from .filters import FilterLike
 
 
 def init(*, filter: FilterLike | None = None) -> None:  # noqa: A002

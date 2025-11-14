@@ -5,7 +5,7 @@ from typing import Any
 import attrs
 import wadler_lindig as wl
 
-from liblaf.grapes.ext.wadler_lindig import pformat
+from liblaf.grapes.wadler_lindig import pformat
 
 from ._utils import get_name
 

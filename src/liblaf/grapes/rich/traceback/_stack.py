@@ -39,6 +39,8 @@ class RichStackSummary:
     ) -> Generator[RenderableType]:
         if options is None:
             options = RichTracebackOptions()
+        if not self.frames:
+            return
         panel = Panel(
             self._render_frames(options),
             title=Text.assemble(

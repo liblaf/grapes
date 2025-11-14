@@ -6,10 +6,13 @@ from collections.abc import Generator
 from typing import Any
 
 import attrs
+import cytoolz as toolz
 from rich.console import Console, ConsoleOptions, RenderableType, RenderResult
 from rich.scope import render_scope
 from rich.syntax import Syntax
 from rich.text import Text
+
+from liblaf.grapes import rt
 
 from ._options import RichTracebackOptions
 
@@ -28,6 +31,10 @@ class RichFrameSummary:
     @functools.cached_property
     def filename(self) -> str:
         return self.frame.f_code.co_filename
+
+    @functools.cached_property
+    def hidden(self) -> bool:
+        return rt.is_frame_hidden_from_traceback(self.frame)
 
     @functools.cached_property
     def locals(self) -> dict[str, Any]:
@@ -67,19 +74,34 @@ class RichFrameSummary:
         if options is None:
             options = RichTracebackOptions()
         yield from self._render_location(options)
-        yield from self._render_syntax(options)
-        yield from self._render_locals(options)
+        if not self.hidden:
+            yield from self._render_syntax(options)
+            yield from self._render_locals(options)
 
     def _render_location(
         self, _options: RichTracebackOptions
     ) -> Generator[RenderableType]:
-        yield Text.assemble(
-            (self.filename, "repr.filename"),
-            ":",
-            (str(self.lineno), "repr.number"),
-            " in ",
-            (self.qualname + "()", "repr.call"),
-        )
+        filename: str = rt.abbr_path(self.filename)
+        if self.hidden:
+            # ? I don't know why, but adding "white" looks better on Ghostty.
+            text: Text = Text.assemble(
+                (filename, "repr.filename"),
+                (":", "white"),
+                (str(self.lineno), "repr.number"),
+                (" in ", "white"),
+                (self.qualname + "()", "repr.call"),
+                (" --- hidden", "white"),
+                style="dim",
+            )
+            yield text
+        else:
+            yield Text.assemble(
+                (filename, "repr.filename"),
+                ":",
+                (str(self.lineno), "repr.number"),
+                " in ",
+                (self.qualname + "()", "repr.call"),
+            )
 
     def _render_syntax(
         self, options: RichTracebackOptions
@@ -114,13 +136,28 @@ class RichFrameSummary:
     def _render_locals(
         self, options: RichTracebackOptions
     ) -> Generator[RenderableType]:
+        locals_: dict[str, Any] = self.locals
+        if options.locals_hide_dunder:
+            locals_ = toolz.keyfilter(_filter_dunder, locals_)
+        if options.locals_hide_sunder:
+            locals_ = toolz.keyfilter(_filter_sunder, locals_)
+        if not locals_:
+            return
         yield render_scope(
-            self.locals,
+            locals_,
             title="locals",
             indent_guides=options.indent_guide,
             max_length=options.locals_max_length,
             max_string=options.locals_max_string,
         )
+
+
+def _filter_dunder(key: str) -> bool:
+    return not key.startswith("__")
+
+
+def _filter_sunder(key: str) -> bool:
+    return not (key.startswith("_") and not key.startswith("__"))
 
 
 def _get_code_position(

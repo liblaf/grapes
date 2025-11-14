@@ -66,6 +66,14 @@ class RichExceptionSummary:
         return exceptions
 
     @functools.cached_property
+    def exc_type_str(self) -> str:
+        module: str = self.exc_type.__module__
+        qualname: str = self.exc_type.__qualname__
+        if module in ("__main__", "builtins"):
+            return qualname
+        return f"{module}.{qualname}"
+
+    @functools.cached_property
     def stack(self) -> RichStackSummary:
         return RichStackSummary(self.traceback)
 
@@ -94,12 +102,13 @@ class RichExceptionSummary:
     def _render_exception_only(
         self, _options: RichTracebackOptions
     ) -> Generator[RenderableType]:
-        exc_type: str = self.exc_type.__name__
         exc_value: str = str(self.exc_value)
         if exc_value:
-            yield Text.assemble((f"{exc_type}:", "traceback.exc_type"), " ", exc_value)
+            yield Text.assemble(
+                (f"{self.exc_type_str}:", "traceback.exc_type"), " ", exc_value
+            )
         else:
-            yield Text(exc_type, style="traceback.exc_type")
+            yield Text(self.exc_type_str, style="traceback.exc_type")
         for note in getattr(self.exc_value, "__notes__", ()):
             yield Text.assemble(("[NOTE]", "traceback.note"), " ", note)
 

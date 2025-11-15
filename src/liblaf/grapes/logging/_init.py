@@ -8,8 +8,8 @@ from .helpers import init_levels, install_excepthook, install_unraisablehook
 
 def init(*, filter: FilterLike | None = None) -> None:  # noqa: A002
     init_levels()
-    logging.basicConfig(handlers=[RichHandler()], level=logging.NOTSET)
-    root: logging.Logger = logging.getLogger()
-    root.addFilter(as_filter(filter))
+    handler = RichHandler()
+    handler.addFilter(as_filter(filter))
+    logging.basicConfig(handlers=[handler], level=logging.NOTSET)
     install_excepthook()
     install_unraisablehook()

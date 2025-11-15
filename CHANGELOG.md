@@ -7,6 +7,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.1.0](https://github.com/liblaf/grapes/releases/tag/v8.1.0) - 2025-11-15
+
+### ✨ Features
+
+- **logging:** Add RichHandler for standard Python logging - [2813dca](https://github.com/liblaf/grapes/commit/2813dcad3f40bf62446a4262cc3a03d5a15f3e30) by [@liblaf](https://github.com/liblaf)
+- **logging:** replace loguru with standard library logging - [d1e5605](https://github.com/liblaf/grapes/commit/d1e56052ca414fd5b2534fafaf56458513f02e12) by [@liblaf](https://github.com/liblaf)
+- **rich:** add rich traceback implementation - [b4a6227](https://github.com/liblaf/grapes/commit/b4a62273b76810c6306336222232133cff3d768a) by [@liblaf](https://github.com/liblaf)
+- **rich:** enhance traceback and console utilities - [aa8df4a](https://github.com/liblaf/grapes/commit/aa8df4a97f6d787dad4b0e7025265c743a55789e) by [@liblaf](https://github.com/liblaf)
+- **rich, traceback:** Enhance traceback exceptions with syntax highlighting - [2082952](https://github.com/liblaf/grapes/commit/208295253caeda453b1c29f64eba470d4602394d) by [@liblaf](https://github.com/liblaf)
+- **timing:** deprecate 'name' parameter in favor of 'label' - [37c4a9c](https://github.com/liblaf/grapes/commit/37c4a9c04e15e97f17c3d38ab3290250144a693e) by [@liblaf](https://github.com/liblaf)
+
+### ♻ Code Refactoring
+
+- **core, logging, rich:** Consolidate `get_console` and add new tests - [dba66f7](https://github.com/liblaf/grapes/commit/dba66f77c58e17f4762c0bf3eb5cc370c8983976) by [@liblaf](https://github.com/liblaf)
+- **logging:** migrate from loguru to standard library logging - [4ae1fa2](https://github.com/liblaf/grapes/commit/4ae1fa2264d76de2fc8b35716d67be31f5ca480a) by [@liblaf](https://github.com/liblaf)
+- Rename runtime module `rt` to `magic` - [31ce53f](https://github.com/liblaf/grapes/commit/31ce53fd679d2c3227edcc9cc233287eb0f2c3f1) by [@liblaf](https://github.com/liblaf)
+
+### ✅ Tests
+
+- fix release type detection in tests - [c2a40c5](https://github.com/liblaf/grapes/commit/c2a40c542e43e921c6d43b658e49e7ae135dceea) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [8.0.0](https://github.com/liblaf/grapes/releases/tag/v8.0.0) - 2025-11-10
 
 ### 💥 BREAKING CHANGES
@@ -39,7 +64,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [7.0.0](https://github.com/liblaf/grapes/releases/tag/v7.0.0) - 2025-11-09
 

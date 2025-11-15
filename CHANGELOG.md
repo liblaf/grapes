@@ -7,6 +7,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.2.0](https://github.com/liblaf/grapes/releases/tag/v8.2.0) - 2025-11-15
+
+### ✨ Features
+
+- **icecream:** add icecream debugging utility with rich formatting - [d0e0dfe](https://github.com/liblaf/grapes/commit/d0e0dfef58de00285424db9b16663bb041f6bb85) by [@liblaf](https://github.com/liblaf)
+- **icecream:** add install function and improve literal handling - [c41ebc4](https://github.com/liblaf/grapes/commit/c41ebc4a73a05bc51da7b9a1e9f26e8467ee92f0) by [@liblaf](https://github.com/liblaf)
+- **icecream:** support passing kwargs to icecream debugger - [9c35d89](https://github.com/liblaf/grapes/commit/9c35d89122ec1f506b775177ea9b39c0a22a9c7a) by [@liblaf](https://github.com/liblaf)
+- **rich/traceback:** add install function for rich exception handling - [778f841](https://github.com/liblaf/grapes/commit/778f841e0077b6b585a1c10ffaeba881a76b1dba) by [@liblaf](https://github.com/liblaf)
+
+### ♻ Code Refactoring
+
+- **logging:** Simplify attrs.field factories and update FilterOnce repr - [4f8f814](https://github.com/liblaf/grapes/commit/4f8f814d5918ce0da56436e3825fab137b0a5b7f) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [8.1.1](https://github.com/liblaf/grapes/releases/tag/v8.1.1) - 2025-11-15
 
 ### 🐛 Bug Fixes
@@ -15,7 +32,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [8.1.0](https://github.com/liblaf/grapes/releases/tag/v8.1.0) - 2025-11-15
 

@@ -14,8 +14,8 @@ from executing import Source
 from liblaf.grapes import magic
 from liblaf.grapes.wadler_lindig import WadlerLindigOptions, pdoc
 
-_ICON: str = "🍦"
-_LEVEL: int = 15  # between DEBUG (10) and INFO (20)
+ICON: str = "🍦"
+ICECREAM: int = 15  # between DEBUG (10) and INFO (20)
 
 
 @attrs.define
@@ -28,7 +28,7 @@ class IceCreamDebugger:
             if frame is not None:
                 frame = frame.f_back
             logger: logging.Logger = self._get_logger(frame)
-            logger.log(_LEVEL, self._format(args, kwargs, frame), stacklevel=2)
+            logger.log(ICECREAM, self._format(args, kwargs, frame), stacklevel=2)
         match len(args):
             case 0:
                 return None
@@ -50,6 +50,9 @@ class IceCreamDebugger:
         result: list[tuple[str | None, Any]] = []
         for value, node in zip(args, call.args, strict=True):
             text: str = asttokens.get_text(node)
+            if _is_literal(text):
+                result.append((None, value))
+                continue
             if "\n" in text:
                 text = " " * node.col_offset + text
                 text = textwrap.dedent(text)
@@ -66,8 +69,8 @@ class IceCreamDebugger:
         if len(args) == 0:
             if frame is not None:
                 context: str = self._format_context(frame)
-                return f"{_ICON} {context}"
-            return _ICON
+                return f"{ICON} {context}"
+            return ICON
         pairs: list[tuple[str | None, Any]] = self._annotate_args(args, frame)
         doc: wl.AbstractDoc = self._pdoc_args(pairs, **kwargs)
         return wl.pformat(doc)
@@ -107,3 +110,12 @@ class IceCreamDebugger:
 
 
 ic = IceCreamDebugger()
+
+
+def _is_literal(s: str) -> bool:
+    try:
+        ast.literal_eval(s)
+    except Exception:  # noqa: BLE001
+        return False
+    else:
+        return True

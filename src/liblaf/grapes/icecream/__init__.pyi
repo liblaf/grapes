@@ -1,3 +1,4 @@
-from ._icecream import IceCreamDebugger, ic
+from ._icecream import ICECREAM, ICON, IceCreamDebugger, ic
+from ._install import install
 
-__all__ = ["IceCreamDebugger", "ic"]
+__all__ = ["ICECREAM", "ICON", "IceCreamDebugger", "ic", "install"]

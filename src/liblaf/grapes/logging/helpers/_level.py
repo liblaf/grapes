@@ -1,7 +1,9 @@
 import logging
 from collections.abc import Mapping
 
-_DEFAULT_LEVELS: dict[int, str] = {5: "TRACE", 15: "ICECREAM", 25: "SUCCESS"}
+from liblaf.grapes.icecream import ICECREAM
+
+_DEFAULT_LEVELS: dict[int, str] = {5: "TRACE", ICECREAM: "ICECREAM", 25: "SUCCESS"}
 
 
 def init_levels(levels: Mapping[int, str] | None = None) -> None:

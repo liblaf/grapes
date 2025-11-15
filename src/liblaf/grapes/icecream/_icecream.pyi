@@ -1,5 +1,8 @@
 from typing import overload
 
+ICECREAM: int
+ICON: str
+
 class IceCreamDebugger:
     @overload
     def __call__(self) -> None: ...

@@ -7,6 +7,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.1.1](https://github.com/liblaf/grapes/releases/tag/v8.1.1) - 2025-11-15
+
+### 🐛 Bug Fixes
+
+- **logging:** correctly apply filter to RichHandler instance - [a5c2fdf](https://github.com/liblaf/grapes/commit/a5c2fdf92da412fda99d00a39056706fd9c83505) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [8.1.0](https://github.com/liblaf/grapes/releases/tag/v8.1.0) - 2025-11-15
 
 ### ✨ Features
@@ -30,7 +40,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [8.0.0](https://github.com/liblaf/grapes/releases/tag/v8.0.0) - 2025-11-10
 

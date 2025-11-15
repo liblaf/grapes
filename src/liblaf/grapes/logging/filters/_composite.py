@@ -34,11 +34,13 @@ class CompositeFilter:
         return record.levelno >= level
 
     def get_level(self, record: logging.LogRecord) -> int:
-        level: int = self._cache.get(record.name, -1)
-        if level == -1:
-            level = self._get_level_uncached(record) or self.level
-            self._cache[record.name] = level
-        return level
+        cached: int = self._cache.get(record.name, -1)
+        if cached == -1:
+            level: int | None = self._get_level_uncached(record)
+            if level is None:
+                level = self.level
+            self._cache[record.name] = cached = level
+        return cached
 
     def _get_level_uncached(self, record: logging.LogRecord) -> int | None:
         level: int | None = self.by_name.get_level(record)

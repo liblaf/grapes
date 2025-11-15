@@ -12,8 +12,8 @@ from ._utils import as_levelno
 
 @attrs.define
 class CompositeFilter:
-    by_name: FilterByName = attrs.field(factory=lambda: FilterByName())
-    by_version: FilterByVersion = attrs.field(factory=lambda: FilterByVersion())
+    by_name: FilterByName = attrs.field(factory=FilterByName)
+    by_version: FilterByVersion = attrs.field(factory=FilterByVersion)
     level: int = attrs.field(default=logging.INFO)
     once: FilterOnce = attrs.field(factory=FilterOnce)
 

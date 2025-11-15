@@ -5,6 +5,7 @@ from typing import Self
 
 import attrs
 from rich.console import Console, ConsoleOptions, Group, RenderableType, RenderResult
+from rich.highlighter import Highlighter, ReprHighlighter
 from rich.panel import Panel
 from rich.text import Text
 
@@ -17,6 +18,9 @@ class RichExceptionSummary:
     exc_type: type[BaseException]
     exc_value: BaseException
     traceback: types.TracebackType | None
+    highlighter: Highlighter = attrs.field(
+        repr=False, init=False, factory=ReprHighlighter
+    )
     _seen: set[int] = attrs.field(factory=set, repr=False, alias="_seen")
 
     def __attrs_post_init__(self) -> None:
@@ -104,8 +108,10 @@ class RichExceptionSummary:
     ) -> Generator[RenderableType]:
         exc_value: str = str(self.exc_value)
         if exc_value:
+            text: Text = Text(exc_value)
+            self.highlighter.highlight(text)
             yield Text.assemble(
-                (f"{self.exc_type_str}:", "traceback.exc_type"), " ", exc_value
+                (f"{self.exc_type_str}:", "traceback.exc_type"), " ", text
             )
         else:
             yield Text(self.exc_type_str, style="traceback.exc_type")

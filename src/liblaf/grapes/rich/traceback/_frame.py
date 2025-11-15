@@ -83,6 +83,9 @@ class RichFrameSummary:
         self, _options: RichTracebackOptions
     ) -> Generator[RenderableType]:
         filename: str = magic.abbr_path(self.filename)
+        qualname: str = self.qualname
+        if qualname != "<module>":
+            qualname += "()"
         if self.hidden:
             # ? I don't know why, but adding "white" looks better on Ghostty.
             text: Text = Text.assemble(
@@ -90,7 +93,7 @@ class RichFrameSummary:
                 (":", "white"),
                 (str(self.lineno), "repr.number"),
                 (" in ", "white"),
-                (self.qualname + "()", "repr.call"),
+                (qualname, "repr.call"),
                 (" --- hidden", "white"),
                 style="dim",
             )
@@ -101,7 +104,7 @@ class RichFrameSummary:
                 ":",
                 (str(self.lineno), "repr.number"),
                 " in ",
-                (self.qualname + "()", "repr.call"),
+                (qualname, "repr.call"),
             )
 
     def _render_syntax(

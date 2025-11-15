@@ -104,10 +104,9 @@ addopts = [
   "--doctest-modules",
   "--hypothesis-show-statistics",
   "--import-mode=importlib",
-  "--showlocals",
-  "--strict-config",
-  "--strict-markers"
+  "--showlocals"
 ]
+consider_namespace_packages = true
 strict = true
 testpaths = ["benches", "src", "tests"]
 

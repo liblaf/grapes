@@ -6,6 +6,7 @@ from rich.console import Console, RenderableType
 from rich.highlighter import Highlighter, ReprHighlighter
 from rich.text import Text
 
+from liblaf.grapes import pretty
 from liblaf.grapes.rich._get_console import get_console
 from liblaf.grapes.rich.traceback import RichExceptionSummary
 
@@ -28,7 +29,6 @@ def _default_columns() -> list[RichHandlerColumn]:
 class RichHandler(logging.Handler):
     columns: list[RichHandlerColumn]
     console: Console
-    time_relative: bool = True
     highlighter: Highlighter
 
     def __init__(
@@ -87,5 +87,7 @@ class RichHandler(logging.Handler):
         if markup := getattr(record, "markup", None):
             return Text.from_markup(markup, style="log.message")
         message: str = record.getMessage()
+        if pretty.has_ansi(message):
+            return Text.from_ansi(message, style="log.message")
         text: Text = Text(message, style="log.message")
         return self.highlighter(text)

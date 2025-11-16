@@ -2,7 +2,7 @@ import logging
 
 from liblaf import grapes
 
-logger = logging.getLogger(__name__)
+logger: logging.Logger = logging.getLogger(__name__)
 
 
 def main() -> None:

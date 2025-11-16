@@ -9,6 +9,8 @@ from rich.highlighter import Highlighter, ReprHighlighter
 from rich.panel import Panel
 from rich.text import Text
 
+from liblaf.grapes import pretty
+
 from ._options import RichTracebackOptions
 from ._stack import RichStackSummary
 
@@ -108,10 +110,14 @@ class RichExceptionSummary:
     ) -> Generator[RenderableType]:
         exc_value: str = str(self.exc_value)
         if exc_value:
-            text: Text = Text(exc_value)
-            self.highlighter.highlight(text)
+            exc_value_text: Text
+            if pretty.has_ansi(exc_value):
+                exc_value_text = Text.from_ansi(exc_value, style="traceback.exc_value")
+            else:
+                exc_value_text = Text(exc_value, style="traceback.exc_value")
+                exc_value_text = self.highlighter(exc_value_text)
             yield Text.assemble(
-                (f"{self.exc_type_str}:", "traceback.exc_type"), " ", text
+                (f"{self.exc_type_str}:", "traceback.exc_type"), " ", exc_value_text
             )
         else:
             yield Text(self.exc_type_str, style="traceback.exc_type")

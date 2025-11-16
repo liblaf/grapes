@@ -7,6 +7,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.3.0](https://github.com/liblaf/grapes/releases/tag/v8.3.0) - 2025-11-16
+
+### ✨ Features
+
+- **logging:** enhance logging configuration and output formatting - [9ae2923](https://github.com/liblaf/grapes/commit/9ae2923f5a1e5763970185dbd2a5e839105c3dc3) by [@liblaf](https://github.com/liblaf)
+
+### 🐛 Bug Fixes
+
+- **logging, icecream:** Ensure logging is initialized before use - [9d480bd](https://github.com/liblaf/grapes/commit/9d480bd6885a8520e14f5e988187a9ca1cab11eb) by [@liblaf](https://github.com/liblaf)
+- **rich:** handle ANSI escape sequences in log and exception messages - [339dfcd](https://github.com/liblaf/grapes/commit/339dfcd5f564da3bc131f08d6a0b06847d83e0df) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [8.2.1](https://github.com/liblaf/grapes/releases/tag/v8.2.1) - 2025-11-16
 
 ### 🐛 Bug Fixes
@@ -15,8 +30,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
-- [@liblaf[bot]](https://github.com/apps/liblaf) made their first contribution in [#112](https://github.com/liblaf/grapes/pull/112)
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [8.2.0](https://github.com/liblaf/grapes/releases/tag/v8.2.0) - 2025-11-15
 

@@ -18,9 +18,14 @@ if TYPE_CHECKING:
 
 def init(
     *,
-    filter: FilterLike | None = None,  # noqa: A002
     file: str | os.PathLike[str] | None = None,
+    filter: FilterLike | None = None,  # noqa: A002
+    force: bool = False,
 ) -> None:
+    if not force:
+        root: logging.Logger = logging.getLogger()
+        if root.hasHandlers():
+            return
     if file is None:
         file = config.logging.file.get()
     init_levels()
@@ -31,6 +36,6 @@ def init(
         handlers.append(RichHandler(console=get_console(file=file.open("w"))))
     for handler in handlers:
         handler.addFilter(filter_)
-    logging.basicConfig(handlers=handlers, level=logging.NOTSET)
+    logging.basicConfig(level=logging.NOTSET, handlers=handlers, force=force)
     install_excepthook()
     install_unraisablehook()

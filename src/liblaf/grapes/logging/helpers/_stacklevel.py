@@ -22,6 +22,9 @@ class DepthLogger:
         if name in _PROXY_METHODS:
 
             def method(*args, **kwargs) -> None:
+                from liblaf.grapes.logging import init
+
+                init()
                 depth: int = kwargs.get("stacklevel", 1)
                 frame: types.FrameType | None = inspect.currentframe()
                 stacklevel: int = 1

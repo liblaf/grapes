@@ -7,6 +7,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.2.1](https://github.com/liblaf/grapes/releases/tag/v8.2.1) - 2025-11-16
+
+### 🐛 Bug Fixes
+
+- **deps:** add asttokens and executing packages; update icecream dependency - [679878b](https://github.com/liblaf/grapes/commit/679878b0037b367dd68217db8885b05282a17003) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf) made their first contribution in [#112](https://github.com/liblaf/grapes/pull/112)
+
 ## [8.2.0](https://github.com/liblaf/grapes/releases/tag/v8.2.0) - 2025-11-15
 
 ### ✨ Features
@@ -22,7 +33,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [8.1.1](https://github.com/liblaf/grapes/releases/tag/v8.1.1) - 2025-11-15
 

@@ -16,6 +16,7 @@ def main() -> None:
     logger.error("This is an error message.")
     logger.critical("This is a critical message!")
     logger.info("long " * 100 + "message")  # noqa: G003
+    logger.info("Multiline message:\nLine 1\nLine 2\nLine 3")
 
     try:
         msg: str = "This is an exception!"

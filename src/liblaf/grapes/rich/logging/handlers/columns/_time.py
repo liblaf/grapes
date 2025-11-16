@@ -5,13 +5,15 @@ import attrs
 from pendulum import DateTime
 from rich.text import Text
 
+from liblaf.grapes._config import config
+
 from ._abc import RichHandlerColumn
 
 
 @attrs.define
 class RichHandlerColumnTime(RichHandlerColumn):
-    fmt: str = "YYYY-MM-DD HH:mm:ss.SSS"
-    relative: bool = True
+    fmt: str = attrs.field(factory=config.logging.datefmt.get)
+    relative: bool = attrs.field(factory=config.logging.time_relative.get)
 
     @override
     def render(self, record: LogRecord) -> Text:

@@ -63,11 +63,13 @@ class RichHandler(logging.Handler):
 
     def _render(self, record: logging.LogRecord) -> Generator[RenderableType]:
         columns: list[Text] = [column.render(record) for column in self.columns]
-        meta: Text = Text(" ").join(columns) + Text(" ")
+        meta: Text = Text(" ").join(columns)
         message: Text = self._render_message(record)
         for line in message.split() or [""]:
             yield meta
-            yield line
+            if len(line) > 0:
+                yield " "
+                yield line
             yield "\n"
 
     def _render_exception(

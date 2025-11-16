@@ -4,11 +4,11 @@ import sys
 from typing import IO
 
 import rich
-from environs import env
 from rich.console import Console
 from rich.style import Style
 from rich.theme import Theme
 
+from liblaf.grapes import magic
 from liblaf.grapes.functools import wraps
 
 
@@ -42,7 +42,7 @@ def get_console(**kwargs) -> Console:
     file: IO[str] | None = kwargs.get("file")
     stderr: bool = file is None and kwargs.get("stderr", False)
     stdout: bool = file is None and not stderr
-    if "force_terminal" not in kwargs and (stdout or stderr) and env.bool("CI", True):
+    if "force_terminal" not in kwargs and (stdout or stderr) and magic.in_ci():
         kwargs["force_terminal"] = True
     if "width" not in kwargs and (
         (stdout and not sys.stdout.isatty())

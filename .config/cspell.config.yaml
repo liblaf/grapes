@@ -18,6 +18,7 @@ useGitignore: true
 words:
   - amet
   - arithmatex
+  - asttokens
   - cytoolz
   - direnv
   - fieldz
@@ -27,6 +28,7 @@ words:
   - hynek
   - inlinehilite
   - itertools
+  - kwargs
   - lasti
   - levelno
   - liblaf

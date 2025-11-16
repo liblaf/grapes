@@ -39,11 +39,13 @@ classifiers = [
 ]
 dependencies = [
   "about-time>=4,<5",
+  "asttokens>=3,<4",
   "attrs>=25,<26",
   "autoregistry>=1,<2",
   "cachetools>=6,<7",
   "cytoolz>=1,<2",
   "environs>=14,<15",
+  "executing>=2,<3",
   "fieldz>=0.1,<0.2",
   "joblib>=1,<2",
   "lazy-loader>=0.4,<0.5",
@@ -68,7 +70,7 @@ dynamic = ["version"]
 "Source Code" = "https://github.com/liblaf/grapes"
 
 [dependency-groups]
-dev = ["icecream>=2,<3", "numpy>=2,<3", "types-cachetools>=6,<7"]
+dev = ["numpy>=2,<3", "types-cachetools>=6,<7"]
 build = ["check-wheel-contents>=0.6,<0.7", "hatch>=1,<2", "twine>=6,<7"]
 docs = ["liblaf-mkdocs-preset>=0.2,<0.3", "mkdocs>=1,<2"]
 test = ["liblaf-pytest-preset>=0.1,<0.2", "pytest>=9,<10"]

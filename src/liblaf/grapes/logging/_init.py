@@ -10,7 +10,12 @@ from liblaf.grapes.rich import get_console
 from liblaf.grapes.rich.logging import RichHandler
 
 from .filters import FilterLike, as_filter
-from .helpers import init_levels, install_excepthook, install_unraisablehook
+from .helpers import (
+    clear_children_handlers,
+    init_levels,
+    install_excepthook,
+    install_unraisablehook,
+)
 
 if TYPE_CHECKING:
     from logging import _FilterType
@@ -22,10 +27,9 @@ def init(
     filter: FilterLike | None = None,  # noqa: A002
     force: bool = False,
 ) -> None:
-    if not force:
-        root: logging.Logger = logging.getLogger()
-        if root.hasHandlers():
-            return
+    root: logging.Logger = logging.getLogger()
+    if not force and root.hasHandlers():
+        return
     if file is None:
         file = config.logging.file.get()
     init_levels()
@@ -40,3 +44,4 @@ def init(
     logging.basicConfig(level=logging.NOTSET, handlers=handlers, force=force)
     install_excepthook()
     install_unraisablehook()
+    clear_children_handlers()

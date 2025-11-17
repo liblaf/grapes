@@ -33,10 +33,9 @@ class RichHandler(logging.Handler):
 
     def __init__(
         self,
-        /,
+        console: Console | None = None,
         *,
         columns: Iterable[RichHandlerColumn] | None = None,
-        console: Console | None = None,
         level: int = logging.NOTSET,
     ) -> None:
         super().__init__(level=level)

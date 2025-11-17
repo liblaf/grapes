@@ -14,7 +14,7 @@ from ._utils import as_levelno
 class CompositeFilter:
     by_name: FilterByName = attrs.field(factory=FilterByName)
     by_version: FilterByVersion = attrs.field(factory=FilterByVersion)
-    level: int = attrs.field(default=logging.INFO)
+    level: int = attrs.field(default=logging.WARNING)
     once: FilterOnce = attrs.field(factory=FilterOnce)
 
     _cache: cachetools.LRUCache[str, int] = attrs.field(
@@ -24,7 +24,7 @@ class CompositeFilter:
     def __init__(self, by_name: Mapping[str, int | str] | None = None) -> None:
         if by_name is None:
             by_name = {"__main__": logging.NOTSET}
-        level: int = as_levelno(by_name.get("", logging.INFO))
+        level: int = as_levelno(by_name.get("", logging.WARNING))
         self.__attrs_init__(by_name=FilterByName(by_name), level=level)  # pyright: ignore[reportAttributeAccessIssue]
 
     def filter(self, record: logging.LogRecord) -> bool:

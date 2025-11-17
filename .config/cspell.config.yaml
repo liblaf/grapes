@@ -25,6 +25,7 @@ words:
   - functools
   - getattr
   - ghostty
+  - hdlr
   - hynek
   - inlinehilite
   - itertools

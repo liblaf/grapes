@@ -33,6 +33,7 @@ def init(
     handlers: list[logging.Handler] = [RichHandler()]
     if file is not None:
         file = Path(file)
+        file.parent.mkdir(parents=True, exist_ok=True)
         handlers.append(RichHandler(console=get_console(file=file.open("w"))))
     for handler in handlers:
         handler.addFilter(filter_)

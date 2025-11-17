@@ -7,6 +7,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.4.0](https://github.com/liblaf/grapes/releases/tag/v8.4.0) - 2025-11-17
+
+### ✨ Features
+
+- **logging:** add file logging handler and improve logger management - [2cf9fc2](https://github.com/liblaf/grapes/commit/2cf9fc20e29fff996a2ea40827a39f9b2979ab74) by [@liblaf](https://github.com/liblaf)
+
+### 🐛 Bug Fixes
+
+- **logging:** ensure log file directory exists before writing - [71fa8a3](https://github.com/liblaf/grapes/commit/71fa8a3aae677facad7a496fdbb60e17a4f02053) by [@liblaf](https://github.com/liblaf)
+- **logging:** Clear existing handlers on initialization - [fbcf6bd](https://github.com/liblaf/grapes/commit/fbcf6bde5109f8c263086009b6e4c16a58db1d72) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [8.3.0](https://github.com/liblaf/grapes/releases/tag/v8.3.0) - 2025-11-16
 
 ### ✨ Features
@@ -20,7 +35,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [8.2.1](https://github.com/liblaf/grapes/releases/tag/v8.2.1) - 2025-11-16
 

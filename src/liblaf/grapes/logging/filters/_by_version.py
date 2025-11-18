@@ -19,7 +19,7 @@ class FilterByVersion:
         return record.levelno >= level
 
     def get_level(self, record: logging.LogRecord) -> int | None:
-        file: str = record.filename
+        file: str = record.pathname
         name: str | None = record.name
         if magic.is_dev_release(file, name):
             return self.level_dev

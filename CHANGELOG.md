@@ -7,6 +7,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.5.0](https://github.com/liblaf/grapes/releases/tag/v8.5.0) - 2025-11-18
+
+### ✨ Features
+
+- **deprecated:** Add getitem utility for deprecated keys - [2c56e8d](https://github.com/liblaf/grapes/commit/2c56e8d1e3f7ba3aab2353bec26cd9ac47a9f97a) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [8.4.1](https://github.com/liblaf/grapes/releases/tag/v8.4.1) - 2025-11-18
 
 ### 🐛 Bug Fixes
@@ -15,7 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [8.4.0](https://github.com/liblaf/grapes/releases/tag/v8.4.0) - 2025-11-17
 

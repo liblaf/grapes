@@ -1,3 +1,3 @@
-from ._getitem import getitem
+from ._operator import contains, getitem
 
-__all__ = ["getitem"]
+__all__ = ["contains", "getitem"]

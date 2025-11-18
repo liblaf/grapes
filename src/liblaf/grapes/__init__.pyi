@@ -19,7 +19,7 @@ from . import (
 )
 from ._config import config
 from ._version import __version__, __version_tuple__, version, version_tuple
-from .deprecated import getitem
+from .deprecated import contains, getitem
 from .errors import (
     DispatchLookupError,
     MatchError,
@@ -66,6 +66,7 @@ __all__ = [
     "auto_rich_repr",
     "conf",
     "config",
+    "contains",
     "dec_hook",
     "deprecated",
     "enc_hook",

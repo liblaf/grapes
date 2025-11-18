@@ -34,7 +34,7 @@ def getitem[KT, VT](
     deprecated_keys: Iterable[KT] = (),
     *,
     msg: str = _DEPRECATED_MESSAGE,
-) -> object:
+) -> VT:
     if key in obj:
         return obj[key]
     for deprecated_key in deprecated_keys:

@@ -1,6 +1,7 @@
 from . import (
     attrs,
     conf,
+    deprecated,
     errors,
     functools,
     icecream,
@@ -18,6 +19,7 @@ from . import (
 )
 from ._config import config
 from ._version import __version__, __version_tuple__, version, version_tuple
+from .deprecated import getitem
 from .errors import (
     DispatchLookupError,
     MatchError,
@@ -65,6 +67,7 @@ __all__ = [
     "conf",
     "config",
     "dec_hook",
+    "deprecated",
     "enc_hook",
     "entrypoint",
     "errors",
@@ -72,6 +75,7 @@ __all__ = [
     "functools",
     "get_console",
     "get_timer",
+    "getitem",
     "has_ansi",
     "icecream",
     "in_ci",

@@ -14,7 +14,7 @@ class RichFileHandler(RichHandler):
     def __init__(
         self,
         filename: StrPath,
-        mode: str = "a",
+        mode: str = "w",
         *,
         encoding: str | None = None,
         errors: str | None = None,

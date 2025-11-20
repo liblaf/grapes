@@ -7,6 +7,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.6.2](https://github.com/liblaf/grapes/releases/tag/v8.6.2) - 2025-11-20
+
+### 🐛 Bug Fixes
+
+- **logging:** Truncate log file on RichFileHandler initialization - [0bb9af7](https://github.com/liblaf/grapes/commit/0bb9af7ff820c29d9bfe9b4fe4dba14fa4da3fb3) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [8.6.1](https://github.com/liblaf/grapes/releases/tag/v8.6.1) - 2025-11-18
 
 ### 🐛 Bug Fixes
@@ -15,7 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [8.6.0](https://github.com/liblaf/grapes/releases/tag/v8.6.0) - 2025-11-18
 

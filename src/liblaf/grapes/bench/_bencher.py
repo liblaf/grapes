@@ -56,10 +56,12 @@ class Bencher:
 
     def run(self) -> BenchResults:
         inputs: Sequence[tuple[Sequence, Mapping]] = list(self._setup())
-        inputs = sorted(inputs, key=lambda x: self._size_fn(*x[0], **x[1]))
-        sizes: Sequence[float] = [
-            self._size_fn(*args, **kwargs) for args, kwargs in inputs
+        sizes_and_inputs: list[tuple[float, tuple[Sequence, Mapping]]] = [
+            (self._size_fn(*args, **kwargs), (args, kwargs)) for args, kwargs in inputs
         ]
+        sizes_and_inputs.sort(key=lambda x: x[0])
+        sizes: Sequence[float] = [size for size, _ in sizes_and_inputs]
+        inputs = [(args, kwargs) for _, (args, kwargs) in sizes_and_inputs]
         outputs: dict[str, list[Any]] = {}
         timings: dict[str, list[float]] = {}
         for label, func in self._registry.items():

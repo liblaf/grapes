@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 
 import attrs
+from matplotlib.axes import Axes
 
 from liblaf.grapes import deps
 
@@ -12,7 +13,7 @@ if TYPE_CHECKING:
 
 @attrs.define
 class BenchResults:
-    results: dict[str, Any]
+    outputs: dict[str, list[Any]]
     sizes: list[float]
     timings: dict[str, list[float]]
 
@@ -20,29 +21,41 @@ class BenchResults:
         self,
         *,
         relative_to: str | None = None,
-        title: str = "Benchmark Results",
         xlabel: str = "Size",
-        xscale: str = "log",
         ylabel: str = "Time (sec)",
-        yscale: str = "log",
+        log_scale: bool = True,
     ) -> Figure:
         with deps.optional_deps("liblaf-grapes", "bench"):
             import matplotlib.pyplot as plt
-        fig: Figure = plt.figure()
+
+        if relative_to is None:
+            relative_to = min(self.timings.keys(), key=lambda k: self.timings[k][-1])
+
+        fig: Figure
+        ax0: Axes
+        ax1: Axes
+        fig, (ax0, ax1) = plt.subplots(1, 2, sharex="all", figsize=(12.8, 4.8))
+
         for label, timings in self.timings.items():
-            if relative_to is not None:
-                base: list[float] = self.timings[relative_to]
-                relative: list[float] = [
-                    t / b for t, b in zip(timings, base, strict=True)
-                ]
-                plt.plot(self.sizes, relative, label=label)
-            else:
-                plt.plot(self.sizes, timings, label=label)
-        plt.grid(which="both", linestyle="--")
-        plt.legend()
-        plt.title(title)
-        plt.xlabel(xlabel)
-        plt.xscale(xscale)
-        plt.ylabel(ylabel)
-        plt.yscale(yscale)
+            ax0.plot(self.sizes, timings, label=label)
+            base: list[float] = self.timings[relative_to]
+            relative: list[float] = [t / b for t, b in zip(timings, base, strict=True)]
+            ax1.plot(self.sizes, relative, label=label)
+
+        ax0.grid(which="both", linestyle="--")
+        ax0.legend()
+        ax0.set_xlabel(xlabel)
+        ax0.set_ylabel(ylabel)
+
+        ax1.grid(which="both", linestyle="--")
+        ax1.legend()
+        ax1.set_xlabel(xlabel)
+        ax1.set_ylabel(f"{ylabel} (relative to {relative_to})")
+
+        if log_scale:
+            ax0.set_xscale("log")
+            ax0.set_yscale("log")
+            ax1.set_xscale("log")
+
+        fig.tight_layout()
         return fig

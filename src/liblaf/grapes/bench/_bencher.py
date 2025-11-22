@@ -1,4 +1,7 @@
 import functools
+import logging
+import math
+import multiprocessing
 import time
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from typing import Any, overload
@@ -6,6 +9,8 @@ from typing import Any, overload
 import attrs
 
 from ._results import BenchResults
+
+logger: logging.Logger = logging.getLogger(__name__)
 
 
 def _default_setup() -> Iterable[tuple[Sequence, Mapping]]:
@@ -19,7 +24,8 @@ def _default_size_fn(*_args, **_kwargs) -> int:
 @attrs.define
 class Bencher:
     min_time: float = 0.2
-    warmup: int = 2
+    timeout: float = 10.0
+    warmup: int = 1
     _registry: dict[str, Callable] = attrs.field(init=False, factory=dict)
     _setup: Callable[..., Iterable[tuple[Sequence, Mapping]]] = attrs.field(
         default=_default_setup, init=False
@@ -49,31 +55,79 @@ class Bencher:
         return func
 
     def run(self) -> BenchResults:
-        inputs: list[tuple[Sequence, Mapping]] = list(self._setup())
-        sizes: list[float] = [self._size_fn(*args, **kwargs) for args, kwargs in inputs]
-        results: dict[str, Any] = {}
+        inputs: Sequence[tuple[Sequence, Mapping]] = list(self._setup())
+        inputs = sorted(inputs, key=lambda x: self._size_fn(*x[0], **x[1]))
+        sizes: Sequence[float] = [
+            self._size_fn(*args, **kwargs) for args, kwargs in inputs
+        ]
+        outputs: dict[str, list[Any]] = {}
         timings: dict[str, list[float]] = {}
-        for name, func in self._registry.items():
+        for label, func in self._registry.items():
+            outputs_name: list[Any] = []
             timings_name: list[float] = []
-            for args, kwargs in inputs:
+            for size, (args, kwargs) in zip(sizes, inputs, strict=True):
+                output: Any
                 elapsed: float
-                results[name], elapsed = self._bench(func, *args, **kwargs)
+                output, elapsed = self._bench(func, args, kwargs)
+                outputs_name.append(output)
                 timings_name.append(elapsed)
-            timings[name] = timings_name
-        return BenchResults(results=results, sizes=sizes, timings=timings)
+                logger.debug("Bench %s(%g) took %g sec", label, size, elapsed)
+                if elapsed > self.timeout:
+                    logger.warning("Bench %s(%g) timed out", label, size)
+                    break
+            if len(timings_name) < len(sizes):
+                n_remain: int = len(sizes) - len(timings_name)
+                outputs_name.extend([None] * n_remain)
+                timings_name.extend([math.inf] * n_remain)
+            timings[label] = timings_name
+            outputs[label] = outputs_name
+        return BenchResults(outputs=outputs, sizes=list(sizes), timings=timings)
 
-    def _bench[**P, T](
-        self, func: Callable[P, T], *args: P.args, **kwargs: P.kwargs
-    ) -> tuple[Any, float]:
+    def _bench[T](
+        self, func: Callable[..., T], args: Sequence, kwargs: Mapping
+    ) -> tuple[T | None, float]:
+        result: T | None = None
         for _ in range(self.warmup):
-            func(*args, **kwargs)
+            result = func(*args, **kwargs)
         count: int = 0
-        result: Any = None
-        total_time: float = 0.0
-        while total_time < self.min_time:
+        total_elapsed: float = 0.0
+        while total_elapsed < self.min_time:
             start: float = time.perf_counter()
             result = func(*args, **kwargs)
             end: float = time.perf_counter()
             count += 1
-            total_time += end - start
-        return result, total_time / count
+            total_elapsed += end - start
+        return result, total_elapsed / count
+
+    def _bench_process[T](
+        self, func: Callable[..., T], args: Sequence, kwargs: Mapping
+    ) -> tuple[T | None, float]:
+        def wrapper(
+            queue: multiprocessing.Queue, *args: Sequence, **kwargs: Mapping
+        ) -> None:
+            result: T | None = None
+            for _ in range(self.warmup):
+                result = func(*args, **kwargs)
+            count: int = 0
+            total_elapsed: float = 0.0
+            while total_elapsed < self.min_time:
+                start: float = time.perf_counter()
+                result = func(*args, **kwargs)
+                end: float = time.perf_counter()
+                count += 1
+                total_elapsed += end - start
+            queue.put((result, total_elapsed / count))
+
+        queue: multiprocessing.Queue[tuple[T, float]] = multiprocessing.Queue()
+        process = multiprocessing.Process(
+            target=wrapper, args=(queue, *args), kwargs=kwargs
+        )
+        process.start()
+        process.join(self.timeout)
+        if process.is_alive():
+            process.kill()
+            return None, math.inf
+        result: T
+        elapsed: float
+        result, elapsed = queue.get()
+        return result, elapsed

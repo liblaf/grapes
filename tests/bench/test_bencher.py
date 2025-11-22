@@ -35,5 +35,5 @@ def test_bencher() -> None:
     results: BenchResults = bencher.run()
     assert all(len(timings) == 4 for timings in results.timings.values())
     assert len(results.sizes) == 4
-    assert results.results["stdlib"] == results.results["bubble"]
+    assert results.outputs["stdlib"] == results.outputs["bubble"]
     assert results.timings.keys() == {"stdlib", "bubble"}

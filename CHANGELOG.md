@@ -7,6 +7,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.7.1](https://github.com/liblaf/grapes/releases/tag/v8.7.1) - 2025-11-22
+
+### 🐛 Bug Fixes
+
+- **bench:** Sort benchmark inputs by size - [0b1b399](https://github.com/liblaf/grapes/commit/0b1b3993b9636d3d0e75a5f5191ac9d292898832) by [@liblaf](https://github.com/liblaf)
+
+### ♻ Code Refactoring
+
+- Improve Bencher robustness and plotting - [9a88344](https://github.com/liblaf/grapes/commit/9a88344f367dc21020e916de16c9c30b096fb7f9) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [8.7.0](https://github.com/liblaf/grapes/releases/tag/v8.7.0) - 2025-11-22
 
 ### ✨ Features
@@ -15,7 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [8.6.2](https://github.com/liblaf/grapes/releases/tag/v8.6.2) - 2025-11-20
 

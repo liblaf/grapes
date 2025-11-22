@@ -7,6 +7,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.7.0](https://github.com/liblaf/grapes/releases/tag/v8.7.0) - 2025-11-22
+
+### ✨ Features
+
+- Add benchmarking module - [00e46d0](https://github.com/liblaf/grapes/commit/00e46d074b954c8deb40b548d7892727904fe00a) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [8.6.2](https://github.com/liblaf/grapes/releases/tag/v8.6.2) - 2025-11-20
 
 ### 🐛 Bug Fixes
@@ -15,7 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [8.6.1](https://github.com/liblaf/grapes/releases/tag/v8.6.1) - 2025-11-18
 

@@ -1,7 +1,7 @@
 from ._ansi import has_ansi
 from ._call import pretty_call
 from ._duration import (
-    auto_duration_magnitude,
+    duration_magnitude,
     pretty_duration,
     pretty_duration_unit,
     pretty_durations,
@@ -11,7 +11,7 @@ from ._throughput import pretty_throughput
 from ._utils import get_name
 
 __all__ = [
-    "auto_duration_magnitude",
+    "duration_magnitude",
     "get_name",
     "has_ansi",
     "pretty_call",

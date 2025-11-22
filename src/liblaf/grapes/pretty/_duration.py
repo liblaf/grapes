@@ -3,21 +3,21 @@ from collections.abc import Iterable
 
 from liblaf.grapes.errors import UnreachableError
 
-# multiplier, threshold, unit
-SPECS: list[tuple[float, float, str]] = [
-    (1e9, 1e3, "ns"),
-    (1e6, 1e3, "µs"),
-    (1e3, 1e3, "ms"),
-    (1, 1e2, "s"),
+# threshold, multiplier, unit
+SPECS: list[tuple[int, float, str]] = [
+    (-6, 1e9, "ns"),
+    (-3, 1e6, "µs"),
+    (0, 1e3, "ms"),
+    (2, 1, "s"),
 ]
 
 
-def auto_duration_magnitude(seconds: float, *, significant: int = 3) -> int:
+def duration_magnitude(seconds: float, *, significant: int = 3) -> int:
     number: float = float(f"{seconds:.{significant}e}")
     if number == 0:
         return -10
     seconds = round(seconds)
-    if seconds < 100.0:
+    if seconds < 100:
         return math.floor(math.log10(abs(number)))
     if seconds < 60 * 60:
         return 2
@@ -98,19 +98,20 @@ def pretty_duration_unit(
         neg, unit = pretty_duration_unit(-seconds, significant=significant)
         return "-" + neg, unit
     if magnitude is None:
-        magnitude = auto_duration_magnitude(seconds, significant=significant)
+        magnitude = duration_magnitude(seconds, significant=significant)
     magnitude = max(min(magnitude, 4), -10)
-    for multiplier, threshold, unit in SPECS:
+    for threshold, multiplier, unit in SPECS:
+        if magnitude >= threshold:
+            continue
         number: float = seconds * multiplier
         precision: int = significant - magnitude - round(math.log10(multiplier)) - 1
         number = round(number, precision)
-        if abs(number) < threshold:
-            width: int = significant + 1
-            precision = max(0, precision)
-            number_formatted: str = f"{number:#.{precision}f}"
-            if width == precision + 1:
-                number_formatted = number_formatted.removeprefix("0")
-            return number_formatted, unit
+        width: int = significant + 1
+        precision = max(0, precision)
+        number_formatted: str = f"{number:#.{precision}f}"
+        if width == precision + 1:
+            number_formatted = number_formatted.removeprefix("0")
+        return number_formatted, unit
     seconds = round(seconds)
     match magnitude:
         case 2:
@@ -142,7 +143,7 @@ def pretty_durations(
 ) -> tuple[list[str], str]:
     seconds = list(seconds)
     if magnitude is None:
-        magnitude: int = auto_duration_magnitude(max(seconds), significant=significant)
+        magnitude: int = duration_magnitude(max(seconds), significant=significant)
     numbers: list[str] = []
     unit: str = ""
     for val in seconds:

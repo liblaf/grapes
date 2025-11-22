@@ -68,3 +68,7 @@ words:
   - venv
   - virtualenv
   - wadler
+  - xlabel
+  - xscale
+  - ylabel
+  - yscale

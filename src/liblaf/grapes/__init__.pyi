@@ -1,7 +1,9 @@
 from . import (
     attrs,
+    bench,
     conf,
     deprecated,
+    deps,
     errors,
     functools,
     icecream,
@@ -19,7 +21,9 @@ from . import (
 )
 from ._config import config
 from ._version import __version__, __version_tuple__, version, version_tuple
+from .bench import Bencher, BenchResults
 from .deprecated import contains, getitem
+from .deps import optional_deps
 from .errors import (
     DispatchLookupError,
     MatchError,
@@ -52,6 +56,8 @@ __all__ = [
     "MISSING",
     "NOP",
     "BaseTimer",
+    "BenchResults",
+    "Bencher",
     "DispatchLookupError",
     "MatchError",
     "Progress",
@@ -64,11 +70,13 @@ __all__ = [
     "as_sequence",
     "attrs",
     "auto_rich_repr",
+    "bench",
     "conf",
     "config",
     "contains",
     "dec_hook",
     "deprecated",
+    "deps",
     "enc_hook",
     "entrypoint",
     "errors",
@@ -89,6 +97,7 @@ __all__ = [
     "memorize",
     "nop",
     "not_implemented",
+    "optional_deps",
     "pdoc",
     "pformat",
     "pprint",

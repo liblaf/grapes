@@ -69,6 +69,9 @@ dynamic = ["version"]
 "Release Notes" = "https://github.com/liblaf/grapes/releases"
 "Source Code" = "https://github.com/liblaf/grapes"
 
+[project.optional-dependencies]
+bench = ["matplotlib>=3,<4"]
+
 [dependency-groups]
 dev = ["numpy>=2,<3", "types-cachetools>=6,<7"]
 build = ["check-wheel-contents>=0.6,<0.7", "hatch>=1,<2", "twine>=6,<7"]

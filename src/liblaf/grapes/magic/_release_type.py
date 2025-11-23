@@ -71,14 +71,14 @@ class ReleaseTypeIndex:
     def is_dev(
         self, file: str | os.PathLike[str] | None = None, name: str | None = None
     ) -> bool:
-        if name is not None and name == "__main__":
+        if name == "__main__":
             return True
         return file is not None and self._dev_index.has(file)
 
     def is_pre(
         self, file: str | os.PathLike[str] | None = None, name: str | None = None
     ) -> bool | None:
-        if name is not None and name == "__main__":
+        if name == "__main__":
             return True
         return file is not None and self._pre_index.has(file)
 

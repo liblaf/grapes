@@ -1,13 +1,16 @@
+from __future__ import annotations
+
 import logging
-import os
 from collections.abc import Iterable
 from pathlib import Path
-from typing import IO, override
+from typing import IO, TYPE_CHECKING, override
 
-from liblaf.grapes.rich import get_console
+from rich.console import Console
+
 from liblaf.grapes.rich.logging.handlers import RichHandler, RichHandlerColumn
 
-type StrPath = str | os.PathLike[str]
+if TYPE_CHECKING:
+    from _typeshed import StrPath
 
 
 class RichFileHandler(RichHandler):
@@ -25,7 +28,7 @@ class RichFileHandler(RichHandler):
         filename = Path(filename)
         filename.parent.mkdir(parents=True, exist_ok=True)
         file: IO[str] = filename.open(mode=mode, encoding=encoding, errors=errors)
-        console = get_console(file=file)
+        console = Console(color_system=None, file=file)
         super().__init__(console, columns=columns, level=level)
 
     @override

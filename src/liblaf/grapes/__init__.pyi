@@ -32,7 +32,7 @@ from .errors import (
     todo,
     unreachable,
 )
-from .functools import memorize, wraps, wrapt_getattr, wrapt_setattr
+from .functools import cache_iter, memorize, wraps, wrapt_getattr, wrapt_setattr
 from .itertools import as_iterable, as_sequence, first_not_none, len_or_none
 from .magic import entrypoint, in_ci
 from .pretty import (
@@ -71,6 +71,7 @@ __all__ = [
     "attrs",
     "auto_rich_repr",
     "bench",
+    "cache_iter",
     "conf",
     "config",
     "contains",

@@ -627,6 +627,18 @@ wheels = [
 ]
 
 [[package]]
+name = "deprecated"
+version = "1.3.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "wrapt" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/49/85/12f0a49a7c4ffb70572b6c2ef13c90c88fd190debda93b23f026b25f9634/deprecated-1.3.1.tar.gz", hash = "sha256:b1b50e0ff0c1fddaa5708a2c6b0a6588bb09b892825ab2b214ac9ea9d92a5223", size = 2932523, upload-time = "2025-10-30T08:19:02.757Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/84/d0/205d54408c08b13550c733c4b85429e7ead111c7f0014309637425520a9a/deprecated-1.3.1-py2.py3-none-any.whl", hash = "sha256:597bfef186b6f60181535a29fbe44865ce137a5079f295b479886c82729d5f3f", size = 11298, upload-time = "2025-10-30T08:19:00.758Z" },
+]
+
+[[package]]
 name = "distlib"
 version = "0.4.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1181,6 +1193,7 @@ dependencies = [
     { name = "fieldz" },
     { name = "joblib" },
     { name = "lazy-loader" },
+    { name = "limits" },
     { name = "msgspec", extra = ["toml", "yaml"] },
     { name = "packaging" },
     { name = "pendulum" },
@@ -1229,6 +1242,7 @@ requires-dist = [
     { name = "fieldz", specifier = ">=0.1,<0.2" },
     { name = "joblib", specifier = ">=1,<2" },
     { name = "lazy-loader", specifier = ">=0.4,<0.5" },
+    { name = "limits", specifier = ">=5,<6" },
     { name = "matplotlib", marker = "extra == 'bench'", specifier = ">=3,<4" },
     { name = "msgspec", extras = ["toml", "yaml"], specifier = ">=0.19,<0.20" },
     { name = "packaging", specifier = ">=25,<26" },
@@ -1306,6 +1320,20 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/77/fa/674b68d1dc2568299c708e480001327bef78e2c828dc71a711e585fd20d9/liblaf_pytest_preset-0.1.3.tar.gz", hash = "sha256:0153a065ad034c560969d19d478c4c4fb8629d5538363e20168acee75e60b53d", size = 2953, upload-time = "2025-11-10T03:13:11.498Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c4/92/33e9dc874deb6ff06ac4b5fe669ac41ac80808254ba9e5699f14e5fbad3b/liblaf_pytest_preset-0.1.3-py3-none-any.whl", hash = "sha256:ddda8c85020c97857db5d2a0cedc829839005fb3e3cdb4783f93a164c98fd930", size = 3681, upload-time = "2025-11-10T03:13:10.171Z" },
+]
+
+[[package]]
+name = "limits"
+version = "5.6.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "deprecated" },
+    { name = "packaging" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/bb/e5/c968d43a65128cd54fb685f257aafb90cd5e4e1c67d084a58f0e4cbed557/limits-5.6.0.tar.gz", hash = "sha256:807fac75755e73912e894fdd61e2838de574c5721876a19f7ab454ae1fffb4b5", size = 182984, upload-time = "2025-09-29T17:15:22.689Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/40/96/4fcd44aed47b8fcc457653b12915fcad192cd646510ef3f29fd216f4b0ab/limits-5.6.0-py3-none-any.whl", hash = "sha256:b585c2104274528536a5b68864ec3835602b3c4a802cd6aa0b07419798394021", size = 60604, upload-time = "2025-09-29T17:15:18.419Z" },
 ]
 
 [[package]]
@@ -2435,14 +2463,14 @@ wheels = [
 
 [[package]]
 name = "tinycss2"
-version = "1.5.0"
+version = "1.5.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "webencodings" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/83/75/00f94ca4e8fe9e791b43cba1cf4ed5538bf8ec2318b1b64a1a30c252c53f/tinycss2-1.5.0.tar.gz", hash = "sha256:6a7be7a654f38a2a55b61d2d97b1f65a7eb40d1cb4057ac37145f675f16efdf9", size = 35197, upload-time = "2025-11-19T14:34:38.085Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a3/ae/2ca4913e5c0f09781d75482874c3a95db9105462a92ddd303c7d285d3df2/tinycss2-1.5.1.tar.gz", hash = "sha256:d339d2b616ba90ccce58da8495a78f46e55d4d25f9fd71dfd526f07e7d53f957", size = 88195, upload-time = "2025-11-23T10:29:10.082Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/29/1e/7c7284ffdae1de8d5bae8bee55749a78273d842b003928ee998b6fdffd0a/tinycss2-1.5.0-py3-none-any.whl", hash = "sha256:6645326e562ea497d6d11cfa608ce3ad30c1e96576b0e43d678dcf6275df6761", size = 28404, upload-time = "2025-11-19T14:34:36.772Z" },
+    { url = "https://files.pythonhosted.org/packages/60/45/c7b5c3168458db837e8ceab06dc77824e18202679d0463f0e8f002143a97/tinycss2-1.5.1-py3-none-any.whl", hash = "sha256:3415ba0f5839c062696996998176c4a3751d18b7edaaeeb658c9ce21ec150661", size = 28404, upload-time = "2025-11-23T10:29:08.676Z" },
 ]
 
 [[package]]

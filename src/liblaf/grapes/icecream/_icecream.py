@@ -1,5 +1,4 @@
 import ast
-import inspect
 import logging
 import textwrap
 import types
@@ -24,9 +23,7 @@ class IceCreamDebugger:
 
     def __call__(self, *args, **kwargs) -> Any:
         if self.enabled:
-            frame: types.FrameType | None = inspect.currentframe()
-            if frame is not None:
-                frame = frame.f_back
+            frame: types.FrameType | None = magic.get_frame(depth=2, hidden=None)
             logger: logging.Logger = self._get_logger(frame)
             logger.log(ICECREAM, self._format(args, kwargs, frame), stacklevel=2)
         match len(args):

@@ -2,42 +2,32 @@ from __future__ import annotations
 
 import logging
 import os
-from typing import TYPE_CHECKING
 
 from liblaf.grapes._config import config
 from liblaf.grapes.rich.logging import RichHandler
 
-from .filters import FilterLike, as_filter
+from .filters import LimitsFilter
 from .handlers import RichFileHandler
 from .helpers import (
-    HandlerRestrictedLogger,
-    clear_children_stream_handlers,
     init_levels,
     install_excepthook,
     install_unraisablehook,
+    remove_non_root_stream_handlers,
+    set_default_logger_level_by_release_type,
 )
 
-if TYPE_CHECKING:
-    from logging import _FilterType
 
-
-def init(
-    *,
-    file: str | os.PathLike[str] | None = None,
-    filter: FilterLike | None = None,  # noqa: A002
-    force: bool = False,
-) -> None:
+def init(*, file: str | os.PathLike[str] | None = None, force: bool = False) -> None:
     if file is None:
         file = config.logging.file.get()
-    init_levels()
-    filter_: _FilterType = as_filter(filter)
     handlers: list[logging.Handler] = [RichHandler()]
     if file is not None:
         handlers.append(RichFileHandler(file))
     for handler in handlers:
-        handler.addFilter(filter_)
-    clear_children_stream_handlers()
+        handler.addFilter(LimitsFilter())
+    init_levels()
     install_excepthook()
     install_unraisablehook()
-    logging.basicConfig(level=logging.NOTSET, handlers=handlers, force=force)
-    logging.setLoggerClass(HandlerRestrictedLogger)
+    logging.basicConfig(handlers=handlers, force=force)
+    remove_non_root_stream_handlers()
+    set_default_logger_level_by_release_type()

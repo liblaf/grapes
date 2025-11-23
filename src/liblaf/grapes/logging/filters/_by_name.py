@@ -1,10 +1,12 @@
 import logging
 
 import attrs
+from typing_extensions import deprecated
 
 from ._utils import as_levelno_dict
 
 
+@deprecated("Please use `logger.setLevel()` instead.")
 @attrs.define
 class FilterByName:
     _levels: dict[str, int] = attrs.field(

@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections.abc import Container, Iterable
 from typing import TYPE_CHECKING
 
-from liblaf.grapes.logging import depth_logger
+from liblaf.grapes.logging import autolog
 
 if TYPE_CHECKING:
     from _typeshed import SupportsContainsAndGetItem
@@ -23,7 +23,7 @@ def contains[T](
         return True
     for deprecated_key in deprecated_keys:
         if deprecated_key in obj:
-            depth_logger.warning(msg, deprecated_key, key, stacklevel=2)
+            autolog.warning(msg, deprecated_key, key, stacklevel=2)
             return True
     return False
 
@@ -39,6 +39,6 @@ def getitem[KT, VT](
         return obj[key]
     for deprecated_key in deprecated_keys:
         if deprecated_key in obj:
-            depth_logger.warning(msg, deprecated_key, key, stacklevel=2)
+            autolog.warning(msg, deprecated_key, key, stacklevel=2)
             return obj[deprecated_key]
     raise KeyError(key)

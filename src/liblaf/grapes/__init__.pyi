@@ -15,7 +15,6 @@ from . import (
     sentinel,
     serde,
     timing,
-    tqdm,
     typing,
     wadler_lindig,
 )
@@ -45,11 +44,11 @@ from .pretty import (
     pretty_throughput,
 )
 from .rich import get_console
+from .rich.progress import Progress, track
 from .rich.repr import auto_rich_repr
 from .sentinel import MISSING, NOP, nop, not_implemented
 from .serde import dec_hook, enc_hook, json, load, save, toml, yaml
 from .timing import BaseTimer, Timer, get_timer, timer
-from .tqdm import Progress, track
 from .wadler_lindig import pdoc, pformat, pprint
 
 __all__ = [
@@ -117,7 +116,6 @@ __all__ = [
     "timing",
     "todo",
     "toml",
-    "tqdm",
     "track",
     "typing",
     "unreachable",

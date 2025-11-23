@@ -8,13 +8,6 @@ import limits
 
 
 @attrs.define
-class _HitArgs:
-    item: limits.RateLimitItem
-    identifiers: Iterable[str]
-    cost: int = 1
-
-
-@attrs.define
 class LimitsFilter:
     limiter: limits.strategies.RateLimiter = attrs.field(
         factory=lambda: limits.strategies.FixedWindowRateLimiter(
@@ -23,11 +16,20 @@ class LimitsFilter:
     )
 
     def filter(self, record: logging.LogRecord) -> bool:
-        args = getattr(record, "limits", None)
+        args: Any = getattr(record, "limits", None)
         if args is None:
             return True
-        args = _parse_args(args, record)
-        return self.limiter.hit(args.item, *args.identifiers, cost=args.cost)
+        hit_args: _HitArgs = _parse_args(args, record)
+        return self.limiter.hit(
+            hit_args.item, *hit_args.identifiers, cost=hit_args.cost
+        )
+
+
+@attrs.define
+class _HitArgs:
+    item: limits.RateLimitItem
+    identifiers: Iterable[str]
+    cost: int = 1
 
 
 def _default_identifier(record: logging.LogRecord) -> Iterable[str]:

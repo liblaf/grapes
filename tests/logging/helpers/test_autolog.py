@@ -2,13 +2,13 @@ import logging
 
 import pytest
 
-from liblaf.grapes.logging import depth_logger
+from liblaf.grapes.logging import autolog
 
 _MESSAGE: str = "message from wrapped"
 
 
 def wrapped() -> None:
-    depth_logger.info(_MESSAGE, stacklevel=2)
+    autolog.info(_MESSAGE, stacklevel=2)
 
 
 def wrapper() -> None:
@@ -16,10 +16,10 @@ def wrapper() -> None:
     wrapped()
 
 
-def test_depth_logger(caplog: pytest.LogCaptureFixture) -> None:
+def test_autolog(caplog: pytest.LogCaptureFixture) -> None:
     with caplog.at_level(logging.INFO, __name__):
         wrapper()
     assert len(caplog.records) == 1
     record: logging.LogRecord = caplog.records[0]
-    assert record.funcName == "test_depth_logger"
+    assert record.funcName == "test_autolog"
     assert record.msg == _MESSAGE

@@ -2,7 +2,7 @@ import logging
 import types
 from collections.abc import Generator, Iterable
 
-from rich.console import Console, RenderableType
+from rich.console import Console, ConsoleRenderable, RenderableType, RichCast
 from rich.highlighter import Highlighter, ReprHighlighter
 from rich.text import Text
 
@@ -87,6 +87,10 @@ class RichHandler(logging.Handler):
     def _render_message(self, record: logging.LogRecord) -> Text:
         if markup := getattr(record, "markup", None):
             return Text.from_markup(markup, style="log.message")
+        if isinstance(record.msg, (ConsoleRenderable, RichCast)):
+            with self.console.capture() as capture:
+                self.console.print(record.msg)
+            return Text.from_ansi(capture.get(), style="log.message")
         message: str = record.getMessage()
         if pretty.has_ansi(message):
             return Text.from_ansi(message, style="log.message")

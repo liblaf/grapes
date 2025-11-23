@@ -5,7 +5,7 @@ from .handlers import RichFileHandler
 from .helpers import (
     CleanLogger,
     LoggerTree,
-    depth_logger,
+    autolog,
     init_levels,
     install_excepthook,
     install_unraisablehook,
@@ -20,7 +20,7 @@ __all__ = [
     "LoggerTree",
     "RichFileHandler",
     "as_filter",
-    "depth_logger",
+    "autolog",
     "filters",
     "handlers",
     "helpers",

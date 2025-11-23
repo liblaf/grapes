@@ -3,9 +3,10 @@ import warnings
 from collections.abc import Callable, Iterable, Sequence
 
 import attrs
+import limits
 
 from liblaf.grapes import pretty
-from liblaf.grapes.logging import depth_logger
+from liblaf.grapes.logging import autolog
 from liblaf.grapes.sentinel import NOP
 
 from ._clock import ClockName, clock
@@ -13,7 +14,6 @@ from ._statistics import StatisticName, pretty_statistic
 from .defaults import (
     DEFAULT_CLOCKS,
     LOG_RECORD_DEFAULT_LEVEL,
-    LOG_RECORD_DEFAULT_THRESHOLD_SEC,
     LOG_SUMMARY_DEFAULT_LEVEL,
     LOG_SUMMARY_DEFAULT_STATISTICS,
 )
@@ -66,11 +66,10 @@ class Timings:
         *,
         index: int = -1,
         level: int = LOG_RECORD_DEFAULT_LEVEL,
-        threshold_sec: float | None = LOG_RECORD_DEFAULT_THRESHOLD_SEC,
+        limits: str | limits.RateLimitItem | None = "1/second",
     ) -> None:
-        if threshold_sec is not None and self.elapsed() < threshold_sec:
-            return
-        depth_logger.log(level, self.pretty_record(index=index), stacklevel=2)
+        __tracebackhide__ = True
+        autolog.log(level, self.pretty_record(index=index), extra={"limits": limits})
 
     def log_summary(
         self,
@@ -78,10 +77,10 @@ class Timings:
         level: int = LOG_SUMMARY_DEFAULT_LEVEL,
         stats: Iterable[StatisticName] = LOG_SUMMARY_DEFAULT_STATISTICS,
     ) -> None:
-        depth_logger.log(
+        __tracebackhide__ = True
+        autolog.log(
             level,
             self.pretty_summary(stats=stats),
-            stacklevel=2,
             extra={"markup": self.pretty_summary(stats=stats, rich_markup=True)},
         )
 

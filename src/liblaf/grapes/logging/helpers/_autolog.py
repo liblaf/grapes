@@ -17,14 +17,11 @@ _PROXY_METHODS: set[str] = {
 }
 
 
-class DepthLogger:
+class AutoLogger:
     def __getattr__(self, name: str) -> Any:
         if name in _PROXY_METHODS:
 
             def wrapper(*args, **kwargs) -> None:
-                from liblaf.grapes.logging import init
-
-                init()
                 depth: int = kwargs.get("stacklevel", 1)
                 frame: types.FrameType | None = inspect.currentframe()
                 stacklevel: int = 1
@@ -43,6 +40,7 @@ class DepthLogger:
                 return getattr(logger, name)(*args, **kwargs)
 
             return wrapper
+
         frame: types.FrameType | None = inspect.currentframe()
         if frame is not None:
             frame = frame.f_back
@@ -53,4 +51,4 @@ class DepthLogger:
         return getattr(logger, name)
 
 
-depth_logger = DepthLogger()
+autolog = AutoLogger()

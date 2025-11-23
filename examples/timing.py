@@ -2,8 +2,8 @@ import time
 
 from liblaf import grapes
 
-N_ITER: int = 3
-TIMEDELTA_SEC: float = 0.1
+N_ITER: int = 300
+TIMEDELTA_SEC: float = 0.01
 
 
 @grapes.timer()

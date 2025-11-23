@@ -6,7 +6,6 @@ from ._statistics import StatisticName
 from ._timings import Callback, Timings
 from .defaults import (
     LOG_RECORD_DEFAULT_LEVEL,
-    LOG_RECORD_DEFAULT_THRESHOLD_SEC,
     LOG_SUMMARY_DEFAULT_LEVEL,
     LOG_SUMMARY_DEFAULT_STATISTICS,
 )
@@ -14,19 +13,11 @@ from .defaults import (
 
 @overload
 def log_record(
-    timer: Timings,
-    /,
-    *,
-    index: int = -1,
-    level: int | str = LOG_RECORD_DEFAULT_LEVEL,
-    threshold_sec: float | None = LOG_RECORD_DEFAULT_THRESHOLD_SEC,
+    timer: Timings, /, *, index: int = -1, level: int | str = LOG_RECORD_DEFAULT_LEVEL
 ) -> Any: ...
 @overload
 def log_record(
-    *,
-    index: int = -1,
-    level: int | str = LOG_RECORD_DEFAULT_LEVEL,
-    threshold_sec: float | None = LOG_RECORD_DEFAULT_THRESHOLD_SEC,
+    *, index: int = -1, level: int | str = LOG_RECORD_DEFAULT_LEVEL
 ) -> Callback: ...
 def log_record(timer: Timings | None = None, /, **kwargs) -> Any:
     __tracebackhide__ = True

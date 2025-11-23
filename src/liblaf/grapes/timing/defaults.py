@@ -8,7 +8,6 @@ DEFAULT_CLOCKS: Sequence[ClockName] = ("perf",)
 
 
 LOG_RECORD_DEFAULT_LEVEL: int = logging.DEBUG
-LOG_RECORD_DEFAULT_THRESHOLD_SEC: float | None = 0.02
 
 
 LOG_SUMMARY_DEFAULT_LEVEL: int = logging.INFO
@@ -16,5 +15,5 @@ LOG_SUMMARY_DEFAULT_STATISTICS: Iterable[StatisticName] = (
     "total",
     "mean+stdev",
     "range",
-    "median",
+    # "median",
 )

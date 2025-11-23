@@ -18,12 +18,4 @@ class FilterOnce:
         return True
 
     def _hash_record(self, record: logging.LogRecord) -> Hashable:
-        return hash(
-            (
-                record.filename,
-                record.getMessage(),
-                record.levelno,
-                record.lineno,
-                record.name,
-            )
-        )
+        return hash((record.name, record.levelno, record.filename, record.lineno))

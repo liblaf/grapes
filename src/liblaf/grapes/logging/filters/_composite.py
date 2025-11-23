@@ -3,6 +3,7 @@ from collections.abc import Mapping
 
 import attrs
 import cachetools
+from typing_extensions import deprecated
 
 from ._by_name import FilterByName
 from ._by_version import FilterByVersion
@@ -10,6 +11,7 @@ from ._once import FilterOnce
 from ._utils import as_levelno
 
 
+@deprecated("Please use `CleanLogger` instead.")
 @attrs.define
 class CompositeFilter:
     by_name: FilterByName = attrs.field(factory=FilterByName)

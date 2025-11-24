@@ -12,7 +12,9 @@ def install_unraisablehook(level: int = logging.ERROR) -> None:
             return
         logger.log(
             level,
-            "{err_msg}: {object!r}",
+            "%s: %r",
+            args.err_msg,
+            args.object,
             exc_info=(args.exc_type, args.exc_value, args.exc_traceback),
         )
 

@@ -11,6 +11,6 @@ def install_excepthook(level: int = logging.CRITICAL) -> None:
         exc_value: BaseException,
         exc_traceback: types.TracebackType | None,
     ) -> None:
-        logger.log(level, "", exc_info=(exc_type, exc_value, exc_traceback))
+        logger.log(level, exc_value, exc_info=(exc_type, exc_value, exc_traceback))
 
     sys.excepthook = excepthook

@@ -7,6 +7,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.8.1](https://github.com/liblaf/grapes/releases/tag/v8.8.1) - 2025-11-24
+
+### 🐛 Bug Fixes
+
+- Fix matplotlib Axes import in BenchResults - [c4e63f5](https://github.com/liblaf/grapes/commit/c4e63f5d3c43f7772b7b0667ee4e9c593d0c31bc) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [8.8.0](https://github.com/liblaf/grapes/releases/tag/v8.8.0) - 2025-11-24
 
 ### ✨ Features
@@ -24,9 +34,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
-- [@renovate[bot]](https://github.com/apps/renovate) made their first contribution in [#127](https://github.com/liblaf/grapes/pull/127)
-- [@liblaf[bot]](https://github.com/apps/liblaf) made their first contribution in [#124](https://github.com/liblaf/grapes/pull/124)
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
+- [@renovate[bot]](https://github.com/apps/renovate)
 
 ## [8.7.1](https://github.com/liblaf/grapes/releases/tag/v8.7.1) - 2025-11-22
 

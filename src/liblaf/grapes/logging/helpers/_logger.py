@@ -10,10 +10,9 @@ class CleanLogger(logging.Logger):
     pre_level: ClassVar[int | str] = logging.DEBUG
 
     def __init__(self, name: str, level: int | str = logging.NOTSET) -> None:
+        __tracebackhide__ = True
         super().__init__(name, level)
-        frame: types.FrameType | None = magic.get_frame(
-            depth=2, hidden=_is_logging_frame
-        )
+        frame: types.FrameType | None = magic.get_frame(hidden=_is_logging_frame)
         if frame is None:
             return
         file: str = frame.f_code.co_filename
@@ -48,6 +47,8 @@ def set_default_logger_level_by_release_type(
 
 
 def _is_logging_frame(frame: types.FrameType) -> bool:
+    if frame.f_locals.get("__tracebackhide__", False):
+        return True
     name: str | None = frame.f_globals.get("__name__")
     if name is None:
         return False

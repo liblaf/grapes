@@ -22,6 +22,7 @@ class IceCreamDebugger:
     enabled: bool = True
 
     def __call__(self, *args, **kwargs) -> Any:
+        __tracebackhide__ = True
         if self.enabled:
             frame: types.FrameType | None = magic.get_frame(depth=2, hidden=None)
             logger: logging.Logger = self._get_logger(frame)
@@ -82,6 +83,7 @@ class IceCreamDebugger:
         return f"{filename}:{lineno} in {name}"
 
     def _get_logger(self, frame: types.FrameType | None) -> logging.Logger:
+        __tracebackhide__ = True
         name: str | None = None
         if frame is not None:
             name = frame.f_globals.get("__name__")

@@ -7,6 +7,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.8.2](https://github.com/liblaf/grapes/releases/tag/v8.8.2) - 2025-11-25
+
+### 🐛 Bug Fixes
+
+- **logging:** resolve missing depth_logger export and deprecate its usage - [a804bab](https://github.com/liblaf/grapes/commit/a804bab1f2ccea733ab4e415f6447787a9ff6a03) by [@liblaf](https://github.com/liblaf)
+- **logging:** Correctly determine release type in CleanLogger - [09dd88b](https://github.com/liblaf/grapes/commit/09dd88ba87dea453cadc603dfd8c0d226614d66a) by [@liblaf](https://github.com/liblaf)
+- Correct `__tracebackhide__` usage in `icecream` and `logging` - [2aa6593](https://github.com/liblaf/grapes/commit/2aa6593a4d586c0315f677e253568eb46dd0298e) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [8.8.1](https://github.com/liblaf/grapes/releases/tag/v8.8.1) - 2025-11-24
 
 ### 🐛 Bug Fixes
@@ -15,7 +27,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [8.8.0](https://github.com/liblaf/grapes/releases/tag/v8.8.0) - 2025-11-24
 

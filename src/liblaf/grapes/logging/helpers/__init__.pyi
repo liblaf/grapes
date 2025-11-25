@@ -1,4 +1,4 @@
-from ._autolog import autolog
+from ._autolog import autolog, depth_logger
 from ._excepthook import install_excepthook
 from ._level import init_levels
 from ._logger import CleanLogger, set_default_logger_level_by_release_type
@@ -10,6 +10,7 @@ __all__ = [
     "CleanLogger",
     "LoggerTree",
     "autolog",
+    "depth_logger",
     "init_levels",
     "install_excepthook",
     "install_unraisablehook",

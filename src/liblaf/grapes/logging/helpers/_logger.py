@@ -17,7 +17,6 @@ class CleanLogger(logging.Logger):
         if frame is None:
             return
         file: str = frame.f_code.co_filename
-        name: str | None = frame.f_globals.get("__name__")
         if magic.is_dev_release(file, name):
             self.setLevel(self.dev_level)
         elif magic.is_pre_release(file, name):

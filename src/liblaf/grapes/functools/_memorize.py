@@ -3,8 +3,8 @@ import functools
 from collections.abc import Callable, Iterable, Mapping
 from typing import Any, Literal, Protocol, TypedDict, overload
 
-import cytoolz as toolz
 import joblib
+import tlz
 import wrapt
 
 from liblaf.grapes._config import config
@@ -86,4 +86,4 @@ def new_memory() -> joblib.Memory:
 
 
 def _filter_keys[KT, VT](mapping: Mapping[KT, VT], keys: Iterable[KT]) -> dict[KT, VT]:
-    return toolz.keyfilter(lambda k: k in keys, mapping)
+    return tlz.keyfilter(lambda k: k in keys, mapping)

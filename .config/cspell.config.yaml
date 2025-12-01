@@ -59,6 +59,7 @@ words:
   - serde
   - stdev
   - tombi
+  - toolz
   - tqdm
   - trimesh
   - unraisable

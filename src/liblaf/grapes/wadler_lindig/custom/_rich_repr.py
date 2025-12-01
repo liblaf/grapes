@@ -1,6 +1,6 @@
 from typing import Any, Unpack
 
-import cytoolz as toolz
+import tlz
 import wadler_lindig as wl
 
 from liblaf.grapes.wadler_lindig._typing import WadlerLindigOptions
@@ -31,7 +31,7 @@ def pdoc_rich_repr(
             value = field
             args.append(value)
     show_dataclass_module: bool = kwargs.get("show_dataclass_module", False)
-    name_kwargs: dict[str, Any] = toolz.assoc(
+    name_kwargs: dict[str, Any] = tlz.assoc(
         kwargs, "show_type_module", show_dataclass_module
     )
     return wl.bracketed(

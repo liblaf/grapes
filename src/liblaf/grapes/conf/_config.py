@@ -3,7 +3,7 @@ from collections.abc import Generator, Mapping
 from typing import Any, Self
 
 import attrs
-import cytoolz as toolz
+import tlz
 
 from ._field import Field
 
@@ -52,7 +52,7 @@ class BaseConfig(metaclass=BaseConfigMeta):
         return result
 
     def set(self, changes: Mapping[str, Any] = {}, /, **kwargs: Any) -> None:
-        changes = toolz.merge(changes, kwargs)
+        changes = tlz.merge(changes, kwargs)
         for key, value in changes.items():
             field: BaseConfig | Field = getattr(self, key)
             field.set(value)
@@ -61,7 +61,7 @@ class BaseConfig(metaclass=BaseConfigMeta):
     def overrides(
         self, changes: Mapping[str, Any] = {}, /, **kwargs: Any
     ) -> Generator[Self]:
-        changes = toolz.merge(changes, kwargs)
+        changes = tlz.merge(changes, kwargs)
         with contextlib.ExitStack() as stack:
             for key, value in changes.items():
                 field: BaseConfig | Field = getattr(self, key)

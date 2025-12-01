@@ -6,7 +6,7 @@ from collections.abc import Generator
 from typing import Any
 
 import attrs
-import cytoolz as toolz
+import tlz
 from rich.console import Console, ConsoleOptions, RenderableType, RenderResult
 from rich.scope import render_scope
 from rich.syntax import Syntax
@@ -142,9 +142,9 @@ class RichFrameSummary:
     ) -> Generator[RenderableType]:
         locals_: dict[str, Any] = self.locals
         if options.locals_hide_dunder:
-            locals_ = toolz.keyfilter(_filter_dunder, locals_)
+            locals_ = tlz.keyfilter(_is_dunder, locals_)
         if options.locals_hide_sunder:
-            locals_ = toolz.keyfilter(_filter_sunder, locals_)
+            locals_ = tlz.keyfilter(_is_sunder, locals_)
         if not locals_:
             return
         yield render_scope(
@@ -156,11 +156,11 @@ class RichFrameSummary:
         )
 
 
-def _filter_dunder(key: str) -> bool:
+def _is_dunder(key: str) -> bool:
     return not key.startswith("__")
 
 
-def _filter_sunder(key: str) -> bool:
+def _is_sunder(key: str) -> bool:
     return not (key.startswith("_") and not key.startswith("__"))
 
 

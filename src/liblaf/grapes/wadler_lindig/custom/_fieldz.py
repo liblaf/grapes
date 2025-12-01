@@ -1,7 +1,7 @@
 from typing import Any, Unpack
 
-import cytoolz as toolz
 import fieldz
+import tlz
 import wadler_lindig as wl
 
 from liblaf.grapes.sentinel import MISSING
@@ -23,7 +23,7 @@ def pdoc_fieldz(
             continue
         pairs.append((field.name, value))
     show_dataclass_module: bool = kwargs.get("show_dataclass_module", False)
-    name_kwargs: dict[str, Any] = toolz.assoc(
+    name_kwargs: dict[str, Any] = tlz.assoc(
         kwargs, "show_type_module", show_dataclass_module
     )
     return wl.bracketed(

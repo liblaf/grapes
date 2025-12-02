@@ -109,7 +109,7 @@ extends = ".config/linters/pyrightconfig.json"
 [tool.pytest]
 addopts = [
   "--doctest-modules",
-  "--hypothesis-show-statistics",
+  "--hypothesis-explain",
   "--import-mode=importlib",
   "--showlocals"
 ]

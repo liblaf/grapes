@@ -1,7 +1,6 @@
 import inspect
 import logging
 import types
-import warnings
 from typing import Any
 
 from liblaf.grapes import magic
@@ -53,15 +52,3 @@ class AutoLogger:
 
 
 autolog = AutoLogger()
-
-
-def __getattr__(name: str) -> Any:
-    if name == "depth_logger":
-        warnings.warn(
-            "`depth_logger` is deprecated. Please use `autolog` instead.",
-            DeprecationWarning,
-            stacklevel=4,
-        )
-        return autolog
-    msg: str = f"module {__name__} has no attribute {name}"
-    raise AttributeError(msg)

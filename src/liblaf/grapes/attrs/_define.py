@@ -12,15 +12,16 @@ from liblaf.grapes.wadler_lindig import pdoc_fieldz, pformat
 def define(maybe_cls: type | None = None, **kwargs) -> Any:
     if maybe_cls is None:
         return functools.partial(define, **kwargs)
+    cls: type = maybe_cls
     auto_detect: bool = kwargs.get("auto_detect", True)
     repr_: bool | None = kwargs.get("repr")
-    if auto_detect and repr_ is None and "__repr__" not in maybe_cls.__dict__:
+    if auto_detect and repr_ is None and cls.__repr__ is object.__repr__:
         repr_ = True
     if repr_:
-        maybe_cls.__repr__ = pformat  # pyright: ignore[reportAttributeAccessIssue]
+        cls.__repr__ = pformat  # pyright: ignore[reportAttributeAccessIssue]
         kwargs["repr"] = False
-    if "__pdoc__" not in maybe_cls.__dict__:
-        maybe_cls.__pdoc__ = pdoc_fieldz
-    if "__rich_repr__" not in maybe_cls.__dict__:
-        maybe_cls.__rich_repr__ = rich_repr_fieldz
-    return attrs.define(maybe_cls, **kwargs)
+    if not hasattr(cls, "__pdoc__"):
+        cls.__pdoc__ = pdoc_fieldz
+    if not hasattr(cls, "__rich_repr__"):
+        cls.__rich_repr__ = rich_repr_fieldz
+    return attrs.define(cls, **kwargs)

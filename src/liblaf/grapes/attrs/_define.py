@@ -5,7 +5,7 @@ import attrs
 
 from liblaf.grapes.functools import wraps
 from liblaf.grapes.rich.repr import rich_repr_fieldz
-from liblaf.grapes.wadler_lindig import pdoc_fieldz, pformat
+from liblaf.grapes.wadler_lindig import pdoc_fieldz, pdoc_rich_repr, pformat
 
 
 @wraps(attrs.define)
@@ -21,7 +21,10 @@ def define(maybe_cls: type | None = None, **kwargs) -> Any:
         cls.__repr__ = pformat  # pyright: ignore[reportAttributeAccessIssue]
         kwargs["repr"] = False
     if not hasattr(cls, "__pdoc__"):
-        cls.__pdoc__ = pdoc_fieldz
+        if hasattr(cls, "__rich_repr__"):
+            cls.__pdoc__ = pdoc_rich_repr
+        else:
+            cls.__pdoc__ = pdoc_fieldz
     if not hasattr(cls, "__rich_repr__"):
         cls.__rich_repr__ = rich_repr_fieldz
     return attrs.define(cls, **kwargs)

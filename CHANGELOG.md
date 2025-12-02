@@ -7,6 +7,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.8.3](https://github.com/liblaf/grapes/releases/tag/v8.8.3) - 2025-12-02
+
+### 🐛 Bug Fixes
+
+- **attrs:** improve `define` decorator logic and update logging utilities - [3bee36d](https://github.com/liblaf/grapes/commit/3bee36da00c35be8b04b91e2f012fb5749e4a7cf) by [@liblaf](https://github.com/liblaf)
+- **attrs:** Prioritize `pdoc_rich_repr` for attrs-defined classes with `__rich_repr__` - [fe79845](https://github.com/liblaf/grapes/commit/fe798456687fbd54ffdd32063d20bc7b369bb03e) by [@liblaf](https://github.com/liblaf)
+
+### ♻ Code Refactoring
+
+- **deps:** migrate from cytoolz to toolz and standardize import alias - [06a8c21](https://github.com/liblaf/grapes/commit/06a8c21f4b4aa96332efcd2caf31e3c6e770841d) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@renovate[bot]](https://github.com/apps/renovate) made their first contribution in [#132](https://github.com/liblaf/grapes/pull/132)
+- [@liblaf[bot]](https://github.com/apps/liblaf) made their first contribution in [#130](https://github.com/liblaf/grapes/pull/130)
+
 ## [8.8.2](https://github.com/liblaf/grapes/releases/tag/v8.8.2) - 2025-11-25
 
 ### 🐛 Bug Fixes
@@ -17,7 +34,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [8.8.1](https://github.com/liblaf/grapes/releases/tag/v8.8.1) - 2025-11-24
 

@@ -19,6 +19,7 @@ words:
   - amet
   - arithmatex
   - asttokens
+  - cupy
   - cytoolz
   - direnv
   - fieldz

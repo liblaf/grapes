@@ -1,11 +1,29 @@
+from typing import Any
+
 import fieldz
 from rich.repr import RichReprResult
 
 from liblaf.grapes.sentinel import MISSING
+from liblaf.grapes.typing import is_array
+from liblaf.grapes.wadler_lindig import pformat
 
 
 def rich_repr_fieldz(obj: object) -> RichReprResult:
     for field in fieldz.fields(obj):
         if not field.repr:
             continue
-        yield field.name, getattr(obj, field.name, MISSING), field.default
+        value: Any = getattr(obj, field.name, MISSING)
+        # rich.repr uses `if default == value:` but does not protect against
+        # exceptions. Some types (e.g. NumPy arrays) raise on equality/truth
+        # checks (ambiguous truth value). Do the comparison here inside a
+        # try/except so we can catch and handle those errors safely.
+        if is_array(value) or is_array(field.default):
+            yield field.name, pformat(value)
+            continue
+        try:
+            if value == field.default:
+                yield field.name, value, field.default
+            else:
+                yield field.name, value
+        except Exception:  # noqa: BLE001
+            yield field.name, value

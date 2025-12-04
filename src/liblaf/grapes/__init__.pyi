@@ -49,6 +49,7 @@ from .rich.repr import auto_rich_repr
 from .sentinel import MISSING, NOP, nop, not_implemented
 from .serde import dec_hook, enc_hook, json, load, save, toml, yaml
 from .timing import BaseTimer, Timer, get_timer, timer
+from .typing import array_kind, is_array
 from .wadler_lindig import pdoc, pformat, pprint
 
 __all__ = [
@@ -65,6 +66,7 @@ __all__ = [
     "UnreachableError",
     "__version__",
     "__version_tuple__",
+    "array_kind",
     "as_iterable",
     "as_sequence",
     "attrs",
@@ -88,6 +90,7 @@ __all__ = [
     "has_ansi",
     "icecream",
     "in_ci",
+    "is_array",
     "itertools",
     "json",
     "len_or_none",

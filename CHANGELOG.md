@@ -7,6 +7,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.8.4](https://github.com/liblaf/grapes/releases/tag/v8.8.4) - 2025-12-04
+
+### 🐛 Bug Fixes
+
+- **array:** Handle array-like fields safely in rich representation - [71164a3](https://github.com/liblaf/grapes/commit/71164a328e832d02ececfbf78030c49d83cf8e08) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [8.8.3](https://github.com/liblaf/grapes/releases/tag/v8.8.3) - 2025-12-02
 
 ### 🐛 Bug Fixes
@@ -20,9 +30,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
-- [@renovate[bot]](https://github.com/apps/renovate) made their first contribution in [#132](https://github.com/liblaf/grapes/pull/132)
-- [@liblaf[bot]](https://github.com/apps/liblaf) made their first contribution in [#130](https://github.com/liblaf/grapes/pull/130)
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
+- [@renovate[bot]](https://github.com/apps/renovate)
 
 ## [8.8.2](https://github.com/liblaf/grapes/releases/tag/v8.8.2) - 2025-11-25
 

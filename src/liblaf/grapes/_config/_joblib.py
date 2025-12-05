@@ -2,7 +2,8 @@ from pathlib import Path
 
 import platformdirs
 
-from liblaf.grapes.conf import BaseConfig, Field, field
+from liblaf.grapes import conf
+from liblaf.grapes.conf import BaseConfig, Field
 
 
 def _default_location() -> Path:
@@ -10,9 +11,9 @@ def _default_location() -> Path:
 
 
 class ConfigJoblibMemory(BaseConfig):
-    bytes_limit: Field[int | str | None] = field(default="4G")
-    location: Field[Path] = field(factory=_default_location)
+    bytes_limit: Field[str] = conf.str(default="4G")
+    location: Field[Path] = conf.path(factory=_default_location)
 
 
 class ConfigJoblib(BaseConfig):
-    memory: ConfigJoblibMemory
+    memory: ConfigJoblibMemory = conf.group()

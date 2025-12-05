@@ -4,7 +4,11 @@ from typing import Any, Self
 
 import attrs
 import tlz
+import wadler_lindig as wl
+from rich.repr import RichReprResult
 
+from ._constants import METADATA_KEY
+from ._entry import Entry
 from ._field import Field
 
 
@@ -31,16 +35,29 @@ class BaseConfig(metaclass=BaseConfigMeta):
         kwargs: dict[str, Any] = {}
         cls: type[BaseConfig] = type(self)
         cls = attrs.resolve_types(cls)
-        for f in attrs.fields(type(self)):
-            f: attrs.Attribute
-            if not isinstance(f.type, type):
+        prefix: str = f"{name}." if name else ""
+        for field in attrs.fields(type(self)):
+            field: attrs.Attribute
+            entry: Entry | None = field.metadata.get(METADATA_KEY, None)
+            if entry is None:
                 continue
-            name: str = f"{name}.{f.name}" if name else f.name
-            if issubclass(f.type, BaseConfig):
-                kwargs[f.name] = f.type(name)
-            elif issubclass(_unwrap(f.type), Field):
-                kwargs[f.name] = f.type(name, **f.metadata)
+            kwargs[field.name] = entry.make(field, prefix)
         self.__attrs_init__(**kwargs)  # pyright: ignore[reportAttributeAccessIssue]
+
+    def __repr__(self) -> str:
+        from liblaf.grapes.wadler_lindig import pformat
+
+        return pformat(self)
+
+    def __pdoc__(self, **kwargs) -> wl.AbstractDoc | None:
+        from liblaf.grapes.wadler_lindig import pdoc_rich_repr
+
+        return pdoc_rich_repr(self, **kwargs)
+
+    def __rich_repr__(self) -> RichReprResult:
+        from liblaf.grapes.rich.repr import rich_repr_fieldz
+
+        yield from rich_repr_fieldz(self)
 
     def get(self) -> dict[str, Any]:
         result: dict[str, Any] = {}
@@ -67,7 +84,3 @@ class BaseConfig(metaclass=BaseConfigMeta):
                 field: BaseConfig | Field = getattr(self, key)
                 stack.enter_context(field.overrides(value))
             yield self
-
-
-def _unwrap(obj: Any) -> Any:
-    return getattr(obj, "__wrapped__", obj)

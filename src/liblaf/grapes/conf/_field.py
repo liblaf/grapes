@@ -1,16 +1,13 @@
 import contextlib
 import contextvars
 from collections.abc import Callable, Generator
-from typing import Self, TypedDict, Unpack
 
 import attrs
+import environs
 import wadler_lindig as wl
-import wrapt
 from rich.repr import RichReprResult
 
 from liblaf.grapes.sentinel import MISSING
-
-from ._environ import environ
 
 
 @attrs.frozen
@@ -20,22 +17,15 @@ class Field[T]:
     def __init__(
         self,
         name: str,
-        default: T | MISSING = MISSING,
         *,
+        default: T | MISSING = MISSING,
         env: str | None = None,
         factory: Callable[[], T] | None = None,
-        type: type[T] | None = None,  # noqa: A002
-        **_kwargs,
+        getter: Callable[[str], T],
     ) -> None:
-        if env is None:
-            env = name.replace(".", "_").upper()
-        value: T | MISSING = MISSING
-        if value is MISSING and env is not None:
-            value = environ.get(env, MISSING, typ=type)
-        if value is MISSING and default is not MISSING:
-            value = default
-        if value is MISSING and factory is not None:
-            value = factory()
+        value: T | MISSING = _get_value(
+            name, default=default, env=env, factory=factory, getter=getter
+        )
         var: contextvars.ContextVar[T]
         if value is MISSING:
             var = contextvars.ContextVar(name)
@@ -43,15 +33,15 @@ class Field[T]:
             var = contextvars.ContextVar(name, default=value)
         self.__attrs_init__(var=var)  # pyright: ignore[reportAttributeAccessIssue]
 
-    def __class_getitem__(cls, item: type[T]) -> type[Self]:
-        return wrapt.partial(cls, type=item)  # pyright: ignore[reportReturnType]
-
     def __repr__(self) -> str:
-        # TODO: use wadler-lindig
-        return f"Field(name={self.name!r}, value={self.get()!r})"
+        from liblaf.grapes.wadler_lindig import pformat
+
+        return pformat(self)
 
     def __pdoc__(self, **kwargs) -> wl.AbstractDoc | None:
-        pass
+        from liblaf.grapes.wadler_lindig import pdoc_rich_repr
+
+        return pdoc_rich_repr(self, **kwargs)
 
     def __rich_repr__(self) -> RichReprResult:
         yield "name", self.name
@@ -76,12 +66,22 @@ class Field[T]:
             self._var.reset(token)
 
 
-class FieldKwargs[T](TypedDict, total=False):
-    default: T
-    env: str
-    factory: Callable[[], T]
-    type: type[T]
-
-
-def field[T](**kwargs: Unpack[FieldKwargs[T]]) -> Field[T]:
-    return attrs.field(metadata=kwargs)
+def _get_value[T](
+    name: str,
+    *,
+    default: T | MISSING = MISSING,
+    env: str | None = None,
+    factory: Callable[[], T] | None = None,
+    getter: Callable[[str], T],
+) -> T | MISSING:
+    if env is None:
+        env = name.upper().replace(".", "_")
+    try:
+        return getter(env)
+    except environs.EnvError:
+        pass
+    if default is not MISSING:
+        return default
+    if factory is not None:
+        return factory()
+    return MISSING

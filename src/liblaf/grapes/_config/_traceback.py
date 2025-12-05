@@ -1,11 +1,12 @@
-from liblaf.grapes.conf import BaseConfig, Field, field
+from liblaf.grapes import conf
+from liblaf.grapes.conf import BaseConfig, Field
 
 
 class ConfigTraceback(BaseConfig):
-    indent_guide: Field[bool] = field(default=True)
-    locals_hide_dunder: Field[bool] = field(default=True)
-    locals_hide_sunder: Field[bool] = field(default=True)
-    locals_max_length: Field[int] = field(default=10)
-    locals_max_string: Field[int] = field(default=80)
-    show_locals: Field[bool] = field(default=True)
-    theme: Field[str] = field(default="ansi_dark")
+    indent_guide: Field[bool] = conf.bool(default=True)
+    locals_hide_dunder: Field[bool] = conf.bool(default=True)
+    locals_hide_sunder: Field[bool] = conf.bool(default=True)
+    locals_max_length: Field[int] = conf.int(default=10)
+    locals_max_string: Field[int] = conf.int(default=80)
+    show_locals: Field[bool] = conf.bool(default=True)
+    theme: Field[str] = conf.str(default="ansi_dark")

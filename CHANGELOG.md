@@ -7,6 +7,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.9.0](https://github.com/liblaf/grapes/releases/tag/v8.9.0) - 2025-12-05
+
+### ✨ Features
+
+- **conf:** implement modular configuration system with field specifiers and groups - [e7cbe92](https://github.com/liblaf/grapes/commit/e7cbe924cb57dd8205bed5ef908a477353fe9b71) by [@liblaf](https://github.com/liblaf)
+- **rich:** enhance traceback and repr functionality - [0b69019](https://github.com/liblaf/grapes/commit/0b69019ae03756b19098d8697094d9dca4ae4219) by [@liblaf](https://github.com/liblaf)
+
+### 🐛 Bug Fixes
+
+- **rich/progress:** Improve progress bar update handling and refresh logic - [f85da08](https://github.com/liblaf/grapes/commit/f85da08eccc8cd793d115939a0b44c11ed0a2944) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [8.8.4](https://github.com/liblaf/grapes/releases/tag/v8.8.4) - 2025-12-04
 
 ### 🐛 Bug Fixes
@@ -15,7 +30,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [8.8.3](https://github.com/liblaf/grapes/releases/tag/v8.8.3) - 2025-12-02
 

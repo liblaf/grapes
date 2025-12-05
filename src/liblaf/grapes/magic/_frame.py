@@ -36,3 +36,19 @@ def get_frame(
             while frame is not None and hidden(frame):
                 frame = frame.f_back
     return frame
+
+
+def get_frame_with_stacklevel(
+    depth: int = 1, hidden: Callable[[types.FrameType], bool] | None = None
+) -> tuple[types.FrameType | None, int]:
+    frame: types.FrameType | None = inspect.currentframe()
+    stacklevel: int = 0
+    while frame is not None and depth > 0:
+        frame = frame.f_back
+        depth -= 1
+        stacklevel += 1
+        if hidden is not None:
+            while frame is not None and hidden(frame):
+                frame = frame.f_back
+                stacklevel += 1
+    return frame, stacklevel

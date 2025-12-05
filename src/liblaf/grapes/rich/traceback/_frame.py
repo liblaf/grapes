@@ -13,6 +13,7 @@ from rich.syntax import Syntax
 from rich.text import Text
 
 from liblaf.grapes import magic
+from liblaf.grapes.rich.repr import wraps_repr
 
 from ._options import RichTracebackOptions
 
@@ -142,11 +143,12 @@ class RichFrameSummary:
     ) -> Generator[RenderableType]:
         locals_: dict[str, Any] = self.locals
         if options.locals_hide_dunder:
-            locals_ = tlz.keyfilter(_is_dunder, locals_)
+            locals_ = tlz.keyfilter(_not_dunder, locals_)
         if options.locals_hide_sunder:
-            locals_ = tlz.keyfilter(_is_sunder, locals_)
+            locals_ = tlz.keyfilter(_not_sunder, locals_)
         if not locals_:
             return
+        locals_ = tlz.valmap(wraps_repr, locals_)
         yield render_scope(
             locals_,
             title="locals",
@@ -156,12 +158,12 @@ class RichFrameSummary:
         )
 
 
-def _is_dunder(key: str) -> bool:
+def _not_dunder(key: str) -> bool:
     return not key.startswith("__")
 
 
-def _is_sunder(key: str) -> bool:
-    return not (key.startswith("_") and not key.startswith("__"))
+def _not_sunder(key: str) -> bool:
+    return not key.startswith("_") or key.startswith("__")
 
 
 def _get_code_position(

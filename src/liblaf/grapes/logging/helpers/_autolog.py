@@ -1,4 +1,3 @@
-import inspect
 import logging
 import types
 from typing import Any
@@ -23,15 +22,11 @@ class AutoLogger:
 
             def wrapper(*args, **kwargs) -> None:
                 depth: int = kwargs.get("stacklevel", 1)
-                frame: types.FrameType | None = inspect.currentframe()
-                stacklevel: int = 1
-                while frame is not None and depth > 0:
-                    frame = frame.f_back
-                    depth -= 1
-                    stacklevel += 1
-                    while frame is not None and magic.hidden_from_logging(frame):
-                        frame = frame.f_back
-                        stacklevel += 1
+                frame: types.FrameType | None
+                stacklevel: int
+                frame, stacklevel = magic.get_frame_with_stacklevel(
+                    depth=depth + 1, hidden=magic.hidden_from_logging
+                )
                 logger_name: str | None = None
                 if frame is not None:
                     logger_name = frame.f_globals.get("__name__")
@@ -41,9 +36,7 @@ class AutoLogger:
 
             return wrapper
 
-        frame: types.FrameType | None = inspect.currentframe()
-        if frame is not None:
-            frame = frame.f_back
+        frame: types.FrameType | None = magic.get_frame(depth=2)
         logger_name: str | None = None
         if frame is not None:
             logger_name = frame.f_globals.get("__name__")

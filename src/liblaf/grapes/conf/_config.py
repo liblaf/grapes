@@ -26,6 +26,7 @@ class BaseConfigMeta(type):
             return cls
         kwargs.setdefault("frozen", True)
         kwargs.setdefault("init", False)
+        kwargs.setdefault("repr", False)
         cls = attrs.define(cls, **kwargs)
         return cls
 

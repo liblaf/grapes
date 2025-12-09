@@ -7,6 +7,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.9.1](https://github.com/liblaf/grapes/releases/tag/v8.9.1) - 2025-12-09
+
+### 🐛 Bug Fixes
+
+- **conf:** Correct default value handling in configuration fields - [6a84fa3](https://github.com/liblaf/grapes/commit/6a84fa3b162acb3d86cad72ef0b051f8cc492dd4) by [@liblaf](https://github.com/liblaf)
+
+### 📝 Documentation
+
+- **mkdocs:** Add mkdocstrings plugin configuration - [a4da210](https://github.com/liblaf/grapes/commit/a4da21005aaee24c52825241a234c06f511dc07d) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [8.9.0](https://github.com/liblaf/grapes/releases/tag/v8.9.0) - 2025-12-05
 
 ### ✨ Features
@@ -20,7 +34,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [8.8.4](https://github.com/liblaf/grapes/releases/tag/v8.8.4) - 2025-12-04
 

@@ -15,7 +15,7 @@ class ConfigPretty(BaseConfig):
     indent: Field[int] = conf.int(default=2)
     """when the contents of a structured type are too large to fit on one line, they will be indented by this amount and placed on separate lines."""
 
-    short_arrays: Field[bool | None] = conf.bool()
+    short_arrays: Field[bool | None] = conf.bool(default=None)
     """whether to print a NumPy array / PyTorch tensor / JAX array as a short summary of the form `f32[3,4]` (here indicating a `float32` matrix of shape `(3, 4)`)"""
 
     hide_defaults: Field[bool] = conf.bool(default=True)

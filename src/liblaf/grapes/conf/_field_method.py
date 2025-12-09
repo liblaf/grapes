@@ -41,14 +41,20 @@ class FieldMethod[T]:
         *,
         default: T,
         env: str | None = None,
-        factory: None = None,
         **kwargs: Unpack[environs.types.BaseMethodKwargs],
     ) -> Field[T]: ...
     @overload
     def __call__(
         self,
         *,
-        default: None = None,
+        default: None,
+        env: str | None = None,
+        **kwargs: Unpack[environs.types.BaseMethodKwargs],
+    ) -> Field[T | None]: ...
+    @overload
+    def __call__(
+        self,
+        *,
         factory: Callable[[], T],
         env: str | None = None,
         **kwargs: Unpack[environs.types.BaseMethodKwargs],
@@ -57,15 +63,14 @@ class FieldMethod[T]:
     def __call__(
         self,
         *,
-        default: None = None,
         env: str | None = None,
         factory: None = None,
         **kwargs: Unpack[environs.types.BaseMethodKwargs],
-    ) -> Field[T | None]: ...
+    ) -> Field[T]: ...
     def __call__(
         self,
         *,
-        default: T | None = None,
+        default: T | MISSING | None = MISSING,
         env: str | None = None,
         factory: Callable[[], T] | None = None,
         **kwargs: Unpack[environs.types.BaseMethodKwargs],

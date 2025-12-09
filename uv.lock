@@ -2545,15 +2545,15 @@ wheels = [
 
 [[package]]
 name = "toolz-stubs"
-version = "0.2.1"
+version = "0.2.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "toolz" },
     { name = "typing-extensions", marker = "python_full_version < '3.13'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d5/16/bd7a187c3f01d885a010e643592e44f818a17a64f17d4d8646796bd23baf/toolz_stubs-0.2.1.tar.gz", hash = "sha256:e4814f6901cb413a2161b3f89d20be0b54339ed615ac7228e6641519f76d7630", size = 58639, upload-time = "2025-12-02T10:16:49.574Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/14/3d/16268d92ca5a40db2484a3178a83ca3eab3ddda5a50ba15f2b9ea9b69201/toolz_stubs-0.2.2.tar.gz", hash = "sha256:79f215db2f841f00c1b060b3755c904a35a5270dd97e3973d795287dbc204a2d", size = 59253, upload-time = "2025-12-09T09:26:28.071Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/fe/9e/bbb635d870c8487168d331e7f10af72596825bc3d85f91fd4ed8ecc4db1c/toolz_stubs-0.2.1-py3-none-any.whl", hash = "sha256:8d2e294c1bc7bbf8453731c5200faee5887102aa15f1ff44ceeeb1de4ebcb977", size = 64999, upload-time = "2025-12-02T10:16:48.433Z" },
+    { url = "https://files.pythonhosted.org/packages/99/26/b9fcd9f41608e8f3fc541ce9589b70172a513a05b43d53335136780d1c8e/toolz_stubs-0.2.2-py3-none-any.whl", hash = "sha256:c3a80e724bcf60852b4ebb9441123ca059a9fb4db4a852b04adfe4ceb3a008bb", size = 65107, upload-time = "2025-12-09T09:26:27.003Z" },
 ]
 
 [[package]]
@@ -2626,11 +2626,11 @@ wheels = [
 
 [[package]]
 name = "urllib3"
-version = "2.6.0"
+version = "2.6.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/1c/43/554c2569b62f49350597348fc3ac70f786e3c32e7f19d266e19817812dd3/urllib3-2.6.0.tar.gz", hash = "sha256:cb9bcef5a4b345d5da5d145dc3e30834f58e8018828cbc724d30b4cb7d4d49f1", size = 432585, upload-time = "2025-12-05T15:08:47.885Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/5e/1d/0f3a93cca1ac5e8287842ed4eebbd0f7a991315089b1a0b01c7788aa7b63/urllib3-2.6.1.tar.gz", hash = "sha256:5379eb6e1aba4088bae84f8242960017ec8d8e3decf30480b3a1abdaa9671a3f", size = 432678, upload-time = "2025-12-08T15:25:26.773Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/56/1a/9ffe814d317c5224166b23e7c47f606d6e473712a2fad0f704ea9b99f246/urllib3-2.6.0-py3-none-any.whl", hash = "sha256:c90f7a39f716c572c4e3e58509581ebd83f9b59cced005b7db7ad2d22b0db99f", size = 131083, upload-time = "2025-12-05T15:08:45.983Z" },
+    { url = "https://files.pythonhosted.org/packages/bc/56/190ceb8cb10511b730b564fb1e0293fa468363dbad26145c34928a60cb0c/urllib3-2.6.1-py3-none-any.whl", hash = "sha256:e67d06fe947c36a7ca39f4994b08d73922d40e6cca949907be05efa6fd75110b", size = 131138, upload-time = "2025-12-08T15:25:25.51Z" },
 ]
 
 [[package]]

@@ -18,6 +18,8 @@ def pdoc_fieldz(
     cls: type = type(obj)
     pairs: list[tuple[str, Any]] = []
     for field in fields:
+        if not field.repr:
+            continue
         value: Any = getattr(obj, field.name, MISSING)
         if kwargs.get("hide_defaults", True) and value is field.default:
             continue

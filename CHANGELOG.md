@@ -7,6 +7,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.9.3](https://github.com/liblaf/grapes/releases/tag/v8.9.3) - 2025-12-13
+
+### 🐛 Bug Fixes
+
+- **auto:** Correctly detect existing `__repr__`, `__pdoc__`, and `__rich_repr__` - [a395673](https://github.com/liblaf/grapes/commit/a3956735d6edb69985a7d6e1d1592181f6b716eb) by [@liblaf](https://github.com/liblaf)
+- **icecream, traceback:** Ensure consistent icecream source and configurable tracebacks - [71b3676](https://github.com/liblaf/grapes/commit/71b36766d830c8da798261ba46ef40c63336e3ab) by [@liblaf](https://github.com/liblaf)
+- **logging:** Improve CleanLogger level initialization - [34e5b34](https://github.com/liblaf/grapes/commit/34e5b342434056829d05399f7478c6086c1e4245) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@renovate[bot]](https://github.com/apps/renovate) made their first contribution in [#140](https://github.com/liblaf/grapes/pull/140)
+
 ## [8.9.2](https://github.com/liblaf/grapes/releases/tag/v8.9.2) - 2025-12-09
 
 ### 🐛 Bug Fixes
@@ -15,7 +28,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [8.9.1](https://github.com/liblaf/grapes/releases/tag/v8.9.1) - 2025-12-09
 

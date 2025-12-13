@@ -15,7 +15,7 @@ def auto_rich_repr(cls: type | None = None, *, rich_repr: bool | None = None) ->
     if cls is None:
         return functools.partial(auto_rich_repr, rich_repr=rich_repr)
     if rich_repr is None:
-        rich_repr = "__rich_repr__" not in cls.__dict__
+        rich_repr = not hasattr(cls, "__rich_repr__")
     if rich_repr and has_fields(cls):
         cls.__rich_repr__ = rich_repr_fieldz
     return cls

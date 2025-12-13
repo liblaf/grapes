@@ -25,14 +25,14 @@ def auto_pdoc(
     if cls is None:
         return functools.partial(auto_pdoc, pdoc=pdoc, repr=repr)
     if pdoc is None:
-        pdoc = "__pdoc__" not in cls.__dict__
+        pdoc = not hasattr(cls, "__pdoc__")
     if repr is None:
-        repr = "__repr__" not in cls.__dict__  # noqa: A001
+        repr = cls.__repr__ is object.__repr__  # noqa: A001
     if pdoc:
-        if has_fields(cls):
-            cls.__pdoc__ = pdoc_fieldz
-        elif "__rich_repr__" in cls.__dict__:
+        if hasattr(cls, "__rich_repr__"):
             cls.__pdoc__ = pdoc_rich_repr
+        elif has_fields(cls):
+            cls.__pdoc__ = pdoc_fieldz
     if repr:
         cls.__repr__ = pformat  # pyright: ignore[reportAttributeAccessIssue]
     return cls

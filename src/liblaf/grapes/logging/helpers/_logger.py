@@ -1,4 +1,5 @@
 import logging
+import sys
 import types
 from typing import ClassVar, override
 
@@ -12,10 +13,16 @@ class CleanLogger(logging.Logger):
     def __init__(self, name: str, level: int | str = logging.NOTSET) -> None:
         __tracebackhide__ = True
         super().__init__(name, level)
-        frame: types.FrameType | None = magic.get_frame(hidden=_is_logging_frame)
-        if frame is None:
+        if level != logging.NOTSET:
             return
-        file: str = frame.f_code.co_filename
+        module: types.ModuleType | None = sys.modules.get(name)
+        file: str | None = None
+        if module is not None:
+            file = getattr(module, "__file__", None)
+        if file is None:
+            frame: types.FrameType | None = magic.get_frame(hidden=_is_logging_frame)
+            if frame is not None:
+                file = frame.f_code.co_filename
         if magic.is_dev_release(file, name):
             self.setLevel(self.dev_level)
         elif magic.is_pre_release(file, name):

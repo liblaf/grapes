@@ -19,7 +19,7 @@ from . import (
     wadler_lindig,
 )
 from ._config import config
-from ._version import __version__, __version_tuple__, version, version_tuple
+from ._version import __version__, __version_tuple__
 from .bench import Bencher, BenchResults
 from .deprecated import contains, getitem
 from .deps import optional_deps
@@ -122,8 +122,6 @@ __all__ = [
     "track",
     "typing",
     "unreachable",
-    "version",
-    "version_tuple",
     "wadler_lindig",
     "wraps",
     "wrapt_getattr",

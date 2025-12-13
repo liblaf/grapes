@@ -8,10 +8,11 @@ from typing import Any, Unpack
 import attrs
 import wadler_lindig as wl
 from asttokens import ASTTokens
-from executing import Source
 
 from liblaf.grapes import magic
 from liblaf.grapes.wadler_lindig import WadlerLindigOptions, pdoc
+
+from ._source import Source
 
 ICON: str = "🍦"
 ICECREAM: int = 15  # between DEBUG (10) and INFO (20)

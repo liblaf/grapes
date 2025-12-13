@@ -1,11 +1,9 @@
-from __future__ import annotations
-
 import functools
 from collections.abc import Callable
 from typing import Unpack, overload
 
 import attrs
-import environs
+import environs.types
 
 from liblaf.grapes.sentinel import MISSING
 

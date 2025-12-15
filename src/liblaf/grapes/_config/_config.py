@@ -5,6 +5,7 @@ from ._joblib import ConfigJoblib
 from ._logging import ConfigLogging
 from ._pretty import ConfigPretty
 from ._traceback import ConfigTraceback
+from ._warnings import ConfigWarnings
 
 
 class Config(BaseConfig):
@@ -12,6 +13,7 @@ class Config(BaseConfig):
     logging: ConfigLogging = conf.group()
     pretty: ConfigPretty = conf.group()
     traceback: ConfigTraceback = conf.group()
+    warnings: ConfigWarnings = conf.group()
 
 
 config: Config = Config()

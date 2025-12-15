@@ -1,8 +1,8 @@
 from . import (
     attrs,
     bench,
+    compat,
     conf,
-    deprecated,
     deps,
     errors,
     functools,
@@ -21,7 +21,7 @@ from . import (
 from ._config import config
 from ._version import __version__, __version_tuple__
 from .bench import Bencher, BenchResults
-from .deprecated import contains, getitem
+from .compat import contains, getitem
 from .deps import optional_deps
 from .errors import (
     DispatchLookupError,
@@ -73,11 +73,11 @@ __all__ = [
     "auto_rich_repr",
     "bench",
     "cache_iter",
+    "compat",
     "conf",
     "config",
     "contains",
     "dec_hook",
-    "deprecated",
     "deps",
     "enc_hook",
     "entrypoint",

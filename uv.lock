@@ -857,15 +857,15 @@ wheels = [
 
 [[package]]
 name = "griffe-fieldz"
-version = "0.3.0"
+version = "0.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "fieldz" },
     { name = "griffe" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c5/6a/94754bf39fd63ba424c667b2abf0ade78e3878e223591d1fb9c3e8a77bce/griffe_fieldz-0.3.0.tar.gz", hash = "sha256:42e7707dac51d38e26fb7f3f7f51429da9b47e98060bfeb81a4287456d5b8a89", size = 10149, upload-time = "2025-07-30T21:43:10.042Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/3b/aa/eb58d641261f5222651db86976439dccde5dadeda42fb8c3445b1c85b7cc/griffe_fieldz-0.4.0.tar.gz", hash = "sha256:91d25a8199df4be8a5175556d9d8e6f43ef45cf5e93e52b8babfe4cf1037d5ff", size = 13283, upload-time = "2025-12-07T01:55:01.323Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/4d/33/cc527c11132a6274724a04938d50e1ff2b54a5f5943cd0480427571e1adb/griffe_fieldz-0.3.0-py3-none-any.whl", hash = "sha256:52e02fdcbdf6dea3c8c95756d1e0b30861569f871d19437fda702776fde4e64d", size = 6577, upload-time = "2025-07-30T21:43:09.073Z" },
+    { url = "https://files.pythonhosted.org/packages/af/68/b7aa4caf9567863908b3b928e3ec141787044e3392d429e5b453f70bbfa4/griffe_fieldz-0.4.0-py3-none-any.whl", hash = "sha256:92b7ed3fd86c1da35b2851a272913ef27439c9cc3c232c15cab7eda34d2a51ad", size = 9087, upload-time = "2025-12-07T01:54:59.924Z" },
 ]
 
 [[package]]
@@ -1094,11 +1094,11 @@ wheels = [
 
 [[package]]
 name = "joblib"
-version = "1.5.2"
+version = "1.5.3"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/e8/5d/447af5ea094b9e4c4054f82e223ada074c552335b9b4b2d14bd9b35a67c4/joblib-1.5.2.tar.gz", hash = "sha256:3faa5c39054b2f03ca547da9b2f52fde67c06240c31853f306aea97f13647b55", size = 331077, upload-time = "2025-08-27T12:15:46.575Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/41/f2/d34e8b3a08a9cc79a50b2208a93dce981fe615b64d5a4d4abee421d898df/joblib-1.5.3.tar.gz", hash = "sha256:8561a3269e6801106863fd0d6d84bb737be9e7631e33aaed3fb9ce5953688da3", size = 331603, upload-time = "2025-12-15T08:41:46.427Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1e/e8/685f47e0d754320684db4425a0967f7d3fa70126bffd76110b7009a0090f/joblib-1.5.2-py3-none-any.whl", hash = "sha256:4e1f0bdbb987e6d843c70cf43714cb276623def372df3c22fe5266b2670bc241", size = 308396, upload-time = "2025-08-27T12:15:45.188Z" },
+    { url = "https://files.pythonhosted.org/packages/7b/91/984aca2ec129e2757d1e4e3c81c3fcda9d0f85b74670a094cc443d9ee949/joblib-1.5.3-py3-none-any.whl", hash = "sha256:5fc3c5039fc5ca8c0276333a188bbd59d6b7ab37fe6632daa76bc7f9ec18e713", size = 309071, upload-time = "2025-12-15T08:41:44.973Z" },
 ]
 
 [[package]]
@@ -1305,7 +1305,7 @@ test = [
 
 [[package]]
 name = "liblaf-mkdocs-preset"
-version = "0.3.0"
+version = "0.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "griffe-fieldz" },
@@ -1325,9 +1325,9 @@ dependencies = [
     { name = "pymdown-extensions" },
     { name = "ruff" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/01/68/2e3314fde82f7462af410ea57437912b84af61a79edd2ed46aa8ea1773a5/liblaf_mkdocs_preset-0.3.0.tar.gz", hash = "sha256:4038a70e1dd321e59f7de01e665a07839e91db262ef4233a39283e5431ea10a9", size = 4483, upload-time = "2025-12-05T11:23:54.699Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/72/57/bc26f64d0b02e190d48942c72d3adbfe0c0f5dda2bf0513b810e438b8a8e/liblaf_mkdocs_preset-0.3.1.tar.gz", hash = "sha256:b02fd7748e64cfb01ae0a6912cf1c45eb63e0eea6f2be219b3dd00368f1b5d76", size = 4476, upload-time = "2025-12-14T01:05:19.894Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/40/ed/da84b65460914e9f6c2d5f5ee790fcbbd17d2c36ff47e63f891cac177628/liblaf_mkdocs_preset-0.3.0-py3-none-any.whl", hash = "sha256:18ff0bef3cbdd0454bf3de64a9bbef64bed8a4b08427f560d7c88f8733d17c5d", size = 3855, upload-time = "2025-12-05T11:23:53.308Z" },
+    { url = "https://files.pythonhosted.org/packages/4b/83/bcc94c48fd6a43f1b9eec0a05087238e069af8f196b28b81a72da369fd68/liblaf_mkdocs_preset-0.3.1-py3-none-any.whl", hash = "sha256:2c4a726b98b17b9e22cf0b7583a0f7daefabb0f5661c146c4e78208fea999a50", size = 3853, upload-time = "2025-12-14T01:05:18.767Z" },
 ]
 
 [[package]]
@@ -2172,15 +2172,15 @@ wheels = [
 
 [[package]]
 name = "pymdown-extensions"
-version = "10.19"
+version = "10.19.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "markdown" },
     { name = "pyyaml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/1f/4e/e73e88f4f2d0b26cbd2e100074107470984f0a6055869805fc181b847ac7/pymdown_extensions-10.19.tar.gz", hash = "sha256:01bb917ea231f9ce14456fa9092cdb95ac3e5bd32202a3ee61dbd5ad2dd9ef9b", size = 847701, upload-time = "2025-12-11T18:20:46.093Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/72/2d/9f30cee56d4d6d222430d401e85b0a6a1ae229819362f5786943d1a8c03b/pymdown_extensions-10.19.1.tar.gz", hash = "sha256:4969c691009a389fb1f9712dd8e7bd70dcc418d15a0faf70acb5117d022f7de8", size = 847839, upload-time = "2025-12-14T17:25:24.42Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d4/56/fa9edaceb3805e03ac9faf68ca1ddc660a75b49aee5accb493511005fef5/pymdown_extensions-10.19-py3-none-any.whl", hash = "sha256:dc5f249fc3a1b6d8a6de4634ba8336b88d0942cee75e92b18ac79eaf3503bf7c", size = 266670, upload-time = "2025-12-11T18:20:44.736Z" },
+    { url = "https://files.pythonhosted.org/packages/fb/35/b763e8fbcd51968329b9adc52d188fc97859f85f2ee15fe9f379987d99c5/pymdown_extensions-10.19.1-py3-none-any.whl", hash = "sha256:e8698a66055b1dc0dca2a7f2c9d0ea6f5faa7834a9c432e3535ab96c0c4e509b", size = 266693, upload-time = "2025-12-14T17:25:22.999Z" },
 ]
 
 [[package]]
@@ -2617,11 +2617,11 @@ wheels = [
 
 [[package]]
 name = "tzdata"
-version = "2025.2"
+version = "2025.3"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/95/32/1a225d6164441be760d75c2c42e2780dc0873fe382da3e98a2e1e48361e5/tzdata-2025.2.tar.gz", hash = "sha256:b60a638fcc0daffadf82fe0f57e53d06bdec2f36c4df66280ae79bce6bd6f2b9", size = 196380, upload-time = "2025-03-23T13:54:43.652Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/5e/a7/c202b344c5ca7daf398f3b8a477eeb205cf3b6f32e7ec3a6bac0629ca975/tzdata-2025.3.tar.gz", hash = "sha256:de39c2ca5dc7b0344f2eba86f49d614019d29f060fc4ebc8a417896a620b56a7", size = 196772, upload-time = "2025-12-13T17:45:35.667Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/5c/23/c7abc0ca0a1526a0774eca151daeb8de62ec457e77262b66b359c3c7679e/tzdata-2025.2-py2.py3-none-any.whl", hash = "sha256:1a403fada01ff9221ca8044d701868fa132215d84beb92242d9acd2147f667a8", size = 347839, upload-time = "2025-03-23T13:54:41.845Z" },
+    { url = "https://files.pythonhosted.org/packages/c7/b0/003792df09decd6849a5e39c28b513c06e84436a54440380862b5aeff25d/tzdata-2025.3-py2.py3-none-any.whl", hash = "sha256:06a47e5700f3081aab02b2e513160914ff0694bce9947d6b76ebd6bf57cfc5d1", size = 348521, upload-time = "2025-12-13T17:45:33.889Z" },
 ]
 
 [[package]]

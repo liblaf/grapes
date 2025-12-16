@@ -2,6 +2,7 @@ from typing import Any, Unpack
 
 import tlz
 import wadler_lindig as wl
+from rich.repr import RichReprResult
 
 from liblaf.grapes.wadler_lindig._typing import WadlerLindigOptions
 
@@ -11,10 +12,13 @@ def pdoc_rich_repr(
 ) -> wl.AbstractDoc | None:
     if not hasattr(obj, "__rich_repr__"):
         return None
+    repr_result: RichReprResult | None = obj.__rich_repr__()
+    if repr_result is None:
+        return None
     cls: type = type(obj)
     args: list[Any] = []
     pairs: list[tuple[str, Any]] = []
-    for field in obj.__rich_repr__():
+    for field in repr_result:
         name: str
         value: Any
         default: Any

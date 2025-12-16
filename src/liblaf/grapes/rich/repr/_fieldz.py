@@ -2,17 +2,32 @@ from collections.abc import Generator
 from typing import Any
 
 import fieldz
+import wadler_lindig as wl
 import wrapt
 from rich.repr import RichReprResult
 
 from liblaf.grapes.sentinel import MISSING
-from liblaf.grapes.typing import is_array
 from liblaf.grapes.wadler_lindig import pformat
 
 
-class ReprWrapper(wrapt.ObjectProxy):
+class ReprWrapper(wrapt.ObjectProxy):  # noqa: PLW1641
     def __repr__(self) -> str:
         return pformat(self.__wrapped__)
+
+    def __eq__(self, value: object) -> bool:
+        return self is value
+
+    def __pdoc__(self, **kwargs) -> wl.AbstractDoc | None:
+        try:
+            return self.__wrapped__.__pdoc__(**kwargs)
+        except AttributeError:
+            return None
+
+    def __rich_repr__(self) -> RichReprResult | None:
+        try:
+            return self.__wrapped__.__rich_repr__()
+        except AttributeError:
+            return None
 
 
 def rich_repr_fieldz(obj: object) -> RichReprResult:
@@ -24,9 +39,7 @@ def rich_repr_fieldz(obj: object) -> RichReprResult:
 
 
 def wraps_repr[T](obj: T) -> T:
-    if is_array(obj):
-        return ReprWrapper(obj)  # pyright: ignore[reportReturnType]
-    return obj
+    return ReprWrapper(obj)  # pyright: ignore[reportReturnType]
 
 
 def _iter_fieldz(obj: object) -> Generator[tuple[str, Any, Any]]:

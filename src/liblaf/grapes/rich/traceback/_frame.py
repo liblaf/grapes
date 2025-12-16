@@ -13,6 +13,7 @@ from rich.syntax import Syntax
 from rich.text import Text
 
 from liblaf.grapes import magic
+from liblaf.grapes._config import config
 from liblaf.grapes.rich.repr import wraps_repr
 
 from ._options import RichTracebackOptions
@@ -149,13 +150,14 @@ class RichFrameSummary:
         if not locals_:
             return
         locals_ = tlz.valmap(wraps_repr, locals_)
-        yield render_scope(
-            locals_,
-            title="locals",
-            indent_guides=options.indent_guide,
-            max_length=options.locals_max_length,
-            max_string=options.locals_max_string,
-        )
+        with config.pretty.indent.overrides(4):
+            yield render_scope(
+                locals_,
+                title="locals",
+                indent_guides=options.indent_guide,
+                max_length=options.locals_max_length,
+                max_string=options.locals_max_string,
+            )
 
 
 def _not_dunder(key: str) -> bool:

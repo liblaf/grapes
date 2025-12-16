@@ -15,8 +15,8 @@ def define(maybe_cls: type | None = None, **kwargs) -> Any:
     cls: type = maybe_cls
     auto_detect: bool = kwargs.get("auto_detect", True)
     repr_: bool | None = kwargs.get("repr")
-    if auto_detect and repr_ is None and cls.__repr__ is object.__repr__:
-        repr_ = True
+    if auto_detect and repr_ is None:
+        repr_ = cls.__repr__ is object.__repr__
     if repr_:
         cls.__repr__ = pformat  # pyright: ignore[reportAttributeAccessIssue]
         kwargs["repr"] = False

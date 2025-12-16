@@ -19,7 +19,7 @@ def define(maybe_cls: type | None = None, **kwargs) -> Any:
         repr_ = cls.__repr__ is object.__repr__
     if repr_:
         cls.__repr__ = pformat  # pyright: ignore[reportAttributeAccessIssue]
-        kwargs["repr"] = False
+    kwargs["repr"] = False
     if not hasattr(cls, "__pdoc__"):
         if hasattr(cls, "__rich_repr__"):
             cls.__pdoc__ = pdoc_rich_repr

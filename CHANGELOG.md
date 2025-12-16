@@ -7,6 +7,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.10.1](https://github.com/liblaf/grapes/releases/tag/v8.10.1) - 2025-12-16
+
+### 🐛 Bug Fixes
+
+- **attrs:** Correct automatic `__repr__` detection in `define` - [d6f4230](https://github.com/liblaf/grapes/commit/d6f42304a9290e25d1e31a70e865b4a068c93aea) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [8.10.0](https://github.com/liblaf/grapes/releases/tag/v8.10.0) - 2025-12-15
 
 ### ✨ Features
@@ -15,9 +25,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
-- [@renovate[bot]](https://github.com/apps/renovate) made their first contribution in [#142](https://github.com/liblaf/grapes/pull/142)
-- [@liblaf[bot]](https://github.com/apps/liblaf) made their first contribution in [#136](https://github.com/liblaf/grapes/pull/136)
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
+- [@renovate[bot]](https://github.com/apps/renovate)
 
 ## [8.9.3](https://github.com/liblaf/grapes/releases/tag/v8.9.3) - 2025-12-14
 

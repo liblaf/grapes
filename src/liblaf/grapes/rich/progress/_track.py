@@ -11,7 +11,7 @@ def track[T](
     *,
     progress: Progress | None = None,
 ) -> Iterable[T]:
-    __tracebackhide__ = True
+    _logging_hide = True
     if progress is None:
         progress = Progress()
     with progress:

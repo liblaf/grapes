@@ -6,13 +6,16 @@ from liblaf.grapes._config import config
 
 from ._release_type import is_pre_release
 
-_HIDDEN_FROM_LOGGING_NAMES: tuple[str, ...] = ("rich.progress.",)
+_HIDDEN_FROM_LOGGING_NAMES: tuple[str, ...] = ("logging", "rich.progress.")
 
 
 def hidden_from_logging(frame: types.FrameType | None) -> bool:
     if frame is None:
         return False
-    if _getitem(frame.f_locals, ("__tracebackhide__", "__logging_hide"), default=False):
+    # `__logging_hide` does not work as expected in some cases due to name mangling
+    # `__logging_hide__` will violate Ruff F841
+    # so we use `_logging_hide` here
+    if _getitem(frame.f_locals, ("_logging_hide", "__tracebackhide__"), default=False):
         return True
     name: str = frame.f_globals.get("__name__", "")
     return f"{name}.".startswith(_HIDDEN_FROM_LOGGING_NAMES)
@@ -23,7 +26,7 @@ def hidden_from_traceback(
 ) -> bool:
     if frame is None:
         return False
-    if _getitem(frame.f_locals, ("__tracebackhide__",), default=False):
+    if _getitem(frame.f_locals, ("__tracebackhide__"), default=False):
         return True
     if hide_stable_release is None:
         hide_stable_release = config.traceback.hide_stable_release.get()
@@ -39,9 +42,7 @@ def hidden_from_warnings(
 ) -> bool:
     if frame is None:
         return False
-    if _getitem(
-        frame.f_locals, ("__tracebackhide__", "__warnings_hide"), default=False
-    ):
+    if _getitem(frame.f_locals, ("_warnings_hide", "__tracebackhide__"), default=False):
         return True
     if hide_stable_release is None:
         hide_stable_release = config.traceback.hide_stable_release.get()

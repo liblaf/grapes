@@ -11,7 +11,7 @@ class CleanLogger(logging.Logger):
     pre_level: ClassVar[int | str] = logging.DEBUG
 
     def __init__(self, name: str, level: int | str = logging.NOTSET) -> None:
-        __tracebackhide__ = True
+        _logging_hide = True
         super().__init__(name, level)
         if level != logging.NOTSET:
             return
@@ -20,7 +20,9 @@ class CleanLogger(logging.Logger):
         if module is not None:
             file = getattr(module, "__file__", None)
         if file is None:
-            frame: types.FrameType | None = magic.get_frame(hidden=_is_logging_frame)
+            frame: types.FrameType | None = magic.get_frame(
+                hidden=magic.hidden_from_logging
+            )
             if frame is not None:
                 file = frame.f_code.co_filename
         if magic.is_dev_release(file, name):

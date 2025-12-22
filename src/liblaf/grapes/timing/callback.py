@@ -20,7 +20,7 @@ def log_record(
     *, index: int = -1, level: int | str = LOG_RECORD_DEFAULT_LEVEL
 ) -> Callback: ...
 def log_record(timer: Timings | None = None, /, **kwargs) -> Any:
-    __tracebackhide__ = True
+    _logging_hide = True
     if timer is None:
         return functools.partial(log_record, **kwargs)
     return timer.log_record(**kwargs)
@@ -41,7 +41,7 @@ def log_summary(
     stats: Iterable[StatisticName] = LOG_SUMMARY_DEFAULT_STATISTICS,
 ) -> Callback: ...
 def log_summary(timer: Timings | None = None, /, **kwargs) -> Any:
-    __tracebackhide__ = True
+    _logging_hide = True
     if timer is None:
         return functools.partial(log_summary, **kwargs)
     return timer.log_summary(**kwargs)

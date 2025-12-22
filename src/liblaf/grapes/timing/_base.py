@@ -17,7 +17,7 @@ class BaseTimer(Timings):
         return True
 
     def start(self) -> None:
-        __tracebackhide__ = True
+        _logging_hide = True
         for clock_name in self.clocks:
             self._start_time[clock_name] = clock(clock_name)
         self._stop_time.clear()
@@ -25,7 +25,7 @@ class BaseTimer(Timings):
             self.cb_start(self)
 
     def stop(self) -> None:
-        __tracebackhide__ = True
+        _logging_hide = True
         for clock_name in self.clocks:
             stop_time: float = clock(clock_name)
             self._stop_time[clock_name] = stop_time
@@ -34,6 +34,6 @@ class BaseTimer(Timings):
             self.cb_stop(self)
 
     def finish(self) -> None:
-        __tracebackhide__ = True
+        _logging_hide = True
         if self.cb_finish is not None and self.cb_finish is not NOP:
             self.cb_finish(self)

@@ -12,7 +12,7 @@ def wrapped() -> None:
 
 
 def wrapper() -> None:
-    __tracebackhide__ = True
+    _logging_hide = True
     wrapped()
 
 

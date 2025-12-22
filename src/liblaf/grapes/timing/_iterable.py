@@ -14,7 +14,7 @@ class TimedIterable[T](wrapt.ObjectProxy):
         set_timer(self, timer)
 
     def __iter__(self) -> Generator[T]:
-        __tracebackhide__ = True
+        _logging_hide = True
         timer: BaseTimer = get_timer(self)
         timer.start()
         try:

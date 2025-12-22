@@ -20,7 +20,7 @@ def contains[T](
     *,
     msg: str = _DEPRECATED_MESSAGE,
 ) -> bool:
-    __warnings_hide = True
+    _warnings_hide = True
     if key in obj:
         return True
     for deprecated_key in deprecated_keys:
@@ -41,7 +41,7 @@ def getitem[KT, VT](
     *,
     msg: str = _DEPRECATED_MESSAGE,
 ) -> VT:
-    __warnings_hide = True
+    _warnings_hide = True
     try:
         return obj[key]
     except KeyError:

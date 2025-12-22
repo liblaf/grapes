@@ -14,7 +14,7 @@ from ._iterable import TimedIterable
 class Timer(BaseTimer, contextlib.AbstractContextManager):
     @override  # contextlib.AbstractContextManager
     def __enter__(self) -> Self:
-        __tracebackhide__ = True
+        _logging_hide = True
         self.start()
         return self
 
@@ -26,7 +26,7 @@ class Timer(BaseTimer, contextlib.AbstractContextManager):
         traceback: types.TracebackType | None,
         /,
     ) -> None:
-        __tracebackhide__ = True
+        _logging_hide = True
         self.stop()
 
     @overload

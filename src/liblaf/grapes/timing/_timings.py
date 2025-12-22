@@ -68,7 +68,7 @@ class Timings:
         level: int = LOG_RECORD_DEFAULT_LEVEL,
         limits: str | limits.RateLimitItem | None = "1/second",
     ) -> None:
-        __tracebackhide__ = True
+        _logging_hide = True
         autolog.log(level, self.pretty_record(index=index), extra={"limits": limits})
 
     def log_summary(
@@ -77,7 +77,7 @@ class Timings:
         level: int = LOG_SUMMARY_DEFAULT_LEVEL,
         stats: Iterable[StatisticName] = LOG_SUMMARY_DEFAULT_STATISTICS,
     ) -> None:
-        __tracebackhide__ = True
+        _logging_hide = True
         autolog.log(
             level,
             self.pretty_summary(stats=stats),

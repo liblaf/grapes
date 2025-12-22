@@ -82,14 +82,14 @@ class Progress(RichProgress):
 
     @override
     def advance(self, task_id: TaskID, advance: float = 1) -> None:
-        __tracebackhide__ = True
+        _logging_hide = True
         self.updated = True
         super().advance(task_id, advance)
         self.refresh()
 
     @override
     def refresh(self, *, force: bool = False) -> None:
-        __tracebackhide__ = True
+        _logging_hide = True
         if self.updated and (force or self.limiter.hit(self.limit)):
             self.updated = False
             self.logger.info(self.get_renderable())
@@ -106,7 +106,7 @@ class Progress(RichProgress):
         description: str | None = None,
         **fields: Any,
     ) -> None:
-        __tracebackhide__ = True
+        _logging_hide = True
         self.updated = True
         super().reset(
             task_id,
@@ -124,7 +124,7 @@ class Progress(RichProgress):
 
     @override
     def stop(self) -> None:
-        __tracebackhide__ = True
+        _logging_hide = True
         self.refresh(force=True)
 
     @override
@@ -140,7 +140,7 @@ class Progress(RichProgress):
         refresh: bool = False,
         **fields: Any,
     ) -> None:
-        __tracebackhide__ = True
+        _logging_hide = True
         self.updated = True
         super().update(
             task_id,

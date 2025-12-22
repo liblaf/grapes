@@ -20,7 +20,7 @@ def timed_callable[**P, T](func: Callable[P, T], timer: BaseTimer) -> Callable[P
         args: tuple[Any, ...],
         kwargs: dict[str, Any],
     ) -> T:
-        __tracebackhide__ = True
+        _logging_hide = True
         timer.start()
         try:
             return wrapped(*args, **kwargs)

@@ -7,6 +7,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.10.4](https://github.com/liblaf/grapes/releases/tag/v8.10.4) - 2025-12-22
+
+### 🐛 Bug Fixes
+
+- **logging:** standardize traceback hiding mechanism across modules - [1d24ee0](https://github.com/liblaf/grapes/commit/1d24ee0c5579b38197585360bd551e9d77cffa29) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@renovate[bot]](https://github.com/apps/renovate) made their first contribution in [#149](https://github.com/liblaf/grapes/pull/149)
+- [@liblaf[bot]](https://github.com/apps/liblaf) made their first contribution in [#148](https://github.com/liblaf/grapes/pull/148)
+
 ## [8.10.3](https://github.com/liblaf/grapes/releases/tag/v8.10.3) - 2025-12-16
 
 ### 🐛 Bug Fixes
@@ -15,7 +27,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [8.10.2](https://github.com/liblaf/grapes/releases/tag/v8.10.2) - 2025-12-16
 

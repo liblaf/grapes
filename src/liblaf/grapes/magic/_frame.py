@@ -15,7 +15,7 @@ def hidden_from_logging(frame: types.FrameType | None) -> bool:
     # `__logging_hide` does not work as expected in some cases due to name mangling
     # `__logging_hide__` will violate Ruff F841
     # so we use `_logging_hide` here
-    if _getitem(frame.f_locals, ("_logging_hide", "__tracebackhide__"), default=False):
+    if _getitem(frame.f_locals, ("_logging_hide", "__tracebackhide__")):
         return True
     name: str = frame.f_globals.get("__name__", "")
     return f"{name}.".startswith(_HIDDEN_FROM_LOGGING_NAMES)
@@ -26,7 +26,7 @@ def hidden_from_traceback(
 ) -> bool:
     if frame is None:
         return False
-    if _getitem(frame.f_locals, ("__tracebackhide__"), default=False):
+    if _getitem(frame.f_locals, ("__tracebackhide__",)):
         return True
     if hide_stable_release is None:
         hide_stable_release = config.traceback.hide_stable_release.get()
@@ -42,7 +42,7 @@ def hidden_from_warnings(
 ) -> bool:
     if frame is None:
         return False
-    if _getitem(frame.f_locals, ("_warnings_hide", "__tracebackhide__"), default=False):
+    if _getitem(frame.f_locals, ("_warnings_hide", "__tracebackhide__")):
         return True
     if hide_stable_release is None:
         hide_stable_release = config.traceback.hide_stable_release.get()
@@ -82,10 +82,12 @@ def get_frame_with_stacklevel(
     return frame, stacklevel
 
 
-def _getitem[KT, VT](obj: Mapping[KT, VT], keys: Iterable[KT], default: VT) -> VT:
+def _getitem[KT, VT](
+    obj: Mapping[KT, VT], keys: Iterable[KT], *, default: bool = False
+) -> bool:
     for key in keys:
         try:
-            return obj[key]
-        except KeyError:
+            return bool(obj[key])
+        except (KeyError, ValueError):
             continue
     return default

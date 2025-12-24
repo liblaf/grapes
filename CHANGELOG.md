@@ -7,6 +7,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.10.5](https://github.com/liblaf/grapes/releases/tag/v8.10.5) - 2025-12-24
+
+### 🐛 Bug Fixes
+
+- **magic:** correct frame hiding logic and improve type safety - [0ee5097](https://github.com/liblaf/grapes/commit/0ee509704d7f0990688a6264f14a9d3347546a34) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [8.10.4](https://github.com/liblaf/grapes/releases/tag/v8.10.4) - 2025-12-22
 
 ### 🐛 Bug Fixes
@@ -15,9 +25,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
-- [@renovate[bot]](https://github.com/apps/renovate) made their first contribution in [#149](https://github.com/liblaf/grapes/pull/149)
-- [@liblaf[bot]](https://github.com/apps/liblaf) made their first contribution in [#148](https://github.com/liblaf/grapes/pull/148)
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
+- [@renovate[bot]](https://github.com/apps/renovate)
 
 ## [8.10.3](https://github.com/liblaf/grapes/releases/tag/v8.10.3) - 2025-12-16
 

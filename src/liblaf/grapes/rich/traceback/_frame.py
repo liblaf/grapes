@@ -14,7 +14,6 @@ from rich.text import Text
 
 from liblaf.grapes import magic
 from liblaf.grapes._config import config
-from liblaf.grapes.rich.repr import wraps_repr
 
 from ._options import RichTracebackOptions
 
@@ -149,7 +148,6 @@ class RichFrameSummary:
             locals_ = tlz.keyfilter(_not_sunder, locals_)
         if not locals_:
             return
-        locals_ = tlz.valmap(wraps_repr, locals_)
         with config.pretty.indent.overrides(4):
             yield render_scope(
                 locals_,

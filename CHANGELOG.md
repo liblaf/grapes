@@ -7,6 +7,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.10.6](https://github.com/liblaf/grapes/releases/tag/v8.10.6) - 2026-01-04
+
+### 🐛 Bug Fixes
+
+- **rich/repr:** remove ReprWrapper and wraps_repr - [7eff04a](https://github.com/liblaf/grapes/commit/7eff04a3fc9817996519b6072c1593afd37ad42a) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@renovate[bot]](https://github.com/apps/renovate) made their first contribution in [#155](https://github.com/liblaf/grapes/pull/155)
+- [@liblaf[bot]](https://github.com/apps/liblaf) made their first contribution in [#154](https://github.com/liblaf/grapes/pull/154)
+
 ## [8.10.5](https://github.com/liblaf/grapes/releases/tag/v8.10.5) - 2025-12-24
 
 ### 🐛 Bug Fixes
@@ -15,7 +27,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [8.10.4](https://github.com/liblaf/grapes/releases/tag/v8.10.4) - 2025-12-22
 

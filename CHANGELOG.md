@@ -7,6 +7,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.10.7](https://github.com/liblaf/grapes/releases/tag/v8.10.7) - 2026-01-06
+
+### 🐛 Bug Fixes
+
+- **logging:** enhance rate limiting with HitArgs and improve progress tracking - [4465605](https://github.com/liblaf/grapes/commit/44656053843c2ee10a2999c791ca7b401f03b269) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [8.10.6](https://github.com/liblaf/grapes/releases/tag/v8.10.6) - 2026-01-04
 
 ### 🐛 Bug Fixes
@@ -15,9 +25,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
-- [@renovate[bot]](https://github.com/apps/renovate) made their first contribution in [#155](https://github.com/liblaf/grapes/pull/155)
-- [@liblaf[bot]](https://github.com/apps/liblaf) made their first contribution in [#154](https://github.com/liblaf/grapes/pull/154)
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
+- [@renovate[bot]](https://github.com/apps/renovate)
 
 ## [8.10.5](https://github.com/liblaf/grapes/releases/tag/v8.10.5) - 2025-12-24
 

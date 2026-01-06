@@ -25,7 +25,7 @@ class Progress(RichProgress):
     limit: limits.RateLimitItem
     limiter: limits.strategies.RateLimiter
     logger: logging.Logger
-    updated: bool = False
+    stale: bool = False
 
     def __init__(
         self,
@@ -83,15 +83,15 @@ class Progress(RichProgress):
     @override
     def advance(self, task_id: TaskID, advance: float = 1) -> None:
         _logging_hide = True
-        self.updated = True
+        self.stale = True
         super().advance(task_id, advance)
         self.refresh()
 
     @override
     def refresh(self, *, force: bool = False) -> None:
         _logging_hide = True
-        if self.updated and (force or self.limiter.hit(self.limit)):
-            self.updated = False
+        if self.stale and (force or self.limiter.hit(self.limit)):
+            self.stale = False
             self.logger.info(self.get_renderable())
 
     @override
@@ -107,7 +107,7 @@ class Progress(RichProgress):
         **fields: Any,
     ) -> None:
         _logging_hide = True
-        self.updated = True
+        self.stale = True
         super().reset(
             task_id,
             start=start,
@@ -141,7 +141,7 @@ class Progress(RichProgress):
         **fields: Any,
     ) -> None:
         _logging_hide = True
-        self.updated = True
+        self.stale = True
         super().update(
             task_id,
             total=total,

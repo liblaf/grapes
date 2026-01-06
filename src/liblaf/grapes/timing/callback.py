@@ -2,22 +2,27 @@ import functools
 from collections.abc import Iterable
 from typing import Any, overload
 
+import limits
+
 from ._statistics import StatisticName
 from ._timings import Callback, Timings
-from .defaults import (
-    LOG_RECORD_DEFAULT_LEVEL,
-    LOG_SUMMARY_DEFAULT_LEVEL,
-    LOG_SUMMARY_DEFAULT_STATISTICS,
-)
 
 
 @overload
 def log_record(
-    timer: Timings, /, *, index: int = -1, level: int | str = LOG_RECORD_DEFAULT_LEVEL
+    timer: Timings,
+    /,
+    *,
+    index: int = ...,
+    level: int | str = ...,
+    limits: str | limits.RateLimitItem | None = ...,
 ) -> Any: ...
 @overload
 def log_record(
-    *, index: int = -1, level: int | str = LOG_RECORD_DEFAULT_LEVEL
+    *,
+    index: int = ...,
+    level: int | str = ...,
+    limits: str | limits.RateLimitItem | None = ...,
 ) -> Callback: ...
 def log_record(timer: Timings | None = None, /, **kwargs) -> Any:
     _logging_hide = True
@@ -31,14 +36,16 @@ def log_summary(
     timer: Timings,
     /,
     *,
-    level: int | str = LOG_SUMMARY_DEFAULT_LEVEL,
-    stats: Iterable[StatisticName] = LOG_SUMMARY_DEFAULT_STATISTICS,
+    level: int | str = ...,
+    stats: Iterable[StatisticName] = ...,
+    limits: str | limits.RateLimitItem | None = ...,
 ) -> None: ...
 @overload
 def log_summary(
     *,
-    level: int | str = LOG_SUMMARY_DEFAULT_LEVEL,
-    stats: Iterable[StatisticName] = LOG_SUMMARY_DEFAULT_STATISTICS,
+    level: int | str = ...,
+    stats: Iterable[StatisticName] = ...,
+    limits: str | limits.RateLimitItem | None = ...,
 ) -> Callback: ...
 def log_summary(timer: Timings | None = None, /, **kwargs) -> Any:
     _logging_hide = True

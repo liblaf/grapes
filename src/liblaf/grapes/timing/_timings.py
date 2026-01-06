@@ -7,6 +7,7 @@ import limits
 
 from liblaf.grapes import pretty
 from liblaf.grapes.logging import autolog
+from liblaf.grapes.logging.filters._limits import HitArgs
 from liblaf.grapes.sentinel import NOP
 
 from ._clock import ClockName, clock
@@ -69,19 +70,29 @@ class Timings:
         limits: str | limits.RateLimitItem | None = "1/second",
     ) -> None:
         _logging_hide = True
-        autolog.log(level, self.pretty_record(index=index), extra={"limits": limits})
+        autolog.log(
+            level,
+            self.pretty_record(index=index),
+            extra={
+                "limits": HitArgs(item=limits, identifiers=(self.label or "Timer",))
+            },
+        )
 
     def log_summary(
         self,
         *,
         level: int = LOG_SUMMARY_DEFAULT_LEVEL,
         stats: Iterable[StatisticName] = LOG_SUMMARY_DEFAULT_STATISTICS,
+        limits: str | limits.RateLimitItem | None = None,
     ) -> None:
         _logging_hide = True
         autolog.log(
             level,
             self.pretty_summary(stats=stats),
-            extra={"markup": self.pretty_summary(stats=stats, rich_markup=True)},
+            extra={
+                "limits": HitArgs(item=limits, identifiers=(self.label or "Timer",)),
+                "markup": self.pretty_summary(stats=stats, rich_markup=True),
+            },
         )
 
     def pretty_record(self, index: int = -1) -> str:

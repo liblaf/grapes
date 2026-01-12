@@ -1,15 +1,18 @@
+from __future__ import annotations
+
 import functools
 from collections.abc import Buffer, Callable
 from pathlib import Path
-from typing import Any, Literal, overload
+from typing import TYPE_CHECKING, Any, Literal, overload
 
 import attrs
 import msgspec
 
-from liblaf.grapes.typing import PathLike
-
 from ._decode import DecHook, PydanticValidateOptions, dec_hook
 from ._encode import EncHook, PydanticDumpOptions, enc_hook
+
+if TYPE_CHECKING:
+    from _typeshed import StrPath
 
 type Decoder = Callable
 type Encoder = Callable
@@ -79,7 +82,7 @@ class Serde:
     @overload
     def load(
         self,
-        path: PathLike,
+        path: StrPath,
         /,
         *,
         dec_hook: DecHook | None = ...,
@@ -89,7 +92,7 @@ class Serde:
     @overload
     def load[T](
         self,
-        path: PathLike,
+        path: StrPath,
         /,
         *,
         dec_hook: DecHook | None = ...,
@@ -100,7 +103,7 @@ class Serde:
     @overload
     def load[T](
         self,
-        path: PathLike,
+        path: StrPath,
         /,
         *,
         dec_hook: DecHook | None = ...,
@@ -108,14 +111,14 @@ class Serde:
         strict: bool = True,
         type: Any,
     ) -> Any: ...
-    def load(self, path: PathLike, /, **kwargs) -> Any:
+    def load(self, path: StrPath, /, **kwargs) -> Any:
         path = Path(path)
         return self.decode(path.read_bytes(), **kwargs)
 
     @overload
     def save(  # pyright: ignore[reportInconsistentOverload]
         self,
-        path: PathLike,
+        path: StrPath,
         obj: Any,
         /,
         *,
@@ -123,7 +126,7 @@ class Serde:
         order: Literal["deterministic", "sorted"] | None = None,
         pydantic: PydanticDumpOptions | None = None,
     ) -> None: ...
-    def save(self, path: PathLike, obj: Any, /, **kwargs) -> None:
+    def save(self, path: StrPath, obj: Any, /, **kwargs) -> None:
         path = Path(path)
         path.write_bytes(self.encode(obj, **kwargs))
 

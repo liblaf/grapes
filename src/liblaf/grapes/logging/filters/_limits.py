@@ -20,7 +20,7 @@ class LimitsFilter:
         args: Any = getattr(record, "limits", None)
         if args is None:
             return True
-        hit_args: HitArgs = _parse_args(args)
+        hit_args: LimitsHitArgs = _parse_args(args)
         if hit_args.item is None:
             return True
         return self.limiter.hit(
@@ -49,7 +49,7 @@ def _(item: limits.RateLimitItem) -> limits.RateLimitItem:
 
 
 @attrs.define
-class HitArgs:
+class LimitsHitArgs:
     item: limits.RateLimitItem | None = attrs.field(converter=_parse_item)
     namespace: Iterable[str] | None = attrs.field(default=None)
     identifiers: Iterable[str] = attrs.field(default=())
@@ -69,15 +69,15 @@ class HitArgs:
 
 
 @functools.singledispatch
-def _parse_args(args: Any) -> HitArgs:
+def _parse_args(args: Any) -> LimitsHitArgs:
     raise ValueError(args)
 
 
 @_parse_args.register(str | limits.RateLimitItem)
-def _(args: str | limits.RateLimitItem) -> HitArgs:
-    return HitArgs(item=args)
+def _(args: str | limits.RateLimitItem) -> LimitsHitArgs:
+    return LimitsHitArgs(item=args)
 
 
-@_parse_args.register(HitArgs)
-def _(args: HitArgs) -> HitArgs:
+@_parse_args.register(LimitsHitArgs)
+def _(args: LimitsHitArgs) -> LimitsHitArgs:
     return args

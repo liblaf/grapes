@@ -32,4 +32,4 @@ class ConfigPretty(BaseConfig):
 
     respect_pdoc: Field[bool] = conf.bool(default=True)
 
-    short_arrays_threshold: Field[int] = conf.int(default=100)
+    short_arrays_threshold: Field[int] = conf.int(default=16)

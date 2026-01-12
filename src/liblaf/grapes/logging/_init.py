@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import logging
-import os
+from typing import TYPE_CHECKING
 
 from liblaf.grapes._config import config
 from liblaf.grapes.rich.logging import RichHandler
@@ -16,8 +16,11 @@ from .helpers import (
     set_default_logger_level_by_release_type,
 )
 
+if TYPE_CHECKING:
+    from _typeshed import StrPath
 
-def init(*, file: str | os.PathLike[str] | None = None, force: bool = False) -> None:
+
+def init(*, file: StrPath | None = None, force: bool = False) -> None:
     if file is None:
         file = config.logging.file.get()
     handlers: list[logging.Handler] = []

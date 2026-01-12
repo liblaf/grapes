@@ -7,7 +7,7 @@ import limits
 
 from liblaf.grapes import pretty
 from liblaf.grapes.logging import autolog
-from liblaf.grapes.logging.filters._limits import HitArgs
+from liblaf.grapes.logging.filters._limits import LimitsHitArgs
 from liblaf.grapes.sentinel import NOP
 
 from ._clock import ClockName, clock
@@ -74,7 +74,9 @@ class Timings:
             level,
             self.pretty_record(index=index),
             extra={
-                "limits": HitArgs(item=limits, identifiers=(self.label or "Timer",))
+                "limits": LimitsHitArgs(
+                    item=limits, identifiers=(self.label or "Timer",)
+                )
             },
         )
 
@@ -90,7 +92,9 @@ class Timings:
             level,
             self.pretty_summary(stats=stats),
             extra={
-                "limits": HitArgs(item=limits, identifiers=(self.label or "Timer",)),
+                "limits": LimitsHitArgs(
+                    item=limits, identifiers=(self.label or "Timer",)
+                ),
                 "markup": self.pretty_summary(stats=stats, rich_markup=True),
             },
         )

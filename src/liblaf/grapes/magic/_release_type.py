@@ -1,14 +1,19 @@
+from __future__ import annotations
+
 import functools
 import importlib.metadata
-import os
 from collections.abc import Hashable
 from importlib.metadata import Distribution, PackagePath
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 import attrs
 import cachetools
 import packaging.version
 from packaging.version import InvalidVersion, Version
+
+if TYPE_CHECKING:
+    from _typeshed import StrPath
 
 
 @attrs.define
@@ -20,7 +25,7 @@ class FilesIndex:
     def add(self, distributuion: Distribution) -> None:
         self._distributions.append(distributuion)
 
-    def has(self, file: str | os.PathLike[str]) -> bool:
+    def has(self, file: StrPath) -> bool:
         file = Path(file).resolve()
         return self._has(str(file))
 
@@ -68,15 +73,13 @@ class FilesIndex:
 
 @attrs.define
 class ReleaseTypeIndex:
-    def is_dev(
-        self, file: str | os.PathLike[str] | None = None, name: str | None = None
-    ) -> bool:
+    def is_dev(self, file: StrPath | None = None, name: str | None = None) -> bool:
         if name == "__main__":
             return True
         return file is not None and self._dev_index.has(file)
 
     def is_pre(
-        self, file: str | os.PathLike[str] | None = None, name: str | None = None
+        self, file: StrPath | None = None, name: str | None = None
     ) -> bool | None:
         if name == "__main__":
             return True
@@ -110,15 +113,11 @@ class ReleaseTypeIndex:
         return dev_index, pre_index
 
 
-def is_dev_release(
-    file: str | os.PathLike[str] | None = None, name: str | None = None
-) -> bool:
+def is_dev_release(file: StrPath | None = None, name: str | None = None) -> bool:
     return _release_type_index.is_dev(file, name)
 
 
-def is_pre_release(
-    file: str | os.PathLike[str] | None = None, name: str | None = None
-) -> bool | None:
+def is_pre_release(file: StrPath | None = None, name: str | None = None) -> bool | None:
     return _release_type_index.is_pre(file, name)
 
 

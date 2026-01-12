@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Any
+
 import attrs
 
 from ._config import BaseConfig
@@ -13,5 +15,5 @@ class GroupEntry[T: BaseConfig](Entry[T]):
         return field.type(f"{prefix}{field.name}")
 
 
-def group[T: BaseConfig]() -> T:  # pyright: ignore[reportInvalidTypeVarUse]
-    return attrs.field(metadata={METADATA_KEY: GroupEntry[T]()})
+def group() -> Any:
+    return attrs.field(metadata={METADATA_KEY: GroupEntry()})

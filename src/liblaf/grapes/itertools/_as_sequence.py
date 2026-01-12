@@ -1,7 +1,8 @@
+import types
 from collections.abc import Sequence
 from typing import Any
 
-from liblaf.grapes.typing import ClassInfo
+type ClassInfo = type | types.UnionType | tuple[ClassInfo, ...]
 
 
 def as_sequence(obj: Any, base_type: ClassInfo | None = (str, bytes)) -> Sequence:

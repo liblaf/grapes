@@ -1,7 +1,8 @@
+import types
 from collections.abc import Iterable
 from typing import Any
 
-from liblaf.grapes.typing import ClassInfo
+type ClassInfo = type | types.UnionType | tuple[ClassInfo, ...]
 
 
 def as_iterable(obj: Any, base_type: ClassInfo | None = (str, bytes)) -> Iterable:

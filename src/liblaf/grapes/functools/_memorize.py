@@ -54,16 +54,16 @@ def memorize(func: Callable | None = None, /, **kwargs: Any) -> Any:
         return functools.partial(memorize, **kwargs)
     memory: joblib.Memory | None = kwargs.pop("memory", None)
     if memory is None:
-        memory = new_memory()
-    cache_kwargs: dict[str, Any] = _filter_keys(
-        kwargs, {"ignore", "verbose", "mmap_mode", "cache_validation_callback"}
+        memory = make_memory()
+    cache_kwargs: dict[str, Any] = pick(
+        {"ignore", "verbose", "mmap_mode", "cache_validation_callback"}, kwargs
     )
-    reduce_size_kwargs: dict[str, Any] = _filter_keys(
-        kwargs, {"bytes_limit", "items_limit", "age_limit"}
+    reduce_size_kwargs: dict[str, Any] = pick(
+        {"bytes_limit", "items_limit", "age_limit"}, kwargs
     )
     reduce_size_kwargs.setdefault("bytes_limit", config.joblib.memory.bytes_limit.get())
 
-    @wrapt.function_wrapper
+    @wrapt.decorator
     def wrapper[**P, T](
         wrapped: Callable[P, T],
         _instance: Any,
@@ -81,9 +81,9 @@ def memorize(func: Callable | None = None, /, **kwargs: Any) -> Any:
 
 
 @functools.cache
-def new_memory() -> joblib.Memory:
+def make_memory() -> joblib.Memory:
     return joblib.Memory(location=config.joblib.memory.location.get())
 
 
-def _filter_keys[KT, VT](mapping: Mapping[KT, VT], keys: Iterable[KT]) -> dict[KT, VT]:
-    return tlz.keyfilter(lambda k: k in keys, mapping)
+def pick[KT, VT](allowlist: Iterable[KT], dictionary: Mapping[KT, VT]) -> dict[KT, VT]:
+    return tlz.keyfilter(lambda k: k in allowlist, dictionary)

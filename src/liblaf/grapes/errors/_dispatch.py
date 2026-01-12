@@ -1,4 +1,5 @@
 from collections.abc import Callable, Mapping, Sequence
+from typing import Any
 
 import attrs
 
@@ -15,7 +16,7 @@ class DispatchLookupError(LookupError):
     params: Params
 
     def __init__(
-        self, func: Callable, args: Sequence = (), kwargs: Mapping = {}
+        self, func: Callable, args: Sequence[Any] = (), kwargs: Mapping[str, Any] = {}
     ) -> None:
         params = Params(args=args, kwargs=kwargs)
         self.__attrs_init__(func=func, params=params)  # pyright: ignore[reportAttributeAccessIssue]

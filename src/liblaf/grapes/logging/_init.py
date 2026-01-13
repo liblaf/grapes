@@ -34,6 +34,7 @@ def init(*, file: StrPath | None = None, force: bool = False) -> None:
     install_excepthook()
     install_unraisablehook()
     logging.basicConfig(handlers=handlers, force=force)
+    logging.captureWarnings(True)  # noqa: FBT003
     logging.getLogger("liblaf").setLevel(logging.DEBUG)
     remove_non_root_stream_handlers()
     set_default_logger_level_by_release_type()

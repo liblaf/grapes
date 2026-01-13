@@ -61,7 +61,11 @@ class RichHandler(logging.Handler):
             self.console.print(exception)
 
     def _render(self, record: logging.LogRecord) -> Generator[RenderableType]:
-        columns: list[Text] = [column.render(record) for column in self.columns]
+        columns: list[Text] = [
+            result
+            for column in self.columns
+            if (result := column.render(record)) is not None
+        ]
         meta: Text = Text(" ").join(columns)
         message: Text = self._render_message(record)
         for line in message.split() or [""]:

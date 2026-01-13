@@ -17,6 +17,7 @@ from . import (
     timing,
     typing,
     wadler_lindig,
+    warnings,
 )
 from ._config import config
 from ._version import __version__, __version_tuple__
@@ -51,6 +52,7 @@ from .serde import dec_hook, enc_hook, json, load, save, toml, yaml
 from .timing import BaseTimer, Timer, get_timer, timer
 from .typing import array_kind, is_array
 from .wadler_lindig import pdoc, pformat, pprint
+from .warnings import warn
 
 __all__ = [
     "MISSING",
@@ -123,6 +125,8 @@ __all__ = [
     "typing",
     "unreachable",
     "wadler_lindig",
+    "warn",
+    "warnings",
     "wraps",
     "wrapt_getattr",
     "wrapt_setattr",

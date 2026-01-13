@@ -7,7 +7,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [8.10.7](https://github.com/liblaf/grapes/releases/tag/v8.10.7) - 2026-01-06
+## [8.11.0](https://github.com/liblaf/grapes/releases/tag/v8.11.0) - 2026-01-13
+
+### ✨ Features
+
+- **warnings, logging, magic, rich:** Introduce configurable warning handling and logging frame hiding - [b394d51](https://github.com/liblaf/grapes/commit/b394d51d0653d6558220df27860f232cb19b35a5) by [@liblaf](https://github.com/liblaf)
+
+### 🐛 Bug Fixes
+
+- **logging:** capture Python warnings in logging system - [642bb52](https://github.com/liblaf/grapes/commit/642bb52fa004928458c95b1c9677e573b296c1ac) by [@liblaf](https://github.com/liblaf)
+
+### ♻ Code Refactoring
+
+- **internal:** Improve type consistency and configuration defaults - [ed9de59](https://github.com/liblaf/grapes/commit/ed9de5977ac07f18e4beb0c10d40ccd4ba6b322b) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf) made their first contribution in [#159](https://github.com/liblaf/grapes/pull/159)
+
+## [8.10.7](https://github.com/liblaf/grapes/releases/tag/v8.10.7) - 2026-01-11
 
 ### 🐛 Bug Fixes
 
@@ -15,7 +34,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [8.10.6](https://github.com/liblaf/grapes/releases/tag/v8.10.6) - 2026-01-04
 

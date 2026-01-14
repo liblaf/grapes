@@ -3,14 +3,13 @@ from __future__ import annotations
 from collections.abc import Container, Iterable
 from typing import TYPE_CHECKING
 
-from liblaf.grapes import magic
-from liblaf.grapes.logging import autolog
+from liblaf.grapes import warnings
 
 if TYPE_CHECKING:
     from _typeshed import SupportsGetItem
 
 
-_DEPRECATED_MESSAGE = "'%s' is deprecated. Please use '%s' instead."
+_DEPRECATED_MESSAGE = "'{deprecated_key}' is deprecated. Please use '{key}' instead."
 
 
 def contains[T](
@@ -25,11 +24,10 @@ def contains[T](
         return True
     for deprecated_key in deprecated_keys:
         if deprecated_key in obj:
-            stacklevel: int
-            _, stacklevel = magic.get_frame_with_stacklevel(
-                hidden=magic.hidden_from_warnings
+            warnings.warn(
+                msg.format_map({"deprecated_key": deprecated_key, "key": key}),
+                DeprecationWarning,
             )
-            autolog.warning(msg, deprecated_key, key, stacklevel=stacklevel)
             return True
     return False
 
@@ -51,10 +49,9 @@ def getitem[KT, VT](
             value: VT = obj[deprecated_key]
         except KeyError:
             continue
-        stacklevel: int
-        _, stacklevel = magic.get_frame_with_stacklevel(
-            hidden=magic.hidden_from_warnings
+        warnings.warn(
+            msg.format_map({"deprecated_key": deprecated_key, "key": key}),
+            DeprecationWarning,
         )
-        autolog.warning(msg, deprecated_key, key, stacklevel=stacklevel)
         return value
     raise KeyError(key)

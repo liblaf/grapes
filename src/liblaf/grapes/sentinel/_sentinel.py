@@ -1,5 +1,13 @@
-# pyright: enableExperimentalFeatures=true
-from typing_extensions import Sentinel
+import enum
+from typing import Final, Literal
 
-MISSING = Sentinel("MISSING")
-NOP = Sentinel("NOP")
+
+class _Missing(enum.Enum):
+    MISSING = enum.auto()
+
+    def __repr__(self) -> str:
+        return f"<{self.name}>"
+
+
+type MissingType = Literal[_Missing.MISSING]
+MISSING: Final[MissingType] = _Missing.MISSING

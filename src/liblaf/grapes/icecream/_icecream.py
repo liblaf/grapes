@@ -23,9 +23,8 @@ class IceCreamDebugger:
     enabled: bool = True
 
     def __call__(self, *args, **kwargs) -> Any:
-        _logging_hide = True
         if self.enabled:
-            frame: types.FrameType | None = magic.get_frame(depth=2, hidden=None)
+            frame: types.FrameType | None = magic.get_frame(depth=2)
             logger: logging.Logger = self._get_logger(frame)
             logger.log(ICECREAM, self._format(args, kwargs, frame), stacklevel=2)
         match len(args):

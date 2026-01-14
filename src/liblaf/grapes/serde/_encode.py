@@ -2,17 +2,16 @@ from __future__ import annotations
 
 import functools
 import os
-from collections.abc import Callable, Mapping
-from typing import Any, Literal, TypedDict
+from collections.abc import Callable
+from typing import TYPE_CHECKING, Any, Literal, TypedDict
 
 import pydantic
 
+if TYPE_CHECKING:
+    from pydantic.main import IncEx
+
+
 type EncHook = Callable[[Any], Any]
-
-
-type IncEx = (
-    set[int] | set[str] | Mapping[int, IncEx | bool] | Mapping[str, IncEx | bool]
-)
 
 
 class PydanticDumpOptions(TypedDict, total=False):

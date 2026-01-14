@@ -5,7 +5,7 @@ import attrs
 
 
 @attrs.define
-class FilterOnce:
+class OnceFilter:
     _history: set[Hashable] = attrs.field(repr=False, init=False, factory=set)
 
     def __call__(self, record: logging.LogRecord) -> bool:

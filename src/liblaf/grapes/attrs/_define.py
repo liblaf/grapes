@@ -12,7 +12,19 @@ from liblaf.grapes.wadler_lindig import pdoc_fieldz, pdoc_rich_repr, pformat
 def define(maybe_cls: type | None = None, **kwargs) -> Any:
     if maybe_cls is None:
         return functools.partial(define, **kwargs)
-    cls: type = maybe_cls
+    cls: type = _preprocess(maybe_cls, **kwargs)
+    return attrs.define(cls, **kwargs)
+
+
+@wraps(attrs.frozen)
+def frozen(maybe_cls: type | None = None, **kwargs) -> Any:
+    if maybe_cls is None:
+        return functools.partial(frozen, **kwargs)
+    cls: type = _preprocess(maybe_cls, **kwargs)
+    return attrs.frozen(cls, **kwargs)
+
+
+def _preprocess[T: type](cls: T, **kwargs) -> T:
     auto_detect: bool = kwargs.get("auto_detect", True)
     repr_: bool | None = kwargs.get("repr")
     if auto_detect and repr_ is None:
@@ -27,4 +39,4 @@ def define(maybe_cls: type | None = None, **kwargs) -> Any:
             cls.__pdoc__ = pdoc_fieldz
     if not hasattr(cls, "__rich_repr__"):
         cls.__rich_repr__ = rich_repr_fieldz
-    return attrs.define(cls, **kwargs)
+    return cls

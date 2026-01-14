@@ -1,10 +1,10 @@
 import warnings
 
-from liblaf.grapes import functools as ft
 from liblaf.grapes import magic
+from liblaf.grapes.functools import wraps
 
 
-@ft.wraps(warnings.warn)
+@wraps(warnings.warn)
 def warn(*args, **kwargs) -> None:
     _warnings_hide = True
     stacklevel: int = kwargs.get("stacklevel", 1)

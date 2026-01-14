@@ -7,7 +7,7 @@ from typing import Any, TypedDict, Unpack, overload
 import attrs
 import environs
 
-from liblaf.grapes.sentinel import MISSING
+from liblaf.grapes.sentinel import MISSING, MissingType
 
 from ._constants import METADATA_KEY
 from ._entry import Entry
@@ -25,7 +25,7 @@ class BaseMethodKwargs(TypedDict, total=False):
 @attrs.define
 class VarEntry[T](Entry[Field[T]]):
     getter: Callable[[str], T]
-    default: T | MISSING = MISSING
+    default: T | MissingType = MISSING
     env: str | None = None
     factory: Callable[[], T] | None = None
 
@@ -74,7 +74,7 @@ class FieldMethod[T]:
     def __call__(
         self,
         *,
-        default: T | MISSING | None = MISSING,
+        default: T | MissingType | None = MISSING,
         env: str | None = None,
         factory: Callable[[], T] | None = None,
         **kwargs: Unpack[BaseMethodKwargs],

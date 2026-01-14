@@ -10,7 +10,7 @@ from ._base import BaseTimer
 def get_timer(wrapper: Any) -> BaseTimer: ...
 @overload
 def get_timer[T](wrapper: Any, default: T) -> BaseTimer | T: ...
-def get_timer(wrapper: Any, default: Any | MISSING = MISSING) -> Any:
+def get_timer(wrapper: Any, default: Any = MISSING) -> Any:
     if default is MISSING:
         return ft.wrapt_getattr(wrapper, "timer")
     return ft.wrapt_getattr(wrapper, "timer", default)

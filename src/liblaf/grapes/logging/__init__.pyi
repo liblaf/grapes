@@ -1,6 +1,6 @@
 from . import filters, handlers, helpers
 from ._init import init
-from .filters import CompositeFilter, LimitsFilter, LimitsHitArgs, as_filter
+from .filters import LimitsFilter, LimitsHitArgs
 from .handlers import RichFileHandler
 from .helpers import (
     CleanLogger,
@@ -15,12 +15,10 @@ from .helpers import (
 
 __all__ = [
     "CleanLogger",
-    "CompositeFilter",
     "LimitsFilter",
     "LimitsHitArgs",
     "LoggerTree",
     "RichFileHandler",
-    "as_filter",
     "autolog",
     "filters",
     "handlers",

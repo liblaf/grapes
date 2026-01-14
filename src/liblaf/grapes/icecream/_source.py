@@ -11,10 +11,11 @@ if TYPE_CHECKING:
 
 
 class Source(executing.Source):
-    @override
-    @classmethod
-    def for_frame(cls, frame: types.FrameType, use_cache: bool = True) -> Self:
-        return super().for_frame(frame, use_cache=use_cache)  # pyright: ignore[reportReturnType]
+    if TYPE_CHECKING:
+
+        @override
+        @classmethod
+        def for_frame(cls, frame: types.FrameType, use_cache: bool = True) -> Self: ...
 
     @override
     @classmethod

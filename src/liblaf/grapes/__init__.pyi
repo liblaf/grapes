@@ -47,7 +47,7 @@ from .pretty import (
 from .rich import get_console
 from .rich.progress import Progress, track
 from .rich.repr import auto_rich_repr
-from .sentinel import MISSING, NOP, nop, not_implemented
+from .sentinel import MISSING, MissingType
 from .serde import dec_hook, enc_hook, json, load, save, toml, yaml
 from .timing import BaseTimer, Timer, get_timer, timer
 from .typing import array_kind, is_array
@@ -56,12 +56,12 @@ from .warnings import warn
 
 __all__ = [
     "MISSING",
-    "NOP",
     "BaseTimer",
     "BenchResults",
     "Bencher",
     "DispatchLookupError",
     "MatchError",
+    "MissingType",
     "Progress",
     "Timer",
     "TodoError",
@@ -100,8 +100,6 @@ __all__ = [
     "logging",
     "magic",
     "memorize",
-    "nop",
-    "not_implemented",
     "optional_deps",
     "pdoc",
     "pformat",

@@ -24,11 +24,7 @@ class PydanticValidateOptions(TypedDict, total=False):
 
 
 def dec_hook(
-    typ: type,
-    obj: Any,
-    /,
-    *,
-    pydantic_options: PydanticValidateOptions | None = None,
+    typ: type, obj: Any, /, *, pydantic_options: PydanticValidateOptions | None = None
 ) -> Any:
     if issubclass(typ, pydantic.BaseModel):
         pydantic_options = pydantic_options or {}

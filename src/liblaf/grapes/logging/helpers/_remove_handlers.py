@@ -9,7 +9,7 @@ def remove_non_root_stream_handlers() -> None:
             continue
         if logger.name == "root":
             continue
-        for handler in logger.handlers[:]:
+        for handler in logger.handlers[:]:  # slice to freeze the list during iteration
             if isinstance(handler, logging.StreamHandler) and (
                 handler.stream is sys.stdout or handler.stream is sys.stderr
             ):

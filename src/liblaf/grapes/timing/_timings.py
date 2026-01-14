@@ -6,9 +6,7 @@ import attrs
 import limits
 
 from liblaf.grapes import pretty
-from liblaf.grapes.logging import autolog
-from liblaf.grapes.logging.filters._limits import LimitsHitArgs
-from liblaf.grapes.sentinel import NOP
+from liblaf.grapes.logging import LimitsHitArgs, autolog
 
 from ._clock import ClockName, clock
 from ._statistics import StatisticName, pretty_statistic
@@ -135,4 +133,4 @@ class Timings:
         return f"{header}\n" + "\n".join(lines)
 
 
-type Callback = Callable[[Timings], None] | NOP
+type Callback = Callable[[Timings], None]

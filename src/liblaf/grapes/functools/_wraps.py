@@ -1,11 +1,13 @@
 import functools
-from collections.abc import Callable
-from typing import Any
+from collections.abc import Callable, Iterable
+from typing import Any, overload
 
 
-def wraps[C: Callable](wrapped: C) -> Callable[[Any], C]:
-    def decorator(wrapper: Any) -> C:
-        wrapper = functools.update_wrapper(wrapper, wrapped)
-        return wrapper
-
-    return decorator
+@overload
+def wraps[C: Callable](  # pyright: ignore[reportInconsistentOverload]
+    wrapped: C,
+    assigned: Iterable[str] = functools.WRAPPER_ASSIGNMENTS,
+    updated: Iterable[str] = functools.WRAPPER_UPDATES,
+) -> Callable[[Any], C]: ...
+def wraps[C: Callable](wrapped: C, *args, **kwargs) -> Callable[[Any], C]:
+    return functools.wraps(wrapped, *args, **kwargs)  # pyright: ignore[reportReturnType]

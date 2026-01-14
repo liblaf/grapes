@@ -1,8 +1,7 @@
 import functools
 import logging
-import types
 from collections.abc import Iterable, Sequence
-from typing import Any
+from typing import Any, overload
 
 import attrs
 import limits
@@ -28,24 +27,20 @@ class LimitsFilter:
         )
 
 
-@functools.singledispatch
+@overload
+def _parse_item(item: None) -> None: ...
+@overload
+def _parse_item(item: str | limits.RateLimitItem) -> limits.RateLimitItem: ...
 def _parse_item(item: str | limits.RateLimitItem | None) -> limits.RateLimitItem | None:
-    raise TypeError(item)
-
-
-@_parse_item.register(types.NoneType)
-def _(_item: None) -> None:
-    return None
-
-
-@_parse_item.register(str)
-def _(item: str) -> limits.RateLimitItem:
-    return limits.parse(item)
-
-
-@_parse_item.register(limits.RateLimitItem)
-def _(item: limits.RateLimitItem) -> limits.RateLimitItem:
-    return item
+    match item:
+        case None:
+            return None
+        case str():
+            return limits.parse(item)
+        case limits.RateLimitItem():
+            return item
+        case _:
+            raise TypeError(item)
 
 
 @attrs.define

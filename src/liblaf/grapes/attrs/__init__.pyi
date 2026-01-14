@@ -1,4 +1,3 @@
-from ._define import define
-from ._metaclass import Attrs, AttrsMeta
+from ._define import define, frozen
 
-__all__ = ["Attrs", "AttrsMeta", "define"]
+__all__ = ["define", "frozen"]

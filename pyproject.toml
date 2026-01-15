@@ -55,6 +55,7 @@ dependencies = [
   "pendulum>=3,<4",
   "platformdirs>=4,<5",
   "pydantic>=2,<3",
+  "quantiphy>=2,<3",
   "rich>=14,<15",
   "toolz>=1,<2",
   "typing-extensions>=4,<5",

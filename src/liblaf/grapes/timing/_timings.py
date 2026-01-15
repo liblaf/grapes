@@ -1,11 +1,10 @@
 import collections
-import warnings
 from collections.abc import Callable, Iterable, Sequence
 
 import attrs
 import limits
 
-from liblaf.grapes import pretty
+from liblaf.grapes import pretty, warnings
 from liblaf.grapes.logging import LimitsHitArgs, autolog
 
 from ._clock import ClockName, clock
@@ -31,11 +30,11 @@ class Timings:
     _stop_time: dict[ClockName, float] = attrs.field(factory=dict, init=False)
 
     def __attrs_post_init__(self) -> None:
+        _warnings_hide = True
         if self.label is None and self.name is not None:
             warnings.warn(
-                "'name' parameter is deprecated (Use 'label' instead)",
+                "'name' parameter is deprecated. Please use 'label' instead.",
                 DeprecationWarning,
-                stacklevel=4,
             )
             self.label = self.name
 
@@ -113,7 +112,7 @@ class Timings:
         rich_markup: bool = False,
     ) -> str:
         name: str = self.label or "Timer"
-        header: str = f"{name} (calls: {len(self)})"
+        header: str = f"{name} (count: {len(self)})"
         if len(self) == 0:
             return header
         lines: list[str] = []

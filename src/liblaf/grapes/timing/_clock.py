@@ -26,7 +26,6 @@ CLOCK_REGISTRY["process"] = time.process_time
 CLOCK_REGISTRY["thread"] = time.thread_time
 CLOCK_REGISTRY["time"] = time.time
 
-
 CLOCK_REGISTRY["children-system"] = lambda: os.times().children_system
 CLOCK_REGISTRY["children-user"] = lambda: os.times().children_user
 CLOCK_REGISTRY["elapsed"] = lambda: os.times().elapsed

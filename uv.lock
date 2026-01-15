@@ -1223,6 +1223,7 @@ dependencies = [
     { name = "pendulum" },
     { name = "platformdirs" },
     { name = "pydantic" },
+    { name = "quantiphy" },
     { name = "rich" },
     { name = "toolz" },
     { name = "typing-extensions" },
@@ -1276,6 +1277,7 @@ requires-dist = [
     { name = "pendulum", specifier = ">=3,<4" },
     { name = "platformdirs", specifier = ">=4,<5" },
     { name = "pydantic", specifier = ">=2,<3" },
+    { name = "quantiphy", specifier = ">=2,<3" },
     { name = "rich", specifier = ">=14,<15" },
     { name = "toolz", specifier = ">=1,<2" },
     { name = "typing-extensions", specifier = ">=4,<5" },
@@ -2367,6 +2369,15 @@ wheels = [
 ]
 
 [[package]]
+name = "quantiphy"
+version = "2.21"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/34/26/5a14317a74bdd3311963fa45aff8553592117e988a697ccf0d0adfc5be5c/quantiphy-2.21.tar.gz", hash = "sha256:bf8d06ffa7150f69a5c7e3fb4a7a0a535109df85e7c0ab0f39fb317c5c9cafe0", size = 43514, upload-time = "2025-12-26T05:22:52.237Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/27/55/d979f5c13dfd3418c650befc045ada747facb2393be2f39a2744c23032de/quantiphy-2.21-py3-none-any.whl", hash = "sha256:7d145d89a908de38d63c8dc0a8883bc668c85d84ed37fe6535d26cf7c077f69f", size = 43299, upload-time = "2025-12-26T05:22:50.82Z" },
+]
+
+[[package]]
 name = "readme-renderer"
 version = "44.0"
 source = { registry = "https://pypi.org/simple" }
@@ -2558,11 +2569,11 @@ wheels = [
 
 [[package]]
 name = "trove-classifiers"
-version = "2026.1.12.15"
+version = "2026.1.14.14"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/4c/3b/600fa0e35b353a66d1134a233d67feee4d934b7878aef10a21f39b17c6ab/trove_classifiers-2026.1.12.15.tar.gz", hash = "sha256:832a7e89ccc43b64b89f8f9d9150c069ebcd17d2dc68279bc00bb53f2a9ae112", size = 16978, upload-time = "2026-01-12T15:15:10.479Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d8/43/7935f8ea93fcb6680bc10a6fdbf534075c198eeead59150dd5ed68449642/trove_classifiers-2026.1.14.14.tar.gz", hash = "sha256:00492545a1402b09d4858605ba190ea33243d361e2b01c9c296ce06b5c3325f3", size = 16997, upload-time = "2026-01-14T14:54:50.526Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7e/c3/4b74a82b58dbfb0a4dafa8149fc60f20ce5228be5d133ca0c3f2e90f6e7d/trove_classifiers-2026.1.12.15-py3-none-any.whl", hash = "sha256:8832dfbc226fc4df986666b9cb3a018818b1498aeb79f5f66a31a918b47a98f1", size = 14192, upload-time = "2026-01-12T15:15:09.413Z" },
+    { url = "https://files.pythonhosted.org/packages/bb/4a/2e5583e544bc437d5e8e54b47db87430df9031b29b48d17f26d129fa60c0/trove_classifiers-2026.1.14.14-py3-none-any.whl", hash = "sha256:1f9553927f18d0513d8e5ff80ab8980b8202ce37ecae0e3274ed2ef11880e74d", size = 14197, upload-time = "2026-01-14T14:54:49.067Z" },
 ]
 
 [[package]]

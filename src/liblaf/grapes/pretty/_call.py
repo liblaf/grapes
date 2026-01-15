@@ -12,7 +12,7 @@ from ._utils import get_name
 
 @attrs.define
 class PrettyCall:
-    func: Callable
+    func_name: str
     args: Sequence[Any] = ()
     kwargs: Mapping[str, Any] = {}
 
@@ -20,11 +20,10 @@ class PrettyCall:
         return pformat(self)
 
     def __pdoc__(self, **kwargs) -> wl.AbstractDoc:
-        name: str = get_name(self.func)
         params: list[wl.AbstractDoc] = [wl.pdoc(arg, **kwargs) for arg in self.args]
         params += wl.named_objs(self.kwargs.items(), **kwargs)
         return wl.bracketed(
-            begin=wl.TextDoc(name) + wl.TextDoc("("),
+            begin=wl.TextDoc(self.func_name) + wl.TextDoc("("),
             docs=params,
             sep=wl.comma,
             end=wl.TextDoc(")"),
@@ -40,7 +39,7 @@ def pretty_call(
 ) -> str:
     func = inspect.unwrap(func)
     args, kwargs = _bind_safe(func, args, kwargs)
-    return pformat(PrettyCall(func, args, kwargs), **wl_kwargs)
+    return pformat(PrettyCall(get_name(func), args, kwargs), **wl_kwargs)
 
 
 def _bind_safe(

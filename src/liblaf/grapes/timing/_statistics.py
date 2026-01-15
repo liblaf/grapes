@@ -39,18 +39,19 @@ def pretty_statistic(
                 if rich_markup
                 else "mean ± σ"  # noqa: RUF001
             )
+            mantissas: list[str]
+            spacer: str
+            units: str
+            mantissas, spacer, units = pretty.pretty_durations((mean, stdev))
             pretty_mean: str
             pretty_stdev: str
-            unit: str
-            (pretty_mean, pretty_stdev), unit = pretty.pretty_durations((mean, stdev))
+            pretty_mean, pretty_stdev = mantissas
             if rich_markup:
                 pretty_mean = f"[bold green]{pretty_mean}[/bold green]"
                 pretty_stdev = f"[green]{pretty_stdev}[/green]"
-            if unit:
-                if rich_markup:
-                    unit = f"[green]{unit}[/green]"
-                unit = f" {unit}"
-            return pretty_name, f"{pretty_mean} ± {pretty_stdev}{unit}"
+            if units and rich_markup:
+                units = f"[green]{units}[/green]"
+            return pretty_name, f"{pretty_mean} ± {pretty_stdev}{spacer}{units}"
         case "range":
             minimum: float = compute_statistic(series, "min")
             maximum: float = compute_statistic(series, "max")
@@ -59,18 +60,19 @@ def pretty_statistic(
                 if rich_markup
                 else "min … max"
             )
+            mantissas: list[str]
+            spacer: str
+            units: str
+            mantissas, spacer, units = pretty.pretty_durations((minimum, maximum))
             pretty_min: str
             pretty_max: str
-            unit: str
-            (pretty_min, pretty_max), unit = pretty.pretty_durations((minimum, maximum))
+            pretty_min, pretty_max = mantissas
             if rich_markup:
                 pretty_min = f"[cyan]{pretty_min}[/cyan]"
                 pretty_max = f"[magenta]{pretty_max}[/magenta]"
-            if unit:
-                if rich_markup:
-                    unit = f"[magenta]{unit}[/magenta]"
-                unit = f" {unit}"
-            return pretty_name, f"{pretty_min} … {pretty_max}{unit}"
+            if units and rich_markup:
+                units = f"[magenta]{units}[/magenta]"
+            return pretty_name, f"{pretty_min} … {pretty_max}{spacer}{units}"
         case stat_name:
             value: float = compute_statistic(series, stat_name)
             return stat_name, pretty.pretty_duration(value)

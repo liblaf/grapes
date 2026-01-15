@@ -6,8 +6,8 @@ import attrs
 
 @attrs.define
 class Params:
-    args: Sequence = ()
-    kwargs: Mapping = {}
+    args: Sequence[Any] = ()
+    kwargs: Mapping[str, Any] = {}
 
 
 @attrs.define

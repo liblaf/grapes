@@ -23,6 +23,12 @@ class PrettyQuantityComponents(NamedTuple):
 def pretty_quantities(
     values: Iterable[float], unit: str | None = None, *, prec: int = 2, **kwargs
 ) -> PrettyQuantitiesComponents:
+    """.
+
+    Examples:
+        >>> pretty_quantities([0.1234, 0.01234, 0.001234], "s")
+        PrettyQuantitiesComponents(mantissas=['123.', '12.', '1.'], spacer=' ', units='ms')
+    """
     unit_or_sentinel: str = unit or _SENTINEL_UNIT
     components: PrettyQuantityComponents = pretty_quantity_components(
         max(values), unit_or_sentinel, prec=prec, **kwargs
@@ -59,6 +65,14 @@ def pretty_quantities(
 def pretty_quantity(
     value: float, unit: str | None = None, *, prec: int = 2, **kwargs
 ) -> str:
+    """.
+
+    Examples:
+        >>> pretty_quantity(0.1234, "s")
+        '123. ms'
+        >>> pretty_quantity(0.01234, "s")
+        '12.3 ms'
+    """
     spacer: str = _get_spacer(unit)
 
     def number_fmt(whole: str, frac: str, units: str) -> str:

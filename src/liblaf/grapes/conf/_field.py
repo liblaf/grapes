@@ -13,6 +13,29 @@ from liblaf.grapes.sentinel import MISSING, MissingType
 
 @attrs.frozen
 class Field[T]:
+    """.
+
+    Examples:
+        >>> from environs import env
+        >>> a: Field[int] = Field("a", default=0, getter=env.int)
+        >>> a
+        Field(name='a', value=0)
+        >>> a.name
+        'a'
+        >>> a.get()
+        0
+        >>> with a.overrides(1):
+        ...     a.get()
+        1
+        >>> a.get()
+        0
+
+        >>> # using default factory
+        >>> a: Field[int] = Field("a", factory=lambda: 0, getter=env.int)
+        >>> a.get()
+        0
+    """
+
     _var: contextvars.ContextVar[T] = attrs.field(repr=False, alias="var")
 
     def __init__(

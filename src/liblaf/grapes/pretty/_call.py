@@ -37,6 +37,13 @@ def pretty_call(
     kwargs: Mapping[str, Any] = {},
     **wl_kwargs,
 ) -> str:
+    """.
+
+    Examples:
+        >>> def foo(a: int, b: int, c: int = 3): ...
+        >>> print(pretty_call(foo, (1, 2), {"c": 4}))
+        foo(1, 2, 4)
+    """
     func = inspect.unwrap(func)
     args, kwargs = _bind_safe(func, args, kwargs)
     return pformat(PrettyCall(get_name(func), args, kwargs), **wl_kwargs)

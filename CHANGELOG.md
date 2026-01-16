@@ -7,6 +7,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [9.0.0](https://github.com/liblaf/grapes/releases/tag/v9.0.0) - 2026-01-16
+
+### 💥 BREAKING CHANGES
+
+- consolidate sentinel values and streamline core utilities - [076f011](https://github.com/liblaf/grapes/commit/076f0118a6e9ca55d3de21dbb280f16989c6566b) by [@liblaf](https://github.com/liblaf)
+- **(pretty)** The duration_magnitude and pretty_duration_unit
+  functions are removed, and the pretty_duration function now uses
+  different parameters (prec instead of magnitude/significant). - [76b8987](https://github.com/liblaf/grapes/commit/76b89878afe8613862f862329c0b9f25e3187729) by [@liblaf](https://github.com/liblaf)
+
+### 📝 Documentation
+
+- **pretty:** Add docstrings and update type stubs for pretty-printing functions - [ddbde14](https://github.com/liblaf/grapes/commit/ddbde145100bcf1d84a41053d1781ab769f556b9) by [@liblaf](https://github.com/liblaf)
+
+### ♻ Code Refactoring
+
+- **pretty:** replace custom duration formatting with quantiphy-based implementation - [76b8987](https://github.com/liblaf/grapes/commit/76b89878afe8613862f862329c0b9f25e3187729) by [@liblaf](https://github.com/liblaf)
+- consolidate sentinel values and streamline core utilities - [076f011](https://github.com/liblaf/grapes/commit/076f0118a6e9ca55d3de21dbb280f16989c6566b) by [@liblaf](https://github.com/liblaf)
+
+### ✅ Tests
+
+- **conf, compat:** Add comprehensive tests for configuration fields and compatibility operators - [7a04494](https://github.com/liblaf/grapes/commit/7a04494807c46c851c48b87671c48b1e23cb2325) by [@liblaf](https://github.com/liblaf)
+- add comprehensive tests for pretty, rich.progress, and timing modules - [cb371a8](https://github.com/liblaf/grapes/commit/cb371a835403d26e793de7a3f79bf159cd4e6355) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [8.11.0](https://github.com/liblaf/grapes/releases/tag/v8.11.0) - 2026-01-13
 
 ### ✨ Features
@@ -23,8 +50,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
-- [@liblaf[bot]](https://github.com/apps/liblaf) made their first contribution in [#159](https://github.com/liblaf/grapes/pull/159)
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [8.10.7](https://github.com/liblaf/grapes/releases/tag/v8.10.7) - 2026-01-11
 

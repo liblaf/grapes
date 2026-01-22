@@ -7,6 +7,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [9.0.1](https://github.com/liblaf/grapes/releases/tag/v9.0.1) - 2026-01-22
+
+### 🐛 Bug Fixes
+
+- **deps:** update dependency packaging to v26 (#163) - [8e10365](https://github.com/liblaf/grapes/commit/8e103658f2d2eaf6e2fc6948694a3592afdc6abb) by [@renovate[bot]](https://github.com/apps/renovate) in [#163](https://github.com/liblaf/grapes/pull/163)
+
+### ❤️ Contributors
+
+- [@renovate[bot]](https://github.com/apps/renovate) made their first contribution in [#163](https://github.com/liblaf/grapes/pull/163)
+- [@liblaf[bot]](https://github.com/apps/liblaf) made their first contribution in [#162](https://github.com/liblaf/grapes/pull/162)
+
 ## [9.0.0](https://github.com/liblaf/grapes/releases/tag/v9.0.0) - 2026-01-16
 
 ### 💥 BREAKING CHANGES
@@ -32,7 +43,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [8.11.0](https://github.com/liblaf/grapes/releases/tag/v8.11.0) - 2026-01-13
 

@@ -12,7 +12,7 @@ from liblaf.grapes.wadler_lindig import pdoc_fieldz, pdoc_rich_repr, pformat
 def define(maybe_cls: type | None = None, **kwargs) -> Any:
     if maybe_cls is None:
         return functools.partial(define, **kwargs)
-    cls: type = _preprocess(maybe_cls, **kwargs)
+    cls: type = _preprocess(maybe_cls, kwargs)
     return attrs.define(cls, **kwargs)
 
 
@@ -20,11 +20,11 @@ def define(maybe_cls: type | None = None, **kwargs) -> Any:
 def frozen(maybe_cls: type | None = None, **kwargs) -> Any:
     if maybe_cls is None:
         return functools.partial(frozen, **kwargs)
-    cls: type = _preprocess(maybe_cls, **kwargs)
+    cls: type = _preprocess(maybe_cls, kwargs)
     return attrs.frozen(cls, **kwargs)
 
 
-def _preprocess[T: type](cls: T, **kwargs) -> T:
+def _preprocess[T: type](cls: T, kwargs: dict[str, Any]) -> T:
     auto_detect: bool = kwargs.get("auto_detect", True)
     repr_: bool | None = kwargs.get("repr")
     if auto_detect and repr_ is None:

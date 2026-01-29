@@ -4,6 +4,8 @@ from .filters import LimitsFilter, LimitsHitArgs
 from .handlers import RichFileHandler
 from .helpers import (
     CleanLogger,
+    LazyRepr,
+    LazyStr,
     LoggerTree,
     autolog,
     init_levels,
@@ -15,6 +17,8 @@ from .helpers import (
 
 __all__ = [
     "CleanLogger",
+    "LazyRepr",
+    "LazyStr",
     "LimitsFilter",
     "LimitsHitArgs",
     "LoggerTree",

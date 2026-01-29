@@ -1,6 +1,7 @@
 import logging
 import types
 from collections.abc import Generator, Iterable
+from typing import cast
 
 from rich.console import Console, ConsoleRenderable, RenderableType, RichCast
 from rich.highlighter import Highlighter, ReprHighlighter
@@ -90,6 +91,8 @@ class RichHandler(logging.Handler):
 
     def _render_message(self, record: logging.LogRecord) -> Text:
         if markup := getattr(record, "markup", None):
+            if callable(markup):
+                markup = cast("str", markup())
             return Text.from_markup(markup, style="log.message")
         if isinstance(record.msg, (ConsoleRenderable, RichCast)):
             with self.console.capture() as capture:

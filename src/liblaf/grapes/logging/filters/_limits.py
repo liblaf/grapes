@@ -19,12 +19,11 @@ class LimitsFilter:
         args: Any = getattr(record, "limits", None)
         if args is None:
             return True
-        hit_args: LimitsHitArgs = _parse_args(args)
+        hit_args: LimitsHitArgs = _parse_args_cache(args)
         if hit_args.item is None:
             return True
-        return self.limiter.hit(
-            hit_args.item, *hit_args.make_identifiers(record), cost=hit_args.cost
-        )
+        identifiers: Sequence[str] = hit_args.make_identifiers(record)
+        return self.limiter.hit(hit_args.item, *identifiers, cost=hit_args.cost)
 
 
 @overload
@@ -43,7 +42,7 @@ def _parse_item(item: str | limits.RateLimitItem | None) -> limits.RateLimitItem
             raise TypeError(item)
 
 
-@attrs.define
+@attrs.frozen
 class LimitsHitArgs:
     item: limits.RateLimitItem | None = attrs.field(converter=_parse_item)
     namespace: Iterable[str] | None = attrs.field(default=None)
@@ -66,6 +65,9 @@ class LimitsHitArgs:
 @functools.singledispatch
 def _parse_args(args: Any) -> LimitsHitArgs:
     raise ValueError(args)
+
+
+_parse_args_cache = functools.lru_cache(_parse_args)
 
 
 @_parse_args.register(str | limits.RateLimitItem)

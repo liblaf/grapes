@@ -5,7 +5,7 @@ import attrs
 import limits
 
 from liblaf.grapes import pretty, warnings
-from liblaf.grapes.logging import LimitsHitArgs, autolog
+from liblaf.grapes.logging import LazyStr, LimitsHitArgs, autolog
 
 from ._clock import ClockName, clock
 from ._statistics import StatisticName, pretty_statistic
@@ -69,7 +69,8 @@ class Timings:
         _logging_hide = True
         autolog.log(
             level,
-            self.pretty_record(index=index),
+            "%s",
+            LazyStr(lambda: self.pretty_record(index=index)),
             extra={
                 "limits": LimitsHitArgs(
                     item=limits, identifiers=(self.label or "Timer",)
@@ -87,12 +88,13 @@ class Timings:
         _logging_hide = True
         autolog.log(
             level,
-            self.pretty_summary(stats=stats),
+            "%s",
+            LazyStr(lambda: self.pretty_summary(stats=stats)),
             extra={
                 "limits": LimitsHitArgs(
                     item=limits, identifiers=(self.label or "Timer",)
                 ),
-                "markup": self.pretty_summary(stats=stats, rich_markup=True),
+                "markup": lambda: self.pretty_summary(stats=stats, rich_markup=True),
             },
         )
 

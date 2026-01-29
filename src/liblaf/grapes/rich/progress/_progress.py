@@ -90,7 +90,7 @@ class Progress(RichProgress):
     @override
     def refresh(self, *, force: bool = False) -> None:
         _logging_hide = True
-        if self.stale and (force or self.limiter.hit(self.limit)):
+        if self.stale and (self.limiter.hit(self.limit) or force):
             self.stale = False
             self.logger.info(self.get_renderable())
 

@@ -7,6 +7,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [9.1.0](https://github.com/liblaf/grapes/releases/tag/v9.1.0) - 2026-01-29
+
+### ✨ Features
+
+- **logging:** implement lazy evaluation for log messages and markup - [80a16f4](https://github.com/liblaf/grapes/commit/80a16f4ad5794dae63160a0ef6098d878ab0f1ff) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
 ## [9.0.2](https://github.com/liblaf/grapes/releases/tag/v9.0.2) - 2026-01-27
 
 ### 🐛 Bug Fixes
@@ -15,7 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [9.0.1](https://github.com/liblaf/grapes/releases/tag/v9.0.1) - 2026-01-25
 

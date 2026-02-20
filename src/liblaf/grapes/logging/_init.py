@@ -20,12 +20,17 @@ if TYPE_CHECKING:
     from _typeshed import StrPath
 
 
-def init(*, file: StrPath | None = None, force: bool = False) -> None:
+def init(
+    *,
+    file: StrPath | None = None,
+    force: bool = False,
+    time_relative: bool | None = None,
+) -> None:
     if file is None:
         file = config.logging.file.get()
     handlers: list[logging.Handler] = []
     if force or not logging.root.hasHandlers():
-        handlers.append(RichHandler())
+        handlers.append(RichHandler(time_relative=time_relative))
         if file is not None:
             handlers.append(RichFileHandler(file))
         for handler in handlers:

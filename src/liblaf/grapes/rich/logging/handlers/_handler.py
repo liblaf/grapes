@@ -8,6 +8,7 @@ from rich.highlighter import Highlighter, ReprHighlighter
 from rich.text import Text
 
 from liblaf.grapes import pretty
+from liblaf.grapes._config import config
 from liblaf.grapes.rich._get_console import get_console
 from liblaf.grapes.rich.traceback import RichExceptionSummary
 
@@ -19,9 +20,11 @@ from .columns import (
 )
 
 
-def _default_columns() -> list[RichHandlerColumn]:
+def _default_columns(*, time_relative: bool | None = None) -> list[RichHandlerColumn]:
+    if time_relative is None:
+        time_relative = config.logging.time_relative.get()
     return [
-        RichHandlerColumnTime(),
+        RichHandlerColumnTime(relative=time_relative),
         RichHandlerColumnLevel(),
         RichHandlerColumnLocation(),
     ]
@@ -38,9 +41,14 @@ class RichHandler(logging.Handler):
         *,
         columns: Iterable[RichHandlerColumn] | None = None,
         level: int = logging.NOTSET,
+        time_relative: bool | None = None,
     ) -> None:
         super().__init__(level=level)
-        columns = _default_columns() if columns is None else list(columns)
+        columns = (
+            _default_columns(time_relative=time_relative)
+            if columns is None
+            else list(columns)
+        )
         if console is None:
             console = get_console(stderr=True)
         self.columns = columns

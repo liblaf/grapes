@@ -20,11 +20,11 @@ class RichHandlerColumnTime(RichHandlerColumn):
         plain: str = (
             self._render_relative(record)
             if self.relative
-            else self._render_created(record)
+            else self._render_absolute(record)
         )
         return Text(plain, "log.time")
 
-    def _render_created(self, record: LogRecord) -> str:
+    def _render_absolute(self, record: LogRecord) -> str:
         time: DateTime = DateTime.fromtimestamp(record.created)
         return time.format(self.fmt)
 

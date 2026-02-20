@@ -9,6 +9,7 @@ def _default_hide_frame() -> list[str]:
 
 
 class ConfigLogging(BaseConfig):
+    # ref: <https://pendulum.eustace.io/docs/#tokens>
     datefmt: Field[str] = conf.str(default="YYYY-MM-DD HH:mm:ss.SSS", env="LOG_DATEFMT")
     file: Field[Path | None] = conf.path(default=None, env="LOG_FILE")
     hide_frame: Field[list[str]] = conf.list(factory=_default_hide_frame)

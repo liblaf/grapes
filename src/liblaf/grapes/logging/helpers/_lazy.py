@@ -15,10 +15,10 @@ class LazyRepr[**P]:
         self.kwargs = kwargs
 
     def __repr__(self) -> str:
-        return self.value
+        return self.__wrapped__
 
     @functools.cached_property
-    def value(self) -> str:
+    def __wrapped__(self) -> str:
         return self.func(*self.args, **self.kwargs)
 
 
@@ -33,8 +33,8 @@ class LazyStr[**P]:
         self.kwargs = kwargs
 
     def __str__(self) -> str:
-        return self.value
+        return self.__wrapped__
 
     @functools.cached_property
-    def value(self) -> str:
+    def __wrapped__(self) -> str:
         return self.func(*self.args, **self.kwargs)

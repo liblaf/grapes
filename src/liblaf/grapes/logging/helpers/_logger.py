@@ -53,12 +53,3 @@ def set_default_logger_level_by_release_type(
     if pre_level is not None:
         CleanLogger.pre_level = pre_level
     logging.setLoggerClass(CleanLogger)
-
-
-def _is_logging_frame(frame: types.FrameType) -> bool:
-    if frame.f_locals.get("__tracebackhide__", False):
-        return True
-    name: str | None = frame.f_globals.get("__name__")
-    if name is None:
-        return False
-    return name == "logging" or name.startswith("logging.")

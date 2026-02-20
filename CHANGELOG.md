@@ -7,7 +7,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [9.1.0](https://github.com/liblaf/grapes/releases/tag/v9.1.0) - 2026-01-29
+## [9.2.0](https://github.com/liblaf/grapes/releases/tag/v9.2.0) - 2026-02-20
+
+### ✨ Features
+
+- **logging:** add support for file logging and relative time formatting - [6c21cfb](https://github.com/liblaf/grapes/commit/6c21cfb78defb166665ae55a483ac00e0863a4d3) by [@liblaf](https://github.com/liblaf)
+
+### ♻ Code Refactoring
+
+- migrate from cachetools to cachebox - [da0abd3](https://github.com/liblaf/grapes/commit/da0abd36209efc41b7871624d43b7e94647e26b6) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf) made their first contribution in [#167](https://github.com/liblaf/grapes/pull/167)
+
+## [9.1.0](https://github.com/liblaf/grapes/releases/tag/v9.1.0) - 2026-02-01
 
 ### ✨ Features
 
@@ -15,7 +30,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [9.0.2](https://github.com/liblaf/grapes/releases/tag/v9.0.2) - 2026-01-27
 

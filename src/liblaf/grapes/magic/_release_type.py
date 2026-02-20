@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 import attrs
-import cachetools
+import cachebox
 import packaging.version
 from packaging.version import InvalidVersion, Version
 
@@ -29,11 +29,11 @@ class FilesIndex:
         file = Path(file).resolve()
         return self._has(str(file))
 
-    _has_cache: cachetools.Cache[Hashable, bool] = attrs.field(
-        repr=False, init=False, factory=lambda: cachetools.LRUCache(maxsize=1024)
+    _has_cache: cachebox.BaseCacheImpl[Hashable, bool] = attrs.field(
+        repr=False, init=False, factory=lambda: cachebox.LRUCache(maxsize=1024)
     )
 
-    @cachetools.cachedmethod(lambda self: self._has_cache)
+    @cachebox.cached(lambda self: self._has_cache)
     def _has(self, file: str) -> bool:
         if file in self._files:
             return True

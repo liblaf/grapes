@@ -8,6 +8,7 @@ import tlz
 import wrapt
 
 from liblaf.grapes._config import config
+from liblaf.grapes.itertools._toolz import pick
 
 from ._wrapt import wrapt_setattr
 
@@ -52,6 +53,7 @@ def memorize[**P, T](
     age_limit: datetime.timedelta | None = ...,
 ) -> Callable[[Callable[P, T]], MemorizedFunc[P, T]]: ...
 def memorize(func: Callable | None = None, /, **kwargs: Any) -> Any:
+
     if func is None:
         return functools.partial(memorize, **kwargs)
     memory: joblib.Memory | None = kwargs.pop("memory", None)
@@ -85,7 +87,3 @@ def memorize(func: Callable | None = None, /, **kwargs: Any) -> Any:
 @functools.cache
 def make_memory() -> joblib.Memory:
     return joblib.Memory(location=config.joblib.memory.location.get())
-
-
-def pick[KT, VT](allowlist: Iterable[KT], dictionary: Mapping[KT, VT]) -> dict[KT, VT]:
-    return tlz.keyfilter(lambda k: k in allowlist, dictionary)

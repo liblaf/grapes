@@ -20,7 +20,7 @@ from . import (
     warnings,
 )
 from ._config import config
-from ._version import __version__, __version_tuple__
+from ._version import __commit_id__, __version__, __version_tuple__
 from .bench import Bencher, BenchResults
 from .compat import contains, getitem
 from .deps import optional_deps
@@ -33,7 +33,17 @@ from .errors import (
     unreachable,
 )
 from .functools import memorize, wraps, wrapt_getattr, wrapt_setattr
-from .itertools import as_iterable, as_sequence, first_not_none, len_or_none
+from .itertools import (
+    areidentical,
+    as_iterable,
+    as_sequence,
+    compact,
+    first_not_none,
+    keyjoin,
+    len_or_none,
+    omit,
+    pick,
+)
 from .logging import LazyRepr, LazyStr
 from .magic import entrypoint, in_ci
 from .pretty import (
@@ -71,14 +81,17 @@ __all__ = [
     "Timer",
     "TodoError",
     "UnreachableError",
+    "__commit_id__",
     "__version__",
     "__version_tuple__",
+    "areidentical",
     "array_kind",
     "as_iterable",
     "as_sequence",
     "attrs",
     "auto_rich_repr",
     "bench",
+    "compact",
     "compat",
     "conf",
     "config",
@@ -99,14 +112,17 @@ __all__ = [
     "is_array",
     "itertools",
     "json",
+    "keyjoin",
     "len_or_none",
     "load",
     "logging",
     "magic",
     "memorize",
+    "omit",
     "optional_deps",
     "pdoc",
     "pformat",
+    "pick",
     "pprint",
     "pretty",
     "pretty_call",

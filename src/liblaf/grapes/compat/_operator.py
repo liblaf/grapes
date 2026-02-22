@@ -19,6 +19,19 @@ def contains[T](
     *,
     msg: str = _DEPRECATED_MESSAGE,
 ) -> bool:
+    """.
+
+    Examples:
+        >>> import pytest
+        >>> data = {"a": 1, "b": 2}
+        >>> contains(data, "a")
+        True
+        >>> contains(data, "missing")
+        False
+        >>> with pytest.deprecated_call():
+        ...     contains(data, "c", deprecated_keys=["missing", "b"])
+        True
+    """
     _warnings_hide = True
     if key in obj:
         return True
@@ -39,6 +52,19 @@ def getitem[KT, VT](
     *,
     msg: str = _DEPRECATED_MESSAGE,
 ) -> VT:
+    """.
+
+    Examples:
+        >>> import pytest
+        >>> data = {"a": 1, "b": 2}
+        >>> getitem(data, "a")
+        1
+        >>> with pytest.raises(KeyError):
+        ...     getitem(data, "missing")
+        >>> with pytest.deprecated_call():
+        ...     getitem(data, "c", deprecated_keys=["missing", "b"])
+        2
+    """
     _warnings_hide = True
     try:
         return obj[key]

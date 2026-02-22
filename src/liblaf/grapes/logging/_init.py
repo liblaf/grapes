@@ -26,6 +26,11 @@ def init(
     force: bool = False,
     time_relative: bool | None = None,
 ) -> None:
+    """.
+
+    Examples:
+        >>> init()
+    """
     if file is None:
         file = config.logging.file.get()
     handlers: list[logging.Handler] = []

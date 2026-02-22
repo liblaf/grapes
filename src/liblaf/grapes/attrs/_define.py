@@ -1,3 +1,16 @@
+""".
+
+Examples:
+    >>> import attrs
+    >>> @define
+    ... class SomeClass:
+    ...     a_number: int = 42
+    ...     list_of_numbers: list[int] = attrs.Factory(list)
+    >>> obj = SomeClass()
+    >>> obj
+    SomeClass(list_of_numbers=[])
+"""
+
 import functools
 from typing import Any
 

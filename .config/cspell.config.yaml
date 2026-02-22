@@ -57,6 +57,7 @@ words:
   - ruamel
   - sdist
   - serde
+  - sjoerd
   - stdev
   - tombi
   - toolz

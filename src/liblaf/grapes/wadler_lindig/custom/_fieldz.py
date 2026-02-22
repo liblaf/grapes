@@ -1,11 +1,12 @@
 from typing import Any, Unpack
 
 import fieldz
-import tlz
 import wadler_lindig as wl
 
 from liblaf.grapes.sentinel import MISSING
 from liblaf.grapes.wadler_lindig._typing import WadlerLindigOptions
+
+from ._type import pdoc_type
 
 
 def pdoc_fieldz(
@@ -24,12 +25,8 @@ def pdoc_fieldz(
         if kwargs.get("hide_defaults", True) and value is field.default:
             continue
         pairs.append((field.name, value))
-    show_dataclass_module: bool = kwargs.get("show_dataclass_module", False)
-    name_kwargs: dict[str, Any] = tlz.assoc(
-        kwargs, "show_type_module", show_dataclass_module
-    )
     return wl.bracketed(
-        begin=wl.pdoc(cls, **name_kwargs) + wl.TextDoc("("),
+        begin=pdoc_type(cls, dataclass=True, **kwargs) + wl.TextDoc("("),
         docs=wl.named_objs(pairs, **kwargs),
         sep=wl.comma,
         end=wl.TextDoc(")"),

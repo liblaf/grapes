@@ -1,16 +1,23 @@
 from __future__ import annotations
 
+import datetime
+import enum
 import functools
 import types
-from collections.abc import Callable
+from collections.abc import Callable, Mapping
 from typing import TYPE_CHECKING, Any, Unpack, overload
 
+import pydantic
 import wadler_lindig as wl
 
 from liblaf.grapes.wadler_lindig._typing import CustomCallable, WadlerLindigOptions
 
 from ._array import pdoc_array
+from ._datetime import pdoc_datetime
+from ._enum import pdoc_enum
 from ._fieldz import pdoc_fieldz
+from ._mapping import pdoc_mapping
+from ._pydantic import pdoc_pydantic_root_model
 from ._rich_repr import pdoc_rich_repr
 
 if TYPE_CHECKING:
@@ -30,6 +37,10 @@ class PdocCustomDispatcher:
 
         self._dispatcher = dispatcher
         self._registry = []
+        self.register(datetime.date, pdoc_datetime)
+        self.register(enum.Enum, pdoc_enum)
+        self.register(Mapping, pdoc_mapping)
+        self.register(pydantic.RootModel, pdoc_pydantic_root_model)
         self.register(pdoc_array)
         self.register(pdoc_fieldz)
         self.register(pdoc_rich_repr)

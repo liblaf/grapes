@@ -17,7 +17,7 @@ class Field[T]:
 
     Examples:
         >>> from environs import env
-        >>> a: Field[int] = Field("a", default=0, getter=env.int)
+        >>> a = Field("a", default=0, getter=env.int)
         >>> a
         Field(name='a', value=0)
         >>> a.name
@@ -29,9 +29,7 @@ class Field[T]:
         1
         >>> a.get()
         0
-
-        >>> # using default factory
-        >>> a: Field[int] = Field("a", factory=lambda: 0, getter=env.int)
+        >>> a = Field("a", factory=lambda: 0, getter=env.int)
         >>> a.get()
         0
     """

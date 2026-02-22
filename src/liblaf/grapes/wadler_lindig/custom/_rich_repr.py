@@ -1,10 +1,11 @@
 from typing import Any, Unpack
 
-import tlz
 import wadler_lindig as wl
 from rich.repr import RichReprResult
 
 from liblaf.grapes.wadler_lindig._typing import WadlerLindigOptions
+
+from ._type import pdoc_type
 
 
 def pdoc_rich_repr(
@@ -34,12 +35,8 @@ def pdoc_rich_repr(
         else:
             value = field
             args.append(value)
-    show_dataclass_module: bool = kwargs.get("show_dataclass_module", False)
-    name_kwargs: dict[str, Any] = tlz.assoc(
-        kwargs, "show_type_module", show_dataclass_module
-    )
     return wl.bracketed(
-        begin=wl.pdoc(cls, **name_kwargs) + wl.TextDoc("("),
+        begin=pdoc_type(cls, dataclass=True, **kwargs) + wl.TextDoc("("),
         docs=[wl.pdoc(arg, **kwargs) for arg in args] + wl.named_objs(pairs, **kwargs),
         sep=wl.comma,
         end=wl.TextDoc(")"),

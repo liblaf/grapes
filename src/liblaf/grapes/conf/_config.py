@@ -32,6 +32,29 @@ class BaseConfigMeta(type):
 
 
 class BaseConfig(metaclass=BaseConfigMeta):
+    """.
+
+    Examples:
+        >>> from liblaf.grapes import conf
+        >>> class Config(BaseConfig):
+        ...     a: conf.Field[int] = conf.int(default=0)
+        >>> config = Config()
+        >>> config.get()
+        {'a': 0}
+        >>> config.a.get()
+        0
+        >>> with config.a.overrides(1):
+        ...     config.get()
+        {'a': 1}
+        >>> config.get()
+        {'a': 0}
+        >>> with config.overrides(a=1):
+        ...     config.get()
+        {'a': 1}
+        >>> config.get()
+        {'a': 0}
+    """
+
     def __init__(self, name: str = "") -> None:
         kwargs: dict[str, Any] = {}
         cls: type[BaseConfig] = type(self)

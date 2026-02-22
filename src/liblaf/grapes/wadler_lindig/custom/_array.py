@@ -16,6 +16,7 @@ def pdoc_array(
     if kwargs.get("short_arrays") is None:
         with contextlib.suppress(TypeError):
             kwargs["short_arrays"] = size > kwargs.get("short_arrays_threshold", 100)
+    kwargs.pop("custom", None)  # avoid infinite recursion
     return wl.pdoc(obj, **kwargs)
 
 

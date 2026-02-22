@@ -7,7 +7,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [9.2.0](https://github.com/liblaf/grapes/releases/tag/v9.2.0) - 2026-02-20
+## [9.2.1](https://github.com/liblaf/grapes/releases/tag/v9.2.1) - 2026-02-22
+
+### 🐛 Bug Fixes
+
+- **wadler-lindig:** prevent infinite recursion and improve custom printer dispatching - [64158ad](https://github.com/liblaf/grapes/commit/64158ad90b8688d41bd773c88ccc5b90dfb55927) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf)
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+
+## [9.2.0](https://github.com/liblaf/grapes/releases/tag/v9.2.0) - 2026-02-22
 
 ### ✨ Features
 
@@ -19,8 +30,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
-- [@liblaf](https://github.com/liblaf) made their first contribution
-- [@liblaf[bot]](https://github.com/apps/liblaf) made their first contribution in [#167](https://github.com/liblaf/grapes/pull/167)
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+- [@liblaf](https://github.com/liblaf)
 
 ## [9.1.0](https://github.com/liblaf/grapes/releases/tag/v9.1.0) - 2026-02-01
 

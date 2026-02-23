@@ -1,10 +1,9 @@
 import datetime
 import functools
-from collections.abc import Callable, Iterable, Mapping
+from collections.abc import Callable
 from typing import Any, Literal, Protocol, TypedDict, overload
 
 import joblib
-import tlz
 import wrapt
 
 from liblaf.grapes._config import config
@@ -53,7 +52,6 @@ def memorize[**P, T](
     age_limit: datetime.timedelta | None = ...,
 ) -> Callable[[Callable[P, T]], MemorizedFunc[P, T]]: ...
 def memorize(func: Callable | None = None, /, **kwargs: Any) -> Any:
-
     if func is None:
         return functools.partial(memorize, **kwargs)
     memory: joblib.Memory | None = kwargs.pop("memory", None)

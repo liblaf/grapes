@@ -7,6 +7,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [9.3.1](https://github.com/liblaf/grapes/releases/tag/v9.3.1) - 2026-02-23
+
+### 📝 Documentation
+
+- **itertools:** add docstrings and examples to toolz functions - [6351965](https://github.com/liblaf/grapes/commit/6351965bdeb1859e5c74d2dc752be307b5cf90e7) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf)
+
 ## [9.3.0](https://github.com/liblaf/grapes/releases/tag/v9.3.0) - 2026-02-23
 
 ### ✨ Features
@@ -15,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
+- [@liblaf[bot]](https://github.com/apps/liblaf)
 - [@liblaf](https://github.com/liblaf)
 
 ## [9.2.1](https://github.com/liblaf/grapes/releases/tag/v9.2.1) - 2026-02-22

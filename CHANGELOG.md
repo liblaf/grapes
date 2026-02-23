@@ -7,6 +7,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [9.3.0](https://github.com/liblaf/grapes/compare/v9.2.1...v9.3.0) (2026-02-23)
+
+
+### ✨ Features
+
+* **itertools:** add functional utilities from toolz ([fbeeca4](https://github.com/liblaf/grapes/commit/fbeeca4b4c87e0feb70ea2edf8fb714a827d9ac7))
+
 ## [9.2.1](https://github.com/liblaf/grapes/releases/tag/v9.2.1) - 2026-02-22
 
 ### 🐛 Bug Fixes

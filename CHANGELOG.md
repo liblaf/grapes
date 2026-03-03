@@ -7,7 +7,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [9.3.1](https://github.com/liblaf/grapes/releases/tag/v9.3.1) - 2026-02-23
+## [9.3.2](https://github.com/liblaf/grapes/releases/tag/v9.3.2) - 2026-03-03
+
+### 🐛 Bug Fixes
+
+- **deps:** update dependency fieldz to >=0.2,<0.3 (#176) - [1aac757](https://github.com/liblaf/grapes/commit/1aac757b3a5828d09bb299ee22f159c494d81978) by [@renovate[bot]](https://github.com/apps/renovate) in [#176](https://github.com/liblaf/grapes/pull/176)
+- **logging:** suppress verbose IPKernelApp logging - [08aa9c1](https://github.com/liblaf/grapes/commit/08aa9c103526b0a5e9ca84ab2bc31272cba2c89d) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf)
+- [@renovate[bot]](https://github.com/apps/renovate)
+- [@liblaf[bot]](https://github.com/apps/liblaf)
+
+## [9.3.1](https://github.com/liblaf/grapes/releases/tag/v9.3.1) - 2026-03-01
 
 ### 📝 Documentation
 
@@ -15,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
+- [@liblaf[bot]](https://github.com/apps/liblaf)
 - [@liblaf](https://github.com/liblaf)
 
 ## [9.3.0](https://github.com/liblaf/grapes/releases/tag/v9.3.0) - 2026-02-23

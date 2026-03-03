@@ -27,6 +27,7 @@ words:
   - hdlr
   - hynek
   - inlinehilite
+  - ipykernel
   - itertools
   - karan
   - kwargs
@@ -66,7 +67,6 @@ words:
   - trimesh
   - unraisable
   - unraisablehook
-  - unshallow
   - uuidgen
   - venv
   - virtualenv

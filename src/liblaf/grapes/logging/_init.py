@@ -45,6 +45,7 @@ def init(
     install_unraisablehook()
     logging.basicConfig(handlers=handlers, force=force)
     logging.captureWarnings(True)  # noqa: FBT003
+    logging.getLogger("IPKernelApp").setLevel(logging.WARNING)
     logging.getLogger("liblaf").setLevel(logging.DEBUG)
     remove_non_root_stream_handlers()
     set_default_logger_level_by_release_type()

@@ -7,6 +7,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [9.3.3](https://github.com/liblaf/grapes/releases/tag/v9.3.3) - 2026-03-06
+
+### 🐛 Bug Fixes
+
+- **deps:** update dependency lazy-loader to >=0.5,<0.6 (#179) - [f33b6c1](https://github.com/liblaf/grapes/commit/f33b6c1b285e09f2f269ac102c23b4d50918138d) by [@renovate[bot]](https://github.com/apps/renovate) in [#179](https://github.com/liblaf/grapes/pull/179)
+
+### ❤️ Contributors
+
+- [@renovate[bot]](https://github.com/apps/renovate)
+
 ## [9.3.2](https://github.com/liblaf/grapes/releases/tag/v9.3.2) - 2026-03-03
 
 ### 🐛 Bug Fixes
@@ -16,9 +26,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
+- [@liblaf[bot]](https://github.com/apps/liblaf)
 - [@liblaf](https://github.com/liblaf)
 - [@renovate[bot]](https://github.com/apps/renovate)
-- [@liblaf[bot]](https://github.com/apps/liblaf)
 
 ## [9.3.1](https://github.com/liblaf/grapes/releases/tag/v9.3.1) - 2026-03-01
 

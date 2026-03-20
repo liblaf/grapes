@@ -1516,7 +1516,7 @@ dev = [
     { name = "ipykernel", specifier = ">=7,<8" },
     { name = "matplotlib", specifier = ">=3,<4" },
     { name = "numpy", specifier = ">=2,<3" },
-    { name = "toolz-stubs", specifier = ">=0.3,<0.4" },
+    { name = "toolz-stubs", specifier = ">=0.4,<0.5" },
 ]
 docs = [
     { name = "liblaf-mkdocs-preset", specifier = ">=0.3,<0.4" },
@@ -2938,15 +2938,15 @@ wheels = [
 
 [[package]]
 name = "toolz-stubs"
-version = "0.3.1"
+version = "0.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "toolz" },
     { name = "typing-extensions", marker = "python_full_version < '3.13'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ee/98/6690a4f68c4eba338efcc03c22f91a866036987ef20f6c2378d2e67dc129/toolz_stubs-0.3.1.tar.gz", hash = "sha256:277946eaafdd1d52cfd003fdfa08b485e9196af43bf800c6094a5a2b880fe1b0", size = 62947, upload-time = "2026-01-08T12:48:30.531Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/43/fd/2c97773a69f6ccca3be1f843ce2151ed9fe4ee9989bb0e9b01b226b83871/toolz_stubs-0.4.0.tar.gz", hash = "sha256:d32a2054cd299905232400bcde934e9012538eff3455c7b13b04befbf4aa73ac", size = 64848, upload-time = "2026-03-11T09:26:05.181Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/39/6d/457d956e8d9dae766d821444d10cbdbd4760a02e6e5be7c2b06a72a7521f/toolz_stubs-0.3.1-py3-none-any.whl", hash = "sha256:807cefdb67120e495bfc141af856391990b487391b4e8fda8fb06e2b9a04b9bf", size = 66920, upload-time = "2026-01-08T12:48:28.962Z" },
+    { url = "https://files.pythonhosted.org/packages/76/4f/c27310714b65079b64b6e1667c7cb7689bfedb54e436b54e2c6f79b0ef6d/toolz_stubs-0.4.0-py3-none-any.whl", hash = "sha256:4eaa97b55a981de6af44b2739c17cc4a102fac32a0284789d77c36b4fa6c6c44", size = 68117, upload-time = "2026-03-11T09:26:03.705Z" },
 ]
 
 [[package]]

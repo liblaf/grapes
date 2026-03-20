@@ -7,7 +7,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [9.3.3](https://github.com/liblaf/grapes/releases/tag/v9.3.3) - 2026-03-06
+## [9.3.4](https://github.com/liblaf/grapes/releases/tag/v9.3.4) - 2026-03-20
+
+### 🐛 Bug Fixes
+
+- **deps:** update dependency attrs to v26 (#185) - [30f30c5](https://github.com/liblaf/grapes/commit/30f30c5d41c916415af48c2ad179b64398499225) by [@renovate[bot]](https://github.com/apps/renovate) in [#185](https://github.com/liblaf/grapes/pull/185)
+
+### ❤️ Contributors
+
+- [@renovate[bot]](https://github.com/apps/renovate)
+
+## [9.3.3](https://github.com/liblaf/grapes/releases/tag/v9.3.3) - 2026-03-08
 
 ### 🐛 Bug Fixes
 
@@ -15,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
+- [@liblaf[bot]](https://github.com/apps/liblaf)
 - [@renovate[bot]](https://github.com/apps/renovate)
 
 ## [9.3.2](https://github.com/liblaf/grapes/releases/tag/v9.3.2) - 2026-03-03

@@ -38,28 +38,28 @@ classifiers = [
   "Typing :: Typed"
 ]
 dependencies = [
-  "about-time>=4,<5",
-  "asttokens>=3,<4",
-  "attrs>=26,<27",
-  "autoregistry>=1,<2",
-  "cachebox>=5,<6",
-  "cytoolz>=1,<2",
-  "environs>=14,<15",
-  "executing>=2,<3",
-  "fieldz>=0.2,<0.3",
-  "joblib>=1,<2",
-  "lazy-loader>=0.5,<0.6",
-  "limits>=5,<6",
-  "msgspec[toml,yaml]>=0.20,<0.21",
-  "packaging>=26,<27",
-  "pendulum>=3,<4",
-  "platformdirs>=4,<5",
-  "pydantic>=2,<3",
-  "quantiphy>=2,<3",
-  "rich>=14,<15",
-  "toolz>=1,<2",
-  "wadler-lindig>=0.1,<0.2",
-  "wrapt>=2,<3"
+  "about-time>=4",
+  "asttokens>=3",
+  "attrs>=26",
+  "autoregistry>=1",
+  "cachebox>=5",
+  "cytoolz>=1",
+  "environs>=14",
+  "executing>=2",
+  "fieldz>=0.2",
+  "joblib>=1",
+  "lazy-loader>=0.5",
+  "limits>=5",
+  "msgspec[toml,yaml]>=0.20",
+  "packaging>=26",
+  "pendulum>=3",
+  "platformdirs>=4",
+  "pydantic>=2",
+  "quantiphy>=2",
+  "rich>=14",
+  "toolz>=1",
+  "wadler-lindig>=0.1",
+  "wrapt>=2"
 ]
 dynamic = ["version"]
 
@@ -72,18 +72,28 @@ dynamic = ["version"]
 "Source Code" = "https://github.com/liblaf/grapes"
 
 [project.optional-dependencies]
-bench = ["matplotlib>=3,<4"]
+bench = ["matplotlib>=3"]
 
 [dependency-groups]
-dev = [
-  "ipykernel>=7,<8",
-  "matplotlib>=3,<4",
-  "numpy>=2,<3",
-  "toolz-stubs>=0.4,<0.5"
+dev = ["ipykernel>=7", "matplotlib>=3", "numpy>=2"]
+build = ["check-wheel-contents>=0.6", "hatch>=1", "twine>=6"]
+docs = [
+  "griffe-fieldz>=0.5",
+  "griffe-inherited-docstrings>=1",
+  "griffe-pydantic>=1",
+  "griffe-warnings-deprecated>=1",
+  "mkdocstrings[python]>=1",
+  "zensical>=0.0.30"
 ]
-build = ["check-wheel-contents>=0.6,<0.7", "hatch>=1,<2", "twine>=6,<7"]
-docs = ["liblaf-mkdocs-preset>=0.3,<0.4", "mkdocs>=1,<2"]
-test = ["liblaf-pytest-preset>=0.1,<0.2", "pytest>=9,<10"]
+nox = ["liblaf-nox-recipes>=0.1", "nox>=2026"]
+test = [
+  "pytest>=9",
+  "pytest-cov>=7",
+  "pytest-randomly>=4",
+  "pytest-xdist>=3",
+  { include-group = "dev" }
+]
+typing = ["toolz-stubs>=0.4"]
 
 [build-system]
 requires = ["hatch-vcs", "hatchling"]
@@ -108,17 +118,24 @@ packages = ["src/liblaf"]
 [tool.hatch.version]
 source = "vcs"
 
-[tool.pyright]
-extends = ".config/linters/pyrightconfig.json"
+[tool.importlinter]
+root_package = "liblaf.grapes"
+
+[[tool.importlinter.contracts]]
+ancestors = ["liblaf.grapes"]
+name = "Acyclic siblings"
+type = "acyclic_siblings"
 
 [tool.pytest]
 addopts = [
   "--doctest-modules",
-  "--hypothesis-explain",
   "--import-mode=importlib",
+  "--junitxml=junit.xml",
+  "--numprocesses=auto",
   "--showlocals"
 ]
 consider_namespace_packages = true
+junit_family = "legacy"
 strict = true
 testpaths = ["benches", "src", "tests"]
 

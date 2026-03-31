@@ -1,3 +1,0 @@
-INHERIT: .config/copier/mkdocs.yaml
-site_name: Grapes
-site_description: 🍇 Supercharge your Python with rich logging, precise timing, and seamless serialization.

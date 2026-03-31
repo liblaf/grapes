@@ -20,10 +20,12 @@ words:
   - cupy
   - cytoolz
   - direnv
+  - dotenv
   - fieldz
   - functools
   - getattr
   - ghostty
+  - grimp
   - hdlr
   - hynek
   - inlinehilite
@@ -33,45 +35,51 @@ words:
   - kwargs
   - lasti
   - liblaf
+  - linenums
+  - lucide
   - mkdocs
   - mkdocstrings
   - numprocesses
   - numpy
   - pdoc
   - pformat
+  - pipx
   - platformdirs
   - prec
   - prefs
   - pycache
   - pydantic
   - pydocstyle
+  - pygments
   - pylint
   - pymdownx
   - pypa
   - pypi
   - pyplot
   - pyproject
-  - pyrightconfig
   - pytest
   - pyvista
   - quantiphy
   - repr
   - ruamel
+  - rumdl
   - sdist
   - serde
   - sjoerd
   - stdev
-  - tombi
+  - taiki
   - toolz
   - tqdm
   - trimesh
+  - twemoji
   - unraisable
   - unraisablehook
-  - uuidgen
   - venv
   - virtualenv
   - wadler
+  - xdist
   - xlabel
   - xscale
   - ylabel
   - yscale
+  - zensical

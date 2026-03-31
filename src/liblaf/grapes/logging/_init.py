@@ -47,5 +47,6 @@ def init(
     logging.captureWarnings(True)  # noqa: FBT003
     logging.getLogger("IPKernelApp").setLevel(logging.WARNING)
     logging.getLogger("liblaf").setLevel(logging.DEBUG)
+    logging.getLogger("nox").setLevel(logging.CRITICAL)
     remove_non_root_stream_handlers()
     set_default_logger_level_by_release_type()

@@ -40,25 +40,25 @@ classifiers = [
 dependencies = [
   "about-time>=4",
   "asttokens>=3",
-  "attrs>=26",
-  "autoregistry>=1",
-  "cachebox>=5",
+  "attrs>=25",
+  "autoregistry>=1.1",
+  "cachebox>=5.1",
   "cytoolz>=1",
   "environs>=14",
-  "executing>=2",
-  "fieldz>=0.2",
-  "joblib>=1",
+  "executing>=2.1",
+  "fieldz>=0.1",
+  "joblib>=1.4",
   "lazy-loader>=0.5",
   "limits>=5",
   "msgspec[toml,yaml]>=0.20",
   "packaging>=26",
   "pendulum>=3",
   "platformdirs>=4",
-  "pydantic>=2",
-  "quantiphy>=2",
-  "rich>=14",
+  "pydantic>=2.12",
+  "quantiphy>=2.20",
+  "rich>=14.3",
   "toolz>=1",
-  "wadler-lindig>=0.1",
+  "wadler-lindig>=0.1.5",
   "wrapt>=2"
 ]
 dynamic = ["version"]
@@ -85,6 +85,7 @@ docs = [
   "mkdocstrings[python]>=1",
   "zensical>=0.0.30"
 ]
+lint = ["import-linter[ui]>=2", "ruff>=0.15"]
 nox = ["liblaf-nox-recipes>=0.1", "nox>=2026"]
 test = [
   "pytest>=9",

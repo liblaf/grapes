@@ -718,10 +718,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 💥 BREAKING CHANGES
 
-- 1.  `liblaf.grapes.functools.decorator`, `Decorator`, and `Wrapper` have been removed. Users should now directly use `wrapt.decorator` for creating decorators.
+- 1. `liblaf.grapes.functools.decorator`, `Decorator`, and `Wrapper` have been removed. Users should now directly use `wrapt.decorator` for creating decorators.
 
-2.  `liblaf.grapes.logging.depth_tracker` has been renamed to `liblaf.grapes.logging.helper`. Any direct imports or references to `depth_tracker` must be updated to `helper`.
-3.  The constructor and internal API of `liblaf.grapes.logging.filters.CompositeFilter` have been completely rewritten. Direct instantiation or configuration of `CompositeFilter` will require updates. It is recommended to use the `new_filter` factory function for creating filters. - [f512d9b](https://github.com/liblaf/grapes/commit/f512d9b6d8170dd977cf4715d0390ce4f9b69816) by [@liblaf](https://github.com/liblaf)
+2. `liblaf.grapes.logging.depth_tracker` has been renamed to `liblaf.grapes.logging.helper`. Any direct imports or references to `depth_tracker` must be updated to `helper`.
+3. The constructor and internal API of `liblaf.grapes.logging.filters.CompositeFilter` have been completely rewritten. Direct instantiation or configuration of `CompositeFilter` will require updates. It is recommended to use the `new_filter` factory function for creating filters. - [f512d9b](https://github.com/liblaf/grapes/commit/f512d9b6d8170dd977cf4715d0390ce4f9b69816) by [@liblaf](https://github.com/liblaf)
 
 ### ♻️ Code Refactoring
 
@@ -1198,7 +1198,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 💥 BREAKING CHANGES
 
-- - Removed deprecated logging once_* functions (use filter_once instead)
+- Removed deprecated logging once_* functions (use filter_once instead)
 - Moved first_not_none utility to itertools module
 - Removed decorator_with_optional_arguments from functools - [f9858c2](https://github.com/liblaf/grapes/commit/f9858c2b99deb4822fc996a7ecba19cc0ca704e4) by [@liblaf](https://github.com/liblaf)
 

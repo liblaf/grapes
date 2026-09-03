@@ -7,6 +7,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v9.3.6](https://github.com/liblaf/grapes/releases/tag/v9.3.6) - 2026-09-03
+
+### 📝 Documentation
+
+- **(prompts)** define capability-led library interfaces - [f011edd](https://github.com/liblaf/grapes/commit/f011eddc3a11a27ccb6a23698f899cfa0834d4e8) by [@liblaf](https://github.com/liblaf)
+
+### 🛠 Builds
+
+- **(deps)** refresh lockfile metadata - [75087da](https://github.com/liblaf/grapes/commit/75087da9f2d1c17d52e75948ecf2d04b05194cd8) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf)
+
 ## [v9.3.5](https://github.com/liblaf/grapes/releases/tag/v9.3.5) - 2026-03-31
 
 ### 🛠 Builds
@@ -19,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
+- [@liblaf-release-please[bot]](https://github.com/apps/liblaf-release-please) made their first contribution in [#196](https://github.com/liblaf/grapes/pull/196)
 - [@liblaf](https://github.com/liblaf)
 - [@renovate[bot]](https://github.com/apps/renovate)
 - [@liblaf[bot]](https://github.com/apps/liblaf)
@@ -27,7 +42,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(deps)** update dependency attrs to v26 (#185) - [30f30c5](https://github.com/liblaf/grapes/commit/30f30c5d41c916415af48c2ad179b64398499225) by [@renovate[bot]](https://github.com/apps/renovate) in [#185](https://github.com/liblaf/grapes/pull/185)
+- **(deps)** update dependency attrs to v26 (#185) - [30f30c5](https://github.com/liblaf/grapes/commit/30f30c5d41c916415af48c2ad179b64398499225) by [@renovate[bot]](https://github.com/apps/renovate)
 
 ### ❤️ Contributors
 
@@ -38,7 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(deps)** update dependency lazy-loader to >=0.5,<0.6 (#179) - [f33b6c1](https://github.com/liblaf/grapes/commit/f33b6c1b285e09f2f269ac102c23b4d50918138d) by [@renovate[bot]](https://github.com/apps/renovate) in [#179](https://github.com/liblaf/grapes/pull/179)
+- **(deps)** update dependency lazy-loader to >=0.5,<0.6 (#179) - [f33b6c1](https://github.com/liblaf/grapes/commit/f33b6c1b285e09f2f269ac102c23b4d50918138d) by [@renovate[bot]](https://github.com/apps/renovate)
 
 ### ❤️ Contributors
 
@@ -49,7 +64,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(deps)** update dependency fieldz to >=0.2,<0.3 (#176) - [1aac757](https://github.com/liblaf/grapes/commit/1aac757b3a5828d09bb299ee22f159c494d81978) by [@renovate[bot]](https://github.com/apps/renovate) in [#176](https://github.com/liblaf/grapes/pull/176)
+- **(deps)** update dependency fieldz to >=0.2,<0.3 (#176) - [1aac757](https://github.com/liblaf/grapes/commit/1aac757b3a5828d09bb299ee22f159c494d81978) by [@renovate[bot]](https://github.com/apps/renovate)
 - **(logging)** suppress verbose IPKernelApp logging - [08aa9c1](https://github.com/liblaf/grapes/commit/08aa9c103526b0a5e9ca84ab2bc31272cba2c89d) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
@@ -121,7 +136,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(attrs)** pass kwargs to \_preprocess by reference - [8939b96](https://github.com/liblaf/grapes/commit/8939b96f011e3b35934074421ed76d343a1ca1d4) by [@liblaf](https://github.com/liblaf)
+- **(attrs)** pass kwargs to _preprocess by reference - [8939b96](https://github.com/liblaf/grapes/commit/8939b96f011e3b35934074421ed76d343a1ca1d4) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
 
@@ -132,7 +147,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(deps)** update dependency packaging to v26 (#163) - [8e10365](https://github.com/liblaf/grapes/commit/8e103658f2d2eaf6e2fc6948694a3592afdc6abb) by [@renovate[bot]](https://github.com/apps/renovate) in [#163](https://github.com/liblaf/grapes/pull/163)
+- **(deps)** update dependency packaging to v26 (#163) - [8e10365](https://github.com/liblaf/grapes/commit/8e103658f2d2eaf6e2fc6948694a3592afdc6abb) by [@renovate[bot]](https://github.com/apps/renovate)
 
 ### ❤️ Contributors
 
@@ -393,7 +408,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(deps)** update dependency msgspec to >=0.20,<0.21 (#127) - [342ce2a](https://github.com/liblaf/grapes/commit/342ce2a887c8c9aa16368f0ac69bda0bc638971a) by [@renovate[bot]](https://github.com/apps/renovate) in [#127](https://github.com/liblaf/grapes/pull/127)
+- **(deps)** update dependency msgspec to >=0.20,<0.21 (#127) - [342ce2a](https://github.com/liblaf/grapes/commit/342ce2a887c8c9aa16368f0ac69bda0bc638971a) by [@renovate[bot]](https://github.com/apps/renovate)
 - **(logging)** Improve exception and unraisable hook logging - [99bcf86](https://github.com/liblaf/grapes/commit/99bcf86576b55c0dba39572a03d8530b5b6dde20) by [@liblaf](https://github.com/liblaf)
 
 ### ♻️ Code Refactoring
@@ -657,7 +672,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(deps)** update dependency giturlparse to >=0.14,<0.15 (#97) - [3dd7e74](https://github.com/liblaf/grapes/commit/3dd7e74cf7d79b23bbc544d29e5fb05781aa32a7) by [@renovate[bot]](https://github.com/apps/renovate) in [#97](https://github.com/liblaf/grapes/pull/97)
+- **(deps)** update dependency giturlparse to >=0.14,<0.15 (#97) - [3dd7e74](https://github.com/liblaf/grapes/commit/3dd7e74cf7d79b23bbc544d29e5fb05781aa32a7) by [@renovate[bot]](https://github.com/apps/renovate)
 - **(pretty)** Improve array size detection for pretty printing - [288e3ef](https://github.com/liblaf/grapes/commit/288e3ef4008be6d1d36004e6f66d16fe30a94b8b) by [@liblaf](https://github.com/liblaf)
 
 ### ❤️ Contributors
@@ -982,7 +997,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### 💥 BREAKING CHANGES
 
 - **(logging)** Environment variable prefix changed from
-  PLAYGROUND* to LIBLAF_GRAPES*. Update your environment
+  PLAYGROUND_ to LIBLAF_GRAPES_. Update your environment
   variables accordingly. - [728d2e8](https://github.com/liblaf/grapes/commit/728d2e854f129eae060a904a7c2506f76cc6d858) by [@liblaf](https://github.com/liblaf)
 - **(timing)** - Timing API changes require updates to usage patterns
 - `func.timing.finish()` → `get_timer(func).finish()`
@@ -993,7 +1008,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changes import paths for logging utilities
 - Requires migration to LoggingProfile system for configuration - [64bc5ea](https://github.com/liblaf/grapes/commit/64bc5ea0ac96674bb53a7cbc41f0813023452104) by [@liblaf](https://github.com/liblaf)
 - **(core)** - `environ` module renamed to `env` (update imports)
-- `clone_signature` moved to typed.\_utils
+- `clone_signature` moved to typed._utils
 - Console configuration API simplified - [59330d1](https://github.com/liblaf/grapes/commit/59330d12399034847074f047e46517d7dbfd7ee2) by [@liblaf](https://github.com/liblaf)
 - **(pretty)** Removes WadlerLindigMixin and
   caller_location(). Renames location() to
@@ -1183,7 +1198,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 💥 BREAKING CHANGES
 
-- Removed deprecated logging once\_\* functions (use filter_once instead)
+- Removed deprecated logging once_* functions (use filter_once instead)
 - Moved first_not_none utility to itertools module
 - Removed decorator_with_optional_arguments from functools - [f9858c2](https://github.com/liblaf/grapes/commit/f9858c2b99deb4822fc996a7ecba19cc0ca704e4) by [@liblaf](https://github.com/liblaf)
 
@@ -1491,7 +1506,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(deps)** update dependency rich to v14 (#34) - [e3e1e09](https://github.com/liblaf/grapes/commit/e3e1e09bdbd5fce6e9020cbd29ed256058780ea9) by [@renovate[bot]](https://github.com/apps/renovate) in [#34](https://github.com/liblaf/grapes/pull/34)
+- **(deps)** update dependency rich to v14 (#34) - [e3e1e09](https://github.com/liblaf/grapes/commit/e3e1e09bdbd5fce6e9020cbd29ed256058780ea9) by [@renovate[bot]](https://github.com/apps/renovate)
 
 ### ❤️ Contributors
 
@@ -1730,7 +1745,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🐛 Bug Fixes
 
-- **(deps)** update dependency boltons to v25 (#11) - [cae7976](https://github.com/liblaf/grapes/commit/cae797647886d4fd8c2a2ae4d469ba4b3910f7fc) by [@renovate[bot]](https://github.com/apps/renovate) in [#11](https://github.com/liblaf/grapes/pull/11)
+- **(deps)** update dependency boltons to v25 (#11) - [cae7976](https://github.com/liblaf/grapes/commit/cae797647886d4fd8c2a2ae4d469ba4b3910f7fc) by [@renovate[bot]](https://github.com/apps/renovate)
 
 ### 📝 Documentation
 

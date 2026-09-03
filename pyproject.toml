@@ -143,5 +143,8 @@ testpaths = ["benches", "src", "tests"]
 [tool.ruff]
 extend = ".config/linters/.ruff.toml"
 
+[tool.ruff.lint.per-file-ignores]
+"prompts/*.py" = ["ALL"]
+
 [tool.uv]
 default-groups = "all"
